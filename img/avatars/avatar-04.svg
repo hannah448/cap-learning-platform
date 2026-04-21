@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Portrait homme locs">
+  <circle cx="50" cy="50" r="50" fill="#E76F51"/>
+  <path d="M22,100 Q22,70 50,70 Q78,70 78,100 Z" fill="#2A2A2A"/>
+  <ellipse cx="50" cy="48" rx="22" ry="26" fill="#5D2E1F"/>
+  <g fill="#1A1A1A">
+    <ellipse cx="34" cy="26" rx="3" ry="8"/>
+    <ellipse cx="42" cy="22" rx="3" ry="10"/>
+    <ellipse cx="50" cy="20" rx="3" ry="10"/>
+    <ellipse cx="58" cy="22" rx="3" ry="10"/>
+    <ellipse cx="66" cy="26" rx="3" ry="8"/>
+    <rect x="30" y="26" width="40" height="14" rx="7"/>
+  </g>
+  <ellipse cx="42" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <ellipse cx="58" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <path d="M43,60 Q50,64 57,60" stroke="#2A1008" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M38,62 Q50,68 62,62 Q64,70 50,74 Q36,70 38,62 Z" fill="#2A1008" opacity="0.5"/>
+</svg>

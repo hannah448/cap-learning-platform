@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier - Cap Learning</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        /* ── Payment method selector ── */
+        .pay-methods-section {
+            margin-top: var(--space-5);
+            padding-top: var(--space-5);
+            border-top: 1px solid var(--color-gray-200);
+        }
+        .pay-methods-title {
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            margin-bottom: var(--space-3);
+            color: var(--text-primary);
+        }
+        .pay-method-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: 12px 14px;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: var(--space-2);
+            background: white;
+        }
+        .pay-method-option:hover { border-color: var(--color-primary-light); background: var(--color-primary-50); }
+        .pay-method-option.selected { border-color: var(--color-primary); background: var(--color-primary-50); box-shadow: 0 0 0 3px rgba(58,80,246,0.1); }
+
+        .pay-method-radio {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--color-gray-300);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .pay-method-option.selected .pay-method-radio {
+            border-color: var(--color-primary);
+            background: var(--color-primary);
+        }
+        .pay-method-option.selected .pay-method-radio::after {
+            content: '';
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: white;
+        }
+
+        .pay-method-icon {
+            width: 40px; height: 40px;
+            border-radius: var(--radius-md);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .pay-icon-wave { background: #1DC1EC20; }
+        .pay-icon-orange { background: #FF660020; }
+        .pay-icon-mtn { background: #FFC20E20; }
+        .pay-icon-card { background: #1A1F7120; }
+        .pay-icon-virement { background: #10B98120; }
+
+        .pay-method-info { flex: 1; }
+        .pay-method-name {
+            font-weight: 700;
+            font-size: var(--text-sm);
+            color: var(--text-primary);
+        }
+        .pay-method-desc {
+            font-size: 11px;
+            color: var(--text-tertiary);
+            margin-top: 1px;
+        }
+        .pay-method-tag {
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: var(--radius-full);
+            flex-shrink: 0;
+        }
+        .pay-tag-popular { background: #ECFDF5; color: #059669; }
+        .pay-tag-new { background: #EFF6FF; color: #3B82F6; }
+
+        /* Aggregator badges */
+        .pay-aggregators {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-gray-50);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+        }
+        .pay-aggregators span { font-weight: 600; color: var(--text-secondary); }
+
+        /* ── Checkout Modal ── */
+        .checkout-overlay {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(6px);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-4);
+        }
+        .checkout-overlay.open { display: flex; }
+
+        .checkout-modal {
+            background: white;
+            border-radius: var(--radius-2xl);
+            max-width: 480px;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+            animation: modalSlideUp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes modalSlideUp {
+            from { transform: translateY(40px); opacity: 0; }
+            to   { transform: translateY(0); opacity: 1; }
+        }
+
+        .checkout-header {
+            background: linear-gradient(135deg, #3A50F6, #6B7DF8);
+            color: white;
+            padding: var(--space-6) var(--space-6) var(--space-5);
+            text-align: center;
+        }
+        .checkout-header h2 {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+        .checkout-header p {
+            font-size: var(--text-sm);
+            opacity: 0.85;
+        }
+
+        .checkout-body {
+            padding: var(--space-6);
+        }
+
+        .checkout-summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-2) 0;
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+        .checkout-summary-row.total {
+            border-top: 2px solid var(--color-gray-200);
+            margin-top: var(--space-2);
+            padding-top: var(--space-3);
+            font-weight: 700;
+            font-size: var(--text-base);
+            color: var(--text-primary);
+        }
+
+        .checkout-pay-info {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-gray-50);
+            border-radius: var(--radius-lg);
+            margin: var(--space-5) 0;
+        }
+        .checkout-pay-info .pay-method-icon { width: 36px; height: 36px; font-size: 18px; }
+
+        /* Phone input for mobile money */
+        .checkout-phone-group {
+            margin-bottom: var(--space-4);
+        }
+        .checkout-phone-group label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+            color: var(--text-primary);
+        }
+        .checkout-phone-input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .checkout-phone-input:focus { border-color: var(--color-primary); }
+        .checkout-phone-hint {
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            margin-top: var(--space-1);
+        }
+
+        .checkout-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .checkout-confirm-btn {
+            width: 100%;
+            padding: var(--space-4);
+            background: linear-gradient(135deg, #3A50F6, #6B7DF8);
+            color: white;
+            border: none;
+            border-radius: var(--radius-lg);
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+        }
+        .checkout-confirm-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(58,80,246,0.3); }
+        .checkout-confirm-btn:disabled { opacity: 0.6; pointer-events: none; }
+
+        .checkout-cancel-btn {
+            width: 100%;
+            padding: var(--space-3);
+            background: none;
+            border: none;
+            color: var(--text-tertiary);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            cursor: pointer;
+        }
+        .checkout-cancel-btn:hover { color: var(--text-primary); }
+
+        .checkout-secure {
+            text-align: center;
+            font-size: var(--text-xs);
+            color: var(--text-tertiary);
+            margin-top: var(--space-3);
+        }
+
+        /* Processing animation */
+        .checkout-processing {
+            display: none;
+            text-align: center;
+            padding: var(--space-8) var(--space-6);
+        }
+        .checkout-processing.show { display: block; }
+
+        .processing-spinner {
+            width: 56px; height: 56px;
+            border: 4px solid var(--color-gray-200);
+            border-top-color: var(--color-primary);
+            border-radius: 50%;
+            margin: 0 auto var(--space-4);
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .processing-text {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+        }
+        .processing-sub {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+
+        /* Success state */
+        .checkout-success {
+            display: none;
+            text-align: center;
+            padding: var(--space-8) var(--space-6);
+        }
+        .checkout-success.show { display: block; }
+
+        .success-icon {
+            width: 72px; height: 72px;
+            background: #ECFDF5;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 36px;
+            margin: 0 auto var(--space-4);
+            animation: successPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes successPop {
+            from { transform: scale(0); }
+            to   { transform: scale(1); }
+        }
+
+        .success-title {
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: #059669;
+            margin-bottom: var(--space-2);
+        }
+        .success-desc {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-5);
+            line-height: var(--leading-relaxed);
+        }
+
+        /* Footer payment badges */
+        .footer-pay-badges {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+        .footer-pay-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 6px;
+            font-size: 12px;
+            color: var(--color-gray-400);
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="catalogue.html" class="nav-link">Formations</a></li>
+                    <li><a href="plateforme.html" class="nav-link">Plateforme</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                            À propos <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="qui-sommes-nous.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#127757;</span>
+                                    <div><strong>Qui sommes-nous</strong><span>Notre mission panafricaine</span></div>
+                                </a>
+                                <a href="nos-experts.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128100;</span>
+                                    <div><strong>Nos experts</strong><span>Formateurs &amp; accompagnateurs</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../index.html#témoignages" class="nav-link">Témoignages</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier.html" class="cart-btn" aria-label="Panier" style="background: var(--color-primary-50);">
+                    <span class="cart-icon">&#128722;</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+                <a href="connexion.html" class="btn btn-ghost btn-sm">Connexion</a>
+                <a href="connexion.html" class="btn btn-primary btn-sm">S'inscrire</a>
+                <button class="mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="cart-page">
+            <div class="container">
+                <!-- Breadcrumb -->
+                <div class="course-detail-breadcrumb" style="color: var(--text-tertiary); margin-bottom: var(--space-8);">
+                    <a href="../index.html" style="color: var(--text-secondary);">Accueil</a>
+                    <span>/</span>
+                    <span style="color: var(--text-primary); font-weight: 500;">Mon Panier</span>
+                </div>
+
+                <h1 style="font-family: var(--font-display); font-size: var(--text-3xl); margin-bottom: var(--space-8);">
+                    Mon Panier <span id="cart-count" style="font-size: var(--text-lg); color: var(--text-secondary); font-weight: 400;"></span>
+                </h1>
+
+                <!-- Empty State -->
+                <div class="cart-empty" id="cart-empty" style="display: none;">
+                    <div class="cart-empty-icon">&#128722;</div>
+                    <h3>Votre panier est vide</h3>
+                    <p>Explorez notre catalogue et trouvez la formation qui transformera votre business.</p>
+                    <a href="catalogue.html" class="btn btn-primary btn-lg">Découvrir les formations &rarr;</a>
+                </div>
+
+                <!-- Cart Content -->
+                <div class="cart-grid" id="cart-content">
+                    <!-- Cart Items -->
+                    <div class="cart-items" id="cart-items">
+                        <!-- Rendered by JS -->
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <h3>Résumé de la commande</h3>
+                        <div class="cart-summary-row">
+                            <span>Sous-total</span>
+                            <span id="cart-subtotal">0 FCFA</span>
+                        </div>
+                        <div class="cart-summary-row">
+                            <span>Réduction</span>
+                            <span style="color: var(--color-success);" id="cart-discount">-0 FCFA</span>
+                        </div>
+                        <div class="cart-summary-total">
+                            <span>Total</span>
+                            <span class="total-amount" id="cart-total">0 FCFA</span>
+                        </div>
+
+                        <!-- Promo Code -->
+                        <div class="promo-input">
+                            <input type="text" id="promo-code" placeholder="Code promo" aria-label="Code promotionnel">
+                            <button class="btn btn-outline btn-sm" id="promo-apply-btn">Appliquer</button>
+                        </div>
+
+                        <!-- Payment Method Selection -->
+                        <div class="pay-methods-section">
+                            <div class="pay-methods-title">Choisissez votre moyen de paiement</div>
+
+                            <div class="pay-method-option selected" data-method="wave" onclick="selectPayMethod(this)">
+                                <div class="pay-method-radio"></div>
+                                <div class="pay-method-icon pay-icon-wave">🌊</div>
+                                <div class="pay-method-info">
+                                    <div class="pay-method-name">Wave</div>
+                                    <div class="pay-method-desc">Sénégal, Côte d'Ivoire, Mali, Burkina · Frais bas</div>
+                                </div>
+                                <span class="pay-method-tag pay-tag-popular">Populaire</span>
+                            </div>
+
+                            <div class="pay-method-option" data-method="orange" onclick="selectPayMethod(this)">
+                                <div class="pay-method-radio"></div>
+                                <div class="pay-method-icon pay-icon-orange">🟠</div>
+                                <div class="pay-method-info">
+                                    <div class="pay-method-name">Orange Money</div>
+                                    <div class="pay-method-desc">17 pays d'Afrique francophone · Le plus large réseau</div>
+                                </div>
+                            </div>
+
+                            <div class="pay-method-option" data-method="mtn" onclick="selectPayMethod(this)">
+                                <div class="pay-method-radio"></div>
+                                <div class="pay-method-icon pay-icon-mtn">📱</div>
+                                <div class="pay-method-info">
+                                    <div class="pay-method-name">MTN Mobile Money</div>
+                                    <div class="pay-method-desc">Côte d'Ivoire, Cameroun, Congo, Rwanda…</div>
+                                </div>
+                            </div>
+
+                            <div class="pay-method-option" data-method="card" onclick="selectPayMethod(this)">
+                                <div class="pay-method-radio"></div>
+                                <div class="pay-method-icon pay-icon-card">💳</div>
+                                <div class="pay-method-info">
+                                    <div class="pay-method-name">Carte bancaire</div>
+                                    <div class="pay-method-desc">Visa, Mastercard · Diaspora &amp; urbains</div>
+                                </div>
+                            </div>
+
+                            <div class="pay-method-option" data-method="virement" onclick="selectPayMethod(this)">
+                                <div class="pay-method-radio"></div>
+                                <div class="pay-method-icon pay-icon-virement">🏦</div>
+                                <div class="pay-method-info">
+                                    <div class="pay-method-name">Virement bancaire</div>
+                                    <div class="pay-method-desc">B2B · Formations OPCO · Entreprises</div>
+                                </div>
+                                <span class="pay-method-tag pay-tag-new">B2B</span>
+                            </div>
+                        </div>
+
+                        <div class="cart-summary-actions" style="margin-top: var(--space-5);">
+                            <button class="btn btn-primary btn-block btn-lg" id="checkout-btn" style="font-size: var(--text-base);">
+                                🔒 Payer maintenant
+                            </button>
+                            <a href="catalogue.html" class="btn btn-outline btn-block">
+                                Continuer les achats
+                            </a>
+                        </div>
+
+                        <!-- Aggregator info -->
+                        <div class="pay-aggregators">
+                            Paiements sécurisés via&nbsp;
+                            <span>CinetPay</span> &amp; <span>PayDunya</span>
+                        </div>
+
+                        <!-- Security -->
+                        <div class="security-badge">
+                            &#128274; Paiement 100% sécurisé · SSL · Garantie 14 jours
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ═══ CHECKOUT MODAL ═══ -->
+    <div class="checkout-overlay" id="checkout-overlay">
+        <div class="checkout-modal">
+            <!-- Step 1: Confirm -->
+            <div id="checkout-step-confirm">
+                <div class="checkout-header">
+                    <h2>Finaliser le paiement</h2>
+                    <p id="checkout-method-label">via Wave</p>
+                </div>
+                <div class="checkout-body">
+                    <div class="checkout-summary-row">
+                        <span>Formations (<span id="modal-count">1</span>)</span>
+                        <span id="modal-subtotal">25 000 FCFA</span>
+                    </div>
+                    <div class="checkout-summary-row">
+                        <span>Frais de transaction</span>
+                        <span style="color: var(--color-success);">Gratuit</span>
+                    </div>
+                    <div class="checkout-summary-row total">
+                        <span>Total à payer</span>
+                        <span id="modal-total">25 000 FCFA</span>
+                    </div>
+
+                    <div class="checkout-pay-info" id="modal-pay-info">
+                        <div class="pay-method-icon pay-icon-wave">🌊</div>
+                        <div>
+                            <div style="font-weight: 700; font-size: 14px;">Wave</div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">Sénégal, Côte d'Ivoire, Mali, Burkina</div>
+                        </div>
+                    </div>
+
+                    <!-- Phone number input (for mobile money methods) -->
+                    <div class="checkout-phone-group" id="phone-group">
+                        <label for="checkout-phone">Numéro de téléphone</label>
+                        <input type="tel" class="checkout-phone-input" id="checkout-phone" placeholder="+221 7X XXX XX XX" autocomplete="tel">
+                        <div class="checkout-phone-hint" id="phone-hint">Le numéro associé à votre compte Wave</div>
+                    </div>
+
+                    <!-- Card fields (for card method) -->
+                    <div id="card-fields" style="display: none;">
+                        <div class="checkout-phone-group">
+                            <label>Numéro de carte</label>
+                            <input type="text" class="checkout-phone-input" placeholder="4242 4242 4242 4242" maxlength="19">
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+                            <div class="checkout-phone-group">
+                                <label>Expiration</label>
+                                <input type="text" class="checkout-phone-input" placeholder="MM/AA" maxlength="5">
+                            </div>
+                            <div class="checkout-phone-group">
+                                <label>CVV</label>
+                                <input type="text" class="checkout-phone-input" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Virement info (for virement method) -->
+                    <div id="virement-info" style="display: none; padding: 16px; background: var(--color-gray-50); border-radius: var(--radius-lg); font-size: 13px; line-height: 1.6;">
+                        <strong>Informations de virement :</strong><br>
+                        Banque : CBAO Groupe Attijariwafa<br>
+                        IBAN : SN08 SN000 01001 000256789 012<br>
+                        BIC : CBAOSNDA<br>
+                        Référence : <strong id="virement-ref">AF-2026-XXXX</strong><br>
+                        <div style="margin-top: 8px; color: var(--color-warning); font-weight: 600;">⚠ L'accès sera débloqué sous 24-48h après réception.</div>
+                    </div>
+
+                    <div class="checkout-actions">
+                        <button class="checkout-confirm-btn" id="modal-confirm-btn" onclick="processPayment()">
+                            🔒 Confirmer le paiement
+                        </button>
+                        <button class="checkout-cancel-btn" onclick="closeCheckout()">Annuler</button>
+                    </div>
+                    <div class="checkout-secure">🔒 Paiement chiffré SSL 256-bit via CinetPay / PayDunya</div>
+                </div>
+            </div>
+
+            <!-- Step 2: Processing -->
+            <div class="checkout-processing" id="checkout-step-processing">
+                <div class="processing-spinner"></div>
+                <div class="processing-text" id="processing-text">Traitement en cours...</div>
+                <div class="processing-sub" id="processing-sub">Vérification de votre paiement Wave</div>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div class="checkout-success" id="checkout-step-success">
+                <div class="success-icon">✓</div>
+                <div class="success-title">Paiement confirmé !</div>
+                <div class="success-desc" id="success-desc">
+                    Vos formations sont maintenant accessibles.<br>
+                    Un reçu a été envoyé à votre email.
+                </div>
+                <button class="checkout-confirm-btn" onclick="window.location.href='dashboard.html'">
+                    Accéder à mes formations →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+                <div class="footer-brand-compact">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                        <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+                    </a>
+                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-footer-badge">
+                        <span class="tp-footer-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="tp-footer-score">4.8/5</span>
+                        <span>&middot; 182 avis sur Trustpilot</span>
+                    </a>
+                </div>
+            <div class="footer-bottom" style="border-top: none; padding-top: 0;">
+                <p>&copy; 2026 Cap Learning. Tous droits réservés.</p>
+                <div class="footer-pay-badges">
+                    <span style="color: var(--color-gray-400); font-size: 12px;">Paiements :</span>
+                    <span class="footer-pay-badge">🌊 Wave</span>
+                    <span class="footer-pay-badge">🟠 Orange Money</span>
+                    <span class="footer-pay-badge">📱 MTN MoMo</span>
+                    <span class="footer-pay-badge">💳 Visa / MC</span>
+                    <span class="footer-pay-badge">🏦 Virement</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="toast" id="toast" role="alert" aria-live="polite" hidden>
+        <span class="toast-icon">&#10003;</span>
+        <span class="toast-message" id="toast-message"></span>
+        <button class="toast-close" onclick="hideToast()">&times;</button>
+    </div>
+
+    <script src="../js/app.js"></script>
+    <script>
+    // ── PAYMENT METHOD SELECTION ──
+    var selectedMethod = 'wave';
+
+    var PAY_METHODS = {
+        wave:     { name: 'Wave',             icon: '🌊', iconClass: 'pay-icon-wave',     desc: 'Sénégal, Côte d\'Ivoire, Mali, Burkina', type: 'mobile', hint: 'Le numéro associé à votre compte Wave', placeholder: '+221 7X XXX XX XX', aggregator: 'PayDunya' },
+        orange:   { name: 'Orange Money',     icon: '🟠', iconClass: 'pay-icon-orange',   desc: '17 pays d\'Afrique francophone',          type: 'mobile', hint: 'Le numéro associé à votre compte Orange Money', placeholder: '+221 7X XXX XX XX', aggregator: 'CinetPay' },
+        mtn:      { name: 'MTN Mobile Money', icon: '📱', iconClass: 'pay-icon-mtn',      desc: 'CI, Cameroun, Congo, Rwanda…',            type: 'mobile', hint: 'Le numéro associé à votre compte MTN MoMo', placeholder: '+225 0X XX XX XX', aggregator: 'CinetPay' },
+        card:     { name: 'Carte bancaire',   icon: '💳', iconClass: 'pay-icon-card',     desc: 'Visa, Mastercard',                        type: 'card',   hint: '', placeholder: '', aggregator: 'CinetPay' },
+        virement: { name: 'Virement bancaire',icon: '🏦', iconClass: 'pay-icon-virement', desc: 'B2B · Entreprises',                       type: 'virement', hint: '', placeholder: '', aggregator: 'Manuel' }
+    };
+
+    function selectPayMethod(el) {
+        document.querySelectorAll('.pay-method-option').forEach(function(o) { o.classList.remove('selected'); });
+        el.classList.add('selected');
+        selectedMethod = el.dataset.method;
+    }
+
+    // ── PROMO CODE ──
+    var promoDiscount = 0;
+    document.getElementById('promo-apply-btn').addEventListener('click', function() {
+        var code = document.getElementById('promo-code').value.trim().toUpperCase();
+        var validCodes = { 'AFRI10': 10, 'LEARN20': 20, 'FIRST50': 50, 'WELCOME': 15 };
+        if (validCodes[code]) {
+            promoDiscount = validCodes[code];
+            showToast('Code promo appliqué : -' + promoDiscount + '% !');
+            updateCartTotals();
+        } else {
+            showToast('Code promo invalide');
+            promoDiscount = 0;
+        }
+    });
+
+    function updateCartTotals() {
+        if (typeof Cart === 'undefined') return;
+        var subtotal = Cart.items.reduce(function(sum, item) { return sum + (item.price || 0); }, 0);
+        var discount = Math.round(subtotal * promoDiscount / 100);
+        var total = subtotal - discount;
+        document.getElementById('cart-subtotal').textContent = subtotal.toLocaleString('fr-FR') + ' FCFA';
+        document.getElementById('cart-discount').textContent = '-' + discount.toLocaleString('fr-FR') + ' FCFA';
+        document.getElementById('cart-total').textContent = total.toLocaleString('fr-FR') + ' FCFA';
+    }
+
+    // ── CHECKOUT FLOW ──
+    var checkoutBtn = document.getElementById('checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.addEventListener('click', function() {
+            if (Cart.getCount() === 0) {
+                showToast('Votre panier est vide');
+                return;
+            }
+
+            var user = JSON.parse(localStorage.getItem('caplearning_user') || 'null');
+            if (!user || !user.loggedIn) {
+                showToast('Connectez-vous pour finaliser votre achat');
+                setTimeout(function() { window.location.href = 'connexion.html'; }, 1500);
+                return;
+            }
+
+            openCheckoutModal();
+        });
+    }
+
+    function openCheckoutModal() {
+        var method = PAY_METHODS[selectedMethod];
+        var subtotal = Cart.items.reduce(function(sum, item) { return sum + (item.price || 0); }, 0);
+        var discount = Math.round(subtotal * promoDiscount / 100);
+        var total = subtotal - discount;
+
+        // Update modal content
+        document.getElementById('checkout-method-label').textContent = 'via ' + method.name;
+        document.getElementById('modal-count').textContent = Cart.getCount();
+        document.getElementById('modal-subtotal').textContent = subtotal.toLocaleString('fr-FR') + ' FCFA';
+        document.getElementById('modal-total').textContent = total.toLocaleString('fr-FR') + ' FCFA';
+
+        // Pay info
+        document.getElementById('modal-pay-info').innerHTML =
+            '<div class="pay-method-icon ' + method.iconClass + '">' + method.icon + '</div>' +
+            '<div><div style="font-weight:700; font-size:14px;">' + method.name + '</div>' +
+            '<div style="font-size:12px; color:var(--text-tertiary);">Traité par ' + method.aggregator + '</div></div>';
+
+        // Show/hide fields based on method type
+        document.getElementById('phone-group').style.display = method.type === 'mobile' ? 'block' : 'none';
+        document.getElementById('card-fields').style.display = method.type === 'card' ? 'block' : 'none';
+        document.getElementById('virement-info').style.display = method.type === 'virement' ? 'block' : 'none';
+
+        if (method.type === 'mobile') {
+            document.getElementById('checkout-phone').placeholder = method.placeholder;
+            document.getElementById('phone-hint').textContent = method.hint;
+        }
+
+        if (method.type === 'virement') {
+            document.getElementById('virement-ref').textContent = 'AF-2026-' + Math.random().toString(36).substring(2, 6).toUpperCase();
+            document.getElementById('modal-confirm-btn').innerHTML = '📋 Copier les coordonnées et confirmer';
+        } else {
+            document.getElementById('modal-confirm-btn').innerHTML = '🔒 Confirmer le paiement de ' + total.toLocaleString('fr-FR') + ' FCFA';
+        }
+
+        // Show modal
+        document.getElementById('checkout-step-confirm').style.display = 'block';
+        document.getElementById('checkout-step-processing').classList.remove('show');
+        document.getElementById('checkout-step-success').classList.remove('show');
+        document.getElementById('checkout-overlay').classList.add('open');
+    }
+
+    function closeCheckout() {
+        document.getElementById('checkout-overlay').classList.remove('open');
+    }
+
+    function processPayment() {
+        var method = PAY_METHODS[selectedMethod];
+
+        // Validate phone for mobile money
+        if (method.type === 'mobile') {
+            var phone = document.getElementById('checkout-phone').value.trim();
+            if (phone.length < 8) {
+                showToast('Veuillez entrer un numéro de téléphone valide');
+                return;
+            }
+        }
+
+        // Step 2: Processing
+        document.getElementById('checkout-step-confirm').style.display = 'none';
+        document.getElementById('checkout-step-processing').classList.add('show');
+
+        var processingTexts = {
+            wave: ['Connexion à Wave...', 'Envoi de la demande de paiement...', 'Confirmation en cours...'],
+            orange: ['Connexion à Orange Money...', 'Veuillez valider sur votre téléphone...', 'Vérification du paiement...'],
+            mtn: ['Connexion à MTN MoMo...', 'Veuillez valider sur votre téléphone...', 'Vérification du paiement...'],
+            card: ['Vérification de la carte...', 'Autorisation bancaire en cours...', 'Finalisation du paiement...'],
+            virement: ['Enregistrement de la commande...', 'Génération de la référence...', 'Commande confirmée...']
+        };
+
+        var texts = processingTexts[selectedMethod] || processingTexts.wave;
+        var subEl = document.getElementById('processing-sub');
+        subEl.textContent = texts[0];
+
+        setTimeout(function() { subEl.textContent = texts[1]; }, 1200);
+        setTimeout(function() { subEl.textContent = texts[2]; }, 2400);
+
+        // Step 3: Success (after simulated delay)
+        setTimeout(function() {
+            document.getElementById('checkout-step-processing').classList.remove('show');
+            document.getElementById('checkout-step-success').classList.add('show');
+
+            if (method.type === 'virement') {
+                document.getElementById('success-desc').innerHTML =
+                    'Votre commande est enregistrée.<br>' +
+                    'Effectuez le virement avec la référence indiquée.<br>' +
+                    '<strong>L\'accès sera débloqué sous 24-48h après réception.</strong>';
+            } else {
+                document.getElementById('success-desc').innerHTML =
+                    'Paiement reçu via <strong>' + method.name + '</strong>.<br>' +
+                    'Vos formations sont maintenant accessibles !';
+            }
+
+            // Transfer cart to purchased
+            var purchased = JSON.parse(localStorage.getItem('caplearning_purchased') || '[]');
+            Cart.items.forEach(function(item) {
+                if (!purchased.find(function(p) { return p.id === item.id; })) {
+                    purchased.push(item);
+                }
+            });
+            localStorage.setItem('caplearning_purchased', JSON.stringify(purchased));
+            Cart.clear();
+        }, 3500);
+    }
+
+    // Close modal on overlay click
+    document.getElementById('checkout-overlay').addEventListener('click', function(e) {
+        if (e.target === this) closeCheckout();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeCheckout();
+    });
+    </script>
+    <!-- Trustpilot TrustBox Bootstrap -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+    <!-- WhatsApp Chat Widget -->
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+</html>

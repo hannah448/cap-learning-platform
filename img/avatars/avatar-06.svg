@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Portrait femme foulard géométrique">
+  <circle cx="50" cy="50" r="50" fill="#FF6B35"/>
+  <path d="M22,100 Q22,70 50,70 Q78,70 78,100 Z" fill="#3A5A40"/>
+  <ellipse cx="50" cy="48" rx="22" ry="26" fill="#5D2E1F"/>
+  <path d="M22,44 Q20,14 50,8 Q80,14 78,44 Q78,30 70,22 Q60,12 50,12 Q40,12 30,22 Q22,30 22,44 Z" fill="#3A5A40"/>
+  <g fill="#E76F51">
+    <path d="M26,28 L36,22 L40,30 L30,36 Z"/>
+    <path d="M60,22 L70,28 L66,36 L56,30 Z"/>
+    <circle cx="50" cy="18" r="3"/>
+  </g>
+  <g fill="#F4D35E">
+    <rect x="40" y="26" width="4" height="4" transform="rotate(45 42 28)"/>
+    <rect x="56" y="26" width="4" height="4" transform="rotate(45 58 28)"/>
+    <circle cx="32" cy="38" r="1.5"/>
+    <circle cx="68" cy="38" r="1.5"/>
+  </g>
+  <ellipse cx="42" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <ellipse cx="58" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <path d="M43,60 Q50,65 57,60" stroke="#2A1008" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</svg>

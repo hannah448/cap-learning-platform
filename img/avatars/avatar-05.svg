@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Portrait femme tresses">
+  <circle cx="50" cy="50" r="50" fill="#264653"/>
+  <path d="M22,100 Q22,72 50,72 Q78,72 78,100 Z" fill="#8B4513"/>
+  <ellipse cx="50" cy="48" rx="22" ry="26" fill="#A0522D"/>
+  <path d="M28,40 Q28,18 50,14 Q72,18 72,40 Q66,24 50,22 Q34,24 28,40 Z" fill="#1A1A1A"/>
+  <g fill="#1A1A1A">
+    <path d="M26,40 L22,78 L26,80 L28,42 Z"/>
+    <path d="M74,40 L78,78 L74,80 L72,42 Z"/>
+    <circle cx="22" cy="50" r="2.5"/>
+    <circle cx="22" cy="62" r="2.5"/>
+    <circle cx="22" cy="74" r="2.5"/>
+    <circle cx="78" cy="50" r="2.5"/>
+    <circle cx="78" cy="62" r="2.5"/>
+    <circle cx="78" cy="74" r="2.5"/>
+  </g>
+  <ellipse cx="42" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <ellipse cx="58" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <path d="M43,60 Q50,64 57,60" stroke="#5D2E1F" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+</svg>

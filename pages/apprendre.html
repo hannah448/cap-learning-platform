@@ -1,0 +1,2787 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation - Cap Learning LMS</title>
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lms.css">
+    <style>
+        /* --- Learn Page Specific --- */
+        .learn-layout { display: flex; min-height: 100vh; }
+
+        /* Sidebar curriculum */
+        .learn-sidebar {
+            width: 340px;
+            background: var(--color-secondary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .learn-sidebar-header {
+            padding: var(--space-5) var(--space-5);
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            flex-shrink: 0;
+        }
+
+        .learn-sidebar-back {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            color: var(--color-gray-400);
+            font-size: var(--text-sm);
+            text-decoration: none;
+            margin-bottom: var(--space-3);
+            transition: color 0.2s;
+        }
+        .learn-sidebar-back:hover { color: white; }
+
+        .learn-sidebar-title {
+            font-family: var(--font-display);
+            font-size: var(--text-base);
+            font-weight: 700;
+            color: white;
+            line-height: 1.3;
+        }
+
+        .learn-sidebar-progress {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-top: var(--space-3);
+            font-size: var(--text-xs);
+            color: var(--color-gray-400);
+        }
+
+        .learn-progress-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .learn-progress-fill {
+            height: 100%;
+            background: var(--color-primary);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        /* Module list */
+        .learn-modules {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--space-3) 0;
+        }
+
+        .learn-module-group {
+            margin-bottom: var(--space-2);
+        }
+
+        .learn-module-title {
+            padding: var(--space-3) var(--space-5);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-gray-400);
+        }
+
+        .learn-lesson {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-5);
+            cursor: pointer;
+            transition: background 0.15s;
+            border-left: 3px solid transparent;
+            font-size: var(--text-sm);
+            color: var(--color-gray-300);
+        }
+
+        .learn-lesson:hover { background: rgba(255,255,255,0.05); }
+
+        .learn-lesson.active {
+            background: rgba(58,80,246,0.15);
+            border-left-color: var(--color-primary);
+            color: white;
+        }
+
+        .learn-lesson.completed { color: var(--color-success); }
+        .learn-lesson.completed .lesson-check { color: var(--color-success); }
+
+        .lesson-check {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--color-gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+
+        .learn-lesson.completed .lesson-check {
+            background: var(--color-success);
+            border-color: var(--color-success);
+            color: white;
+        }
+
+        .learn-lesson.active .lesson-check {
+            border-color: var(--color-primary);
+        }
+
+        .lesson-label { flex: 1; line-height: 1.3; }
+
+        .lesson-type {
+            font-size: 10px;
+            padding: 1px 6px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .lesson-type-video { background: rgba(58,80,246,0.2); color: var(--color-primary-light); }
+        .lesson-type-exercise { background: rgba(16,185,129,0.2); color: #34D399; }
+        .lesson-type-quiz { background: rgba(245,158,11,0.2); color: #FCD34D; }
+
+        .lesson-duration {
+            font-size: var(--text-xs);
+            color: var(--color-gray-500);
+            flex-shrink: 0;
+        }
+
+        /* Main content */
+        .learn-main {
+            flex: 1;
+            margin-left: 340px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background: var(--surface-secondary);
+        }
+
+        /* Video player area */
+        .learn-player {
+            background: #000;
+            aspect-ratio: 16/9;
+            max-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .learn-player-placeholder {
+            text-align: center;
+            color: rgba(255,255,255,0.6);
+        }
+
+        .learn-player-placeholder .play-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto var(--space-3);
+            cursor: pointer;
+            transition: all 0.2s;
+            backdrop-filter: blur(8px);
+        }
+        .learn-player-placeholder .play-icon:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        /* Content area below player */
+        .learn-content {
+            flex: 1;
+            padding: var(--space-8);
+            max-width: 860px;
+        }
+
+        .learn-content-header {
+            margin-bottom: var(--space-6);
+        }
+
+        .learn-content-header h1 {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .learn-content-meta {
+            display: flex;
+            gap: var(--space-4);
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+
+        .learn-content-body {
+            font-size: var(--text-base);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-8);
+        }
+
+        .learn-content-body p { margin-bottom: var(--space-4); }
+        .learn-content-body ul { margin: var(--space-3) 0; padding-left: var(--space-6); }
+        .learn-content-body li { margin-bottom: var(--space-2); }
+
+        /* Navigation buttons */
+        .learn-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--space-5) var(--space-8);
+            border-top: 1px solid var(--color-gray-200);
+            background: white;
+        }
+
+        .learn-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+        }
+
+        .learn-nav-prev {
+            background: var(--color-gray-100);
+            color: var(--text-secondary);
+        }
+        .learn-nav-prev:hover { background: var(--color-gray-200); }
+
+        .learn-nav-next {
+            background: var(--color-primary);
+            color: white;
+        }
+        .learn-nav-next:hover { background: var(--color-primary-dark); }
+
+        .learn-complete-btn {
+            background: var(--color-success);
+            color: white;
+            border: none;
+            padding: var(--space-3) var(--space-5);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .learn-complete-btn:hover { filter: brightness(1.1); }
+        .learn-complete-btn.done { background: var(--color-gray-300); pointer-events: none; }
+
+        /* --- Exercise Styles --- */
+        .exercise-container {
+            background: white;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            margin-bottom: var(--space-6);
+        }
+
+        .exercise-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            margin-bottom: var(--space-5);
+        }
+
+        .exercise-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .exercise-icon-practice { background: rgba(16,185,129,0.1); }
+        .exercise-icon-quiz { background: rgba(245,158,11,0.1); }
+
+        .exercise-title {
+            font-family: var(--font-display);
+            font-size: var(--text-lg);
+            font-weight: 700;
+        }
+        .exercise-subtitle {
+            font-size: var(--text-sm);
+            color: var(--text-tertiary);
+        }
+
+        /* Text exercise */
+        .exercise-instructions {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            line-height: var(--leading-relaxed);
+            margin-bottom: var(--space-5);
+            padding: var(--space-4);
+            background: var(--color-gray-50);
+            border-radius: var(--radius-lg);
+            border-left: 4px solid var(--color-success);
+        }
+
+        .exercise-textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: var(--space-4);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+            resize: vertical;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .exercise-textarea:focus { border-color: var(--color-primary); }
+
+        .exercise-submit-row {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: var(--space-4);
+        }
+
+        /* Quiz styles */
+        .quiz-question {
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-5);
+            border-bottom: 1px solid var(--color-gray-100);
+        }
+        .quiz-question:last-of-type { border-bottom: none; }
+
+        .quiz-question-text {
+            font-weight: 600;
+            font-size: var(--text-base);
+            margin-bottom: var(--space-4);
+            display: flex;
+            gap: var(--space-2);
+        }
+
+        .quiz-question-number {
+            color: var(--color-primary);
+            font-family: var(--font-display);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .quiz-options { display: flex; flex-direction: column; gap: var(--space-2); }
+
+        .quiz-option {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: var(--text-sm);
+        }
+
+        .quiz-option:hover { border-color: var(--color-primary-light); background: var(--color-primary-50); }
+        .quiz-option.selected { border-color: var(--color-primary); background: var(--color-primary-50); }
+        .quiz-option.correct { border-color: var(--color-success); background: #ECFDF5; }
+        .quiz-option.wrong { border-color: var(--color-error); background: #FEF2F2; }
+
+        .quiz-option-radio {
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--color-gray-300);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.2s;
+        }
+        .quiz-option.selected .quiz-option-radio { border-color: var(--color-primary); background: var(--color-primary); }
+        .quiz-option.selected .quiz-option-radio::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: white; }
+        .quiz-option.correct .quiz-option-radio { border-color: var(--color-success); background: var(--color-success); }
+        .quiz-option.correct .quiz-option-radio::after { content: '✓'; color: white; font-size: 12px; font-weight: 700; }
+        .quiz-option.wrong .quiz-option-radio { border-color: var(--color-error); background: var(--color-error); }
+        .quiz-option.wrong .quiz-option-radio::after { content: '✕'; color: white; font-size: 12px; font-weight: 700; }
+
+        .quiz-explanation {
+            margin-top: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-md);
+            font-size: var(--text-sm);
+            display: none;
+        }
+        .quiz-explanation.show { display: block; }
+        .quiz-explanation.correct { background: #ECFDF5; color: #065F46; }
+        .quiz-explanation.wrong { background: #FEF2F2; color: #991B1B; }
+
+        .quiz-results {
+            background: white;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            text-align: center;
+            display: none;
+        }
+        .quiz-results.show { display: block; }
+
+        .quiz-score {
+            font-family: var(--font-display);
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: var(--space-2);
+        }
+        .quiz-score.excellent { color: var(--color-success); }
+        .quiz-score.average { color: var(--color-warning); }
+        .quiz-score.poor { color: var(--color-error); }
+
+        .quiz-results-text {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-5);
+        }
+
+        /* --- Auto-corrected Exercises --- */
+
+        /* Fill-in-the-blank */
+        .fill-blank-sentence {
+            font-size: var(--text-base);
+            line-height: 2.2;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .fill-blank-input {
+            display: inline-block;
+            width: 180px;
+            padding: var(--space-1) var(--space-3);
+            border: 2px solid var(--color-gray-300);
+            border-radius: var(--radius-md);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            text-align: center;
+            outline: none;
+            transition: all 0.25s;
+            background: var(--color-gray-50);
+            margin: 0 4px;
+        }
+        .fill-blank-input:focus { border-color: var(--color-primary); background: white; }
+        .fill-blank-input.correct { border-color: var(--color-success); background: #ECFDF5; color: #065F46; }
+        .fill-blank-input.wrong { border-color: var(--color-error); background: #FEF2F2; color: #991B1B; }
+
+        .fill-blank-correction {
+            display: none;
+            font-size: var(--text-xs);
+            color: var(--color-success);
+            font-weight: 600;
+            margin-left: 4px;
+        }
+        .fill-blank-correction.show { display: inline; }
+
+        /* True/False */
+        .tf-question {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            padding: var(--space-4) var(--space-5);
+            margin-bottom: var(--space-3);
+            background: white;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-xl);
+            transition: border-color 0.2s;
+        }
+        .tf-question.answered-correct { border-color: var(--color-success); background: #F0FDF9; }
+        .tf-question.answered-wrong { border-color: var(--color-error); background: #FEF8F8; }
+
+        .tf-statement {
+            flex: 1;
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+            color: var(--text-primary);
+        }
+
+        .tf-buttons {
+            display: flex;
+            gap: var(--space-2);
+            flex-shrink: 0;
+        }
+
+        .tf-btn {
+            padding: var(--space-2) var(--space-3);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            cursor: pointer;
+            background: white;
+            font-family: var(--font-body);
+            transition: all 0.2s;
+            min-width: 50px;
+            text-align: center;
+        }
+        .tf-btn:hover { border-color: var(--color-primary-light); }
+        .tf-btn.selected { background: var(--color-primary); color: white; border-color: var(--color-primary); }
+        .tf-btn.correct-answer { background: var(--color-success); color: white; border-color: var(--color-success); }
+        .tf-btn.wrong-answer { background: var(--color-error); color: white; border-color: var(--color-error); }
+
+        .tf-explanation {
+            display: none;
+            font-size: var(--text-xs);
+            padding: var(--space-2) var(--space-3);
+            border-radius: var(--radius-md);
+            margin-top: var(--space-2);
+            line-height: var(--leading-relaxed);
+        }
+        .tf-explanation.show { display: block; }
+        .tf-explanation.correct { background: #ECFDF5; color: #065F46; }
+        .tf-explanation.wrong { background: #FEF2F2; color: #991B1B; }
+
+        /* Matching / Association */
+        .matching-container {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .matching-row {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .matching-term {
+            flex: 1;
+            padding: var(--space-3) var(--space-4);
+            background: var(--color-primary-50);
+            border: 1px solid var(--color-primary-100);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-primary-dark);
+        }
+
+        .matching-arrow {
+            font-size: var(--text-lg);
+            color: var(--color-gray-400);
+            flex-shrink: 0;
+        }
+
+        .matching-select {
+            flex: 1;
+            padding: var(--space-3) var(--space-4);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            background: white;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+            appearance: auto;
+        }
+        .matching-select:focus { border-color: var(--color-primary); }
+        .matching-select.correct { border-color: var(--color-success); background: #ECFDF5; }
+        .matching-select.wrong { border-color: var(--color-error); background: #FEF2F2; }
+
+        /* Ordering */
+        .ordering-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+            counter-reset: order-counter;
+        }
+
+        .ordering-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-4);
+            background: white;
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            cursor: grab;
+            transition: all 0.2s;
+            user-select: none;
+        }
+        .ordering-item:active { cursor: grabbing; }
+        .ordering-item:hover { border-color: var(--color-primary-light); }
+        .ordering-item.correct { border-color: var(--color-success); background: #F0FDF9; }
+        .ordering-item.wrong { border-color: var(--color-error); background: #FEF8F8; }
+        .ordering-item.dragging { opacity: 0.5; }
+
+        .ordering-handle {
+            color: var(--color-gray-400);
+            font-size: var(--text-lg);
+            cursor: grab;
+            flex-shrink: 0;
+        }
+
+        .ordering-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--color-gray-100);
+            color: var(--color-gray-600);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .ordering-item.correct .ordering-number { background: var(--color-success); color: white; }
+        .ordering-item.wrong .ordering-number { background: var(--color-error); color: white; }
+
+        .ordering-text {
+            flex: 1;
+            font-size: var(--text-sm);
+        }
+
+        .ordering-arrows {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            flex-shrink: 0;
+        }
+
+        .ordering-arrow-btn {
+            background: var(--color-gray-100);
+            border: none;
+            border-radius: var(--radius-sm);
+            width: 28px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            color: var(--color-gray-600);
+            transition: all 0.15s;
+        }
+        .ordering-arrow-btn:hover { background: var(--color-primary); color: white; }
+
+        /* Keyword short answer */
+        .keyword-answer-input {
+            width: 100%;
+            min-height: 80px;
+            padding: var(--space-4);
+            border: 2px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+            resize: vertical;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .keyword-answer-input:focus { border-color: var(--color-primary); }
+
+        .keyword-feedback {
+            display: none;
+            margin-top: var(--space-4);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+        }
+        .keyword-feedback.show { display: block; }
+
+        .keyword-chip {
+            display: inline-flex;
+            padding: 2px var(--space-3);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            margin: 2px;
+        }
+        .keyword-chip.found { background: #ECFDF5; color: #065F46; }
+        .keyword-chip.missing { background: #FEF2F2; color: #991B1B; }
+
+        /* Exercise score banner */
+        .exercise-score-banner {
+            display: none;
+            text-align: center;
+            padding: var(--space-5);
+            border-radius: var(--radius-xl);
+            margin-top: var(--space-5);
+        }
+        .exercise-score-banner.show { display: block; }
+        .exercise-score-banner.excellent { background: #ECFDF5; border: 2px solid var(--color-success); }
+        .exercise-score-banner.average { background: #FFFBEB; border: 2px solid var(--color-warning); }
+        .exercise-score-banner.poor { background: #FEF2F2; border: 2px solid var(--color-error); }
+
+        .exercise-score-value {
+            font-family: var(--font-display);
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: var(--space-1);
+        }
+        .excellent .exercise-score-value { color: var(--color-success); }
+        .average .exercise-score-value { color: var(--color-warning); }
+        .poor .exercise-score-value { color: var(--color-error); }
+
+        .exercise-score-label {
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 1024px) {
+            .learn-sidebar { transform: translateX(-100%); }
+            .learn-sidebar.open { transform: translateX(0); }
+            .learn-main { margin-left: 0; }
+            .learn-sidebar-toggle {
+                display: flex !important;
+                position: fixed; top: var(--space-3); left: var(--space-3);
+                z-index: 101; width: 44px; height: 44px;
+                background: var(--color-secondary); color: white;
+                border-radius: var(--radius-lg); border: none;
+                align-items: center; justify-content: center; font-size: 20px;
+                cursor: pointer;
+            }
+        }
+
+        .learn-sidebar-toggle { display: none; }
+
+        /* ============================================================
+           UX REFRESH — design plus chaleureux, lisible et moins "geek"
+           Surcharge les styles dark de la sidebar + agrandit la zone de
+           lecture + prioritise clairement les actions. Aucune modif JS.
+           ============================================================ */
+
+        :root {
+            --afri-primary: #FF6B35;
+            --afri-primary-dark: #e85d2a;
+            --afri-primary-soft: #fff3ec;
+            --afri-ink: #1a1a1a;
+            --afri-text: #2d2d2d;
+            --afri-muted: #6b7280;
+            --afri-border: #e9e6e1;
+            --afri-surface: #faf8f5;   /* crème douce */
+            --afri-surface-2: #ffffff;
+        }
+
+        body { background: var(--afri-surface); }
+
+        /* --- Sidebar : passer du sombre au crème chaleureux --- */
+        .learn-sidebar {
+            width: 360px;
+            background: #ffffff !important;
+            color: var(--afri-text) !important;
+            border-right: 1px solid var(--afri-border);
+            box-shadow: 0 1px 0 rgba(0,0,0,.02);
+        }
+        .learn-sidebar-header {
+            padding: 24px 24px 20px !important;
+            border-bottom: 1px solid var(--afri-border) !important;
+            background: var(--afri-surface-2);
+        }
+        .learn-sidebar-back {
+            color: var(--afri-muted) !important;
+            font-size: .82rem !important;
+            margin-bottom: 14px !important;
+            display: inline-flex; align-items: center; gap: 6px;
+        }
+        .learn-sidebar-back:hover { color: var(--afri-primary) !important; }
+        .learn-sidebar-title {
+            color: var(--afri-ink) !important;
+            font-size: 1.2rem !important;
+            font-weight: 700;
+            letter-spacing: -.01em;
+            line-height: 1.25 !important;
+        }
+        .learn-sidebar-progress {
+            margin-top: 16px !important;
+            color: var(--afri-muted) !important;
+            font-size: .78rem !important;
+            font-weight: 600;
+        }
+        .learn-progress-bar {
+            background: #f0ece6 !important;
+            height: 8px !important;
+            border-radius: 999px !important;
+        }
+        .learn-progress-fill {
+            background: linear-gradient(90deg, var(--afri-primary), var(--afri-primary-dark)) !important;
+            border-radius: 999px !important;
+        }
+
+        /* --- Groupes de modules : titres plus clairs --- */
+        .learn-module-group {
+            margin: 4px 0 !important;
+            padding: 0 !important;
+        }
+        .learn-module-title {
+            padding: 18px 24px 8px !important;
+            color: var(--afri-ink) !important;
+            font-size: .72rem !important;
+            font-weight: 700 !important;
+            letter-spacing: .08em !important;
+            text-transform: uppercase;
+            opacity: .55;
+        }
+
+        /* --- Leçons : plus aérées, cartes propres --- */
+        .learn-lesson {
+            padding: 12px 24px !important;
+            border-left: 3px solid transparent !important;
+            color: var(--afri-text) !important;
+            font-size: .9rem !important;
+            gap: 12px !important;
+            border-radius: 0 !important;
+            transition: background .15s, border-color .15s;
+        }
+        .learn-lesson:hover { background: var(--afri-primary-soft) !important; }
+        .learn-lesson.active {
+            background: var(--afri-primary-soft) !important;
+            border-left-color: var(--afri-primary) !important;
+            color: var(--afri-ink) !important;
+            font-weight: 600;
+        }
+        .learn-lesson.completed { color: var(--afri-muted) !important; }
+        .learn-lesson.completed .lesson-label { text-decoration: line-through; opacity: .7; }
+
+        .lesson-check {
+            width: 22px !important; height: 22px !important;
+            border: 2px solid #d9d3ca !important;
+            background: #fff;
+        }
+        .learn-lesson.completed .lesson-check {
+            background: var(--afri-primary) !important;
+            border-color: var(--afri-primary) !important;
+        }
+        .learn-lesson.active .lesson-check {
+            border-color: var(--afri-primary) !important;
+        }
+
+        /* Badges de type plus doux */
+        .lesson-type {
+            border-radius: 999px !important;
+            padding: 2px 8px !important;
+            font-size: 9.5px !important;
+            font-weight: 700 !important;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+        }
+        .lesson-type-video { background: #fff3ec !important; color: var(--afri-primary) !important; }
+        .lesson-type-exercise { background: #ecfdf5 !important; color: #047857 !important; }
+        .lesson-type-quiz { background: #fef3c7 !important; color: #92400e !important; }
+        .lesson-duration { color: var(--afri-muted) !important; font-size: .75rem !important; }
+
+        /* --- Main : décalage sidebar, padding confortable --- */
+        .learn-main {
+            margin-left: 360px !important;
+            background: var(--afri-surface) !important;
+        }
+
+        /* --- Player vidéo : ambiance plus chaleureuse --- */
+        .learn-player {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+            aspect-ratio: 16/9;
+            max-height: 560px !important;
+            position: relative;
+            border-bottom: 1px solid var(--afri-border);
+        }
+        .learn-player::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,107,53,.22), transparent 55%),
+                        radial-gradient(circle at 70% 70%, rgba(232,93,42,.15), transparent 55%);
+            pointer-events: none;
+        }
+        .learn-player-placeholder { color: rgba(255,255,255,.85) !important; z-index: 1; }
+        .learn-player-placeholder .play-icon {
+            width: 96px !important; height: 96px !important;
+            background: rgba(255,255,255,.15) !important;
+            backdrop-filter: blur(10px);
+            font-size: 36px !important;
+            margin: 0 auto 16px !important;
+            box-shadow: 0 10px 40px rgba(0,0,0,.25);
+        }
+        .learn-player-placeholder .play-icon:hover {
+            background: var(--afri-primary) !important;
+            transform: scale(1.05);
+        }
+        .learn-player-placeholder p {
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: .01em;
+        }
+
+        /* --- Contenu leçon : largeur lisible et typo généreuse --- */
+        .learn-content {
+            padding: 40px 48px !important;
+            max-width: 820px !important;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .learn-content-header {
+            margin-bottom: 28px !important;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--afri-border);
+        }
+        .learn-content-header h1 {
+            font-size: 1.75rem !important;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--afri-ink);
+            letter-spacing: -.015em;
+            margin-bottom: 12px !important;
+        }
+        .learn-content-meta {
+            gap: 14px !important;
+            font-size: .82rem !important;
+            color: var(--afri-muted) !important;
+            align-items: center;
+        }
+        .learn-content-meta .lesson-type {
+            font-size: 10px !important;
+        }
+        .learn-content-body {
+            font-size: 1.02rem !important;
+            line-height: 1.75 !important;
+            color: var(--afri-text) !important;
+        }
+        .learn-content-body p { margin-bottom: 18px !important; }
+        .learn-content-body h2, .learn-content-body h3 {
+            color: var(--afri-ink);
+            margin-top: 32px;
+            margin-bottom: 14px;
+            letter-spacing: -.01em;
+        }
+        .learn-content-body h2 { font-size: 1.3rem; }
+        .learn-content-body h3 { font-size: 1.1rem; }
+        .learn-content-body ul, .learn-content-body ol { padding-left: 24px !important; margin: 14px 0 20px !important; }
+        .learn-content-body li { margin-bottom: 10px !important; }
+        .learn-content-body strong { color: var(--afri-ink); }
+        .learn-content-body a {
+            color: var(--afri-primary);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        /* --- Barre d'action bas : CTA prioritaire, secondaires discrets --- */
+        .learn-nav-buttons {
+            padding: 20px 48px !important;
+            background: #fff !important;
+            border-top: 1px solid var(--afri-border) !important;
+            gap: 12px;
+            position: sticky;
+            bottom: 0;
+            z-index: 10;
+            box-shadow: 0 -4px 20px rgba(0,0,0,.03);
+        }
+        .learn-nav-btn {
+            padding: 12px 20px !important;
+            font-size: .9rem !important;
+            font-weight: 600 !important;
+            border-radius: 10px !important;
+            border: 1px solid var(--afri-border) !important;
+        }
+        .learn-nav-prev {
+            background: #fff !important;
+            color: var(--afri-text) !important;
+        }
+        .learn-nav-prev:hover {
+            background: var(--afri-surface) !important;
+            border-color: #d9d3ca !important;
+        }
+        .learn-nav-next {
+            background: #fff !important;
+            color: var(--afri-text) !important;
+            border-color: var(--afri-border) !important;
+        }
+        .learn-nav-next:hover {
+            background: var(--afri-surface) !important;
+            border-color: #d9d3ca !important;
+        }
+        /* CTA principal : "Leçon terminée" — mis en avant au milieu */
+        .learn-complete-btn {
+            background: linear-gradient(135deg, var(--afri-primary), var(--afri-primary-dark)) !important;
+            border: none !important;
+            padding: 12px 28px !important;
+            font-size: .92rem !important;
+            font-weight: 700 !important;
+            border-radius: 10px !important;
+            box-shadow: 0 6px 16px rgba(255,107,53,.3) !important;
+            color: #fff !important;
+        }
+        .learn-complete-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(255,107,53,.35) !important; }
+        .learn-complete-btn.done {
+            background: #ecfdf5 !important;
+            color: #047857 !important;
+            box-shadow: none !important;
+        }
+        .learn-complete-btn.done::before { content: '✓ '; }
+
+        /* --- Cartes exercice : plus douces et mieux espacées --- */
+        .exercise-container {
+            border: 1px solid var(--afri-border) !important;
+            border-radius: 16px !important;
+            padding: 28px !important;
+            box-shadow: 0 2px 12px rgba(0,0,0,.03);
+        }
+        .exercise-header { margin-bottom: 20px !important; }
+        .exercise-title { color: var(--afri-ink) !important; font-size: 1.1rem !important; }
+        .exercise-subtitle { color: var(--afri-muted) !important; font-size: .85rem !important; }
+        .exercise-icon-practice { background: #ecfdf5 !important; }
+        .exercise-icon-quiz { background: #fff3ec !important; color: var(--afri-primary); }
+        .exercise-instructions {
+            background: var(--afri-primary-soft) !important;
+            border-left-color: var(--afri-primary) !important;
+            color: var(--afri-ink) !important;
+            border-radius: 10px !important;
+            padding: 16px 18px !important;
+            line-height: 1.65 !important;
+        }
+        .exercise-textarea {
+            border-color: var(--afri-border) !important;
+            border-radius: 12px !important;
+            padding: 14px !important;
+            font-size: .92rem !important;
+        }
+        .exercise-textarea:focus { border-color: var(--afri-primary) !important; box-shadow: 0 0 0 3px rgba(255,107,53,.12); }
+
+        /* --- Quiz options : plus confortables, plus grandes --- */
+        .quiz-option {
+            padding: 14px 18px !important;
+            border-radius: 12px !important;
+            border-color: var(--afri-border) !important;
+            font-size: .92rem !important;
+            gap: 14px !important;
+        }
+        .quiz-option:hover { border-color: var(--afri-primary) !important; background: var(--afri-primary-soft) !important; }
+        .quiz-option.selected { border-color: var(--afri-primary) !important; background: var(--afri-primary-soft) !important; }
+        .quiz-option-radio { width: 22px !important; height: 22px !important; }
+        .quiz-option.selected .quiz-option-radio { background: var(--afri-primary) !important; border-color: var(--afri-primary) !important; }
+        .quiz-question-number { color: var(--afri-primary) !important; }
+
+        /* --- Fill-in-the-blank --- */
+        .fill-blank-input {
+            border-color: var(--afri-border) !important;
+            background: var(--afri-surface) !important;
+            border-radius: 8px !important;
+        }
+        .fill-blank-input:focus { border-color: var(--afri-primary) !important; background: #fff !important; }
+
+        /* --- Résultats de quiz --- */
+        .quiz-results {
+            border: 1px solid var(--afri-border) !important;
+            border-radius: 20px !important;
+            padding: 36px !important;
+            background: linear-gradient(135deg, #fff, var(--afri-surface)) !important;
+        }
+        .quiz-score { color: var(--afri-primary) !important; }
+
+        /* --- Mobile refinements --- */
+        @media (max-width: 1024px) {
+            .learn-main { margin-left: 0 !important; }
+            .learn-content { padding: 28px 20px !important; }
+            .learn-nav-buttons { padding: 16px 20px !important; }
+            .learn-content-header h1 { font-size: 1.45rem !important; }
+            .learn-sidebar-toggle {
+                background: var(--afri-primary) !important;
+                color: #fff !important;
+                box-shadow: 0 6px 16px rgba(255,107,53,.35);
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="learn-sidebar-toggle" id="sidebar-toggle" aria-label="Menu">&#9776;</button>
+
+    <div class="learn-layout">
+        <!-- Sidebar: Course curriculum -->
+        <aside class="learn-sidebar" id="learn-sidebar">
+            <div class="learn-sidebar-header">
+                <a href="../index.html" class="logo" style="display:flex; align-items:center; gap:var(--space-2); text-decoration:none; margin-bottom:var(--space-4); padding-bottom:var(--space-3); border-bottom:1px solid var(--color-gray-200);">
+                    <span class="logo-mark" style="width:32px; height:32px; font-size:1rem;">C</span>
+                    <span class="logo-text" style="font-size:1rem;">Cap <span class="logo-accent">Learning</span></span>
+                    <span class="logo-by" style="margin-left:auto; padding-left:8px; border-left:1px solid var(--color-gray-200); font-size:.7rem;">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas" style="height:28px; width:28px;"></span>
+                </a>
+                <a href="dashboard.html" class="learn-sidebar-back">&larr; Retour au tableau de bord</a>
+                <h2 class="learn-sidebar-title" id="course-title">Chargement...</h2>
+                <div class="learn-sidebar-progress">
+                    <div class="learn-progress-bar">
+                        <div class="learn-progress-fill" id="progress-fill" style="width: 0%;"></div>
+                    </div>
+                    <span id="progress-text">0%</span>
+                </div>
+            </div>
+            <!-- Gamification Widget -->
+            <div id="gamif-sidebar-widget" style="padding: 0 var(--space-5);"></div>
+
+            <div class="learn-modules" id="modules-list">
+                <!-- Generated by JS -->
+            </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="learn-main">
+            <!-- Video player -->
+            <div class="learn-player" id="player-area">
+                <div class="learn-player-placeholder">
+                    <div class="play-icon" id="play-btn">&#9654;</div>
+                    <p id="player-title">Cliquez pour démarrer la leçon</p>
+                </div>
+            </div>
+
+            <!-- Lesson content -->
+            <div class="learn-content" id="lesson-content">
+                <div class="learn-content-header">
+                    <h1 id="lesson-title">Sélectionnez une leçon</h1>
+                    <div class="learn-content-meta">
+                        <span id="lesson-type-badge"></span>
+                        <span id="lesson-duration"></span>
+                    </div>
+                </div>
+                <div class="learn-content-body" id="lesson-body">
+                    <p>Choisissez une leçon dans le menu à gauche pour commencer votre apprentissage.</p>
+                </div>
+            </div>
+
+            <!-- Nav buttons -->
+            <div class="learn-nav-buttons">
+                <button class="learn-nav-btn learn-nav-prev" id="btn-prev" style="visibility: hidden;">&larr; Précédent</button>
+                <button class="learn-complete-btn" id="btn-complete">Marquer comme terminé &#10003;</button>
+                <button class="learn-nav-btn learn-nav-next" id="btn-next">Suivant &rarr;</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+    // ===== COURSE DATA =====
+    // Pedagogical design: exercises follow Bloom's taxonomy
+    // Remember → Understand → Apply → Analyze → Create
+    // Adaptive: tracks mastery, provides hints on failure
+    const COURSES_DATA = {
+        '1': {
+            name: 'Marketing Digital Complet',
+            gradient: 'linear-gradient(135deg, #FF6B35, #F7931E)',
+            icon: '💻',
+            modules: [
+                {
+                    title: 'Module 1 : Les Fondamentaux',
+                    lessons: [
+                        { id: 'l1-1', title: 'Introduction au marketing digital en Afrique', type: 'video', duration: '12:30',
+                          content: '<p>Le marketing digital en Afrique est en pleine explosion. Avec plus de <strong>500 millions</strong> d\'utilisateurs internet sur le continent, les opportunités sont immenses pour les entrepreneurs.</p><p>Dans cette leçon, nous allons découvrir :</p><ul><li>L\'état actuel du digital en Afrique</li><li>Les plateformes les plus utilisées par pays</li><li>Les opportunités uniques du marché africain</li><li>Comment adapter votre stratégie au contexte local</li></ul><p>Le <strong>mobile</strong> est roi en Afrique — <strong>80%</strong> du trafic internet passe par le smartphone. Votre stratégie doit être <strong>mobile-first</strong>.</p>' },
+
+                        { id: 'l1-tf', title: 'Vrai/Faux : Le digital en Afrique', type: 'true_false', duration: '5:00',
+                          concept: 'fondamentaux-digital',
+                          intro: 'Vérifiez que vous avez bien retenu les points clés de la leçon précédente.',
+                          statements: [
+                            { text: 'Plus de 500 millions de personnes utilisent internet en Afrique.', answer: true, explanation: 'C\'est exact ! Et ce chiffre continue de croître rapidement.' },
+                            { text: 'En Afrique, la majorité du trafic internet passe par les ordinateurs.', answer: false, explanation: 'Faux. 80% du trafic passe par le smartphone. La stratégie doit être mobile-first.' },
+                            { text: 'Le marketing digital n\'est pas adapté au marché africain.', answer: false, explanation: 'Faux. Le marketing digital offre d\'immenses opportunités en Afrique, à condition d\'adapter sa stratégie au contexte local.' },
+                            { text: 'Une stratégie mobile-first est essentielle en Afrique.', answer: true, explanation: 'Exact ! Le mobile est le premier écran de la majorité des utilisateurs africains.' },
+                            { text: 'WhatsApp et Facebook sont parmi les plateformes les plus utilisées en Afrique.', answer: true, explanation: 'Correct. WhatsApp, Facebook et TikTok dominent l\'usage digital en Afrique.' }
+                          ]
+                        },
+
+                        { id: 'l1-2', title: 'Définir votre stratégie digitale', type: 'video', duration: '28:15',
+                          content: '<p>Une stratégie digitale efficace repose sur <strong>4 piliers</strong> fondamentaux :</p><ul><li><strong>Objectifs SMART</strong> — Spécifiques, Mesurables, Atteignables, Réalistes, Temporels</li><li><strong>Audience cible</strong> — Qui sont vos clients idéaux ?</li><li><strong>Canaux de diffusion</strong> — Où sont vos clients en ligne ?</li><li><strong>Budget et ressources</strong> — Combien investir et comment ?</li></ul><p>Un objectif SMART exemple : « Obtenir 200 abonnés Instagram qualifiés en 30 jours avec un budget de 15 000 FCFA ».</p>' },
+
+                        { id: 'l1-fill', title: 'Texte à trous : Stratégie digitale', type: 'fill_blank', duration: '5:00',
+                          concept: 'strategie-smart',
+                          intro: 'Complétez les phrases avec les termes corrects vus dans la leçon.',
+                          sentences: [
+                            { text: 'Un objectif SMART doit être Spécifique, {1}, Atteignable, Réaliste et Temporel.', blanks: { '1': ['Mesurable', 'mesurable'] } },
+                            { text: 'Les {1} piliers d\'une stratégie digitale sont : objectifs, audience, canaux et {2}.', blanks: { '1': ['4', 'quatre'], '2': ['budget', 'Budget', 'ressources', 'budget et ressources'] } },
+                            { text: 'Avant de choisir vos canaux de diffusion, vous devez d\'abord définir votre {1} cible.', blanks: { '1': ['audience', 'Audience', 'cible', 'public'] } },
+                            { text: 'En Afrique, {1}% du trafic internet passe par le smartphone.', blanks: { '1': ['80'] } }
+                          ],
+                          hints: ['Relisez la section sur les 4 piliers fondamentaux.', 'L\'acronyme SMART : S___, M___, A___, R___, T___.']
+                        },
+
+                        { id: 'l1-3', title: 'Comprendre votre audience cible', type: 'video', duration: '35:00',
+                          content: '<p>Connaître votre audience, c\'est la clé de tout marketing réussi. Dans cette leçon, vous apprendrez à :</p><ul><li>Créer des <strong>personas</strong> détaillés</li><li>Analyser les <strong>comportements d\'achat</strong> en Afrique</li><li>Utiliser les outils de recherche d\'audience</li><li>Identifier les <strong>pain points</strong> (points de douleur) de vos clients</li></ul><p>Un persona est un portrait fictif de votre client idéal basé sur des données réelles.</p>' },
+
+                        { id: 'l1-match', title: 'Association : Concepts marketing', type: 'matching', duration: '5:00',
+                          concept: 'concepts-fondamentaux',
+                          intro: 'Associez chaque concept à sa définition correcte.',
+                          pairs: [
+                            { term: 'Persona', definitions: ['Portrait fictif du client idéal', 'Canal de communication', 'Type de publicité', 'Outil d\'analyse'], correct: 0 },
+                            { term: 'Pain point', definitions: ['Objectif business', 'Problème que le client veut résoudre', 'Indicateur de performance', 'Budget marketing'], correct: 1 },
+                            { term: 'SMART', definitions: ['Réseau social', 'Méthode de définition d\'objectifs', 'Outil SEO', 'Type de contenu'], correct: 1 },
+                            { term: 'Mobile-first', definitions: ['Créer d\'abord un site web', 'Concevoir en priorité pour le smartphone', 'Vendre uniquement sur mobile', 'Application mobile payante'], correct: 1 }
+                          ]
+                        },
+
+                        { id: 'l1-kw', title: 'Synthèse : Décrivez votre stratégie', type: 'keyword_answer', duration: '10:00',
+                          concept: 'synthese-module1',
+                          intro: 'Rédigez en quelques phrases votre stratégie digitale en utilisant les concepts appris dans ce module.',
+                          question: 'Décrivez la stratégie digitale que vous mettriez en place pour un petit commerce de vêtements à Dakar. Pensez aux objectifs, à l\'audience, aux canaux et au budget.',
+                          keywords: [
+                            { word: 'objectif', aliases: ['objectifs', 'SMART', 'smart', 'but', 'buts'], label: 'Objectifs définis', weight: 2 },
+                            { word: 'audience', aliases: ['persona', 'cible', 'client', 'clients'], label: 'Audience ciblée', weight: 2 },
+                            { word: 'mobile', aliases: ['smartphone', 'mobile-first', 'téléphone'], label: 'Approche mobile', weight: 1 },
+                            { word: 'Facebook', aliases: ['facebook', 'Instagram', 'instagram', 'réseaux sociaux', 'réseaux', 'WhatsApp', 'whatsapp'], label: 'Canaux identifiés', weight: 2 },
+                            { word: 'budget', aliases: ['FCFA', 'investir', 'investissement', 'coût', 'prix'], label: 'Budget prévu', weight: 1 }
+                          ],
+                          minScore: 3,
+                          maxScore: 8,
+                          feedback: {
+                            excellent: 'Bravo ! Votre stratégie intègre tous les concepts clés du module. Vous êtes prêt pour la suite.',
+                            good: 'Bien ! Votre réponse couvre les principaux concepts. Relisez les points manquants pour solidifier vos bases.',
+                            needsWork: 'Votre réponse manque de concepts importants. Relisez le module et essayez d\'intégrer : objectifs SMART, persona, canaux de diffusion et budget.'
+                          }
+                        }
+                    ]
+                },
+                {
+                    title: 'Module 2 : Facebook & Instagram',
+                    lessons: [
+                        { id: 'l2-1', title: 'Optimiser votre page Facebook Business', type: 'video', duration: '25:00',
+                          content: '<p>Votre page Facebook est la vitrine de votre entreprise. Optimisons-la ensemble :</p><ul><li>Photo de profil et couverture professionnelles</li><li>Description et informations complètes</li><li>Bouton d\'action personnalisé</li><li>Paramètres de messagerie</li></ul>' },
+
+                        { id: 'l2-tf', title: 'Vrai/Faux : Facebook Business', type: 'true_false', duration: '5:00',
+                          concept: 'facebook-business',
+                          intro: 'V\u00e9rifiez vos connaissances sur l\'optimisation d\'une page Facebook Business.',
+                          statements: [
+                            { text: 'La photo de couverture Facebook doit faire 820 x 312 pixels.', answer: true, explanation: 'C\'est la taille recommand\u00e9e pour un affichage optimal.' },
+                            { text: 'Un bouton d\'action sur votre page Facebook est facultatif et peu utile.', answer: false, explanation: 'Le bouton d\'action (R\u00e9server, Acheter, Contacter...) est essentiel pour convertir les visiteurs en clients.' },
+                            { text: 'Remplir toutes les informations de votre page am\u00e9liore votre r\u00e9f\u00e9rencement.', answer: true, explanation: 'Plus votre page est compl\u00e8te, mieux elle appara\u00eet dans les recherches Facebook et Google.' },
+                            { text: 'La messagerie automatique n\'est pas disponible sur les pages Business.', answer: false, explanation: 'Facebook propose des r\u00e9ponses instantan\u00e9es automatiques tr\u00e8s utiles pour le service client.' }
+                          ]
+                        },
+
+                        { id: 'l2-2', title: 'Strat\u00e9gie de contenu Instagram', type: 'video', duration: '32:00',
+                          content: '<p>Instagram est la plateforme visuelle par excellence. Apprenez \u00e0 cr\u00e9er un feed coh\u00e9rent et engageant :</p><ul><li>Choisir votre identit\u00e9 visuelle</li><li>Les types de posts qui fonctionnent</li><li>Utiliser les hashtags efficacement</li><li>Le pouvoir des Stories et Reels</li></ul>' },
+
+                        { id: 'l2-fill', title: 'Texte \u00e0 trous : Instagram', type: 'fill_blank', duration: '5:00',
+                          concept: 'strategie-instagram',
+                          intro: 'Compl\u00e9tez les phrases sur la strat\u00e9gie Instagram.',
+                          sentences: [
+                            { text: 'Le format de contenu le plus engageant sur Instagram en 2026 est les {1}.', blanks: { '1': ['Reels', 'reels', 'Reels courts'] } },
+                            { text: 'Pour \u00eatre visible, il est important d\'utiliser des {1} pertinents sous chaque publication.', blanks: { '1': ['hashtags', 'Hashtags', '#hashtags'] } },
+                            { text: 'Un feed Instagram doit avoir une identit\u00e9 {1} coh\u00e9rente.', blanks: { '1': ['visuelle', 'Visuelle'] } },
+                            { text: 'Les {1} Instagram disparaissent apr\u00e8s 24 heures sauf si on les met en \u00e0 la une.', blanks: { '1': ['Stories', 'stories', 'Story'] } }
+                          ],
+                          hints: ['Pensez aux formats vid\u00e9o courts tr\u00e8s populaires.', 'Le # est votre alli\u00e9 pour la visibilit\u00e9.']
+                        },
+
+                        { id: 'l2-3', title: 'Facebook Ads : votre premi\u00e8re campagne', type: 'video', duration: '35:00',
+                          content: '<p>Facebook Ads est l\'outil publicitaire le plus puissant pour les entrepreneurs africains. Nous allons lancer votre premi\u00e8re campagne ensemble, \u00e9tape par \u00e9tape.</p>' },
+
+                        { id: 'l2-match', title: 'Association : Pub Facebook', type: 'matching', duration: '5:00',
+                          concept: 'facebook-ads-concepts',
+                          intro: 'Associez chaque concept Facebook Ads \u00e0 sa d\u00e9finition.',
+                          pairs: [
+                            { term: 'Pixel Facebook', definitions: ['Code de suivi pour votre site', 'Format publicitaire', 'Type d\'audience', 'Outil de design'], correct: 0 },
+                            { term: 'Audience lookalike', definitions: ['Vos abonn\u00e9s actuels', 'Audience similaire \u00e0 vos clients', 'Ciblage par \u00e2ge', 'Audience mondiale'], correct: 1 },
+                            { term: 'CPC', definitions: ['Co\u00fbt Par Click', 'Campagne Publicitaire Compl\u00e8te', 'Contenu Promotionnel Cr\u00e9atif', 'Click Par Conversion'], correct: 0 },
+                            { term: 'A/B Testing', definitions: ['Test de deux formats diff\u00e9rents', 'Cr\u00e9ation de contenu', 'Budget marketing', 'S\u00e9lection d\'audience'], correct: 0 }
+                          ]
+                        },
+
+                        { id: 'l2-quiz', title: 'Quiz : Facebook & Instagram', type: 'quiz', duration: '10:00',
+                          questions: [
+                            { q: 'Quel format g\u00e9n\u00e8re le plus d\'engagement sur Instagram en 2026 ?', options: ['Photos carr\u00e9es', 'Stories', 'Reels courts', 'Carrousels'], correct: 2, explanation: 'Les Reels courts (15-30 secondes) g\u00e9n\u00e8rent en moyenne 2x plus d\'engagement.' },
+                            { q: 'Quel est le budget minimum recommand\u00e9 pour une 1\u00e8re campagne Facebook Ads ?', options: ['1 000 FCFA/jour', '3 000 FCFA/jour', '10 000 FCFA/jour', '50 000 FCFA/jour'], correct: 1, explanation: '3 000 FCFA par jour suffit pour tester et optimiser.' },
+                            { q: 'Qu\'est-ce qu\'un pixel Facebook ?', options: ['Un format d\'image', 'Un code de suivi pour votre site', 'Un type de publicit\u00e9', 'Un outil de design'], correct: 1, explanation: 'Le pixel est un code JavaScript qui suit les conversions.' },
+                            { q: 'Quel est le meilleur moment pour publier en Afrique de l\'Ouest ?', options: ['6h-8h', '12h-14h', '18h-21h', 'Minuit'], correct: 2, explanation: 'Les heures de pointe sont entre 18h et 21h.' },
+                            { q: 'Combien de hashtags maximum recommand\u00e9s par post Instagram ?', options: ['3-5', '10-15', '25-30', 'Illimit\u00e9'], correct: 1, explanation: '10 \u00e0 15 hashtags pertinents est la bonne pratique pour maximiser la port\u00e9e.' }
+                          ]
+                        }
+                    ]
+                },
+                {
+                    title: 'Module 3 : SEO & Google',
+                    lessons: [
+                        { id: 'l3-1', title: 'Les bases du r\u00e9f\u00e9rencement naturel', type: 'video', duration: '30:00',
+                          content: '<p>Le SEO (Search Engine Optimization) est l\'art d\'appara\u00eetre en premi\u00e8re page de Google. C\'est un investissement \u00e0 long terme qui g\u00e9n\u00e8re du trafic gratuit et qualifi\u00e9.</p><ul><li>Comment fonctionne Google</li><li>Les 3 piliers du SEO : technique, contenu, popularit\u00e9</li><li>Outils gratuits pour d\u00e9marrer</li></ul>' },
+
+                        { id: 'l3-tf', title: 'Vrai/Faux : SEO Fondamentaux', type: 'true_false', duration: '5:00',
+                          concept: 'seo-fondamentaux',
+                          intro: 'V\u00e9rifiez votre compr\u00e9hension des bases du SEO.',
+                          statements: [
+                            { text: 'Le SEO g\u00e9n\u00e8re du trafic gratuit et qualifi\u00e9.', answer: true, explanation: 'Le r\u00e9f\u00e9rencement naturel est gratuit contrairement aux publicit\u00e9s payantes.' },
+                            { text: 'Les 3 piliers du SEO sont : technique, contenu et popularit\u00e9.', answer: true, explanation: 'Exact ! Ces trois piliers forment la base de toute strat\u00e9gie SEO.' },
+                            { text: 'Le SEO donne des r\u00e9sultats imm\u00e9diats d\u00e8s le premier jour.', answer: false, explanation: 'Le SEO est un investissement \u00e0 long terme, les r\u00e9sultats arrivent apr\u00e8s plusieurs semaines ou mois.' },
+                            { text: 'Google classe les sites uniquement en fonction de leur design.', answer: false, explanation: 'Google \u00e9value la pertinence du contenu, la qualit\u00e9 technique et la popularit\u00e9 (backlinks).' }
+                          ]
+                        },
+
+                        { id: 'l3-2', title: 'Recherche de mots-cl\u00e9s pour votre march\u00e9', type: 'video', duration: '25:00',
+                          content: '<p>Les mots-cl\u00e9s sont la fondation de toute strat\u00e9gie SEO. Apprenez \u00e0 identifier les termes que vos clients utilisent pour vous trouver.</p>' },
+
+                        { id: 'l3-fill', title: 'Texte \u00e0 trous : SEO pratique', type: 'fill_blank', duration: '5:00',
+                          concept: 'seo-pratique',
+                          intro: 'Compl\u00e9tez les phrases sur les bonnes pratiques SEO.',
+                          sentences: [
+                            { text: 'Les {1} piliers du SEO sont : technique, contenu et popularit\u00e9.', blanks: { '1': ['3', 'trois'] } },
+                            { text: 'La balise {1} est le titre de votre page affich\u00e9 dans Google.', blanks: { '1': ['title', 'Title', '<title>'] } },
+                            { text: 'Un {1} est un lien depuis un autre site vers le v\u00f4tre.', blanks: { '1': ['backlink', 'Backlink', 'lien entrant'] } },
+                            { text: 'La {1} description r\u00e9sume le contenu de la page dans les r\u00e9sultats Google.', blanks: { '1': ['meta', 'Meta', 'm\u00e9ta'] } }
+                          ],
+                          hints: ['Pensez aux \u00e9l\u00e9ments HTML importants pour le SEO.', 'Le vocabulaire technique du r\u00e9f\u00e9rencement utilise beaucoup de termes anglais.']
+                        },
+
+                        { id: 'l3-match', title: 'Association : Outils SEO', type: 'matching', duration: '5:00',
+                          concept: 'outils-seo',
+                          intro: 'Associez chaque outil \u00e0 son utilit\u00e9 principale.',
+                          pairs: [
+                            { term: 'Google Search Console', definitions: ['Suivre la performance SEO de votre site', 'Cr\u00e9er des publicit\u00e9s', 'Designer votre site', 'Envoyer des emails'], correct: 0 },
+                            { term: 'Google PageSpeed', definitions: ['Analyser la vitesse de chargement', 'Rechercher des mots-cl\u00e9s', 'Cr\u00e9er du contenu', 'G\u00e9rer les r\u00e9seaux sociaux'], correct: 0 },
+                            { term: 'Ubersuggest', definitions: ['H\u00e9berger un site web', 'Rechercher des mots-cl\u00e9s et analyser la concurrence', 'Cr\u00e9er des visuels', 'Programmer des posts'], correct: 1 },
+                            { term: 'Google Analytics', definitions: ['Designer des logos', 'Analyser le trafic et le comportement des visiteurs', 'Programmer du code', 'Stocker des fichiers'], correct: 1 }
+                          ]
+                        },
+
+                        { id: 'l3-kw', title: 'Synth\u00e8se : Plan SEO', type: 'keyword_answer', duration: '15:00',
+                          concept: 'synthese-seo',
+                          intro: 'Mettez en pratique vos connaissances SEO.',
+                          question: 'D\u00e9crivez le plan SEO que vous mettriez en place pour un site e-commerce de produits cosm\u00e9tiques naturels au S\u00e9n\u00e9gal. Mentionnez les piliers, les outils et les actions concr\u00e8tes.',
+                          keywords: [
+                            { word: 'mots-cl\u00e9s', aliases: ['mot-cl\u00e9', 'keyword', 'keywords', 'mots cl\u00e9s'], label: 'Recherche mots-cl\u00e9s', weight: 2 },
+                            { word: 'contenu', aliases: ['articles', 'blog', 'r\u00e9daction', 'texte'], label: 'Strat\u00e9gie de contenu', weight: 2 },
+                            { word: 'technique', aliases: ['vitesse', 'mobile', 'PageSpeed', 'performance'], label: 'SEO technique', weight: 2 },
+                            { word: 'backlink', aliases: ['backlinks', 'liens', 'popularit\u00e9', 'netlinking'], label: 'Popularit\u00e9 / backlinks', weight: 1 },
+                            { word: 'Google', aliases: ['Search Console', 'Analytics', 'search console'], label: 'Outils Google', weight: 1 }
+                          ],
+                          minScore: 3, maxScore: 8,
+                          feedback: {
+                            excellent: 'Bravo ! Votre plan SEO couvre tous les piliers essentiels. Vous ma\u00eetrisez le sujet.',
+                            good: 'Bien ! Votre plan est solide mais il manque quelques \u00e9l\u00e9ments. Relisez le module.',
+                            needsWork: 'Votre plan manque de concepts cl\u00e9s. Relisez les le\u00e7ons sur les 3 piliers du SEO.'
+                          }
+                        }
+                    ]
+                }
+            ]
+        },
+        '2': {
+            name: 'E-commerce & Paiements Digitaux',
+            gradient: 'linear-gradient(135deg, #2D9CDB, #56CCF2)',
+            icon: '\ud83d\uded2',
+            modules: [
+                { title: 'Module 1 : Fondamentaux du e-commerce', lessons: [
+                    { id: 'e1-1', title: 'Le e-commerce en Afrique : \u00e9tat des lieux', type: 'video', duration: '18:00', content: '<p>Le march\u00e9 du e-commerce africain cro\u00eet de <strong>25%</strong> par an. D\u00e9couvrez les tendances, les acteurs majeurs et les opportunit\u00e9s.</p><ul><li>Taux de conversion moyen : 1-3%</li><li>Mobile Money : 60%+ des paiements</li><li>Croissance dirig\u00e9e par le mobile</li></ul>' },
+
+                    { id: 'e1-tf', title: 'Vrai/Faux : E-commerce Afrique', type: 'true_false', duration: '5:00',
+                      concept: 'ecommerce-fondamentaux',
+                      intro: 'V\u00e9rifiez vos connaissances sur le e-commerce en Afrique.',
+                      statements: [
+                        { text: 'Le march\u00e9 du e-commerce africain cro\u00eet de 25% par an.', answer: true, explanation: 'Exact ! C\'est l\'un des march\u00e9s \u00e0 plus forte croissance au monde.' },
+                        { text: 'Le taux de conversion moyen en Afrique est de 10%.', answer: false, explanation: 'Faux. Le taux moyen est de 1-3%, similaire aux march\u00e9s \u00e9mergents.' },
+                        { text: 'Le Mobile Money repr\u00e9sente plus de 60% des paiements digitaux en Afrique de l\'Ouest.', answer: true, explanation: 'Correct. Le Mobile Money est le mode de paiement dominant.' },
+                        { text: 'Le choix de la niche n\'a pas d\'importance en e-commerce.', answer: false, explanation: 'Faux. Le choix de la niche est crucial pour se diff\u00e9rencier et cibler le bon march\u00e9.' }
+                      ]
+                    },
+
+                    { id: 'e1-2', title: 'Choisir votre niche et vos produits', type: 'video', duration: '22:00', content: '<p>Le choix de la niche est crucial. Apprenez les crit\u00e8res de s\u00e9lection et les m\u00e9thodes de validation de march\u00e9.</p>' },
+
+                    { id: 'e1-fill', title: 'Texte \u00e0 trous : Strat\u00e9gie e-commerce', type: 'fill_blank', duration: '5:00',
+                      concept: 'strategie-ecommerce',
+                      intro: 'Compl\u00e9tez les phrases sur la strat\u00e9gie e-commerce.',
+                      sentences: [
+                        { text: 'Le march\u00e9 e-commerce africain cro\u00eet de {1}% par an.', blanks: { '1': ['25'] } },
+                        { text: 'Le mode de paiement le plus utilis\u00e9 en Afrique de l\'Ouest est le {1}.', blanks: { '1': ['Mobile Money', 'mobile money'] } },
+                        { text: 'Avant de lancer votre boutique, vous devez valider votre {1} de march\u00e9.', blanks: { '1': ['niche', 'id\u00e9e', 'produit'] } }
+                      ],
+                      hints: ['Pensez aux chiffres cl\u00e9s du march\u00e9.']
+                    },
+
+                    { id: 'e1-ex', title: 'Synth\u00e8se : Validation de votre id\u00e9e', type: 'keyword_answer', duration: '15:00',
+                      concept: 'validation-idee',
+                      intro: 'Mettez en pratique la m\u00e9thode de validation.',
+                      question: 'D\u00e9crivez votre id\u00e9e de boutique en ligne et expliquez comment vous la valideriez. Pensez \u00e0 la cible, au probl\u00e8me r\u00e9solu, aux concurrents et \u00e0 votre avantage.',
+                      keywords: [
+                        { word: 'cible', aliases: ['client', 'audience', 'clients', 'persona'], label: 'Cible d\u00e9finie', weight: 2 },
+                        { word: 'probl\u00e8me', aliases: ['besoin', 'pain point', 'douleur'], label: 'Probl\u00e8me identifi\u00e9', weight: 2 },
+                        { word: 'concurrent', aliases: ['concurrents', 'concurrence', 'comp\u00e9tition'], label: 'Analyse concurrents', weight: 1 },
+                        { word: 'avantage', aliases: ['diff\u00e9renciation', 'unique', 'valeur ajout\u00e9e'], label: 'Avantage comp\u00e9titif', weight: 2 },
+                        { word: 'niche', aliases: ['march\u00e9', 'segment', 'sp\u00e9cialisation'], label: 'Niche choisie', weight: 1 }
+                      ],
+                      minScore: 3, maxScore: 8,
+                      feedback: {
+                        excellent: 'Excellente analyse ! Votre validation couvre tous les crit\u00e8res cl\u00e9s.',
+                        good: 'Bien ! Il manque quelques \u00e9l\u00e9ments. V\u00e9rifiez que vous avez pens\u00e9 \u00e0 tous les crit\u00e8res.',
+                        needsWork: 'Reprenez la m\u00e9thodologie : cible, probl\u00e8me, concurrents, avantage comp\u00e9titif, niche.'
+                      }
+                    }
+                ]},
+                { title: 'Module 2 : Cr\u00e9er votre boutique', lessons: [
+                    { id: 'e2-1', title: 'Shopify vs WooCommerce : le bon choix', type: 'video', duration: '25:00', content: '<p>Comparaison d\u00e9taill\u00e9e des deux plateformes principales pour cr\u00e9er votre boutique en ligne.</p>' },
+
+                    { id: 'e2-match', title: 'Association : Plateformes e-commerce', type: 'matching', duration: '5:00',
+                      concept: 'plateformes-ecommerce',
+                      intro: 'Associez chaque plateforme \u00e0 sa caract\u00e9ristique principale.',
+                      pairs: [
+                        { term: 'Shopify', definitions: ['Plateforme cl\u00e9 en main facile', 'CMS open source', 'Plateforme pour d\u00e9veloppeurs', 'R\u00e9seau social'], correct: 0 },
+                        { term: 'WooCommerce', definitions: ['Application mobile', 'Extension WordPress gratuite', 'Service de paiement', 'Outil de design'], correct: 1 },
+                        { term: 'Magento', definitions: ['R\u00e9seau social', 'Plateforme email', 'Plateforme pour grandes entreprises', 'Outil SEO'], correct: 2 },
+                        { term: 'Mobile Money', definitions: ['Moyen de paiement dominant en Afrique', 'Plateforme e-commerce', 'Outil de livraison', 'R\u00e9seau publicitaire'], correct: 0 }
+                      ]
+                    },
+
+                    { id: 'e2-2', title: 'Configuration pas \u00e0 pas', type: 'video', duration: '40:00', content: '<p>Suivez le guide complet pour mettre en place votre boutique, du nom de domaine au premier produit.</p>' },
+
+                    { id: 'e2-quiz', title: 'Quiz : E-commerce', type: 'quiz', duration: '10:00', questions: [
+                        { q: 'Quel est le taux de conversion moyen en e-commerce en Afrique ?', options: ['0.5-1%', '1-3%', '5-8%', '10-15%'], correct: 1, explanation: 'Le taux moyen est entre 1 et 3%.' },
+                        { q: 'Quelle plateforme est la plus adapt\u00e9e pour un d\u00e9butant ?', options: ['Magento', 'Shopify', 'PrestaShop', 'D\u00e9veloppement custom'], correct: 1, explanation: 'Shopify est la plus accessible gr\u00e2ce \u00e0 son interface intuitive.' },
+                        { q: 'Quel moyen de paiement est le plus utilis\u00e9 en Afrique de l\'Ouest ?', options: ['Carte bancaire', 'PayPal', 'Mobile Money', 'Virement'], correct: 2, explanation: 'Le Mobile Money repr\u00e9sente plus de 60% des paiements digitaux.' }
+                    ]}
+                ]},
+                // ============================================================
+                // Bloc Paiements Digitaux (ex-formation Mobile Money absorb\u00e9e)
+                // ============================================================
+                { title: 'Module 3 : \u00c9cosyst\u00e8me des paiements en Afrique', lessons: [
+                    { id: 'e3-1', title: 'Vue d\'ensemble du Mobile Money en Afrique', type: 'video', duration: '18:00',
+                      content: '<p>Le Mobile Money traite plus de <strong>1 000 milliards de dollars</strong> par an en Afrique. Le Kenya (M-Pesa) a plus de 70% de p\u00e9n\u00e9tration. Les commissions sont de 1-2%. Comprendre cet \u00e9cosyst\u00e8me est indispensable pour encaisser en Afrique.</p><ul><li>Mobile Money (Wave, Orange Money, MTN MoMo, M-Pesa)</li><li>Cartes bancaires (Visa, Mastercard) via agr\u00e9gateurs</li><li>Virements bancaires instantan\u00e9s</li><li>Stablecoins & cr\u00e9dit-\u00e0-terme (\u00e9mergent)</li></ul>' },
+
+                    { id: 'e3-tf', title: 'Vrai/Faux : Paiements en Afrique', type: 'true_false', duration: '5:00',
+                      concept: 'paiements-bases',
+                      intro: 'Testez vos connaissances sur l\'\u00e9cosyst\u00e8me des paiements.',
+                      statements: [
+                        { text: 'Le Mobile Money traite plus de 1 000 milliards de dollars par an en Afrique.', answer: true, explanation: 'Exact ! C\'est un march\u00e9 colossal et en forte croissance.' },
+                        { text: 'Le Kenya est le leader mondial du Mobile Money gr\u00e2ce \u00e0 M-Pesa.', answer: true, explanation: 'Avec M-Pesa, le Kenya a plus de 70% de p\u00e9n\u00e9tration.' },
+                        { text: 'Les commissions Mobile Money sont g\u00e9n\u00e9ralement de 10-15%.', answer: false, explanation: 'Faux. Les commissions sont de 1-2%, bien plus abordables.' },
+                        { text: 'Wave et Orange Money sont des solutions utilis\u00e9es en Afrique de l\'Ouest.', answer: true, explanation: 'Exact ! Wave et Orange Money dominent en Afrique francophone.' }
+                      ]
+                    },
+
+                    { id: 'e3-2', title: 'Wave, Orange Money, MTN MoMo, M-Pesa : qui pour quel march\u00e9 ?', type: 'video', duration: '20:00',
+                      content: '<p>Cartographie par pays et cas d\'usage : quel service privil\u00e9gier selon votre cible g\u00e9ographique et la taille moyenne de vos paniers.</p><ul><li><strong>S\u00e9n\u00e9gal / C\u00f4te d\'Ivoire / Mali / Burkina</strong> \u2192 Wave (frais les plus bas) + Orange Money</li><li><strong>CEMAC + Kenya</strong> \u2192 MTN MoMo + M-Pesa</li><li><strong>Afrique anglophone</strong> \u2192 Flutterwave / Paystack</li></ul>' },
+
+                    { id: 'e3-match', title: 'Association : Op\u00e9rateur \u2192 Zone', type: 'matching', duration: '5:00',
+                      concept: 'operateurs-zones',
+                      intro: 'Associez chaque service \u00e0 sa zone g\u00e9ographique principale.',
+                      pairs: [
+                        { term: 'M-Pesa', definitions: ['Kenya / Tanzanie / Afrique de l\'Est', 'S\u00e9n\u00e9gal / Mali', 'Nigeria', 'Afrique du Nord'], correct: 0 },
+                        { term: 'Wave', definitions: ['Afrique du Sud', 'S\u00e9n\u00e9gal / C\u00f4te d\'Ivoire / Mali / Burkina', 'Ethiopie', 'Maroc'], correct: 1 },
+                        { term: 'Orange Money', definitions: ['Ghana uniquement', 'Kenya uniquement', '17 pays d\'Afrique francophone', 'Nigeria'], correct: 2 },
+                        { term: 'MTN Mobile Money', definitions: ['Zone uniquement anglophone', 'Afrique de l\'Ouest uniquement', 'C\u00f4te d\'Ivoire / Cameroun / Congo / Rwanda', 'Maghreb'], correct: 2 }
+                      ]
+                    },
+
+                    { id: 'e3-fill', title: 'Texte \u00e0 trous : Paiements mobiles', type: 'fill_blank', duration: '5:00',
+                      concept: 'paiements-mobiles',
+                      intro: 'Compl\u00e9tez les phrases.',
+                      sentences: [
+                        { text: 'Le service Mobile Money le plus c\u00e9l\u00e8bre au Kenya s\'appelle {1}.', blanks: { '1': ['M-Pesa', 'M-pesa', 'Mpesa', 'm-pesa'] } },
+                        { text: 'La commission moyenne sur une transaction Mobile Money est de {1}%.', blanks: { '1': ['1-2', '1', '2'] } },
+                        { text: '{1} et Orange Money sont les leaders en Afrique de l\'Ouest.', blanks: { '1': ['Wave', 'wave'] } }
+                      ],
+                      hints: ['Pensez au service kenyan pionnier du mobile money.']
+                    },
+
+                    { id: 'e3-quiz', title: 'Quiz : \u00c9cosyst\u00e8me des paiements', type: 'quiz', duration: '8:00', questions: [
+                        { q: 'Quel pays a le plus haut taux de p\u00e9n\u00e9tration du Mobile Money ?', options: ['Nigeria', 'Kenya', 'S\u00e9n\u00e9gal', 'Ghana'], correct: 1, explanation: 'Le Kenya avec M-Pesa, plus de 70% de p\u00e9n\u00e9tration.' },
+                        { q: 'Quelle est la commission moyenne sur une transaction Mobile Money ?', options: ['0%', '1-2%', '5-10%', '15-20%'], correct: 1, explanation: 'G\u00e9n\u00e9ralement entre 1 et 2%.' },
+                        { q: 'Pour une boutique au S\u00e9n\u00e9gal, quelle combinaison de paiements est la plus pertinente ?', options: ['PayPal uniquement', 'Wave + Orange Money + carte', 'Virement bancaire uniquement', 'Cryptomonnaies'], correct: 1, explanation: 'Wave pour les frais bas, Orange Money pour la couverture, carte pour l\'international.' }
+                    ]}
+                ]},
+                { title: 'Module 4 : Int\u00e9grer les paiements sur votre boutique', lessons: [
+                    { id: 'e4-1', title: 'Choisir son agr\u00e9gateur : PayDunya, CinetPay, Flutterwave', type: 'video', duration: '22:00',
+                      content: '<p>Un agr\u00e9gateur regroupe plusieurs moyens de paiement (Mobile Money, carte, virement) derri\u00e8re une seule int\u00e9gration. Il vous \u00e9vite de contracter individuellement avec chaque op\u00e9rateur.</p><ul><li><strong>PayDunya</strong> \u2014 fort en UEMOA (Wave, Orange, cartes)</li><li><strong>CinetPay</strong> \u2014 couverture large multi-pays</li><li><strong>Flutterwave / Paystack</strong> \u2014 Afrique anglophone + international</li><li><strong>Stripe</strong> \u2014 cartes internationales (\u00e0 coupler avec un agr\u00e9gateur africain)</li></ul>' },
+
+                    { id: 'e4-2', title: 'Int\u00e9gration technique : API, webhook, retour de paiement', type: 'video', duration: '28:00',
+                      content: '<p>Comprendre le flux : <em>client \u2192 agr\u00e9gateur \u2192 boutique</em>. Points d\'attention :</p><ul><li>G\u00e9n\u00e9ration du lien / formulaire de paiement</li><li>R\u00e9ception du <strong>webhook</strong> (notification serveur-\u00e0-serveur)</li><li>V\u00e9rification de signature / <strong>HMAC</strong></li><li>Idempotence des confirmations (\u00e9viter le double encaissement)</li></ul>' },
+
+                    { id: 'e4-order', title: 'Remise en ordre : Flux de paiement', type: 'ordering', duration: '5:00',
+                      concept: 'flux-paiement',
+                      intro: 'Remettez dans l\'ordre les \u00e9tapes d\'un paiement Mobile Money sur une boutique.',
+                      items: [
+                        { text: 'Le client choisit Wave/Orange Money \u00e0 la caisse', order: 1 },
+                        { text: 'La boutique appelle l\'API de l\'agr\u00e9gateur et re\u00e7oit un lien/popup de paiement', order: 2 },
+                        { text: 'Le client confirme le paiement sur son t\u00e9l\u00e9phone (USSD / app)', order: 3 },
+                        { text: 'L\'agr\u00e9gateur envoie un webhook sign\u00e9 \u00e0 la boutique', order: 4 },
+                        { text: 'La boutique v\u00e9rifie la signature et valide la commande', order: 5 },
+                        { text: 'Le client re\u00e7oit la confirmation de commande (email/SMS)', order: 6 }
+                      ]
+                    },
+
+                    { id: 'e4-tf', title: 'Vrai/Faux : S\u00e9curit\u00e9 & conformit\u00e9', type: 'true_false', duration: '5:00',
+                      concept: 'securite-paiement',
+                      intro: 'V\u00e9rifiez vos connaissances sur la s\u00e9curit\u00e9 des paiements.',
+                      statements: [
+                        { text: 'Un webhook de paiement doit toujours \u00eatre v\u00e9rifi\u00e9 avec une signature.', answer: true, explanation: 'Sans v\u00e9rification, un attaquant peut simuler un paiement et voler votre marchandise.' },
+                        { text: 'En UEMOA, la r\u00e9glementation des paiements \u00e9lectroniques est encadr\u00e9e par la BCEAO.', answer: true, explanation: 'La BCEAO est l\'autorit\u00e9 r\u00e9gulatrice pour les 8 pays UEMOA. Idem pour la BEAC en zone CEMAC.' },
+                        { text: 'Le PCI-DSS ne s\'applique qu\'aux grandes entreprises.', answer: false, explanation: 'Faux. Toute entreprise qui traite des donn\u00e9es de carte bancaire est concern\u00e9e \u2014 les agr\u00e9gateurs vous aident \u00e0 r\u00e9duire le scope.' },
+                        { text: 'La r\u00e9conciliation comptable quotidienne permet de d\u00e9tecter les fraudes t\u00f4t.', answer: true, explanation: 'Exact. Comparer les transactions agr\u00e9gateur vs commandes boutique r\u00e9v\u00e8le tout \u00e9cart suspect.' }
+                      ]
+                    },
+
+                    { id: 'e4-ex', title: 'Synth\u00e8se : Architecture de paiement', type: 'keyword_answer', duration: '20:00',
+                      concept: 'architecture-paiement',
+                      intro: 'Con\u00e7ois l\'architecture de paiement de ta boutique.',
+                      question: 'D\u00e9cris comment tu vas encaisser les paiements sur ta boutique e-commerce. Mentionne : l\'agr\u00e9gateur choisi, les moyens de paiement activ\u00e9s, la g\u00e9ographie cibl\u00e9e, la gestion de la s\u00e9curit\u00e9 (webhook, signature) et le processus de r\u00e9conciliation.',
+                      keywords: [
+                        { word: 'agr\u00e9gateur', aliases: ['PayDunya', 'CinetPay', 'Flutterwave', 'Paystack', 'Stripe'], label: 'Agr\u00e9gateur choisi', weight: 2 },
+                        { word: 'Wave', aliases: ['Orange Money', 'MTN', 'M-Pesa', 'Mobile Money', 'mobile money'], label: 'Mobile Money activ\u00e9', weight: 2 },
+                        { word: 'carte', aliases: ['Visa', 'Mastercard', 'carte bancaire', 'CB'], label: 'Carte bancaire', weight: 1 },
+                        { word: 'webhook', aliases: ['signature', 'HMAC', 'notification', 'callback'], label: 'S\u00e9curit\u00e9 webhook', weight: 2 },
+                        { word: 'r\u00e9conciliation', aliases: ['r\u00e9concilier', 'rapprochement', 'audit', 'comptabilit\u00e9'], label: 'R\u00e9conciliation', weight: 2 }
+                      ],
+                      minScore: 4, maxScore: 9,
+                      feedback: {
+                        excellent: 'Excellente architecture ! Tu as pens\u00e9 \u00e0 tous les \u00e9tages : paiements, s\u00e9curit\u00e9, r\u00e9conciliation.',
+                        good: 'Bon d\u00e9but. Pr\u00e9cise davantage la s\u00e9curit\u00e9 (webhook/signature) et la r\u00e9conciliation quotidienne.',
+                        needsWork: 'Reprends la structure : agr\u00e9gateur + moyens activ\u00e9s + s\u00e9curit\u00e9 webhook + r\u00e9conciliation.'
+                      }
+                    }
+                ]}
+            ]
+        },
+        '3': {
+            name: 'IA & Business',
+            gradient: 'linear-gradient(135deg, #A855F7, #6366F1)',
+            icon: '\ud83e\udd16',
+            modules: [
+                { title: 'Module 1 : Introduction \u00e0 l\'IA', lessons: [
+                    { id: 'i1-1', title: 'L\'IA pour les entrepreneurs : vue d\'ensemble', type: 'video', duration: '15:00', content: '<p>L\'intelligence artificielle n\'est plus r\u00e9serv\u00e9e aux g\u00e9ants tech. D\u00e9couvrez comment les entrepreneurs africains l\'utilisent au quotidien : r\u00e9daction, analyse, cr\u00e9ation de contenu, service client.</p>' },
+
+                    { id: 'i1-tf', title: 'Vrai/Faux : IA & Entrepreneurs', type: 'true_false', duration: '5:00',
+                      concept: 'ia-fondamentaux',
+                      intro: 'V\u00e9rifiez votre compr\u00e9hension des fondamentaux de l\'IA.',
+                      statements: [
+                        { text: 'L\'IA peut r\u00e9diger du contenu professionnel pour votre entreprise.', answer: true, explanation: 'Oui ! Les outils IA comme ChatGPT et Claude excellent dans la r\u00e9daction.' },
+                        { text: 'L\'IA remplace totalement le marketeur humain.', answer: false, explanation: 'L\'IA assiste mais ne remplace pas la cr\u00e9ativit\u00e9, l\'empathie et la strat\u00e9gie humaine.' },
+                        { text: 'Un prompt est une instruction donn\u00e9e \u00e0 l\'IA.', answer: true, explanation: 'Exact ! La qualit\u00e9 du prompt d\u00e9termine la qualit\u00e9 de la r\u00e9ponse.' },
+                        { text: 'Seules les grandes entreprises peuvent utiliser l\'IA.', answer: false, explanation: 'De nombreux outils IA sont gratuits ou tr\u00e8s abordables pour les PME et solo-entrepreneurs.' }
+                      ]
+                    },
+
+                    { id: 'i1-2', title: 'ChatGPT & Claude : prise en main', type: 'video', duration: '25:00', content: '<p>Ma\u00eetrisez les outils IA conversationnels pour r\u00e9diger, analyser et cr\u00e9er du contenu professionnel.</p>' },
+
+                    { id: 'i1-match', title: 'Association : Outils IA', type: 'matching', duration: '5:00',
+                      concept: 'outils-ia',
+                      intro: 'Associez chaque outil IA \u00e0 son usage principal.',
+                      pairs: [
+                        { term: 'ChatGPT / Claude', definitions: ['R\u00e9daction et conversation', 'G\u00e9n\u00e9ration d\'images', 'Automatisation de workflows', 'Analyse de donn\u00e9es financières'], correct: 0 },
+                        { term: 'Midjourney', definitions: ['Traduction de texte', 'G\u00e9n\u00e9ration d\'images professionnelles', 'Comptabilit\u00e9 automatis\u00e9e', 'Gestion de r\u00e9seaux sociaux'], correct: 1 },
+                        { term: 'Zapier / Make', definitions: ['Design graphique', 'Automatisation entre applications', 'R\u00e9daction de contenu', 'SEO avanc\u00e9'], correct: 1 },
+                        { term: 'Canva IA', definitions: ['Programmation avanc\u00e9e', 'Cr\u00e9ation de visuels avec l\'IA', 'Analyse de concurrence', 'Gestion de stock'], correct: 1 }
+                      ]
+                    },
+
+                    { id: 'i1-ex', title: 'Synth\u00e8se : Vos prompts business', type: 'keyword_answer', duration: '15:00',
+                      concept: 'prompts-business',
+                      intro: 'Cr\u00e9ez un prompt professionnel en utilisant les bonnes pratiques.',
+                      question: 'R\u00e9digez un prompt d\u00e9taill\u00e9 pour demander \u00e0 une IA de cr\u00e9er une strat\u00e9gie marketing pour votre entreprise. Soyez pr\u00e9cis sur le contexte, le r\u00f4le, le format et les contraintes.',
+                      keywords: [
+                        { word: 'contexte', aliases: ['entreprise', 'business', 'activit\u00e9', 'secteur'], label: 'Contexte pr\u00e9cis', weight: 2 },
+                        { word: 'r\u00f4le', aliases: ['expert', 'sp\u00e9cialiste', 'consultant', 'agis comme'], label: 'R\u00f4le assign\u00e9', weight: 2 },
+                        { word: 'format', aliases: ['liste', 'tableau', 'structure', 'paragraphe', '\u00e9tapes'], label: 'Format demand\u00e9', weight: 1 },
+                        { word: 'cible', aliases: ['audience', 'client', 'march\u00e9', 'persona'], label: 'Cible d\u00e9finie', weight: 1 },
+                        { word: 'objectif', aliases: ['but', 'r\u00e9sultat', 'KPI', 'mesurable'], label: 'Objectif clair', weight: 2 }
+                      ],
+                      minScore: 3, maxScore: 8,
+                      feedback: {
+                        excellent: 'Excellent prompt ! Vous ma\u00eetrisez l\'art du prompting professionnel.',
+                        good: 'Bon prompt ! Ajoutez plus de contexte et de pr\u00e9cision pour des r\u00e9sultats encore meilleurs.',
+                        needsWork: 'Votre prompt manque de structure. Pensez : contexte + r\u00f4le + format + objectif.'
+                      }
+                    },
+
+                    { id: 'i1-quiz', title: 'Quiz : IA Fondamentaux', type: 'quiz', duration: '8:00', questions: [
+                        { q: 'Qu\'est-ce qu\'un "prompt" en IA ?', options: ['Un logiciel d\'IA', 'Une instruction donn\u00e9e \u00e0 l\'IA', 'Un r\u00e9sultat d\'IA', 'Un type de robot'], correct: 1, explanation: 'Un prompt est l\'instruction ou la question que vous donnez \u00e0 un outil d\'IA.' },
+                        { q: 'Quel outil IA est le meilleur pour g\u00e9n\u00e9rer des images ?', options: ['ChatGPT', 'Claude', 'Midjourney', 'Zapier'], correct: 2, explanation: 'Midjourney est la r\u00e9f\u00e9rence pour la g\u00e9n\u00e9ration d\'images par IA.' },
+                        { q: 'L\'IA peut-elle remplacer totalement un marketeur ?', options: ['Oui, compl\u00e8tement', 'Non, elle assiste mais ne remplace pas', 'Seulement les t\u00e2ches simples', 'Pas encore'], correct: 1, explanation: 'L\'IA assiste les professionnels mais ne remplace pas la cr\u00e9ativit\u00e9 et la strat\u00e9gie humaine.' }
+                    ]}
+                ]}
+            ]
+        },
+        '5': {
+            name: 'R\u00e9seaux Sociaux',
+            gradient: 'linear-gradient(135deg, #F472B6, #EC4899)',
+            icon: '\ud83d\udcf1',
+            modules: [
+                { title: 'Module 1 : Strat\u00e9gie social media', lessons: [
+                    { id: 's1-1', title: 'D\u00e9finir votre strat\u00e9gie r\u00e9seaux sociaux', type: 'video', duration: '20:00', content: '<p>Apprenez \u00e0 construire une strat\u00e9gie social media efficace. Les 4 \u00e9tapes : d\u00e9finir vos objectifs, identifier votre audience, choisir vos plateformes, planifier votre contenu.</p>' },
+
+                    { id: 's1-tf', title: 'Vrai/Faux : Strat\u00e9gie social media', type: 'true_false', duration: '5:00',
+                      concept: 'strategie-social',
+                      intro: 'V\u00e9rifiez vos connaissances sur la strat\u00e9gie r\u00e9seaux sociaux.',
+                      statements: [
+                        { text: 'Il faut \u00eatre pr\u00e9sent sur tous les r\u00e9seaux sociaux en m\u00eame temps.', answer: false, explanation: 'Mieux vaut \u00eatre excellent sur 2-3 plateformes que m\u00e9diocre sur toutes.' },
+                        { text: 'Un calendrier \u00e9ditorial aide \u00e0 planifier et r\u00e9gulariser vos publications.', answer: true, explanation: 'Le calendrier \u00e9ditorial est essentiel pour maintenir la r\u00e9gularit\u00e9.' },
+                        { text: 'Le contenu viral repose sur l\'\u00e9motion, l\'utilit\u00e9 et le timing.', answer: true, explanation: 'Exact ! Ces 3 \u00e9l\u00e9ments sont les piliers du contenu viral.' },
+                        { text: 'Poster plus souvent garantit toujours plus d\'engagement.', answer: false, explanation: 'La qualit\u00e9 prime sur la quantit\u00e9. Mieux vaut 3 posts excellents que 10 m\u00e9diocres.' }
+                      ]
+                    },
+
+                    { id: 's1-2', title: 'Cr\u00e9er du contenu viral', type: 'video', duration: '25:00', content: '<p>Les secrets du contenu qui se partage : \u00e9motion, utilit\u00e9, timing et format.</p>' },
+
+                    { id: 's1-order', title: 'Remise en ordre : Cr\u00e9ation de contenu', type: 'ordering', duration: '5:00',
+                      concept: 'processus-contenu',
+                      intro: 'Remettez dans l\'ordre les \u00e9tapes de cr\u00e9ation d\'un post engageant.',
+                      items: [
+                        { text: 'D\u00e9finir l\'objectif du post (informer, engager, vendre)', order: 1 },
+                        { text: 'Identifier l\'audience cible de ce contenu', order: 2 },
+                        { text: 'R\u00e9diger le texte avec un hook accrocheur', order: 3 },
+                        { text: 'Cr\u00e9er le visuel (photo, vid\u00e9o, carrousel)', order: 4 },
+                        { text: 'Ajouter les hashtags et le call-to-action', order: 5 },
+                        { text: 'Publier au meilleur moment et interagir avec les commentaires', order: 6 }
+                      ]
+                    },
+
+                    { id: 's1-ex', title: 'Synth\u00e8se : Calendrier \u00e9ditorial', type: 'keyword_answer', duration: '15:00',
+                      concept: 'calendrier-editorial',
+                      intro: 'Cr\u00e9ez votre plan de contenu pour une semaine.',
+                      question: 'D\u00e9crivez votre calendrier \u00e9ditorial pour 5 jours. Pour chaque jour, pr\u00e9cisez le type de contenu, la plateforme et l\'objectif.',
+                      keywords: [
+                        { word: 'lundi', aliases: ['Lundi', 'jour 1'], label: 'Planning lundi', weight: 1 },
+                        { word: '\u00e9ducatif', aliases: ['tuto', 'conseil', 'astuce', 'formation', 'apprendre'], label: 'Contenu \u00e9ducatif', weight: 2 },
+                        { word: 't\u00e9moignage', aliases: ['client', 'avis', 'preuve sociale', 'retour'], label: 'Preuve sociale', weight: 1 },
+                        { word: 'Instagram', aliases: ['instagram', 'Facebook', 'facebook', 'TikTok', 'tiktok', 'LinkedIn'], label: 'Plateformes choisies', weight: 2 },
+                        { word: 'engagement', aliases: ['commentaire', 'partage', 'interaction', 'like', 'CTA'], label: 'Objectif engagement', weight: 2 }
+                      ],
+                      minScore: 3, maxScore: 8,
+                      feedback: {
+                        excellent: 'Excellent calendrier ! Vous avez bien vari\u00e9 les contenus et les objectifs.',
+                        good: 'Bien ! Pensez \u00e0 varier davantage les types de contenu et les plateformes.',
+                        needsWork: 'Votre calendrier manque de structure. Chaque jour doit avoir un type de contenu et un objectif.'
+                      }
+                    }
+                ]}
+            ]
+        },
+        // NB : l'ancienne formation Mobile Money (id '6') a \u00e9t\u00e9 fusionn\u00e9e
+        // dans E-commerce (id '2') sous les Modules 3 & 4.
+        '7': {
+            name: 'Automatiser avec l\'IA & le No-Code',
+            gradient: 'linear-gradient(135deg, #06B6D4, #0891B2)',
+            icon: '\ud83d\udd27',
+            modules: [
+                { title: 'Module 1 : Fondamentaux No-Code', lessons: [
+                    { id: 'n1-1', title: 'Qu\'est-ce que le No-Code ?', type: 'video', duration: '15:00', content: '<p>Le No-Code permet de cr\u00e9er des applications compl\u00e8tes <strong>sans \u00e9crire une ligne de code</strong>. Principales plateformes : Bubble, Webflow, Airtable, Zapier.</p>' },
+
+                    { id: 'n1-tf', title: 'Vrai/Faux : No-Code', type: 'true_false', duration: '5:00',
+                      concept: 'nocode-bases',
+                      intro: 'Testez vos connaissances sur le No-Code.',
+                      statements: [
+                        { text: 'Le No-Code permet de cr\u00e9er des applications sans \u00e9crire de code.', answer: true, explanation: 'C\'est la d\u00e9finition m\u00eame du No-Code !' },
+                        { text: 'Bubble est une plateforme No-Code pour cr\u00e9er des applications web.', answer: true, explanation: 'Bubble est la plateforme No-Code la plus puissante.' },
+                        { text: 'Les applications No-Code sont toujours limit\u00e9es et ne peuvent pas \u00eatre professionnelles.', answer: false, explanation: 'De nombreuses entreprises \u00e0 succ\u00e8s utilisent le No-Code pour leurs produits principaux.' },
+                        { text: 'Webflow permet de cr\u00e9er des sites web visuellement.', answer: true, explanation: 'Webflow est la r\u00e9f\u00e9rence No-Code pour le web design professionnel.' }
+                      ]
+                    },
+
+                    { id: 'n1-2', title: 'Bubble : votre premi\u00e8re application', type: 'video', duration: '35:00', content: '<p>Prenez en main Bubble, la plateforme No-Code la plus puissante, et cr\u00e9ez votre premier prototype.</p>' },
+
+                    { id: 'n1-match', title: 'Association : Outils No-Code', type: 'matching', duration: '5:00',
+                      concept: 'outils-nocode',
+                      intro: 'Associez chaque outil No-Code \u00e0 son usage.',
+                      pairs: [
+                        { term: 'Bubble', definitions: ['Applications web compl\u00e8tes', 'Design de sites vitrines', 'Tableur intelligent', 'Envoi d\'emails'], correct: 0 },
+                        { term: 'Webflow', definitions: ['Applications mobiles', 'Sites web design professionnel', 'Base de donn\u00e9es', 'Chat en direct'], correct: 1 },
+                        { term: 'Airtable', definitions: ['Animation vid\u00e9o', 'Jeux en ligne', 'Base de donn\u00e9es et tableur intelligent', 'H\u00e9bergement web'], correct: 2 },
+                        { term: 'Zapier', definitions: ['Automatisation entre applications', 'Design d\'interface', 'Cr\u00e9ation de logo', 'Gestion de stock'], correct: 0 }
+                      ]
+                    },
+
+                    { id: 'n1-ex', title: 'Synth\u00e8se : Prototyper votre id\u00e9e', type: 'keyword_answer', duration: '20:00',
+                      concept: 'prototype-nocode',
+                      intro: 'D\u00e9crivez votre projet d\'application No-Code.',
+                      question: 'Pr\u00e9sentez votre id\u00e9e d\'application. Quel probl\u00e8me r\u00e9sout-elle ? Quels outils No-Code utiliseriez-vous ? Quelles fonctionnalit\u00e9s essentielles aurait-elle ?',
+                      keywords: [
+                        { word: 'probl\u00e8me', aliases: ['besoin', 'r\u00e9soudre', 'solution', 'pain point'], label: 'Probl\u00e8me identifi\u00e9', weight: 2 },
+                        { word: 'Bubble', aliases: ['bubble', 'Webflow', 'webflow', 'Airtable', 'airtable'], label: 'Outil choisi', weight: 2 },
+                        { word: 'fonctionnalit\u00e9', aliases: ['fonctionnalit\u00e9s', 'feature', 'features', 'fonction'], label: 'Fonctionnalit\u00e9s', weight: 2 },
+                        { word: 'utilisateur', aliases: ['utilisateurs', 'user', 'client', 'cible'], label: 'Utilisateurs cibles', weight: 1 },
+                        { word: 'base de donn\u00e9es', aliases: ['donn\u00e9es', 'database', 'stockage', 'information'], label: 'Donn\u00e9es', weight: 1 }
+                      ],
+                      minScore: 3, maxScore: 8,
+                      feedback: {
+                        excellent: 'Excellent ! Votre projet est bien structur\u00e9 et r\u00e9aliste avec le No-Code.',
+                        good: 'Bien ! Pr\u00e9cisez davantage les fonctionnalit\u00e9s et l\'outil choisi.',
+                        needsWork: 'Reprenez la structure : probl\u00e8me + outil No-Code + fonctionnalit\u00e9s + cible.'
+                      }
+                    }
+                ]}
+            ]
+        },
+        '8': {
+            name: 'Email Marketing & Automation',
+            gradient: 'linear-gradient(135deg, #8B5CF6, #A855F7)',
+            icon: '\u2709\ufe0f',
+            modules: [
+                { title: 'Module 1 : Email Marketing', lessons: [
+                    { id: 'em1-1', title: 'Pourquoi l\'email marketing reste roi', type: 'video', duration: '15:00', content: '<p>L\'email marketing offre un <strong>ROI de 42:1</strong> \u2014 le plus \u00e9lev\u00e9 de tous les canaux digitaux. Taux d\'ouverture moyen : 15-25%. La cl\u00e9 : l\'objet de l\'email. Structure AIDA : Attention, Int\u00e9r\u00eat, D\u00e9sir, Action.</p>' },
+
+                    { id: 'em1-tf', title: 'Vrai/Faux : Email Marketing', type: 'true_false', duration: '5:00',
+                      concept: 'email-fondamentaux',
+                      intro: 'V\u00e9rifiez vos connaissances sur l\'email marketing.',
+                      statements: [
+                        { text: 'L\'email marketing a le ROI le plus \u00e9lev\u00e9 de tous les canaux digitaux.', answer: true, explanation: 'Oui ! 42\u20ac de retour pour 1\u20ac investi en moyenne.' },
+                        { text: 'Le taux d\'ouverture moyen d\'un email marketing est de 60%.', answer: false, explanation: 'Le taux moyen est de 15-25%, pas 60%.' },
+                        { text: 'L\'objet de l\'email est l\'\u00e9l\u00e9ment qui a le plus d\'impact sur le taux d\'ouverture.', answer: true, explanation: 'Exact ! L\'objet d\u00e9termine si le destinataire ouvre ou non l\'email.' },
+                        { text: 'Vous pouvez envoyer des emails commerciaux sans consentement gr\u00e2ce au RGPD.', answer: false, explanation: 'Le RGPD impose le consentement EXPLICITE avant tout envoi commercial.' }
+                      ]
+                    },
+
+                    { id: 'em1-2', title: 'Construire votre liste email', type: 'video', duration: '25:00', content: '<p>Apprenez les strat\u00e9gies \u00e9prouv\u00e9es pour construire une liste email qualifi\u00e9e sans spam.</p>' },
+
+                    { id: 'em1-fill', title: 'Texte \u00e0 trous : Email Marketing', type: 'fill_blank', duration: '5:00',
+                      concept: 'email-pratique',
+                      intro: 'Compl\u00e9tez les phrases sur l\'email marketing.',
+                      sentences: [
+                        { text: 'L\'email marketing offre un ROI de {1}:1.', blanks: { '1': ['42'] } },
+                        { text: 'La structure AIDA signifie : Attention, Int\u00e9r\u00eat, {1}, Action.', blanks: { '1': ['D\u00e9sir', 'd\u00e9sir', 'Desir'] } },
+                        { text: 'Le {1} impose le consentement explicite avant l\'envoi d\'emails commerciaux.', blanks: { '1': ['RGPD', 'rgpd'] } },
+                        { text: 'L\'{1} de l\'email a le plus d\'impact sur le taux d\'ouverture.', blanks: { '1': ['objet', 'Objet', 'sujet'] } }
+                      ],
+                      hints: ['Pensez aux chiffres cl\u00e9s et \u00e0 l\'acronyme de la r\u00e9glementation europ\u00e9enne.']
+                    },
+
+                    { id: 'em1-3', title: '\u00c9crire des emails qui convertissent', type: 'video', duration: '30:00', content: '<p>Les techniques de copywriting appliqu\u00e9es \u00e0 l\'email : objets accrocheurs, structure AIDA, appels \u00e0 l\'action.</p>' },
+
+                    { id: 'em1-order', title: 'Remise en ordre : Structure AIDA', type: 'ordering', duration: '5:00',
+                      concept: 'structure-aida',
+                      intro: 'Remettez dans l\'ordre les \u00e9tapes de la structure AIDA pour un email.',
+                      items: [
+                        { text: 'Attention : Un objet d\'email accrocheur qui donne envie d\'ouvrir', order: 1 },
+                        { text: 'Int\u00e9r\u00eat : Une premi\u00e8re phrase qui captive le lecteur', order: 2 },
+                        { text: 'D\u00e9sir : Pr\u00e9senter les b\u00e9n\u00e9fices concrets pour le lecteur', order: 3 },
+                        { text: 'Action : Un appel \u00e0 l\'action clair et visible (bouton CTA)', order: 4 }
+                      ]
+                    },
+
+                    { id: 'em1-quiz', title: 'Quiz : Email Marketing', type: 'quiz', duration: '8:00', questions: [
+                        { q: 'Quel est le taux d\'ouverture moyen d\'un email marketing ?', options: ['5-10%', '15-25%', '40-50%', '70-80%'], correct: 1, explanation: 'Le taux moyen est entre 15 et 25%.' },
+                        { q: 'Que signifie RGPD ?', options: ['R\u00e9ponse Garantie Par D\u00e9faut', 'R\u00e8glement G\u00e9n\u00e9ral sur la Protection des Donn\u00e9es', 'R\u00e9seau Global de Publicit\u00e9 Digitale', 'Rapport de Gestion des Performances Digitales'], correct: 1, explanation: 'Le RGPD impose le consentement explicite.' },
+                        { q: 'Quel \u00e9l\u00e9ment a le plus d\'impact sur le taux d\'ouverture ?', options: ['Le design', 'L\'objet de l\'email', 'La longueur', 'Les images'], correct: 1, explanation: 'L\'objet d\u00e9termine si le destinataire ouvre ou non l\'email.' }
+                    ]}
+                ]}
+            ]
+        }
+    };
+
+    // ===== STATE MANAGEMENT =====
+    // Redirection legacy : l'ancienne formation Mobile Money (id '6')
+    // est d\u00e9sormais fusionn\u00e9e dans E-commerce (id '2').
+    let courseId = new URLSearchParams(window.location.search).get('id') || '1';
+    if (courseId === '6') { courseId = '2'; }
+    const course = COURSES_DATA[courseId];
+
+    if (!course) { window.location.href = 'dashboard.html'; }
+
+    // Check auth
+    const user = JSON.parse(localStorage.getItem('caplearning_user') || 'null');
+    if (!user || !user.loggedIn) { window.location.href = 'connexion.html'; }
+
+    // Progress
+    let progressData = JSON.parse(localStorage.getItem('caplearning_progress') || '{}');
+    if (!progressData[courseId]) {
+        progressData[courseId] = { completed: [], quizScores: {} };
+    }
+
+    function saveProgress() {
+        localStorage.setItem('caplearning_progress', JSON.stringify(progressData));
+    }
+
+    // Flatten lessons
+    let allLessons = [];
+    course.modules.forEach(mod => {
+        mod.lessons.forEach(l => allLessons.push({ ...l, module: mod.title }));
+    });
+
+    let currentIndex = 0;
+
+    // ===== RENDER SIDEBAR =====
+    document.getElementById('course-title').textContent = course.name;
+    document.title = course.name + ' - Cap Learning LMS';
+
+    function renderSidebar() {
+        const container = document.getElementById('modules-list');
+        let html = '';
+        course.modules.forEach(mod => {
+            html += `<div class="learn-module-group">
+                <div class="learn-module-title">${mod.title}</div>`;
+            mod.lessons.forEach((lesson, idx) => {
+                const globalIdx = allLessons.findIndex(l => l.id === lesson.id);
+                const isCompleted = progressData[courseId].completed.includes(lesson.id);
+                const isActive = globalIdx === currentIndex;
+                const typeMap = {
+                    video: { cls: 'lesson-type-video', label: 'Vidéo' },
+                    exercise: { cls: 'lesson-type-exercise', label: 'Exercice' },
+                    quiz: { cls: 'lesson-type-quiz', label: 'Quiz' },
+                    true_false: { cls: 'lesson-type-exercise', label: 'Vrai/Faux' },
+                    fill_blank: { cls: 'lesson-type-exercise', label: 'Trous' },
+                    matching: { cls: 'lesson-type-exercise', label: 'Assoc.' },
+                    keyword_answer: { cls: 'lesson-type-exercise', label: 'Synthèse' },
+                    ordering: { cls: 'lesson-type-exercise', label: 'Ordre' }
+                };
+                const tInfo = typeMap[lesson.type] || typeMap.exercise;
+                const typeClass = tInfo.cls;
+                const typeLabel = tInfo.label;
+
+                html += `<div class="learn-lesson ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" data-index="${globalIdx}" onclick="goToLesson(${globalIdx})">
+                    <div class="lesson-check">${isCompleted ? '✓' : ''}</div>
+                    <span class="lesson-label">${lesson.title}</span>
+                    <span class="lesson-type ${typeClass}">${typeLabel}</span>
+                </div>`;
+            });
+            html += `</div>`;
+        });
+        container.innerHTML = html;
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const completed = progressData[courseId].completed.length;
+        const total = allLessons.length;
+        const pct = total > 0 ? Math.round((completed / total) * 100) : 0;
+        document.getElementById('progress-fill').style.width = pct + '%';
+        document.getElementById('progress-text').textContent = pct + '%';
+    }
+
+    // ===== RENDER LESSON =====
+    function goToLesson(index) {
+        currentIndex = index;
+        const lesson = allLessons[index];
+
+        // Sauvegarde du point de reprise (pour le dashboard "Reprendre")
+        progressData[courseId].lastLessonId    = lesson.id;
+        progressData[courseId].lastLessonTitle = lesson.title;
+        progressData[courseId].lastLessonModule = lesson.module || '';
+        progressData[courseId].lastLessonIndex = index;   // 0-indexed
+        progressData[courseId].totalLessons    = allLessons.length;
+        progressData[courseId].lastVisitedAt   = new Date().toISOString();
+        saveProgress();
+
+        // Update sidebar active state
+        document.querySelectorAll('.learn-lesson').forEach(el => el.classList.remove('active'));
+        const activeEl = document.querySelector(`.learn-lesson[data-index="${index}"]`);
+        if (activeEl) activeEl.classList.add('active');
+
+        // Update player
+        const playerArea = document.getElementById('player-area');
+        if (lesson.type === 'video') {
+            playerArea.style.display = 'flex';
+            playerArea.style.background = course.gradient;
+            document.getElementById('player-title').textContent = lesson.title;
+        } else {
+            playerArea.style.display = 'none';
+        }
+
+        // Update content
+        document.getElementById('lesson-title').textContent = lesson.title;
+
+        const typeBadge = document.getElementById('lesson-type-badge');
+        const badgeMap = { video: '🎬 Vidéo', exercise: '✏️ Exercice pratique', quiz: '📝 Quiz', true_false: '✅ Vrai ou Faux', fill_blank: '📝 Texte à trous', matching: '🔗 Association', keyword_answer: '💬 Synthèse', ordering: '🔢 Remise en ordre' };
+        typeBadge.textContent = badgeMap[lesson.type] || '✏️ Exercice';
+
+        document.getElementById('lesson-duration').textContent = '⏱ ' + lesson.duration;
+
+        // Render content based on type
+        const body = document.getElementById('lesson-body');
+
+        if (lesson.type === 'video') {
+            body.innerHTML = lesson.content;
+        } else if (lesson.type === 'exercise') {
+            body.innerHTML = renderExercise(lesson);
+        } else if (lesson.type === 'quiz') {
+            body.innerHTML = renderQuiz(lesson);
+            initQuiz(lesson);
+        } else if (lesson.type === 'true_false') {
+            tfAnswers = {};
+            tfSubmitted = false;
+            body.innerHTML = renderTrueFalse(lesson);
+        } else if (lesson.type === 'fill_blank') {
+            fillSubmitted = false;
+            body.innerHTML = renderFillBlank(lesson);
+        } else if (lesson.type === 'matching') {
+            body.innerHTML = renderMatching(lesson);
+        } else if (lesson.type === 'keyword_answer') {
+            body.innerHTML = renderKeywordAnswer(lesson);
+            setTimeout(() => initKeywordCounter(), 50);
+        } else if (lesson.type === 'ordering') {
+            body.innerHTML = renderOrdering(lesson);
+        }
+
+        // Update nav buttons
+        document.getElementById('btn-prev').style.visibility = index > 0 ? 'visible' : 'hidden';
+        document.getElementById('btn-next').style.visibility = index < allLessons.length - 1 ? 'visible' : 'hidden';
+
+        // Update complete button
+        const completeBtn = document.getElementById('btn-complete');
+        const isCompleted = progressData[courseId].completed.includes(lesson.id);
+        if (isCompleted) {
+            completeBtn.textContent = 'Terminé ✓';
+            completeBtn.classList.add('done');
+        } else {
+            const exerciseTypes = ['true_false','fill_blank','matching','keyword_answer','ordering'];
+            completeBtn.textContent = lesson.type === 'quiz' ? 'Terminer le quiz' : exerciseTypes.includes(lesson.type) ? 'Valider l\'exercice' : 'Marquer comme terminé ✓';
+            completeBtn.classList.remove('done');
+        }
+
+        // Close mobile sidebar
+        document.getElementById('learn-sidebar').classList.remove('open');
+
+        window.scrollTo(0, 0);
+    }
+
+    // ===== EXERCISE RENDERING =====
+    function renderExercise(lesson) {
+        const savedAnswer = localStorage.getItem('caplearning_exercise_' + lesson.id) || '';
+        return `
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <div class="exercise-icon exercise-icon-practice">✏️</div>
+                    <div>
+                        <div class="exercise-title">${lesson.title}</div>
+                        <div class="exercise-subtitle">Exercice pratique — Prenez votre temps</div>
+                    </div>
+                </div>
+                <div class="exercise-instructions">${lesson.instructions.replace(/\n/g, '<br>')}</div>
+                <textarea class="exercise-textarea" id="exercise-answer" placeholder="Rédigez votre réponse ici...">${savedAnswer}</textarea>
+                <div class="exercise-submit-row">
+                    <button class="btn btn-primary" onclick="saveExercise('${lesson.id}')">Sauvegarder ma réponse</button>
+                </div>
+            </div>`;
+    }
+
+    function saveExercise(lessonId) {
+        const answer = document.getElementById('exercise-answer').value;
+        localStorage.setItem('caplearning_exercise_' + lessonId, answer);
+        if (answer.trim().length > 20) {
+            markCompleted(lessonId);
+            alert('Réponse sauvegardée ! Vous pouvez la modifier à tout moment.');
+        } else {
+            alert('Écrivez au moins quelques phrases pour valider l\'exercice.');
+        }
+    }
+
+    // ===== ADAPTIVE MASTERY TRACKING =====
+    let masteryData = JSON.parse(localStorage.getItem('caplearning_mastery_' + courseId) || '{}');
+
+    function saveMastery() {
+        localStorage.setItem('caplearning_mastery_' + courseId, JSON.stringify(masteryData));
+    }
+
+    function getMastery(concept) {
+        if (!concept) return { score: 0, attempts: 0, level: 'beginner' };
+        return masteryData[concept] || { score: 0, attempts: 0, level: 'beginner' };
+    }
+
+    function updateMastery(concept, correctCount, totalCount) {
+        if (!concept) return;
+        const prev = getMastery(concept);
+        const sessionScore = Math.round((correctCount / totalCount) * 100);
+        const newScore = prev.attempts === 0 ? sessionScore : Math.round(sessionScore * 0.6 + prev.score * 0.4);
+        const level = newScore >= 80 ? 'advanced' : newScore >= 50 ? 'intermediate' : 'beginner';
+        masteryData[concept] = { score: newScore, attempts: prev.attempts + 1, lastScore: sessionScore, level: level };
+        saveMastery();
+        return masteryData[concept];
+    }
+
+    function shouldShowHints(concept) {
+        const m = getMastery(concept);
+        return m.attempts > 0 && m.score < 50;
+    }
+
+    function retryExercise() {
+        goToLesson(currentIndex);
+    }
+
+    // ===== TRUE/FALSE RENDERER =====
+    let tfAnswers = {};
+    let tfSubmitted = false;
+
+    function renderTrueFalse(lesson) {
+        const mastery = getMastery(lesson.concept);
+        const showHints = shouldShowHints(lesson.concept);
+
+        let html = '<div class="exercise-container">' +
+            '<div class="exercise-header"><div class="exercise-icon exercise-icon-practice">✅</div>' +
+            '<div><div class="exercise-title">' + lesson.title + '</div>' +
+            '<div class="exercise-subtitle">Vrai ou Faux — ' + lesson.statements.length + ' affirmations</div></div></div>';
+
+        if (mastery.attempts > 0) {
+            html += '<div style="background:var(--color-primary-50); padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); margin-bottom:var(--space-4); font-size:var(--text-sm); color:var(--color-primary-dark);">\ud83d\udcca Votre ma\u00eetrise : <strong>' + mastery.score + '%</strong> \u2014 ' +
+                (mastery.level === 'advanced' ? 'Excellent niveau !' : mastery.level === 'intermediate' ? 'En progression...' : 'Continuez \u00e0 pratiquer') + '</div>';
+        }
+
+        html += '<div class="exercise-instructions">' + lesson.intro + '</div><div id="tf-statements">';
+
+        lesson.statements.forEach(function(s, i) {
+            html += '<div class="tf-question" id="tf-q-' + i + '"><div style="flex:1;">' +
+                '<div class="tf-statement">' + s.text + '</div>' +
+                '<div class="tf-explanation" id="tf-exp-' + i + '"></div></div>' +
+                '<div class="tf-buttons">' +
+                '<button class="tf-btn" data-qi="' + i + '" data-val="true" onclick="selectTF(' + i + ', true)">Vrai</button>' +
+                '<button class="tf-btn" data-qi="' + i + '" data-val="false" onclick="selectTF(' + i + ', false)">Faux</button>' +
+                '</div></div>';
+        });
+
+        html += '</div><div style="text-align:center; margin-top:var(--space-5);">' +
+            '<button class="btn btn-primary btn-lg" id="tf-submit" onclick="submitTrueFalse()">V\u00e9rifier mes r\u00e9ponses</button></div>' +
+            '<div class="exercise-score-banner" id="tf-score-banner">' +
+            '<div class="exercise-score-value" id="tf-score-value"></div>' +
+            '<div class="exercise-score-label" id="tf-score-label"></div></div></div>';
+        return html;
+    }
+
+    function selectTF(qi, val) {
+        if (tfSubmitted) return;
+        tfAnswers[qi] = val;
+        document.querySelectorAll('.tf-btn[data-qi="' + qi + '"]').forEach(function(btn) { btn.classList.remove('selected'); });
+        document.querySelector('.tf-btn[data-qi="' + qi + '"][data-val="' + val + '"]').classList.add('selected');
+    }
+
+    function submitTrueFalse() {
+        var lesson = allLessons[currentIndex];
+        if (!lesson || lesson.type !== 'true_false') return;
+
+        var total = lesson.statements.length;
+        var answered = Object.keys(tfAnswers).length;
+        if (answered < total) { alert('R\u00e9pondez \u00e0 toutes les affirmations (' + answered + '/' + total + ')'); return; }
+
+        tfSubmitted = true;
+        var correct = 0;
+
+        lesson.statements.forEach(function(s, i) {
+            var userAnswer = tfAnswers[i];
+            var isCorrect = userAnswer === s.answer;
+            if (isCorrect) correct++;
+
+            var qEl = document.getElementById('tf-q-' + i);
+            qEl.classList.add(isCorrect ? 'answered-correct' : 'answered-wrong');
+
+            document.querySelectorAll('.tf-btn[data-qi="' + i + '"]').forEach(function(btn) {
+                var btnVal = btn.dataset.val === 'true';
+                if (btnVal === s.answer) btn.classList.add('correct-answer');
+                else if (btnVal === userAnswer && !isCorrect) btn.classList.add('wrong-answer');
+                btn.style.pointerEvents = 'none';
+            });
+
+            var expEl = document.getElementById('tf-exp-' + i);
+            expEl.textContent = (isCorrect ? '\u2713 ' : '\u2717 ') + s.explanation;
+            expEl.className = 'tf-explanation show ' + (isCorrect ? 'correct' : 'wrong');
+        });
+
+        var pct = Math.round((correct / total) * 100);
+        var banner = document.getElementById('tf-score-banner');
+        var scoreClass = pct >= 80 ? 'excellent' : pct >= 50 ? 'average' : 'poor';
+        banner.className = 'exercise-score-banner show ' + scoreClass;
+        document.getElementById('tf-score-value').textContent = pct + '%';
+        document.getElementById('tf-score-label').textContent =
+            pct >= 80 ? 'Bravo ! ' + correct + '/' + total + ' bonnes r\u00e9ponses' :
+            pct >= 50 ? correct + '/' + total + ' \u2014 Relisez les explications des erreurs' :
+            correct + '/' + total + ' \u2014 Revoyez la le\u00e7on pr\u00e9c\u00e9dente puis r\u00e9essayez';
+
+        document.getElementById('tf-submit').textContent = '\ud83d\udd04 R\u00e9essayer';
+        document.getElementById('tf-submit').onclick = retryExercise;
+
+        updateMastery(lesson.concept, correct, total);
+        if (pct >= 50) markCompleted(lesson.id);
+    }
+
+    // ===== FILL-IN-THE-BLANK RENDERER =====
+    let fillSubmitted = false;
+
+    function renderFillBlank(lesson) {
+        var mastery = getMastery(lesson.concept);
+        var showHints = shouldShowHints(lesson.concept);
+
+        var html = '<div class="exercise-container">' +
+            '<div class="exercise-header"><div class="exercise-icon exercise-icon-practice">\ud83d\udcdd</div>' +
+            '<div><div class="exercise-title">' + lesson.title + '</div>' +
+            '<div class="exercise-subtitle">Texte \u00e0 trous \u2014 Compl\u00e9tez les phrases</div></div></div>';
+
+        if (mastery.attempts > 0) {
+            html += '<div style="background:var(--color-primary-50); padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); margin-bottom:var(--space-4); font-size:var(--text-sm); color:var(--color-primary-dark);">\ud83d\udcca Votre ma\u00eetrise : <strong>' + mastery.score + '%</strong></div>';
+        }
+
+        html += '<div class="exercise-instructions">' + lesson.intro + '</div><div id="fill-sentences">';
+
+        lesson.sentences.forEach(function(s, si) {
+            var sentenceHtml = s.text.replace(/\{(\d+)\}/g, function(match, num) {
+                return '<input type="text" class="fill-blank-input" id="fill-' + si + '-' + num + '" data-si="' + si + '" data-blank="' + num + '" placeholder="..." autocomplete="off">' +
+                    '<span class="fill-blank-correction" id="fill-corr-' + si + '-' + num + '"></span>';
+            });
+            html += '<div class="fill-blank-sentence" id="fill-sentence-' + si + '">' + sentenceHtml + '</div>';
+        });
+
+        if (showHints && lesson.hints && lesson.hints.length > 0) {
+            html += '<div style="background:#FFFBEB; border:1px solid var(--color-warning); padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); margin-top:var(--space-3); font-size:var(--text-sm);">' +
+                '\ud83d\udca1 <strong>Indices :</strong><ul style="margin:var(--space-2) 0 0 var(--space-4);">';
+            lesson.hints.forEach(function(h) { html += '<li>' + h + '</li>'; });
+            html += '</ul></div>';
+        }
+
+        html += '</div><div style="text-align:center; margin-top:var(--space-5);">' +
+            '<button class="btn btn-primary btn-lg" id="fill-submit" onclick="submitFillBlank()">V\u00e9rifier mes r\u00e9ponses</button></div>' +
+            '<div class="exercise-score-banner" id="fill-score-banner">' +
+            '<div class="exercise-score-value" id="fill-score-value"></div>' +
+            '<div class="exercise-score-label" id="fill-score-label"></div></div></div>';
+        return html;
+    }
+
+    function submitFillBlank() {
+        var lesson = allLessons[currentIndex];
+        if (!lesson || lesson.type !== 'fill_blank') return;
+
+        fillSubmitted = true;
+        var correct = 0, total = 0;
+
+        lesson.sentences.forEach(function(s, si) {
+            Object.keys(s.blanks).forEach(function(blankNum) {
+                total++;
+                var input = document.getElementById('fill-' + si + '-' + blankNum);
+                var corrSpan = document.getElementById('fill-corr-' + si + '-' + blankNum);
+                var userVal = input.value.trim();
+                var acceptedAnswers = s.blanks[blankNum];
+
+                var isCorrect = acceptedAnswers.some(function(a) {
+                    return a.toLowerCase() === userVal.toLowerCase();
+                });
+
+                if (isCorrect) {
+                    correct++;
+                    input.classList.add('correct');
+                } else {
+                    input.classList.add('wrong');
+                    corrSpan.textContent = '\u2192 ' + acceptedAnswers[0];
+                    corrSpan.classList.add('show');
+                }
+                input.disabled = true;
+            });
+        });
+
+        var pct = Math.round((correct / total) * 100);
+        var banner = document.getElementById('fill-score-banner');
+        var scoreClass = pct >= 80 ? 'excellent' : pct >= 50 ? 'average' : 'poor';
+        banner.className = 'exercise-score-banner show ' + scoreClass;
+        document.getElementById('fill-score-value').textContent = pct + '%';
+        document.getElementById('fill-score-label').textContent =
+            pct >= 80 ? 'Parfait ! ' + correct + '/' + total + ' r\u00e9ponses correctes' :
+            pct >= 50 ? correct + '/' + total + ' \u2014 Les r\u00e9ponses correctes sont affich\u00e9es' :
+            correct + '/' + total + ' \u2014 Relisez la le\u00e7on et r\u00e9essayez';
+
+        document.getElementById('fill-submit').textContent = '\ud83d\udd04 R\u00e9essayer';
+        document.getElementById('fill-submit').onclick = retryExercise;
+
+        updateMastery(lesson.concept, correct, total);
+        if (pct >= 50) markCompleted(lesson.id);
+    }
+
+    // ===== MATCHING RENDERER =====
+    function renderMatching(lesson) {
+        var mastery = getMastery(lesson.concept);
+
+        var html = '<div class="exercise-container">' +
+            '<div class="exercise-header"><div class="exercise-icon exercise-icon-practice">\ud83d\udd17</div>' +
+            '<div><div class="exercise-title">' + lesson.title + '</div>' +
+            '<div class="exercise-subtitle">Association \u2014 Reliez chaque concept \u00e0 sa d\u00e9finition</div></div></div>';
+
+        if (mastery.attempts > 0) {
+            html += '<div style="background:var(--color-primary-50); padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); margin-bottom:var(--space-4); font-size:var(--text-sm); color:var(--color-primary-dark);">\ud83d\udcca Votre ma\u00eetrise : <strong>' + mastery.score + '%</strong></div>';
+        }
+
+        html += '<div class="exercise-instructions">' + lesson.intro + '</div><div class="matching-container" id="matching-pairs">';
+
+        lesson.pairs.forEach(function(pair, pi) {
+            html += '<div class="matching-row" id="match-row-' + pi + '">' +
+                '<div class="matching-term">' + pair.term + '</div>' +
+                '<div class="matching-arrow">\u2192</div>' +
+                '<select class="matching-select" id="match-select-' + pi + '" data-pi="' + pi + '">' +
+                '<option value="" disabled selected>Choisissez...</option>';
+            pair.definitions.forEach(function(def, di) {
+                html += '<option value="' + di + '">' + def + '</option>';
+            });
+            html += '</select></div>';
+        });
+
+        html += '</div><div style="text-align:center; margin-top:var(--space-5);">' +
+            '<button class="btn btn-primary btn-lg" id="match-submit" onclick="submitMatching()">V\u00e9rifier mes associations</button></div>' +
+            '<div class="exercise-score-banner" id="match-score-banner">' +
+            '<div class="exercise-score-value" id="match-score-value"></div>' +
+            '<div class="exercise-score-label" id="match-score-label"></div></div></div>';
+        return html;
+    }
+
+    function submitMatching() {
+        var lesson = allLessons[currentIndex];
+        if (!lesson || lesson.type !== 'matching') return;
+
+        var correct = 0, total = lesson.pairs.length, allAnswered = true;
+
+        lesson.pairs.forEach(function(pair, pi) {
+            var select = document.getElementById('match-select-' + pi);
+            if (select.value === '') { allAnswered = false; return; }
+
+            var userAnswer = parseInt(select.value);
+            var isCorrect = userAnswer === pair.correct;
+            if (isCorrect) correct++;
+
+            select.classList.add(isCorrect ? 'correct' : 'wrong');
+            select.disabled = true;
+
+            if (!isCorrect) {
+                var row = document.getElementById('match-row-' + pi);
+                var correction = document.createElement('div');
+                correction.style.cssText = 'font-size:12px; color:var(--color-success); font-weight:600; margin-top:4px; width:100%;';
+                correction.textContent = '\u2192 ' + pair.definitions[pair.correct];
+                row.appendChild(correction);
+            }
+        });
+
+        if (!allAnswered) { alert('Veuillez associer chaque concept \u00e0 une d\u00e9finition.'); return; }
+
+        var pct = Math.round((correct / total) * 100);
+        var banner = document.getElementById('match-score-banner');
+        var scoreClass = pct >= 80 ? 'excellent' : pct >= 50 ? 'average' : 'poor';
+        banner.className = 'exercise-score-banner show ' + scoreClass;
+        document.getElementById('match-score-value').textContent = pct + '%';
+        document.getElementById('match-score-label').textContent =
+            pct >= 80 ? 'Excellent ! ' + correct + '/' + total + ' associations correctes' :
+            pct >= 50 ? correct + '/' + total + ' \u2014 Les bonnes r\u00e9ponses sont affich\u00e9es' :
+            correct + '/' + total + ' \u2014 Revoyez les d\u00e9finitions dans le cours';
+
+        document.getElementById('match-submit').textContent = '\ud83d\udd04 R\u00e9essayer';
+        document.getElementById('match-submit').onclick = retryExercise;
+
+        updateMastery(lesson.concept, correct, total);
+        if (pct >= 50) markCompleted(lesson.id);
+    }
+
+    // ===== KEYWORD ANSWER RENDERER =====
+    function renderKeywordAnswer(lesson) {
+        var mastery = getMastery(lesson.concept);
+        var showHints = shouldShowHints(lesson.concept);
+
+        var html = '<div class="exercise-container">' +
+            '<div class="exercise-header"><div class="exercise-icon exercise-icon-practice">\ud83d\udcac</div>' +
+            '<div><div class="exercise-title">' + lesson.title + '</div>' +
+            '<div class="exercise-subtitle">R\u00e9ponse ouverte \u2014 Utilisez les concepts cl\u00e9s</div></div></div>';
+
+        if (mastery.attempts > 0) {
+            html += '<div style="background:var(--color-primary-50); padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); margin-bottom:var(--space-4); font-size:var(--text-sm); color:var(--color-primary-dark);">\ud83d\udcca Votre ma\u00eetrise : <strong>' + mastery.score + '%</strong></div>';
+        }
+
+        html += '<div class="exercise-instructions">' + lesson.intro + '</div>' +
+            '<div style="font-weight:600; font-size:var(--text-base); margin-bottom:var(--space-3); color:var(--text-primary);">' + lesson.question + '</div>';
+
+        if (showHints) {
+            var hintWords = lesson.keywords.slice(0, 3).map(function(k) { return k.label; });
+            html += '<div style="background:#FFFBEB; border:1px solid var(--color-warning); padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); margin-bottom:var(--space-3); font-size:var(--text-sm);">' +
+                '\ud83d\udca1 <strong>Concepts attendus :</strong> pensez \u00e0 mentionner ' + hintWords.join(', ') + '...</div>';
+        }
+
+        var savedAnswer = localStorage.getItem('caplearning_kw_' + lesson.id) || '';
+        html += '<textarea class="keyword-answer-input" id="kw-answer" placeholder="R\u00e9digez votre r\u00e9ponse en utilisant les concepts cl\u00e9s du module...">' + savedAnswer + '</textarea>' +
+            '<div style="text-align:right; margin-top:var(--space-2); font-size:var(--text-xs); color:var(--text-tertiary);" id="kw-counter">0 mots</div>' +
+            '<div style="text-align:center; margin-top:var(--space-4);">' +
+            '<button class="btn btn-primary btn-lg" id="kw-submit" onclick="submitKeywordAnswer()">Analyser ma r\u00e9ponse</button></div>' +
+            '<div class="keyword-feedback" id="kw-feedback"><div id="kw-feedback-text" style="font-weight:600; margin-bottom:var(--space-3);"></div>' +
+            '<div id="kw-chips" style="margin-bottom:var(--space-2);"></div></div>' +
+            '<div class="exercise-score-banner" id="kw-score-banner">' +
+            '<div class="exercise-score-value" id="kw-score-value"></div>' +
+            '<div class="exercise-score-label" id="kw-score-label"></div></div></div>';
+        return html;
+    }
+
+    function initKeywordCounter() {
+        var textarea = document.getElementById('kw-answer');
+        if (!textarea) return;
+        function updateCount() {
+            var words = textarea.value.trim().split(/\s+/).filter(function(w) { return w.length > 0; }).length;
+            document.getElementById('kw-counter').textContent = words + ' mot' + (words !== 1 ? 's' : '');
+        }
+        textarea.addEventListener('input', updateCount);
+        updateCount();
+    }
+
+    function submitKeywordAnswer() {
+        var lesson = allLessons[currentIndex];
+        if (!lesson || lesson.type !== 'keyword_answer') return;
+
+        var answer = document.getElementById('kw-answer').value.trim();
+        if (answer.split(/\s+/).length < 5) {
+            alert('\u00c9crivez au moins quelques phrases pour analyser votre r\u00e9ponse.');
+            return;
+        }
+
+        localStorage.setItem('caplearning_kw_' + lesson.id, answer);
+
+        var answerLower = answer.toLowerCase();
+        var totalScore = 0, maxScore = 0;
+        var foundKeywords = [], missingKeywords = [];
+
+        lesson.keywords.forEach(function(kw) {
+            maxScore += kw.weight;
+            var allTerms = [kw.word].concat(kw.aliases || []);
+            var found = allTerms.some(function(term) { return answerLower.includes(term.toLowerCase()); });
+            if (found) { totalScore += kw.weight; foundKeywords.push(kw.label); }
+            else { missingKeywords.push(kw.label); }
+        });
+
+        var pct = Math.round((totalScore / maxScore) * 100);
+
+        var chipsHtml = '<div style="font-size:var(--text-sm); margin-bottom:var(--space-2);">Concepts d\u00e9tect\u00e9s :</div>';
+        foundKeywords.forEach(function(k) { chipsHtml += '<span class="keyword-chip found">\u2713 ' + k + '</span>'; });
+        missingKeywords.forEach(function(k) { chipsHtml += '<span class="keyword-chip missing">\u2717 ' + k + '</span>'; });
+
+        var feedbackEl = document.getElementById('kw-feedback');
+        var textEl = document.getElementById('kw-feedback-text');
+        var chipsEl = document.getElementById('kw-chips');
+
+        if (pct >= 75) {
+            feedbackEl.style.background = '#ECFDF5'; feedbackEl.style.border = '1px solid var(--color-success)';
+            textEl.textContent = lesson.feedback.excellent; textEl.style.color = '#065F46';
+        } else if (pct >= 40) {
+            feedbackEl.style.background = '#FFFBEB'; feedbackEl.style.border = '1px solid var(--color-warning)';
+            textEl.textContent = lesson.feedback.good; textEl.style.color = '#92400E';
+        } else {
+            feedbackEl.style.background = '#FEF2F2'; feedbackEl.style.border = '1px solid var(--color-error)';
+            textEl.textContent = lesson.feedback.needsWork; textEl.style.color = '#991B1B';
+        }
+        chipsEl.innerHTML = chipsHtml;
+        feedbackEl.classList.add('show');
+
+        var banner = document.getElementById('kw-score-banner');
+        var scoreClass = pct >= 75 ? 'excellent' : pct >= 40 ? 'average' : 'poor';
+        banner.className = 'exercise-score-banner show ' + scoreClass;
+        document.getElementById('kw-score-value').textContent = pct + '%';
+        document.getElementById('kw-score-label').textContent = totalScore + '/' + maxScore + ' points \u2014 ' + foundKeywords.length + ' concept' + (foundKeywords.length > 1 ? 's' : '') + ' trouv\u00e9' + (foundKeywords.length > 1 ? 's' : '');
+
+        document.getElementById('kw-submit').textContent = 'R\u00e9analyser ma r\u00e9ponse';
+
+        updateMastery(lesson.concept, totalScore, maxScore);
+        if (pct >= 40) markCompleted(lesson.id);
+    }
+
+    // ===== ORDERING RENDERER =====
+    function renderOrdering(lesson) {
+        var mastery = getMastery(lesson.concept);
+        var items = lesson.items.slice();
+        // Shuffle items
+        for (var i = items.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = items[i]; items[i] = items[j]; items[j] = temp;
+        }
+        window._orderItems = items;
+
+        var html = '<div class="exercise-container">' +
+            '<div class="exercise-header"><div class="exercise-icon exercise-icon-practice">\ud83d\udd22</div>' +
+            '<div><div class="exercise-title">' + lesson.title + '</div>' +
+            '<div class="exercise-subtitle">Remise en ordre \u2014 Classez les \u00e9l\u00e9ments</div></div></div>';
+
+        if (mastery.attempts > 0) {
+            html += '<div style="background:var(--color-primary-50); padding:var(--space-3) var(--space-4); border-radius:var(--radius-lg); margin-bottom:var(--space-4); font-size:var(--text-sm); color:var(--color-primary-dark);">\ud83d\udcca Votre ma\u00eetrise : <strong>' + mastery.score + '%</strong></div>';
+        }
+
+        html += '<div class="exercise-instructions">' + lesson.intro + '</div><div class="ordering-list" id="ordering-list">';
+
+        items.forEach(function(item, idx) {
+            html += '<div class="ordering-item" data-correct="' + item.order + '" id="order-item-' + idx + '">' +
+                '<div class="ordering-number">' + (idx + 1) + '</div>' +
+                '<div class="ordering-text">' + item.text + '</div>' +
+                '<div class="ordering-arrows">' +
+                '<button class="ordering-arrow-btn" onclick="moveOrderItem(' + idx + ', -1)">\u25b2</button>' +
+                '<button class="ordering-arrow-btn" onclick="moveOrderItem(' + idx + ', 1)">\u25bc</button>' +
+                '</div></div>';
+        });
+
+        html += '</div><div style="text-align:center; margin-top:var(--space-5);">' +
+            '<button class="btn btn-primary btn-lg" id="order-submit" onclick="submitOrdering()">V\u00e9rifier l\'ordre</button></div>' +
+            '<div class="exercise-score-banner" id="order-score-banner">' +
+            '<div class="exercise-score-value" id="order-score-value"></div>' +
+            '<div class="exercise-score-label" id="order-score-label"></div></div></div>';
+        return html;
+    }
+
+    function moveOrderItem(idx, direction) {
+        var list = document.getElementById('ordering-list');
+        var items = Array.from(list.children);
+        var newIdx = idx + direction;
+        if (newIdx < 0 || newIdx >= items.length) return;
+
+        // Swap in DOM
+        if (direction === -1) {
+            list.insertBefore(items[idx], items[newIdx]);
+        } else {
+            list.insertBefore(items[newIdx], items[idx]);
+        }
+
+        // Re-number and re-bind
+        Array.from(list.children).forEach(function(item, i) {
+            item.querySelector('.ordering-number').textContent = i + 1;
+            item.id = 'order-item-' + i;
+            var btns = item.querySelectorAll('.ordering-arrow-btn');
+            btns[0].onclick = function() { moveOrderItem(i, -1); };
+            btns[1].onclick = function() { moveOrderItem(i, 1); };
+        });
+    }
+
+    function submitOrdering() {
+        var lesson = allLessons[currentIndex];
+        if (!lesson || lesson.type !== 'ordering') return;
+
+        var list = document.getElementById('ordering-list');
+        var items = Array.from(list.children);
+        var correct = 0;
+
+        items.forEach(function(item, i) {
+            var correctOrder = parseInt(item.dataset.correct);
+            var isCorrect = correctOrder === (i + 1);
+            if (isCorrect) correct++;
+            item.classList.add(isCorrect ? 'correct' : 'wrong');
+            item.querySelector('.ordering-number').textContent = (i + 1);
+            // Disable arrows
+            item.querySelectorAll('.ordering-arrow-btn').forEach(function(btn) { btn.disabled = true; btn.style.opacity = '0.3'; });
+        });
+
+        var total = items.length;
+        var pct = Math.round((correct / total) * 100);
+        var banner = document.getElementById('order-score-banner');
+        var scoreClass = pct >= 80 ? 'excellent' : pct >= 50 ? 'average' : 'poor';
+        banner.className = 'exercise-score-banner show ' + scoreClass;
+        document.getElementById('order-score-value').textContent = pct + '%';
+        document.getElementById('order-score-label').textContent =
+            pct >= 80 ? 'Bravo ! ' + correct + '/' + total + ' en bonne position' :
+            pct >= 50 ? correct + '/' + total + ' \u2014 Pas mal, r\u00e9visez l\'ordre' :
+            correct + '/' + total + ' \u2014 Revoyez le cours et r\u00e9essayez';
+
+        document.getElementById('order-submit').textContent = '\ud83d\udd04 R\u00e9essayer';
+        document.getElementById('order-submit').onclick = retryExercise;
+
+        updateMastery(lesson.concept, correct, total);
+        if (pct >= 50) markCompleted(lesson.id);
+    }
+
+    // ===== QUIZ RENDERING =====
+    let quizAnswers = {};
+    let quizSubmitted = false;
+
+    function renderQuiz(lesson) {
+        quizAnswers = {};
+        quizSubmitted = false;
+        let html = `
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <div class="exercise-icon exercise-icon-quiz">📝</div>
+                    <div>
+                        <div class="exercise-title">${lesson.title}</div>
+                        <div class="exercise-subtitle">${lesson.questions.length} questions — Testez vos connaissances</div>
+                    </div>
+                </div>
+                <div id="quiz-questions">`;
+
+        lesson.questions.forEach((q, i) => {
+            html += `<div class="quiz-question" data-qi="${i}">
+                <div class="quiz-question-text">
+                    <span class="quiz-question-number">${i + 1}.</span>
+                    <span>${q.q}</span>
+                </div>
+                <div class="quiz-options">`;
+            q.options.forEach((opt, oi) => {
+                html += `<div class="quiz-option" data-qi="${i}" data-oi="${oi}" onclick="selectOption(${i}, ${oi})">
+                    <div class="quiz-option-radio"></div>
+                    <span>${opt}</span>
+                </div>`;
+            });
+            html += `</div>
+                <div class="quiz-explanation" id="explanation-${i}"></div>
+            </div>`;
+        });
+
+        html += `</div>
+                <div style="text-align: center; margin-top: var(--space-6);">
+                    <button class="btn btn-primary btn-lg" id="quiz-submit-btn" onclick="submitQuiz()">Valider mes réponses</button>
+                </div>
+                <div class="quiz-results" id="quiz-results">
+                    <div class="quiz-score" id="quiz-score-value"></div>
+                    <div class="quiz-results-text" id="quiz-results-text"></div>
+                    <button class="btn btn-outline" onclick="retryQuiz()">Recommencer le quiz</button>
+                </div>
+            </div>`;
+        return html;
+    }
+
+    function selectOption(qi, oi) {
+        if (quizSubmitted) return;
+        quizAnswers[qi] = oi;
+        // Update UI
+        document.querySelectorAll(`.quiz-option[data-qi="${qi}"]`).forEach(el => el.classList.remove('selected'));
+        document.querySelector(`.quiz-option[data-qi="${qi}"][data-oi="${oi}"]`).classList.add('selected');
+    }
+
+    function initQuiz(lesson) {
+        // Check if already scored
+        const prevScore = progressData[courseId].quizScores[lesson.id];
+        if (prevScore !== undefined) {
+            // Show previous score but allow retry
+        }
+    }
+
+    function submitQuiz() {
+        const lesson = allLessons[currentIndex];
+        if (lesson.type !== 'quiz') return;
+
+        const totalQ = lesson.questions.length;
+        const answeredQ = Object.keys(quizAnswers).length;
+
+        if (answeredQ < totalQ) {
+            alert(`Veuillez répondre à toutes les questions (${answeredQ}/${totalQ})`);
+            return;
+        }
+
+        quizSubmitted = true;
+        let correct = 0;
+
+        lesson.questions.forEach((q, i) => {
+            const userAnswer = quizAnswers[i];
+            const isCorrect = userAnswer === q.correct;
+            if (isCorrect) correct++;
+
+            // Highlight correct/wrong
+            document.querySelectorAll(`.quiz-option[data-qi="${i}"]`).forEach(el => {
+                const oi = parseInt(el.dataset.oi);
+                if (oi === q.correct) el.classList.add('correct');
+                else if (oi === userAnswer && !isCorrect) el.classList.add('wrong');
+            });
+
+            // Show explanation
+            const expEl = document.getElementById('explanation-' + i);
+            expEl.textContent = q.explanation;
+            expEl.className = 'quiz-explanation show ' + (isCorrect ? 'correct' : 'wrong');
+        });
+
+        // Show score
+        const pct = Math.round((correct / totalQ) * 100);
+        const scoreEl = document.getElementById('quiz-score-value');
+        scoreEl.textContent = pct + '%';
+        scoreEl.className = 'quiz-score ' + (pct >= 80 ? 'excellent' : pct >= 50 ? 'average' : 'poor');
+
+        const resultsText = document.getElementById('quiz-results-text');
+        if (pct >= 80) resultsText.textContent = `Excellent ! ${correct}/${totalQ} bonnes réponses.`;
+        else if (pct >= 50) resultsText.textContent = `Pas mal ! ${correct}/${totalQ} bonnes réponses. Révisez les erreurs.`;
+        else resultsText.textContent = `${correct}/${totalQ} bonnes réponses. Relisez le cours et réessayez.`;
+
+        document.getElementById('quiz-results').classList.add('show');
+        document.getElementById('quiz-submit-btn').style.display = 'none';
+
+        // Save score
+        progressData[courseId].quizScores[lesson.id] = pct;
+        markCompleted(lesson.id);
+    }
+
+    function retryQuiz() {
+        quizAnswers = {};
+        quizSubmitted = false;
+        const lesson = allLessons[currentIndex];
+        document.getElementById('lesson-body').innerHTML = renderQuiz(lesson);
+    }
+
+    // ===== NAVIGATION =====
+    function markCompleted(lessonId) {
+        if (!progressData[courseId].completed.includes(lessonId)) {
+            progressData[courseId].completed.push(lessonId);
+            saveProgress();
+            renderSidebar();
+            // Update complete button without re-rendering the whole lesson
+            var completeBtn = document.getElementById('btn-complete');
+            completeBtn.textContent = 'Terminé ✓';
+            completeBtn.classList.add('done');
+            updateProgress();
+        }
+    }
+
+    document.getElementById('btn-complete').addEventListener('click', () => {
+        const lesson = allLessons[currentIndex];
+        if (lesson.type === 'quiz' && !quizSubmitted) { submitQuiz(); return; }
+        if (lesson.type === 'true_false' && !tfSubmitted) { submitTrueFalse(); return; }
+        if (lesson.type === 'fill_blank' && !fillSubmitted) { submitFillBlank(); return; }
+        if (lesson.type === 'matching') { submitMatching(); return; }
+        if (lesson.type === 'keyword_answer') { submitKeywordAnswer(); return; }
+        if (lesson.type === 'ordering') { submitOrdering(); return; }
+        markCompleted(lesson.id);
+    });
+
+    document.getElementById('btn-prev').addEventListener('click', () => {
+        if (currentIndex > 0) goToLesson(currentIndex - 1);
+    });
+
+    document.getElementById('btn-next').addEventListener('click', () => {
+        if (currentIndex < allLessons.length - 1) goToLesson(currentIndex + 1);
+    });
+
+    // Mobile sidebar toggle
+    document.getElementById('sidebar-toggle').addEventListener('click', () => {
+        document.getElementById('learn-sidebar').classList.toggle('open');
+    });
+
+    // ===== INIT =====
+    renderSidebar();
+
+    // Point de reprise : dernière leçon visitée, sinon première non complétée, sinon 0
+    (function initialLesson() {
+        const qs = new URLSearchParams(window.location.search);
+        if (qs.get('lesson')) {
+            const forcedIdx = allLessons.findIndex(l => l.id === qs.get('lesson'));
+            if (forcedIdx >= 0) { goToLesson(forcedIdx); return; }
+        }
+
+        const saved = progressData[courseId] || {};
+        if (typeof saved.lastLessonIndex === 'number' && saved.lastLessonIndex < allLessons.length) {
+            goToLesson(saved.lastLessonIndex);
+            return;
+        }
+        if (saved.lastLessonId) {
+            const idx = allLessons.findIndex(l => l.id === saved.lastLessonId);
+            if (idx >= 0) { goToLesson(idx); return; }
+        }
+        // Fallback : première leçon non complétée
+        const completedSet = new Set((saved.completed || []));
+        const firstUncompleted = allLessons.findIndex(l => !completedSet.has(l.id));
+        goToLesson(firstUncompleted >= 0 ? firstUncompleted : 0);
+    })();
+    </script>
+    <script src="../js/gamification.js"></script>
+    <script>
+    // ===== GAMIFICATION INTEGRATION =====
+    (function() {
+        Gamification.injectStyles();
+
+        // Update streak on page load
+        var streakResult = Gamification.updateStreak();
+        if (streakResult.isNew && streakResult.streak.current > 1) {
+            setTimeout(function() {
+                Gamification.showXPToast(
+                    Gamification.XP_REWARDS.streak_bonus,
+                    'Série de ' + streakResult.streak.current + ' jours !'
+                );
+                Gamification.addXP(Gamification.XP_REWARDS.streak_bonus, 'streak_bonus');
+            }, 1500);
+        }
+
+        // Render gamification sidebar widget
+        function refreshGamifWidget() {
+            Gamification.renderSidebarWidget(document.getElementById('gamif-sidebar-widget'));
+        }
+        refreshGamifWidget();
+
+        // Override markCompleted to integrate XP + badges + celebrations
+        var _origMarkCompleted = markCompleted;
+        markCompleted = function(lessonId) {
+            var wasAlreadyCompleted = progressData[courseId].completed.includes(lessonId);
+            _origMarkCompleted(lessonId);
+
+            if (wasAlreadyCompleted) return;
+
+            // Determine XP reward
+            var lesson = allLessons.find(function(l) { return l.id === lessonId; });
+            if (!lesson) return;
+
+            var xpAmount = 0;
+            var reason = '';
+
+            if (lesson.type === 'video') {
+                xpAmount = Gamification.XP_REWARDS.video_complete;
+                reason = 'Vidéo terminée';
+            } else if (lesson.type === 'quiz') {
+                var score = progressData[courseId].quizScores[lessonId] || 0;
+                xpAmount = score === 100 ? Gamification.XP_REWARDS.quiz_perfect : Gamification.XP_REWARDS.quiz_pass;
+                reason = score === 100 ? 'Quiz parfait ! 🎯' : 'Quiz réussi';
+            } else {
+                // Exercise types (true_false, fill_blank, matching, keyword_answer, ordering, exercise)
+                var conceptMastery = lesson.concept ? (JSON.parse(localStorage.getItem('caplearning_mastery_' + courseId) || '{}')[lesson.concept]) : null;
+                var score = conceptMastery ? conceptMastery.lastScore : 50;
+                xpAmount = score >= 95 ? Gamification.XP_REWARDS.exercise_perfect : Gamification.XP_REWARDS.exercise_pass;
+                reason = score >= 95 ? 'Exercice parfait ! ✨' : 'Exercice terminé';
+
+                // Comeback badge check
+                if (conceptMastery && conceptMastery.attempts > 1 && conceptMastery.lastScore >= 50 && conceptMastery.score < 50) {
+                    Gamification.checkBadges({ type: 'retry_success' });
+                }
+            }
+
+            // Add XP
+            if (xpAmount > 0) {
+                var result = Gamification.addXP(xpAmount, reason);
+                Gamification.showXPToast(xpAmount, reason);
+
+                // Level up celebration
+                if (result.leveledUp) {
+                    setTimeout(function() {
+                        Gamification.showLevelUp(result.newLevel);
+                    }, 800);
+                }
+            }
+
+            // Check for module completion bonus
+            var currentModule = null;
+            course.modules.forEach(function(mod) {
+                mod.lessons.forEach(function(l) {
+                    if (l.id === lessonId) currentModule = mod;
+                });
+            });
+            if (currentModule) {
+                var allModuleDone = currentModule.lessons.every(function(l) {
+                    return progressData[courseId].completed.includes(l.id);
+                });
+                if (allModuleDone) {
+                    setTimeout(function() {
+                        var modResult = Gamification.addXP(Gamification.XP_REWARDS.module_complete, 'module_complete');
+                        Gamification.showXPToast(Gamification.XP_REWARDS.module_complete, 'Module terminé ! 🎉');
+                        if (modResult.leveledUp) {
+                            setTimeout(function() { Gamification.showLevelUp(modResult.newLevel); }, 800);
+                        }
+                    }, 3000);
+                }
+            }
+
+            // Check for course completion
+            var allCourseDone = allLessons.every(function(l) {
+                return progressData[courseId].completed.includes(l.id);
+            });
+            if (allCourseDone) {
+                setTimeout(function() {
+                    var courseResult = Gamification.addXP(Gamification.XP_REWARDS.course_complete, 'course_complete');
+                    Gamification.showXPToast(Gamification.XP_REWARDS.course_complete, 'Formation terminée ! 🏆');
+                    Gamification.showConfetti();
+                    if (courseResult.leveledUp) {
+                        setTimeout(function() { Gamification.showLevelUp(courseResult.newLevel); }, 1500);
+                    }
+                }, 4000);
+            }
+
+            // Check badges
+            var quizScore = lesson.type === 'quiz' ? (progressData[courseId].quizScores[lessonId] || 0) : null;
+            var awardedBadges = Gamification.checkBadges({
+                type: lesson.type === 'quiz' ? 'quiz' : 'exercise',
+                score: quizScore
+            });
+
+            awardedBadges.forEach(function(badge, i) {
+                setTimeout(function() {
+                    Gamification.showBadgeUnlock(badge);
+                }, 1500 + (i * 2000));
+            });
+
+            // Refresh widget
+            refreshGamifWidget();
+        };
+    })();
+    </script>
+    <!-- Trustpilot TrustBox Bootstrap -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+    <!-- WhatsApp Chat Widget -->
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+</html>

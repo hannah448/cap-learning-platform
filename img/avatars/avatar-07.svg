@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Portrait homme lunettes">
+  <circle cx="50" cy="50" r="50" fill="#85CDCA"/>
+  <path d="M22,100 Q22,70 50,70 Q78,70 78,100 Z" fill="#264653"/>
+  <ellipse cx="50" cy="48" rx="22" ry="26" fill="#A0522D"/>
+  <path d="M28,36 Q28,22 50,20 Q72,22 72,36 Q72,30 66,28 Q58,24 50,24 Q42,24 34,28 Q28,30 28,36 Z" fill="#2A1A0A"/>
+  <g fill="none" stroke="#1A1A1A" stroke-width="2">
+    <circle cx="42" cy="48" r="6"/>
+    <circle cx="58" cy="48" r="6"/>
+    <line x1="48" y1="48" x2="52" y2="48"/>
+    <line x1="36" y1="48" x2="30" y2="46"/>
+    <line x1="64" y1="48" x2="70" y2="46"/>
+  </g>
+  <ellipse cx="42" cy="48" rx="1.6" ry="2" fill="#1A1A1A"/>
+  <ellipse cx="58" cy="48" rx="1.6" ry="2" fill="#1A1A1A"/>
+  <path d="M43,60 Q50,64 57,60" stroke="#3D1A0A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <path d="M42,64 Q50,66 58,64" stroke="#3D1A0A" stroke-width="1" fill="none" opacity="0.5"/>
+</svg>

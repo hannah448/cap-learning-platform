@@ -1,0 +1,334 @@
+{
+  "_doc": {
+    "purpose": "Mapping central entre chaque leçon de apprendre.html et sa source vidéo. Rempli au fur et à mesure des uploads Vimeo (ou S3 plus tard).",
+    "lookup_key": "lesson_id (ex: 'l1-1', 'e2-1', 'i1-2') — doit matcher exactement l'id dans pages/apprendre.html",
+    "how_to_fill_vimeo": [
+      "1. Upload la vidéo sur Vimeo (compte Plus ou Pro)",
+      "2. Privacy > Hide from Vimeo + Only embed on caplearning.com",
+      "3. Copier l'URL embed, ex: https://player.vimeo.com/video/987654321?h=abc123def4",
+      "4. Remplir 'id' = 987654321 et 'hash' = abc123def4 dans l'entrée correspondante ci-dessous",
+      "5. Mettre 'status' = 'live' (au lieu de 'pending')",
+      "6. Commit + push → Vercel redéploie automatiquement"
+    ],
+    "how_to_fill_s3": [
+      "1. Encoder la vidéo en HLS via AWS MediaConvert (bitrates 240p/480p/720p/1080p)",
+      "2. Uploader le dossier HLS sur S3 bucket privé caplearning-videos",
+      "3. Noter l'URL CloudFront de master.m3u8 (ex: https://d1abc.cloudfront.net/lessons/l1-1/master.m3u8)",
+      "4. Remplacer le bloc video.vimeo par video.s3 et remplir l'URL",
+      "5. Le player (js/video-player.js) détecte automatiquement le provider et charge hls.js"
+    ],
+    "schema_version": 1,
+    "last_updated": null
+  },
+
+  "_defaults": {
+    "provider": "vimeo",
+    "privacy_mode": "domain_restricted",
+    "allowed_domains": ["caplearning.com", "www.caplearning.com", "caplearning.vercel.app"]
+  },
+
+  "_example_filled_entry": {
+    "l1-1": {
+      "title": "Introduction au marketing digital en Afrique",
+      "status": "live",
+      "provider": "vimeo",
+      "vimeo": {
+        "id": "987654321",
+        "hash": "abc123def4"
+      },
+      "duration_seconds": 750,
+      "poster": null,
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "default": true }
+      ],
+      "notes": "Exemple rempli — à recopier ensuite pour chaque leçon."
+    }
+  },
+
+  "courses": {
+
+    "marketing-digital": {
+      "title": "Marketing digital & acquisition",
+      "landing_page": "pages/formation-marketing-digital.html",
+      "lessons": {
+        "l1-1": {
+          "title": "Introduction au marketing digital en Afrique",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 750,
+          "poster": null,
+          "subtitles": []
+        },
+        "l1-2": {
+          "title": "Définir votre stratégie digitale",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1695,
+          "poster": null,
+          "subtitles": []
+        },
+        "l1-3": {
+          "title": "Comprendre votre audience cible",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 2100,
+          "poster": null,
+          "subtitles": []
+        },
+        "l2-1": {
+          "title": "Optimiser votre page Facebook Business",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1500,
+          "poster": null,
+          "subtitles": []
+        },
+        "l2-2": {
+          "title": "Stratégie de contenu Instagram",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1920,
+          "poster": null,
+          "subtitles": []
+        },
+        "l2-3": {
+          "title": "Facebook Ads : votre première campagne",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 2100,
+          "poster": null,
+          "subtitles": []
+        },
+        "l3-1": {
+          "title": "Les bases du référencement naturel",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1800,
+          "poster": null,
+          "subtitles": []
+        },
+        "l3-2": {
+          "title": "Recherche de mots-clés pour votre marché",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1500,
+          "poster": null,
+          "subtitles": []
+        }
+      }
+    },
+
+    "ecommerce": {
+      "title": "E-commerce & Shopify en Afrique",
+      "landing_page": "pages/formation-ecommerce.html",
+      "lessons": {
+        "e1-1": {
+          "title": "Le e-commerce en Afrique : état des lieux",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1080,
+          "poster": null,
+          "subtitles": []
+        },
+        "e1-2": {
+          "title": "Choisir votre niche et vos produits",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1320,
+          "poster": null,
+          "subtitles": []
+        },
+        "e2-1": {
+          "title": "Shopify vs WooCommerce : le bon choix",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1500,
+          "poster": null,
+          "subtitles": []
+        },
+        "e2-2": {
+          "title": "Configuration pas à pas",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 2400,
+          "poster": null,
+          "subtitles": []
+        },
+        "e3-1": {
+          "title": "Vue d'ensemble du Mobile Money en Afrique",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1080,
+          "poster": null,
+          "subtitles": []
+        },
+        "e3-2": {
+          "title": "Wave, Orange Money, MTN MoMo, M-Pesa : qui pour quel marché ?",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1200,
+          "poster": null,
+          "subtitles": []
+        },
+        "e4-1": {
+          "title": "Choisir son agrégateur : PayDunya, CinetPay, Flutterwave",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1320,
+          "poster": null,
+          "subtitles": []
+        },
+        "e4-2": {
+          "title": "Intégration technique : API, webhook, retour de paiement",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1680,
+          "poster": null,
+          "subtitles": []
+        }
+      }
+    },
+
+    "ia-business": {
+      "title": "IA & Business pour entrepreneurs",
+      "landing_page": "pages/formation-ia-business.html",
+      "lessons": {
+        "i1-1": {
+          "title": "L'IA pour les entrepreneurs : vue d'ensemble",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 900,
+          "poster": null,
+          "subtitles": []
+        },
+        "i1-2": {
+          "title": "ChatGPT & Claude : prise en main",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1500,
+          "poster": null,
+          "subtitles": []
+        }
+      }
+    },
+
+    "reseaux-sociaux": {
+      "title": "Réseaux sociaux pour entrepreneurs",
+      "landing_page": "pages/formation-reseaux-sociaux.html",
+      "lessons": {
+        "s1-1": {
+          "title": "Définir votre stratégie réseaux sociaux",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1200,
+          "poster": null,
+          "subtitles": []
+        },
+        "s1-2": {
+          "title": "Créer du contenu viral",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1500,
+          "poster": null,
+          "subtitles": []
+        }
+      }
+    },
+
+    "no-code": {
+      "title": "No-Code pour prototyper son idée",
+      "landing_page": null,
+      "lessons": {
+        "n1-1": {
+          "title": "Qu'est-ce que le No-Code ?",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 900,
+          "poster": null,
+          "subtitles": []
+        },
+        "n1-2": {
+          "title": "Bubble : votre première application",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 2100,
+          "poster": null,
+          "subtitles": []
+        }
+      }
+    },
+
+    "email-marketing": {
+      "title": "Email marketing qui convertit",
+      "landing_page": null,
+      "lessons": {
+        "em1-1": {
+          "title": "Pourquoi l'email marketing reste roi",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 900,
+          "poster": null,
+          "subtitles": []
+        },
+        "em1-2": {
+          "title": "Construire votre liste email",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1500,
+          "poster": null,
+          "subtitles": []
+        },
+        "em1-3": {
+          "title": "Écrire des emails qui convertissent",
+          "status": "pending",
+          "provider": "vimeo",
+          "vimeo": { "id": "", "hash": "" },
+          "duration_seconds": 1800,
+          "poster": null,
+          "subtitles": []
+        }
+      }
+    },
+
+    "copywriting": {
+      "title": "Copywriting qui convertit",
+      "landing_page": "pages/formation-copywriting.html",
+      "lessons": {
+        "_note": "Leçons à créer dans pages/apprendre.html avec le préfixe 'c1-*'. Ajouter ici dès que les IDs existent."
+      }
+    },
+
+    "entrepreneuriat-digital": {
+      "title": "Entrepreneuriat digital en Afrique",
+      "landing_page": "pages/formation-entrepreneuriat-digital.html",
+      "lessons": {
+        "_note": "Leçons à créer dans pages/apprendre.html avec le préfixe 'd1-*' ou 'ed1-*'. Ajouter ici dès que les IDs existent."
+      }
+    }
+
+  }
+}

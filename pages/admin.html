@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Cap Learning</title>
+    <meta name="description" content="Espace d'administration Cap Learning : gestion des apprenants, attribution manuelle de formations.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body class="admin-body">
+    <!-- Session guard: redirects if not admin -->
+    <script src="../js/admin-data.js"></script>
+    <script>
+        (function () {
+            const s = window.AdminData && window.AdminData.getSession();
+            if (!s || s.role !== 'admin') location.href = 'connexion.html';
+        })();
+    </script>
+
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <a href="../index.html" class="admin-logo">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <div class="admin-badge">Panneau d'administration</div>
+
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="#dashboard" class="admin-nav-item active" data-section="dashboard"><span class="admin-nav-icon">&#128202;</span>Tableau de bord</a></li>
+                    <li><a href="#learners" class="admin-nav-item" data-section="learners"><span class="admin-nav-icon">&#128101;</span>Apprenants</a></li>
+                    <li><a href="#formations" class="admin-nav-item" data-section="formations"><span class="admin-nav-icon">&#128218;</span>Formations</a></li>
+                    <li><a href="#sales" class="admin-nav-item" data-section="sales"><span class="admin-nav-icon">&#128181;</span>Ventes &amp; recettes</a></li>
+                    <li><a href="#settings" class="admin-nav-item" data-section="settings"><span class="admin-nav-icon">&#9881;</span>Paramètres</a></li>
+                </ul>
+            </nav>
+
+            <div class="admin-sidebar-footer">
+                <div class="admin-user">
+                    <div class="admin-user-avatar" id="adminAvatar">HP</div>
+                    <div class="admin-user-info">
+                        <div class="admin-user-name" id="adminName">Hannah Peters</div>
+                        <div class="admin-user-email" id="adminEmail">hannah@digi-atlas.com</div>
+                    </div>
+                </div>
+                <button class="btn btn-ghost btn-sm btn-block" id="logoutBtn">Déconnexion</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="admin-main">
+            <header class="admin-topbar">
+                <button class="admin-sidebar-toggle" id="sidebarToggle" aria-label="Menu">&#9776;</button>
+                <h1 class="admin-section-title" id="sectionTitle">Tableau de bord</h1>
+                <div class="admin-topbar-actions">
+                    <button class="btn btn-ghost btn-sm" id="resetDemoBtn" title="Réinitialiser les données de démo">&#128260; Reset démo</button>
+                </div>
+            </header>
+
+            <!-- Section: Dashboard -->
+            <section class="admin-section active" id="section-dashboard">
+                <div class="admin-stats-grid">
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" style="background: linear-gradient(135deg, #4F46E5, #7C3AED);">&#128101;</div>
+                        <div class="admin-stat-content">
+                            <div class="admin-stat-label">Apprenants</div>
+                            <div class="admin-stat-value" id="stat-learners">0</div>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" style="background: linear-gradient(135deg, #10B981, #34D399);">&#128218;</div>
+                        <div class="admin-stat-content">
+                            <div class="admin-stat-label">Inscriptions actives</div>
+                            <div class="admin-stat-value" id="stat-enrollments">0</div>
+                        </div>
+                    </div>
+                    <a href="#sales" class="admin-stat-card admin-stat-link" data-section="sales" title="Voir le détail des ventes">
+                        <div class="admin-stat-icon" style="background: linear-gradient(135deg, #F59E0B, #F97316);">&#128176;</div>
+                        <div class="admin-stat-content">
+                            <div class="admin-stat-label">Revenu total <span class="admin-stat-hint">Voir &rarr;</span></div>
+                            <div class="admin-stat-value" id="stat-revenue">0 FCFA</div>
+                        </div>
+                    </a>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" style="background: linear-gradient(135deg, #EC4899, #F43F5E);">&#128200;</div>
+                        <div class="admin-stat-content">
+                            <div class="admin-stat-label">Progression moyenne</div>
+                            <div class="admin-stat-value" id="stat-progress">0%</div>
+                        </div>
+                    </div>
+                    <div class="admin-stat-card">
+                        <div class="admin-stat-icon" style="background: linear-gradient(135deg, #EAB308, #F59E0B);">&#127942;</div>
+                        <div class="admin-stat-content">
+                            <div class="admin-stat-label">Certifiés</div>
+                            <div class="admin-stat-value" id="stat-certified">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-grid-2">
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>Dernières inscriptions</h3>
+                            <a href="#learners" class="admin-nav-item" data-section="learners">Voir tout &rarr;</a>
+                        </div>
+                        <div class="admin-recent-list" id="recentEnrollments"></div>
+                    </div>
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>Apprenants par formation</h3>
+                            <span class="admin-card-hint">Apprenants uniques &middot; actifs / certifiés / archivés</span>
+                        </div>
+                        <div class="admin-popular-list" id="popularCourses"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Learners -->
+            <section class="admin-section" id="section-learners" hidden>
+                <div class="admin-toolbar">
+                    <div class="admin-search">
+                        <span class="admin-search-icon">&#128269;</span>
+                        <input type="text" id="learnerSearch" placeholder="Rechercher par nom, email, pays..." aria-label="Rechercher un apprenant">
+                    </div>
+                    <button class="btn btn-primary btn-sm" id="newLearnerBtn">+ Nouvel apprenant</button>
+                </div>
+
+                <div class="admin-table-wrapper">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Apprenant</th>
+                                <th>Pays</th>
+                                <th>Formations assignées</th>
+                                <th>Progression</th>
+                                <th>Certifications</th>
+                                <th>Dernière activité</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="learnersTableBody">
+                            <!-- JS -->
+                        </tbody>
+                    </table>
+                    <div class="admin-empty-state" id="learnersEmpty" hidden>
+                        <p>Aucun apprenant ne correspond à votre recherche.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section: Formations -->
+            <section class="admin-section" id="section-formations" hidden>
+                <div class="admin-formations-grid" id="formationsGrid">
+                    <!-- JS -->
+                </div>
+            </section>
+
+            <!-- Section: Ventes & recettes -->
+            <section class="admin-section" id="section-sales" hidden>
+                <!-- KPIs -->
+                <div class="admin-sales-kpis">
+                    <div class="admin-sales-kpi admin-sales-kpi-main">
+                        <div class="admin-sales-kpi-label">Chiffre d'affaires total</div>
+                        <div class="admin-sales-kpi-value" id="sales-kpi-total">0 FCFA</div>
+                        <div class="admin-sales-kpi-sub" id="sales-kpi-net"></div>
+                    </div>
+                    <div class="admin-sales-kpi">
+                        <div class="admin-sales-kpi-label">Ce mois-ci</div>
+                        <div class="admin-sales-kpi-value" id="sales-kpi-month">0 FCFA</div>
+                        <div class="admin-sales-kpi-sub" id="sales-kpi-growth"></div>
+                    </div>
+                    <div class="admin-sales-kpi">
+                        <div class="admin-sales-kpi-label">Panier moyen</div>
+                        <div class="admin-sales-kpi-value" id="sales-kpi-avg">0 FCFA</div>
+                        <div class="admin-sales-kpi-sub" id="sales-kpi-orders"></div>
+                    </div>
+                    <div class="admin-sales-kpi">
+                        <div class="admin-sales-kpi-label">Remboursements</div>
+                        <div class="admin-sales-kpi-value" id="sales-kpi-refunds">0 FCFA</div>
+                        <div class="admin-sales-kpi-sub" id="sales-kpi-refunds-sub"></div>
+                    </div>
+                </div>
+
+                <!-- Chart évolution -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Évolution du chiffre d'affaires</h3>
+                        <div class="admin-sales-range">
+                            <button type="button" class="admin-sales-range-btn" data-range="6">6 mois</button>
+                            <button type="button" class="admin-sales-range-btn active" data-range="12">12 mois</button>
+                        </div>
+                    </div>
+                    <div class="admin-sales-chart" id="salesChart" aria-label="Graphique du chiffre d'affaires mensuel"></div>
+                </div>
+
+                <div class="admin-grid-2">
+                    <!-- Recettes par formation -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>Recettes par formation</h3>
+                            <span class="admin-card-hint">Sur l'ensemble de l'historique</span>
+                        </div>
+                        <div class="admin-sales-course-list" id="salesByCourse"></div>
+                    </div>
+
+                    <!-- Méthodes de paiement -->
+                    <div class="admin-card">
+                        <div class="admin-card-header">
+                            <h3>Méthodes de paiement</h3>
+                            <span class="admin-card-hint">Répartition des transactions payées</span>
+                        </div>
+                        <div class="admin-sales-methods" id="salesByMethod"></div>
+                    </div>
+                </div>
+
+                <!-- Journal des transactions -->
+                <div class="admin-card">
+                    <div class="admin-card-header">
+                        <h3>Journal des transactions</h3>
+                        <div class="admin-sales-toolbar">
+                            <div class="admin-search admin-search-sm">
+                                <span class="admin-search-icon">&#128269;</span>
+                                <input type="text" id="salesSearch" placeholder="Rechercher (nom, email, commande)..." aria-label="Rechercher une transaction">
+                            </div>
+                            <select id="salesStatusFilter" class="admin-select" aria-label="Filtrer par statut">
+                                <option value="">Tous statuts</option>
+                                <option value="paid">Payé</option>
+                                <option value="refunded">Remboursé</option>
+                                <option value="pending">En attente</option>
+                                <option value="failed">Échoué</option>
+                            </select>
+                            <select id="salesCourseFilter" class="admin-select" aria-label="Filtrer par formation">
+                                <option value="">Toutes formations</option>
+                            </select>
+                            <button class="btn btn-primary btn-sm" id="salesExportBtn">&#128229; Exporter CSV</button>
+                        </div>
+                    </div>
+
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table admin-sales-table">
+                            <thead>
+                                <tr>
+                                    <th>Commande</th>
+                                    <th>Date</th>
+                                    <th>Apprenant</th>
+                                    <th>Formation</th>
+                                    <th class="admin-col-amount">Montant</th>
+                                    <th>Méthode</th>
+                                    <th>Statut</th>
+                                    <th class="admin-col-actions"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="salesTableBody"></tbody>
+                        </table>
+                        <div class="admin-empty-state" id="salesEmpty" hidden>
+                            <p>Aucune transaction ne correspond à vos filtres.</p>
+                        </div>
+                    </div>
+                    <div class="admin-sales-footer" id="salesFooter"></div>
+                </div>
+            </section>
+
+            <!-- Section: Settings -->
+            <section class="admin-section" id="section-settings" hidden>
+                <div class="admin-card">
+                    <h3>Informations du compte admin</h3>
+                    <p style="color: var(--color-gray-500); margin-top: 4px;">Email admin configuré dans <code>js/admin-data.js</code> &rarr; <code>ADMIN_EMAILS</code></p>
+                    <dl class="admin-def-list">
+                        <dt>Email</dt><dd id="setting-email">—</dd>
+                        <dt>Nom</dt><dd id="setting-name">—</dd>
+                        <dt>Rôle</dt><dd><span class="admin-role-badge">Administrateur</span></dd>
+                        <dt>Créé le</dt><dd id="setting-created">—</dd>
+                    </dl>
+                </div>
+                <div class="admin-card">
+                    <h3>Données de démonstration</h3>
+                    <p style="color: var(--color-gray-500); margin-top: 4px;">Les apprenants et inscriptions affichés sont stockés dans le localStorage du navigateur. Réinitialiser recharge le jeu de test initial.</p>
+                    <button class="btn btn-ghost btn-sm" id="resetDemoBtn2">&#128260; Réinitialiser les données de démo</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal: Détails apprenant + Gestion formations -->
+    <div class="admin-modal" id="learnerModal" hidden>
+        <div class="admin-modal-backdrop" data-close></div>
+        <div class="admin-modal-content" role="dialog" aria-modal="true" aria-labelledby="learnerModalTitle">
+            <header class="admin-modal-header">
+                <h2 id="learnerModalTitle">Détails de l'apprenant</h2>
+                <button class="admin-modal-close" data-close aria-label="Fermer">&times;</button>
+            </header>
+            <div class="admin-modal-body" id="learnerModalBody">
+                <!-- JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Nouvel apprenant -->
+    <div class="admin-modal" id="newLearnerModal" hidden>
+        <div class="admin-modal-backdrop" data-close></div>
+        <div class="admin-modal-content admin-modal-sm" role="dialog" aria-modal="true" aria-labelledby="newLearnerTitle">
+            <header class="admin-modal-header">
+                <h2 id="newLearnerTitle">Nouvel apprenant</h2>
+                <button class="admin-modal-close" data-close aria-label="Fermer">&times;</button>
+            </header>
+            <form id="newLearnerForm" class="admin-modal-body">
+                <label class="admin-field">
+                    <span>Nom complet</span>
+                    <input type="text" name="name" required placeholder="Ex: Aminata Ndiaye">
+                </label>
+                <label class="admin-field">
+                    <span>Email</span>
+                    <input type="email" name="email" required placeholder="email@exemple.com">
+                </label>
+                <label class="admin-field">
+                    <span>Téléphone (optionnel)</span>
+                    <input type="tel" name="phone" placeholder="+221 77 000 00 00">
+                </label>
+                <label class="admin-field">
+                    <span>Pays (optionnel)</span>
+                    <input type="text" name="country" placeholder="Sénégal">
+                </label>
+                <div class="admin-form-actions">
+                    <button type="button" class="btn btn-ghost" data-close>Annuler</button>
+                    <button type="submit" class="btn btn-primary">Créer l'apprenant</button>
+                </div>
+                <div class="admin-form-error" id="newLearnerError" hidden></div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast" role="alert" aria-live="polite" hidden>
+        <span class="toast-icon">&#10003;</span>
+        <span class="toast-message" id="toast-message"></span>
+        <button class="toast-close" onclick="document.getElementById('toast').hidden=true">&times;</button>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

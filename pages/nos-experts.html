@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos experts - Formateurs &amp; accompagnateurs africains | Cap Learning</title>
+    <meta name="description" content="Découvrez les formateurs, mentors et accompagnateurs d'Cap Learning. Des experts africains basés à Dakar, Cotonou et Abidjan, et Awa Kanté, notre Customer Success Manager.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .experts-hero {
+            padding: 120px 0 60px;
+            background: linear-gradient(135deg, #fff7f2 0%, #fef3ec 50%, #fff 100%);
+            text-align: center;
+        }
+        .experts-hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 16px 0 16px; }
+        .experts-hero p.lead { max-width: 680px; margin: 0 auto; color: #555; font-size: 1.1rem; line-height: 1.6; }
+        .experts-filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 36px auto 0; max-width: 900px; }
+        .expert-filter {
+            padding: 8px 18px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            font-size: .9rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #444;
+            transition: all .2s;
+        }
+        .expert-filter:hover { border-color: var(--primary, #FF6B35); color: var(--primary, #FF6B35); }
+        .expert-filter.active { background: var(--primary, #FF6B35); color: #fff; border-color: var(--primary, #FF6B35); }
+
+        .section-experts { padding: 70px 0; }
+
+        /* CSM highlight */
+        .csm-highlight {
+            background: linear-gradient(135deg, #FF6B35 0%, #e85d2a 100%);
+            border-radius: 28px;
+            padding: 56px 48px;
+            color: #fff;
+            margin-bottom: 60px;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .csm-highlight::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -10%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15), transparent 70%);
+            border-radius: 50%;
+        }
+        .csm-avatar {
+            width: 220px; height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ffd2b8, #fff3ec);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--primary, #FF6B35);
+            border: 6px solid rgba(255,255,255,0.3);
+            position: relative;
+            z-index: 1;
+            margin: 0 auto;
+        }
+        .csm-content { position: relative; z-index: 1; }
+        .csm-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: .82rem;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+        }
+        .csm-content h2 { color: #fff; font-size: 2rem; margin: 12px 0 6px; }
+        .csm-content .csm-role { color: rgba(255,255,255,0.85); font-size: 1.05rem; font-weight: 500; margin-bottom: 16px; }
+        .csm-content p { color: rgba(255,255,255,0.95); line-height: 1.65; font-size: 1rem; }
+        .csm-content .csm-channels { margin-top: 20px; display: flex; gap: 14px; flex-wrap: wrap; }
+        .csm-channel {
+            display: inline-flex; gap: 8px; align-items: center;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 14px; border-radius: 999px;
+            font-size: .88rem; color: #fff; font-weight: 500;
+        }
+        @media (max-width: 720px) {
+            .csm-highlight { grid-template-columns: 1fr; padding: 40px 28px; text-align: center; }
+            .csm-content .csm-channels { justify-content: center; }
+        }
+
+        /* Experts grid */
+        .experts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 28px;
+        }
+        .expert-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: transform .2s, box-shadow .2s, border-color .2s;
+        }
+        .expert-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: transparent; }
+        .expert-avatar {
+            width: 110px; height: 110px;
+            border-radius: 50%;
+            margin: 0 auto 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .expert-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+        .expert-title { color: var(--primary, #FF6B35); font-weight: 500; font-size: .92rem; margin-bottom: 12px; }
+        .expert-location {
+            display: inline-flex; align-items: center; gap: 5px;
+            background: #f7f7f7; padding: 4px 10px;
+            border-radius: 999px; font-size: .78rem; color: #666;
+            margin-bottom: 14px;
+        }
+        .expert-bio { color: #555; font-size: .9rem; line-height: 1.5; min-height: 70px; }
+        .expert-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 14px; }
+        .expert-tag { background: #fff3ec; color: var(--primary, #FF6B35); padding: 4px 10px; border-radius: 999px; font-size: .72rem; font-weight: 600; }
+
+        .experts-cta {
+            background: #fafafa;
+            padding: 70px 0;
+            text-align: center;
+        }
+        .experts-cta h2 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 14px; }
+        .experts-cta p { color: #555; max-width: 560px; margin: 0 auto 28px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="catalogue.html" class="nav-link">Formations</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger active" aria-expanded="false" aria-haspopup="true">
+                            À propos <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="qui-sommes-nous.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#127757;</span>
+                                    <div><strong>Qui sommes-nous</strong><span>Notre mission panafricaine</span></div>
+                                </a>
+                                <a href="nos-experts.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128100;</span>
+                                    <div><strong>Nos experts</strong><span>Formateurs &amp; accompagnateurs</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../index.html#trustpilot-reviews" class="nav-link">Témoignages</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier.html" class="cart-btn" aria-label="Panier">
+                    <span class="cart-icon">&#128722;</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+                <a href="connexion.html" class="btn btn-ghost btn-sm">Connexion</a>
+                <a href="connexion.html" class="btn btn-primary btn-sm">S'inscrire</a>
+                <button class="mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="experts-hero">
+            <div class="container">
+                <span class="section-badge">Notre équipe</span>
+                <h1>Nos <span class="text-gradient">expert·e·s</span></h1>
+                <p class="lead">
+                    Des formateurs et accompagnateurs qui vivent, entreprennent et enseignent en Afrique. Ce sont eux
+                    qui vous <strong>forment</strong>, vous <strong>conseillent</strong> et vous <strong>accompagnent</strong>
+                    à chaque étape de votre parcours — de Dakar à Abidjan, en passant par Cotonou.
+                </p>
+                <div class="experts-filters" role="tablist">
+                    <button class="expert-filter active" data-filter="all">Tous</button>
+                    <button class="expert-filter" data-filter="accompagnement">Accompagnement</button>
+                    <button class="expert-filter" data-filter="marketing">Marketing Digital</button>
+                    <button class="expert-filter" data-filter="ecommerce">E-commerce</button>
+                    <button class="expert-filter" data-filter="ia">IA &amp; Automatisation</button>
+                    <button class="expert-filter" data-filter="copywriting">Copywriting</button>
+                    <button class="expert-filter" data-filter="cm">Réseaux Sociaux</button>
+                    <button class="expert-filter" data-filter="entrepreneuriat">Entrepreneuriat</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSM Highlight -->
+        <section class="section-experts">
+            <div class="container">
+                <div class="csm-highlight">
+                    <div class="csm-avatar">AK</div>
+                    <div class="csm-content">
+                        <span class="csm-badge">&#11088; Notre Customer Success Manager</span>
+                        <h2>Awa Kanté</h2>
+                        <div class="csm-role">Customer Success Manager — Dakar, Sénégal</div>
+                        <p>
+                            Awa est le premier visage d'Cap Learning pour chaque apprenant. De l'inscription au certificat
+                            final, elle accompagne nos +3 000 entrepreneurs au quotidien : onboarding personnalisé,
+                            suivi pédagogique, réponses en moins de 4 heures et <strong>cellule WhatsApp dédiée</strong>
+                            pour chaque promotion. Née à Thiès, diplômée de l'ISM Dakar, Awa parle français, wolof et
+                            anglais. Elle connaît chaque formateur, chaque parcours et — surtout — chacun de vos
+                            défis d'entrepreneur.
+                        </p>
+                        <div class="csm-channels">
+                            <span class="csm-channel">&#128241; WhatsApp dédié</span>
+                            <span class="csm-channel">&#9993; Email sous 4h</span>
+                            <span class="csm-channel">&#127760; Appel visio sur rendez-vous</span>
+                            <span class="csm-channel">&#127467;&#127479; FR &middot; Wolof &middot; EN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section intro -->
+                <div style="text-align: center; max-width: 680px; margin: 0 auto 40px;">
+                    <span class="section-badge">Nos formateurs</span>
+                    <h2 class="section-title" style="font-size: 1.9rem;">12 expert·e·s basé·e·s en Afrique</h2>
+                    <p class="section-desc">Des profils qui ont construit leur business localement, connaissent les spécificités de chaque marché et enseignent avec des cas réels.</p>
+                </div>
+
+                <!-- Experts grid -->
+                <div class="experts-grid" id="experts-grid">
+
+                    <!-- Ousmane Diallo -->
+                    <article class="expert-card" data-cat="ecommerce">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #2D9CDB, #56CCF2);">OD</div>
+                        <div class="expert-name">Ousmane Diallo</div>
+                        <div class="expert-title">Expert E-commerce &amp; Dropshipping</div>
+                        <span class="expert-location">&#127480;&#127475; Dakar</span>
+                        <p class="expert-bio">Fondateur de 3 boutiques Shopify à 7 chiffres en Afrique de l'Ouest. 10 ans d'expérience en paiement mobile.</p>
+                        <div class="expert-tags"><span class="expert-tag">Shopify</span><span class="expert-tag">Wave</span><span class="expert-tag">Dropshipping</span></div>
+                    </article>
+
+                    <!-- Amina Kourouma -->
+                    <article class="expert-card" data-cat="marketing">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #F2994A, #F2C94C);">AK</div>
+                        <div class="expert-name">Amina Kourouma</div>
+                        <div class="expert-title">Experte Marketing Digital</div>
+                        <span class="expert-location">&#127464;&#127470; Abidjan</span>
+                        <p class="expert-bio">Ex-responsable growth chez Jumia CI. Elle a piloté des campagnes Meta Ads pour +200 PME ivoiriennes.</p>
+                        <div class="expert-tags"><span class="expert-tag">Meta Ads</span><span class="expert-tag">SEO local</span><span class="expert-tag">Google Ads</span></div>
+                    </article>
+
+                    <!-- Fatou Ndiaye -->
+                    <article class="expert-card" data-cat="cm">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #BB6BD9, #9B51E0);">FN</div>
+                        <div class="expert-name">Fatou Ndiaye</div>
+                        <div class="expert-title">Experte Community Management</div>
+                        <span class="expert-location">&#127480;&#127475; Saint-Louis</span>
+                        <p class="expert-bio">Créatrice de contenu 500K+ abonnés. Spécialiste TikTok Afrique et stratégies WhatsApp Business.</p>
+                        <div class="expert-tags"><span class="expert-tag">TikTok</span><span class="expert-tag">WhatsApp Business</span><span class="expert-tag">Instagram</span></div>
+                    </article>
+
+                    <!-- Salima Benali -->
+                    <article class="expert-card" data-cat="ia">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #27AE60, #6FCF97);">SB</div>
+                        <div class="expert-name">Salima Benali</div>
+                        <div class="expert-title">Experte IA &amp; Automatisation</div>
+                        <span class="expert-location">&#127464;&#127470; Abidjan</span>
+                        <p class="expert-bio">Consultante IA pour grandes banques ouest-africaines. Spécialiste ChatGPT, Make et N8N pour PME.</p>
+                        <div class="expert-tags"><span class="expert-tag">ChatGPT</span><span class="expert-tag">Make</span><span class="expert-tag">N8N</span></div>
+                    </article>
+
+                    <!-- Nadia Mensah -->
+                    <article class="expert-card" data-cat="copywriting">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #EB5757, #F2994A);">NM</div>
+                        <div class="expert-name">Nadia Mensah</div>
+                        <div class="expert-title">Experte Copywriting</div>
+                        <span class="expert-location">&#127463;&#127471; Cotonou</span>
+                        <p class="expert-bio">Copywriter pour marques béninoises &amp; togolaises. Elle a écrit +500 tunnels de vente qui convertissent.</p>
+                        <div class="expert-tags"><span class="expert-tag">Tunnel de vente</span><span class="expert-tag">Storytelling</span><span class="expert-tag">Email</span></div>
+                    </article>
+
+                    <!-- Mamadou Diouf -->
+                    <article class="expert-card" data-cat="entrepreneuriat">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #2F80ED, #56CCF2);">MD</div>
+                        <div class="expert-name">Mamadou Diouf</div>
+                        <div class="expert-title">Expert Entrepreneuriat Digital</div>
+                        <span class="expert-location">&#127480;&#127475; Dakar</span>
+                        <p class="expert-bio">Ex-Banque Africaine de Développement (BAD). Accompagne les entrepreneurs sur le financement &amp; l'OHADA.</p>
+                        <div class="expert-tags"><span class="expert-tag">BAD / AFD</span><span class="expert-tag">OHADA</span><span class="expert-tag">Levée de fonds</span></div>
+                    </article>
+
+                    <!-- Koffi Asante -->
+                    <article class="expert-card" data-cat="marketing">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #F2994A, #EB5757);">KA</div>
+                        <div class="expert-name">Koffi Asante</div>
+                        <div class="expert-title">Expert SEO &amp; Content</div>
+                        <span class="expert-location">&#127464;&#127470; Yamoussoukro</span>
+                        <p class="expert-bio">Consultant SEO certifié Google. Spécialiste du référencement local pour PME en Afrique francophone.</p>
+                        <div class="expert-tags"><span class="expert-tag">SEO</span><span class="expert-tag">Google My Business</span><span class="expert-tag">Content</span></div>
+                    </article>
+
+                    <!-- Yasmine Mbaye -->
+                    <article class="expert-card" data-cat="cm">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #9B51E0, #BB6BD9);">YM</div>
+                        <div class="expert-name">Yasmine Mbaye</div>
+                        <div class="expert-title">Experte Réseaux Sociaux</div>
+                        <span class="expert-location">&#127480;&#127475; Dakar</span>
+                        <p class="expert-bio">Social media manager pour artistes &amp; marques sénégalaises. Spécialiste Reels &amp; UGC africain.</p>
+                        <div class="expert-tags"><span class="expert-tag">Reels</span><span class="expert-tag">UGC</span><span class="expert-tag">Stratégie</span></div>
+                    </article>
+
+                    <!-- Aboubakar Sy -->
+                    <article class="expert-card" data-cat="ia">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #6FCF97, #27AE60);">AS</div>
+                        <div class="expert-name">Aboubakar Sy</div>
+                        <div class="expert-title">Expert No-Code &amp; Lovable</div>
+                        <span class="expert-location">&#127463;&#127471; Cotonou</span>
+                        <p class="expert-bio">Entrepreneur No-Code, il a lancé 4 SaaS rentables sans écrire une ligne de code. Formateur Lovable &amp; Bubble.</p>
+                        <div class="expert-tags"><span class="expert-tag">Lovable</span><span class="expert-tag">Bubble</span><span class="expert-tag">N8N</span></div>
+                    </article>
+
+                    <!-- Fatima Niang -->
+                    <article class="expert-card" data-cat="ecommerce">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #56CCF2, #2D9CDB);">FN</div>
+                        <div class="expert-name">Fatima Niang</div>
+                        <div class="expert-title">Experte Paiements Digitaux</div>
+                        <span class="expert-location">&#127480;&#127475; Thiès</span>
+                        <p class="expert-bio">Ex-Wave. Spécialiste de l'intégration Mobile Money (Wave, Orange Money, MTN MoMo) pour e-commerçants.</p>
+                        <div class="expert-tags"><span class="expert-tag">Wave</span><span class="expert-tag">Orange Money</span><span class="expert-tag">MTN MoMo</span></div>
+                    </article>
+
+                    <!-- Abdoulaye Traoré -->
+                    <article class="expert-card" data-cat="entrepreneuriat">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #F2C94C, #F2994A);">AT</div>
+                        <div class="expert-name">Abdoulaye Traoré</div>
+                        <div class="expert-title">Expert Business &amp; Finance</div>
+                        <span class="expert-location">&#127464;&#127470; Abidjan</span>
+                        <p class="expert-bio">Expert-comptable agréé OHADA. Accompagne les créateurs sur la structuration juridique &amp; fiscale.</p>
+                        <div class="expert-tags"><span class="expert-tag">OHADA</span><span class="expert-tag">Compta</span><span class="expert-tag">Fiscalité</span></div>
+                    </article>
+
+                    <!-- Aïssatou Bah -->
+                    <article class="expert-card" data-cat="accompagnement">
+                        <div class="expert-avatar" style="background: linear-gradient(135deg, #EB5757, #BB6BD9);">AB</div>
+                        <div class="expert-name">Aïssatou Bah</div>
+                        <div class="expert-title">Coach Carrière &amp; Mentor</div>
+                        <span class="expert-location">&#127480;&#127475; Dakar</span>
+                        <p class="expert-bio">Coach certifiée ICF. Accompagne nos alumni dans leur transition pro et la création de leur premier business.</p>
+                        <div class="expert-tags"><span class="expert-tag">Coaching</span><span class="expert-tag">Mentorat</span><span class="expert-tag">ICF</span></div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="experts-cta">
+            <div class="container">
+                <span class="section-badge">Rejoignez l'aventure</span>
+                <h2>Prêt·e à être accompagné·e par notre équipe ?</h2>
+                <p>Choisissez un parcours, rencontrez votre formateur dès la première semaine et bénéficiez du suivi d'Awa et de toute l'équipe Cap Learning.</p>
+                <a href="catalogue.html" class="btn btn-primary btn-lg">Découvrir les 6 parcours &rarr;</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                        <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+                    </a>
+                    <p>La plateforme de formation digitale conçue pour les entrepreneurs africains. Apprenez, grandissez, transformez.</p>
+                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-footer-badge">
+                        <span class="tp-footer-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="tp-footer-score">4.8/5</span>
+                        <span>sur Trustpilot</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <h4>Nos 6 parcours</h4>
+                    <ul>
+                        <li><a href="formation-ecommerce.html">E-commerce &amp; Paiements</a></li>
+                        <li><a href="formation-ia-business.html">IA &amp; Business</a></li>
+                        <li><a href="formation-marketing-digital.html">Marketing Digital</a></li>
+                        <li><a href="formation-entrepreneuriat-digital.html">Entrepreneuriat Digital</a></li>
+                        <li><a href="formation-reseaux-sociaux.html">Réseaux Sociaux &amp; CM</a></li>
+                        <li><a href="formation-copywriting.html">Copywriting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="qui-sommes-nous.html">Qui sommes-nous</a></li>
+                        <li><a href="nos-experts.html">Nos experts</a></li>
+                        <li><a href="plateforme.html">La plateforme</a></li>
+                        <li><a href="#">Devenir formateur</a></li>
+                        <li><a href="#">Partenariats</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html#faq">FAQ</a></li>
+                        <li><a href="#">Centre d'aide</a></li>
+                        <li><a href="contact.html">Contactez-nous</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cap Learning. Tous droits réservés. Fait avec &#10084; depuis l'Afrique.</p>
+                <div class="payment-methods">
+                    <span>Paiements : </span>
+                    <span class="payment-icon">Wave</span>
+                    <span class="payment-icon">Orange Money</span>
+                    <span class="payment-icon">MTN MoMo</span>
+                    <span class="payment-icon">Carte bancaire</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple filter
+        (function(){
+            var filters = document.querySelectorAll('.expert-filter');
+            var cards = document.querySelectorAll('.expert-card');
+            filters.forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    filters.forEach(function(f){ f.classList.remove('active'); });
+                    btn.classList.add('active');
+                    var cat = btn.getAttribute('data-filter');
+                    cards.forEach(function(c){
+                        c.style.display = (cat === 'all' || c.getAttribute('data-cat') === cat) ? '' : 'none';
+                    });
+                });
+            });
+        })();
+    </script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

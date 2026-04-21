@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qui sommes-nous - Cap Learning, école digitale panafricaine</title>
+    <meta name="description" content="Cap Learning est l'école en ligne qui forme les entrepreneurs du Sénégal, du Bénin et de Côte d'Ivoire au digital. Une pédagogie pensée pour le marché africain, certifiée en France.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .about-hero {
+            padding: 120px 0 80px;
+            background: linear-gradient(135deg, #fff7f2 0%, #fef3ec 50%, #fff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -10%;
+            width: 500px; height: 500px;
+            background: radial-gradient(circle, rgba(255,107,53,0.08), transparent 70%);
+            border-radius: 50%;
+        }
+        .about-hero-inner { max-width: 860px; position: relative; }
+        .about-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin: 16px 0 20px; }
+        .about-hero .lead { font-size: 1.15rem; color: var(--text-muted, #555); line-height: 1.65; }
+        .about-section { padding: 80px 0; }
+        .about-section.alt { background: #fafafa; }
+        .about-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; align-items: start; }
+        .about-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin-top: 40px; }
+        .about-stat {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .about-stat:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
+        .about-stat-value { font-size: 2.4rem; font-weight: 700; color: var(--primary, #FF6B35); line-height: 1; }
+        .about-stat-label { color: #555; margin-top: 8px; font-size: .95rem; }
+        .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
+        .pillar-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 18px;
+            padding: 32px 28px;
+            transition: border-color .2s, transform .2s;
+        }
+        .pillar-card:hover { border-color: var(--primary, #FF6B35); transform: translateY(-4px); }
+        .pillar-icon { font-size: 2rem; display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: 14px; background: #fff3ec; margin-bottom: 16px; }
+        .pillar-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
+        .pillar-card p { color: #555; line-height: 1.6; font-size: .97rem; }
+        .timeline { position: relative; padding-left: 36px; margin-top: 40px; }
+        .timeline::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--primary, #FF6B35), #ffd2b8); }
+        .timeline-item { position: relative; padding-bottom: 36px; }
+        .timeline-item::before { content: ''; position: absolute; left: -30px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary, #FF6B35); box-shadow: 0 0 0 4px #fff3ec; }
+        .timeline-year { font-weight: 700; color: var(--primary, #FF6B35); font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; }
+        .timeline-item h4 { margin: 6px 0 8px; font-size: 1.15rem; }
+        .timeline-item p { color: #555; line-height: 1.6; font-size: .97rem; }
+        .quote-block {
+            border-left: 4px solid var(--primary, #FF6B35);
+            padding: 8px 0 8px 24px;
+            font-style: italic;
+            color: #333;
+            font-size: 1.1rem;
+            line-height: 1.65;
+            margin: 24px 0;
+        }
+        .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 600; color: #222; font-size: .95rem; }
+        .about-cta {
+            background: linear-gradient(135deg, #FF6B35, #e85d2a);
+            color: #fff;
+            border-radius: 24px;
+            padding: 56px 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .about-cta h2 { color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
+        .about-cta p { color: rgba(255,255,255,0.9); margin: 12px auto 28px; max-width: 620px; }
+        .about-cta .btn { background: #fff; color: var(--primary, #FF6B35); }
+        .about-cta .btn:hover { background: #fff3ec; }
+        .country-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+        .country-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 16px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 999px;
+            font-size: .92rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="catalogue.html" class="nav-link">Formations</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger active" aria-expanded="false" aria-haspopup="true">
+                            À propos <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="qui-sommes-nous.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#127757;</span>
+                                    <div><strong>Qui sommes-nous</strong><span>Notre mission panafricaine</span></div>
+                                </a>
+                                <a href="nos-experts.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128100;</span>
+                                    <div><strong>Nos experts</strong><span>Formateurs &amp; accompagnateurs</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../index.html#trustpilot-reviews" class="nav-link">Témoignages</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier.html" class="cart-btn" aria-label="Panier">
+                    <span class="cart-icon">&#128722;</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+                <a href="connexion.html" class="btn btn-ghost btn-sm">Connexion</a>
+                <a href="connexion.html" class="btn btn-primary btn-sm">S'inscrire</a>
+                <button class="mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="about-hero">
+            <div class="container about-hero-inner">
+                <span class="section-badge">Qui sommes-nous</span>
+                <h1>L'école digitale qui <span class="text-gradient">parle l'Afrique</span> qui entreprend.</h1>
+                <p class="lead">
+                    Cap Learning, c'est la rencontre entre l'expertise pédagogique d'une école européenne certifiée et
+                    la réalité quotidienne des entrepreneurs d'Afrique de l'Ouest. Nous ne recopions pas des programmes
+                    pensés à Paris : nous construisons, avec des formateurs basés à Dakar, Cotonou et Abidjan, les
+                    compétences qui font réellement décoller un business sur le continent.
+                </p>
+                <div class="country-badges">
+                    <span class="country-badge">&#127480;&#127475; Sénégal</span>
+                    <span class="country-badge">&#127463;&#127471; Bénin</span>
+                    <span class="country-badge">&#127464;&#127470; Côte d'Ivoire</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-grid-2">
+                    <div>
+                        <span class="section-badge">Notre mission</span>
+                        <h2 class="section-title" style="font-size: 2rem;">Rendre le digital <span class="text-gradient">accessible, concret et rentable</span> pour chaque entrepreneur africain.</h2>
+                    </div>
+                    <div>
+                        <p style="font-size: 1.05rem; color: #444; line-height: 1.75;">
+                            En Afrique francophone, des milliers de porteurs de projet ont l'énergie, l'idée et le
+                            marché — il leur manque souvent une formation <strong>adaptée à leur terrain</strong> :
+                            des études de cas locales, des outils compatibles Mobile Money, une pédagogie qui tient
+                            compte du contexte OHADA et des connexions parfois intermittentes.
+                        </p>
+                        <p style="font-size: 1.05rem; color: #444; line-height: 1.75; margin-top: 16px;">
+                            Notre mission est simple : <strong>transformer cette énergie en business qui génèrent du
+                            chiffre d'affaires</strong>, en donnant à chaque apprenant les compétences digitales qui
+                            font la différence — marketing, e-commerce, IA, copywriting, gestion d'entreprise.
+                        </p>
+                        <div class="quote-block">
+                            « Nous voulons que chaque entrepreneur, de Saint-Louis à Porto-Novo, ait accès à la même
+                            qualité de formation qu'à Paris ou Lyon — mais pensée pour son marché, pas pour celui
+                            des autres. »
+                            <span class="quote-author">— L'équipe fondatrice d'Cap Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4 Piliers -->
+        <section class="about-section alt">
+            <div class="container">
+                <div style="text-align: center; max-width: 720px; margin: 0 auto;">
+                    <span class="section-badge">Ce qui nous rend différents</span>
+                    <h2 class="section-title" style="font-size: 2rem;">Quatre engagements qui changent tout</h2>
+                    <p class="section-desc">Notre approche ne ressemble à aucune autre école en ligne — parce que notre terrain n'est pas le même.</p>
+                </div>
+                <div class="pillar-grid">
+                    <div class="pillar-card">
+                        <span class="pillar-icon">&#127757;</span>
+                        <h3>100 % contextualisé Afrique</h3>
+                        <p>Nos études de cas parlent de tontines digitales, de boutiques WhatsApp à Dakar, de dropshipping depuis Cotonou et de tunnels de vente optimisés pour Wave, Orange Money et MTN MoMo.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <span class="pillar-icon">&#128178;</span>
+                        <h3>Un prix juste, en FCFA</h3>
+                        <p>De 18 000 à 30 000 FCFA par parcours. Nous refusons le modèle à 500 000 FCFA réservé à une élite : le digital doit être un ascenseur, pas un mur.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <span class="pillar-icon">&#129309;</span>
+                        <h3>Un accompagnement humain</h3>
+                        <p>Une Customer Success Manager dédiée, un groupe WhatsApp par promotion et des mentors basés sur place. Pas de chatbot qui répond à 3 heures du matin : de vraies personnes qui vous connaissent.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <span class="pillar-icon">&#127891;</span>
+                        <h3>Un certificat reconnu en Europe</h3>
+                        <p>Nos certificats sont délivrés via notre maison-mère <strong>Digi-Atlas</strong>, école européenne certifiée. De quoi valoriser vos compétences auprès de partenaires, bailleurs (BAD, AFD) ou clients internationaux.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Histoire -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-grid-2">
+                    <div>
+                        <span class="section-badge">Notre histoire</span>
+                        <h2 class="section-title" style="font-size: 2rem;">Née du terrain, <span class="text-gradient">construite pour durer</span></h2>
+                        <p style="color: #555; line-height: 1.7; margin-top: 16px;">
+                            Cap Learning n'est pas un projet lancé depuis un bureau parisien. L'école est née d'une
+                            conviction simple partagée entre Digi-Atlas (France) et des entrepreneurs africains :
+                            il manquait une plateforme <em>véritablement</em> pensée pour l'Afrique francophone.
+                        </p>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="timeline-year">2023 &middot; L'idée</span>
+                            <h4>Un constat partagé à Dakar</h4>
+                            <p>Après plusieurs missions terrain, l'équipe Digi-Atlas rencontre des dizaines de porteurs de projet sénégalais et béninois. Le constat est unanime : les MOOC existants sont trop chers, trop théoriques, trop européens.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2024 &middot; Le lancement</span>
+                            <h4>Ouverture au Sénégal</h4>
+                            <p>Premier pilote à Dakar avec 120 entrepreneurs. Trois parcours : Marketing Digital, E-commerce, Réseaux Sociaux. Taux de complétion : 84 %.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2025 &middot; L'expansion</span>
+                            <h4>Bénin &amp; Côte d'Ivoire</h4>
+                            <p>Déploiement à Cotonou puis à Abidjan. Trois nouveaux parcours : IA &amp; Business, Copywriting, Entrepreneuriat Digital. +2 400 apprenants actifs.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="timeline-year">2026 &middot; Aujourd'hui</span>
+                            <h4>+ 3 000 entrepreneurs formés</h4>
+                            <p>Six parcours certifiants, une équipe de formateurs africains, un réseau alumni actif de Saint-Louis à Abidjan. Prochaine étape : Togo, Mali et Cameroun.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chiffres clés -->
+        <section class="about-section alt">
+            <div class="container">
+                <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+                    <span class="section-badge">En chiffres</span>
+                    <h2 class="section-title" style="font-size: 2rem;">Notre impact en 2026</h2>
+                </div>
+                <div class="about-stat-grid">
+                    <div class="about-stat">
+                        <div class="about-stat-value">3 000+</div>
+                        <div class="about-stat-label">Entrepreneurs formés</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">6</div>
+                        <div class="about-stat-label">Parcours certifiants</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">3</div>
+                        <div class="about-stat-label">Pays : Sénégal, Bénin, Côte d'Ivoire</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">4,8/5</div>
+                        <div class="about-stat-label">Note Trustpilot</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">84 %</div>
+                        <div class="about-stat-label">Taux de complétion</div>
+                    </div>
+                    <div class="about-stat">
+                        <div class="about-stat-value">12</div>
+                        <div class="about-stat-label">Formateurs panafricains</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partenariat Digi-Atlas -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-grid-2">
+                    <div>
+                        <span class="section-badge">Notre ADN</span>
+                        <h2 class="section-title" style="font-size: 2rem;">L'expertise européenne, l'ancrage africain.</h2>
+                    </div>
+                    <div>
+                        <p style="color: #444; line-height: 1.75; font-size: 1.02rem;">
+                            Cap Learning s'appuie sur la rigueur pédagogique de <strong>Digi-Atlas</strong>, école
+                            française fondée en 2020, certifiée, et déjà forte de milliers d'apprenants. Cette
+                            maison-mère apporte l'ingénierie de formation, la technologie et la reconnaissance
+                            institutionnelle.
+                        </p>
+                        <p style="color: #444; line-height: 1.75; font-size: 1.02rem; margin-top: 16px;">
+                            De notre côté, nous apportons ce qu'aucune équipe parisienne ne peut apporter : des
+                            <strong>formateurs qui vivent et entreprennent en Afrique</strong>, des contenus
+                            réécrits pour le marché local, et une connaissance fine de ce qui fonctionne (et ce
+                            qui ne fonctionne pas) à Dakar, Cotonou ou Abidjan.
+                        </p>
+                        <a href="nos-experts.html" class="btn btn-primary" style="margin-top: 20px;">Découvrir nos experts &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA final -->
+        <section class="about-section alt">
+            <div class="container">
+                <div class="about-cta">
+                    <h2>Prêt à rejoindre +3 000 entrepreneurs ?</h2>
+                    <p>Choisissez un parcours certifiant, rejoignez une communauté active et lancez (ou faites grandir) votre business digital depuis le Sénégal, le Bénin ou la Côte d'Ivoire.</p>
+                    <a href="catalogue.html" class="btn btn-lg">Explorer les 6 parcours &rarr;</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                        <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+                    </a>
+                    <p>La plateforme de formation digitale conçue pour les entrepreneurs africains. Apprenez, grandissez, transformez.</p>
+                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-footer-badge">
+                        <span class="tp-footer-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="tp-footer-score">4.8/5</span>
+                        <span>sur Trustpilot</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <h4>Nos 6 parcours</h4>
+                    <ul>
+                        <li><a href="formation-ecommerce.html">E-commerce &amp; Paiements</a></li>
+                        <li><a href="formation-ia-business.html">IA &amp; Business</a></li>
+                        <li><a href="formation-marketing-digital.html">Marketing Digital</a></li>
+                        <li><a href="formation-entrepreneuriat-digital.html">Entrepreneuriat Digital</a></li>
+                        <li><a href="formation-reseaux-sociaux.html">Réseaux Sociaux &amp; CM</a></li>
+                        <li><a href="formation-copywriting.html">Copywriting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="qui-sommes-nous.html">Qui sommes-nous</a></li>
+                        <li><a href="nos-experts.html">Nos experts</a></li>
+                        <li><a href="plateforme.html">La plateforme</a></li>
+                        <li><a href="#">Devenir formateur</a></li>
+                        <li><a href="#">Partenariats</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html#faq">FAQ</a></li>
+                        <li><a href="#">Centre d'aide</a></li>
+                        <li><a href="contact.html">Contactez-nous</a></li>
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cap Learning. Tous droits réservés. Fait avec &#10084; depuis l'Afrique.</p>
+                <div class="payment-methods">
+                    <span>Paiements : </span>
+                    <span class="payment-icon">Wave</span>
+                    <span class="payment-icon">Orange Money</span>
+                    <span class="payment-icon">MTN MoMo</span>
+                    <span class="payment-icon">Carte bancaire</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

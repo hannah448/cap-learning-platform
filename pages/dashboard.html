@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de bord - Cap Learning</title>
+    <meta name="description" content="Votre espace de formation Cap Learning. Suivez votre progression et continuez vos formations.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lms.css">
+    <style>
+        /* Course picker */
+        .lms-course-picker {
+            background: #fff;
+            border: 1px solid var(--border, #e5e7eb);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: var(--space-6, 24px);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+        .lms-course-picker-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .lms-course-picker-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #FF6B35, #e85d2a);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .lms-course-picker-text { line-height: 1.3; }
+        .lms-course-picker-eyebrow {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #888;
+            font-weight: 600;
+        }
+        .lms-course-picker-title { font-weight: 700; font-size: 1rem; color: #222; }
+        .lms-course-picker-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-start;
+        }
+        .lms-course-chip {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: .85rem;
+            font-weight: 500;
+            color: #444;
+            cursor: pointer;
+            transition: all .15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        .lms-course-chip:hover { border-color: #FF6B35; color: #FF6B35; }
+        .lms-course-chip.active {
+            background: linear-gradient(135deg, #FF6B35, #e85d2a);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(255,107,53,.25);
+        }
+        .lms-course-chip-dot {
+            width: 10px; height: 10px; border-radius: 50%;
+            display: inline-block;
+        }
+        .lms-course-chip-badge {
+            font-size: .7rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: rgba(0,0,0,.08);
+            font-weight: 700;
+        }
+        .lms-course-chip.active .lms-course-chip-badge { background: rgba(255,255,255,.25); }
+        .lms-course-picker-meta {
+            font-size: .78rem;
+            color: #888;
+            text-align: right;
+        }
+        .lms-course-picker-meta strong { color: #FF6B35; font-weight: 700; }
+        .lms-course-picker-empty {
+            padding: 8px 14px;
+            font-size: .9rem;
+            color: #666;
+            font-style: italic;
+        }
+        @media (max-width: 820px) {
+            .lms-course-picker {
+                grid-template-columns: 1fr;
+                gap: 14px;
+            }
+            .lms-course-picker-meta { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lms-layout">
+
+        <!-- Sidebar Overlay (mobile) -->
+        <div class="lms-sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar -->
+        <aside class="lms-sidebar" id="sidebar">
+            <a href="../index.html" class="lms-sidebar-logo">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+
+            <nav>
+                <ul class="lms-sidebar-nav">
+                    <li>
+                        <a href="dashboard.html" class="lms-sidebar-item active">
+                            <span class="nav-icon">&#127968;</span>
+                            Tableau de bord
+                        </a>
+                    </li>
+                    <li>
+                        <a href="catalogue.html" class="lms-sidebar-item">
+                            <span class="nav-icon">&#128218;</span>
+                            Mes formations
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="lms-sidebar-item">
+                            <span class="nav-icon">&#127942;</span>
+                            Certificats
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="lms-sidebar-item">
+                            <span class="nav-icon">&#9881;&#65039;</span>
+                            Param&egrave;tres
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="lms-sidebar-user" id="sidebarUser">
+                <div class="user-avatar" id="userAvatar">--</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Utilisateur</div>
+                    <div class="user-email" id="userEmail">email@exemple.com</div>
+                </div>
+            </div>
+            <div style="padding: 0 var(--space-6);">
+                <button class="lms-logout-btn" id="logoutBtn">D&eacute;connexion</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="lms-main">
+
+            <!-- Top Bar -->
+            <div class="lms-topbar">
+                <div class="lms-welcome">
+                    <h1 id="welcomeHeading">Bonjour !</h1>
+                    <p>Continuez votre apprentissage aujourd'hui</p>
+                </div>
+                <div class="lms-topbar-actions">
+                    <button class="lms-notif-btn" aria-label="Notifications">
+                        &#128276;
+                        <span class="notif-dot"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="lms-content">
+
+                <!-- Gamification Dashboard -->
+                <div id="gamif-dashboard-widget" style="margin-bottom: var(--space-6);"></div>
+
+                <!-- Course Picker : sélection de la formation active -->
+                <section class="lms-course-picker" id="coursePicker" hidden>
+                    <div class="lms-course-picker-label">
+                        <span class="lms-course-picker-icon">&#128218;</span>
+                        <div class="lms-course-picker-text">
+                            <div class="lms-course-picker-eyebrow">Ma formation active</div>
+                            <div class="lms-course-picker-title" id="coursePickerTitle">Sélectionnez votre formation</div>
+                        </div>
+                    </div>
+                    <div class="lms-course-picker-chips" id="coursePickerChips" role="tablist" aria-label="Choisir la formation active">
+                        <!-- chips injected by JS -->
+                    </div>
+                    <div class="lms-course-picker-meta" id="coursePickerMeta">
+                        <!-- e.g. "Vous suivez 3 formations" -->
+                    </div>
+                </section>
+
+                <!-- "Reprendre" Hero Banner -->
+                <section class="lms-resume-banner" id="resumeBanner" hidden>
+                    <div class="lms-resume-thumb" id="resumeThumb" aria-hidden="true">
+                        <span class="lms-resume-play">&#9654;</span>
+                        <span class="lms-resume-thumb-badge" id="resumeBadge">—</span>
+                    </div>
+                    <div class="lms-resume-body">
+                        <span class="lms-resume-eyebrow"><span aria-hidden="true">&#128194;</span> Reprendre là où vous vous êtes arrêté</span>
+                        <h2 class="lms-resume-title" id="resumeCourseTitle">—</h2>
+                        <div class="lms-resume-lesson">
+                            <span class="lms-resume-module" id="resumeModuleLabel">—</span>
+                            <span class="lms-resume-separator" aria-hidden="true">·</span>
+                            <span class="lms-resume-lesson-name" id="resumeLessonName">—</span>
+                        </div>
+                        <div class="lms-resume-progress">
+                            <div class="lms-resume-progress-bar">
+                                <div class="lms-resume-progress-fill" id="resumeProgressFill" style="width:0%"></div>
+                            </div>
+                            <span class="lms-resume-progress-text" id="resumeProgressText">0%</span>
+                        </div>
+                        <div class="lms-resume-footer">
+                            <span class="lms-resume-meta" id="resumeMeta">—</span>
+                            <a class="lms-resume-cta" id="resumeCta" href="#">
+                                <span>Reprendre la leçon</span>
+                                <span aria-hidden="true">&rarr;</span>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Stats Row -->
+                <div class="lms-stats-grid">
+                    <div class="lms-stat-card">
+                        <div class="stat-icon icon-courses">&#128218;</div>
+                        <div>
+                            <div class="stat-value" id="statCourses">0</div>
+                            <div class="stat-label">Formations en cours</div>
+                        </div>
+                    </div>
+                    <div class="lms-stat-card">
+                        <div class="stat-icon icon-progress">&#128200;</div>
+                        <div>
+                            <div class="stat-value" id="statProgress">0%</div>
+                            <div class="stat-label">Progression moyenne</div>
+                        </div>
+                    </div>
+                    <div class="lms-stat-card">
+                        <div class="stat-icon icon-certs">&#127942;</div>
+                        <div>
+                            <div class="stat-value" id="statCerts">0</div>
+                            <div class="stat-label">Certificats obtenus</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Access : Vidéo / Exercice / Support -->
+                <div class="lms-section-header">
+                    <h2>Accès rapides</h2>
+                    <span class="lms-section-sub" id="quickContextLabel"></span>
+                </div>
+
+                <div class="lms-quick-access" id="quickAccess">
+                    <!-- Video -->
+                    <article class="lms-access-card lms-access-card--video" id="quickVideo">
+                        <div class="lms-access-thumb">
+                            <span class="lms-access-thumb-icon">&#9654;</span>
+                            <span class="lms-access-thumb-badge" id="videoBadge">&mdash;</span>
+                        </div>
+                        <div class="lms-access-body">
+                            <span class="lms-access-eyebrow"><span>&#127909;</span> Vidéo en cours</span>
+                            <h3 class="lms-access-title" id="videoTitle">Aucune vidéo active</h3>
+                            <p class="lms-access-desc" id="videoDesc">Souscrivez à une formation pour démarrer le visionnage.</p>
+                            <div class="lms-access-progress" id="videoProgressWrap" hidden>
+                                <div class="lms-access-progress-bar">
+                                    <div class="lms-access-progress-fill" id="videoProgressFill" style="width:0%"></div>
+                                </div>
+                                <span class="lms-access-progress-text" id="videoProgressText">0%</span>
+                            </div>
+                            <a class="lms-access-cta" id="videoCta" href="catalogue.html">Voir le catalogue &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- Exercise -->
+                    <article class="lms-access-card lms-access-card--exercise" id="quickExercise">
+                        <div class="lms-access-thumb">
+                            <span class="lms-access-thumb-icon">&#9997;</span>
+                            <span class="lms-access-thumb-badge" id="exerciseBadge">—</span>
+                        </div>
+                        <div class="lms-access-body">
+                            <span class="lms-access-eyebrow"><span>&#128221;</span> Prochain exercice</span>
+                            <h3 class="lms-access-title" id="exerciseTitle">Aucun exercice disponible</h3>
+                            <p class="lms-access-desc" id="exerciseDesc">Commencez une formation pour accéder aux exercices.</p>
+                            <ul class="lms-access-stats" id="exerciseStats" hidden>
+                                <li><span class="lms-access-stat-val" id="exDone">0</span><span class="lms-access-stat-lbl">Complétés</span></li>
+                                <li><span class="lms-access-stat-val" id="exScore">—</span><span class="lms-access-stat-lbl">Score moyen</span></li>
+                                <li><span class="lms-access-stat-val" id="exLeft">0</span><span class="lms-access-stat-lbl">Restants</span></li>
+                            </ul>
+                            <a class="lms-access-cta" id="exerciseCta" href="catalogue.html">Voir le catalogue &rarr;</a>
+                        </div>
+                    </article>
+
+                    <!-- Support -->
+                    <article class="lms-access-card lms-access-card--support" id="quickSupport">
+                        <div class="lms-access-thumb">
+                            <span class="lms-access-thumb-icon">&#128218;</span>
+                            <span class="lms-access-thumb-badge">PDF</span>
+                        </div>
+                        <div class="lms-access-body">
+                            <span class="lms-access-eyebrow"><span>&#128196;</span> Supports de cours</span>
+                            <h3 class="lms-access-title" id="supportTitle">Téléchargez vos ressources</h3>
+                            <p class="lms-access-desc" id="supportDesc">Syllabus, fiches récap et exercices corrigés à garder hors-ligne.</p>
+                            <ul class="lms-access-downloads" id="supportDownloads">
+                                <li>
+                                    <button type="button" class="lms-download-btn" data-resource="manuel">
+                                        <span class="lms-download-icon">&#128213;</span>
+                                        <span class="lms-download-meta">
+                                            <span class="lms-download-title">Manuel complet</span>
+                                            <span class="lms-download-size">HTML &middot; ~24 pages</span>
+                                        </span>
+                                        <span class="lms-download-arrow">&#11015;</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="lms-download-btn" data-resource="recap">
+                                        <span class="lms-download-icon">&#128203;</span>
+                                        <span class="lms-download-meta">
+                                            <span class="lms-download-title">Fiche récap</span>
+                                            <span class="lms-download-size">Markdown &middot; résumé clé</span>
+                                        </span>
+                                        <span class="lms-download-arrow">&#11015;</span>
+                                    </button>
+                                </li>
+                                <li>
+                                    <button type="button" class="lms-download-btn" data-resource="exercices">
+                                        <span class="lms-download-icon">&#127919;</span>
+                                        <span class="lms-download-meta">
+                                            <span class="lms-download-title">Exercices corrigés</span>
+                                            <span class="lms-download-size">Texte &middot; 12 exercices</span>
+                                        </span>
+                                        <span class="lms-download-arrow">&#11015;</span>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Courses Section -->
+                <div class="lms-section-header">
+                    <h2>Mes formations</h2>
+                </div>
+
+                <div class="lms-courses-grid" id="coursesGrid">
+                    <!-- Dynamically populated -->
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Mobile Toggle -->
+        <button class="lms-mobile-toggle" id="mobileToggle" aria-label="Ouvrir le menu">
+            &#9776;
+        </button>
+
+    </div>
+
+    <script>
+    (function () {
+        'use strict';
+
+        // ---- Auth Check ----
+        const user = JSON.parse(localStorage.getItem('caplearning_user') || 'null');
+        if (!user) {
+            window.location.href = 'connexion.html';
+            return;
+        }
+
+        // ---- Course Data ----
+        // Refonte 2026 : 6 parcours certifiants. No-Code absorbé dans IA & Business,
+        // Email Marketing absorbé dans Marketing Digital, Mobile Money dans E-commerce.
+        const ALL_COURSES = [
+            { id: '1',  name: 'Marketing Digital Complet',           category: 'marketing',       gradient: 'linear-gradient(135deg, #FF6B35, #F7931E)', icon: '\uD83D\uDCC8', hours: 57, modules: 16, page: 'formation-marketing-digital.html' },
+            { id: '2',  name: 'E-commerce & Paiements Digitaux',     category: 'ecommerce',       gradient: 'linear-gradient(135deg, #2D9CDB, #56CCF2)', icon: '\uD83D\uDED2', hours: 79, modules: 47, page: 'formation-ecommerce.html' },
+            { id: '3',  name: 'IA & Business',                       category: 'ia',              gradient: 'linear-gradient(135deg, #A855F7, #6366F1)', icon: '\uD83E\uDD16', hours: 48, modules: 26, page: 'formation-ia-business.html' },
+            { id: '5',  name: 'R\u00e9seaux Sociaux & CM',           category: 'marketing',       gradient: 'linear-gradient(135deg, #F472B6, #EC4899)', icon: '\uD83D\uDCF1', hours: 41, modules: 25, page: 'formation-reseaux-sociaux.html' },
+            { id: '9',  name: 'Copywriting',                         category: 'marketing',       gradient: 'linear-gradient(135deg, #FBBF24, #F59E0B)', icon: '\u270D',       hours: 35, modules: 12, page: 'formation-copywriting.html' },
+            { id: '10', name: 'Entrepreneuriat Digital',             category: 'entrepreneuriat', gradient: 'linear-gradient(135deg, #22C55E, #16A34A)', icon: '\uD83D\uDE80', hours: 50, modules: 20, page: 'formation-entrepreneuriat-digital.html' }
+        ];
+
+        // ---- Purchased Courses (cart + explicit purchases) ----
+        const cart = JSON.parse(localStorage.getItem('caplearning_cart') || '[]');
+        const purchased = JSON.parse(localStorage.getItem('caplearning_purchased') || '[]');
+
+        // Build set of purchased course IDs
+        const purchasedIds = new Set();
+        cart.forEach(function (item) {
+            if (item.id) purchasedIds.add(String(item.id));
+        });
+        purchased.forEach(function (item) {
+            var id = typeof item === 'object' ? item.id : item;
+            if (id) purchasedIds.add(String(id));
+        });
+
+        // ---- Progress Data ----
+        const progress = JSON.parse(localStorage.getItem('caplearning_progress') || '{}');
+
+        function getProgress(courseId, totalModules) {
+            var p = progress[courseId];
+            if (!p || !p.completed || !p.completed.length) return 0;
+            var total = p.total || totalModules;
+            if (!total) return 0;
+            return Math.round((p.completed.length / total) * 100);
+        }
+
+        // ---- Populate User Info ----
+        var firstName = user.firstName || user.prenom || user.name || 'Apprenant';
+        var lastName = user.lastName || user.nom || '';
+        var email = user.email || '';
+        var initials = (firstName.charAt(0) + (lastName ? lastName.charAt(0) : '')).toUpperCase();
+
+        document.getElementById('welcomeHeading').textContent = 'Bonjour, ' + firstName + ' !';
+        document.getElementById('userName').textContent = firstName + (lastName ? ' ' + lastName : '');
+        document.getElementById('userEmail').textContent = email;
+        document.getElementById('userAvatar').textContent = initials || '--';
+
+        // ---- Stats ----
+        var activeCourses = 0;
+        var totalProgress = 0;
+        var certs = 0;
+
+        ALL_COURSES.forEach(function (course) {
+            if (purchasedIds.has(course.id)) {
+                var pct = getProgress(course.id, course.modules);
+                if (pct > 0 || purchasedIds.has(course.id)) activeCourses++;
+                totalProgress += pct;
+                if (pct >= 100) certs++;
+            }
+        });
+
+        var avgProgress = activeCourses > 0 ? Math.round(totalProgress / activeCourses) : 0;
+
+        document.getElementById('statCourses').textContent = activeCourses;
+        document.getElementById('statProgress').textContent = avgProgress + '%';
+        document.getElementById('statCerts').textContent = certs;
+
+        // ---- Build Course Cards ----
+        var grid = document.getElementById('coursesGrid');
+
+        ALL_COURSES.forEach(function (course) {
+            var isPurchased = purchasedIds.has(course.id);
+            var pct = isPurchased ? getProgress(course.id, course.modules) : 0;
+
+            var card = document.createElement('div');
+            card.className = 'lms-course-card' + (isPurchased ? '' : ' lms-course-locked');
+
+            var thumbHTML = '<div class="lms-course-thumb" style="background: ' + course.gradient + ';">' +
+                '<span class="thumb-icon">' + course.icon + '</span>' +
+                '<div class="thumb-meta">' +
+                    '<span class="thumb-badge">' + course.hours + 'h</span>' +
+                    '<span class="thumb-badge">' + course.modules + ' modules</span>' +
+                '</div>';
+
+            if (!isPurchased) {
+                thumbHTML += '<div class="lock-overlay"><span class="lock-icon">\uD83D\uDD12</span></div>';
+            }
+            thumbHTML += '</div>';
+
+            var infoHTML = '<div class="lms-course-info">' +
+                '<h3 class="course-title">' + course.name + '</h3>';
+
+            if (isPurchased) {
+                infoHTML += '<div class="lms-progress-bar"><div class="lms-progress-fill" style="width: ' + pct + '%; background: ' + course.gradient + ';"></div></div>' +
+                    '<div class="lms-progress-text">' + pct + '% termin\u00e9</div>' +
+                    '<div class="lms-course-actions">' +
+                        '<a href="apprendre.html?id=' + course.id + '" class="lms-btn-continue">' +
+                            (pct > 0 ? 'Continuer' : 'Commencer') + ' &rarr;' +
+                        '</a>' +
+                    '</div>';
+            } else {
+                infoHTML += '<div class="lms-progress-bar"><div class="lms-progress-fill" style="width: 0%;"></div></div>' +
+                    '<div class="lms-progress-text">Non acquise</div>' +
+                    '<div class="lms-course-actions">' +
+                        '<a href="' + course.page + '" class="lms-btn-buy">' +
+                            '\uD83D\uDD12 Acheter cette formation' +
+                        '</a>' +
+                    '</div>';
+            }
+
+            infoHTML += '</div>';
+
+            card.innerHTML = thumbHTML + infoHTML;
+            grid.appendChild(card);
+        });
+
+        // ---- Quick Access : vidéo / exercice / support ----
+        var activeCoursesList = ALL_COURSES.filter(function (c) { return purchasedIds.has(c.id); });
+
+        // --- Sélection explicite de la formation active par l'apprenant -----
+        // Clé de stockage : caplearning_active_course_id
+        // 1) Si la clé existe ET pointe vers une formation toujours achetée → on l'utilise
+        // 2) Sinon, auto-selection : la plus "en cours" (pas à 0, pas à 100)
+        // 3) L'utilisateur peut changer à tout moment via les chips
+        var STORAGE_KEY = 'caplearning_active_course_id';
+        var savedId = localStorage.getItem(STORAGE_KEY);
+        var focusCourse = null;
+
+        if (savedId) {
+            focusCourse = activeCoursesList.find(function (c) { return c.id === savedId; }) || null;
+        }
+        if (!focusCourse && activeCoursesList.length) {
+            focusCourse = activeCoursesList
+                .slice()
+                .sort(function (a, b) {
+                    var pa = getProgress(a.id, a.modules);
+                    var pb = getProgress(b.id, b.modules);
+                    // En cours (1..99) prioritaires, puis non démarrés (0), puis terminés (100)
+                    var wa = pa === 0 ? 50 : pa === 100 ? 101 : pa;
+                    var wb = pb === 0 ? 50 : pb === 100 ? 101 : pb;
+                    return wb - wa;
+                })[0];
+            if (focusCourse) localStorage.setItem(STORAGE_KEY, focusCourse.id);
+        }
+
+        // Render the course picker (only shown when at least one formation is purchased)
+        (function renderCoursePicker() {
+            var picker = document.getElementById('coursePicker');
+            var chipsWrap = document.getElementById('coursePickerChips');
+            var titleEl = document.getElementById('coursePickerTitle');
+            var metaEl = document.getElementById('coursePickerMeta');
+            if (!picker || !chipsWrap) return;
+
+            if (!activeCoursesList.length) {
+                picker.hidden = true;
+                return;
+            }
+            picker.hidden = false;
+
+            titleEl.textContent = focusCourse ? focusCourse.name : 'Choisissez votre formation';
+
+            var count = activeCoursesList.length;
+            metaEl.innerHTML = count === 1
+                ? 'Vous suivez <strong>1 formation</strong>'
+                : 'Vous suivez <strong>' + count + ' formations</strong> · cliquez pour changer';
+
+            chipsWrap.innerHTML = '';
+            activeCoursesList.forEach(function (c) {
+                var pct = getProgress(c.id, c.modules);
+                var btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'lms-course-chip' + (focusCourse && focusCourse.id === c.id ? ' active' : '');
+                btn.setAttribute('role', 'tab');
+                btn.setAttribute('aria-selected', focusCourse && focusCourse.id === c.id ? 'true' : 'false');
+                btn.dataset.courseId = c.id;
+                // Swatch + name + progress badge
+                btn.innerHTML =
+                    '<span class="lms-course-chip-dot" style="background:' + c.gradient + '"></span>' +
+                    '<span>' + c.icon + ' ' + c.name + '</span>' +
+                    '<span class="lms-course-chip-badge">' + pct + '%</span>';
+                btn.addEventListener('click', function () {
+                    if (focusCourse && focusCourse.id === c.id) return;
+                    localStorage.setItem(STORAGE_KEY, c.id);
+                    // Reload to refresh all downstream widgets (resume banner, quick access, support…)
+                    window.location.reload();
+                });
+                chipsWrap.appendChild(btn);
+            });
+        })();
+
+        var quickLabel = document.getElementById('quickContextLabel');
+        if (focusCourse) {
+            quickLabel.textContent = 'Basés sur : ' + focusCourse.name;
+        } else {
+            quickLabel.textContent = 'Achetez une formation pour débloquer ces raccourcis';
+        }
+
+        // --- "Reprendre" hero banner --------------------------------
+        (function populateResumeBanner() {
+            var banner = document.getElementById('resumeBanner');
+            if (!banner || !focusCourse) return;
+
+            var p = progress[focusCourse.id] || {};
+            var pct = getProgress(focusCourse.id, focusCourse.modules);
+
+            // Si la formation est terminée à 100% → ne pas afficher la bannière
+            if (pct >= 100) return;
+
+            banner.hidden = false;
+
+            var thumb = document.getElementById('resumeThumb');
+            thumb.style.background = focusCourse.gradient;
+
+            document.getElementById('resumeBadge').textContent = focusCourse.modules + ' modules';
+            document.getElementById('resumeCourseTitle').textContent = focusCourse.name;
+
+            // Module / Leçon — priorité aux valeurs sauvegardées par apprendre.html
+            var totalLessons = p.totalLessons || focusCourse.modules;
+            var idx = (typeof p.lastLessonIndex === 'number') ? p.lastLessonIndex : (p.completed ? p.completed.length : 0);
+            var lessonNum = Math.min(idx + 1, totalLessons);
+            var moduleLabel = p.lastLessonModule || ('Module ' + Math.min(Math.ceil(lessonNum / Math.max(1, Math.round(totalLessons / focusCourse.modules))), focusCourse.modules));
+            var lessonName = p.lastLessonTitle || (pct === 0 ? 'Leçon d\'introduction' : 'Leçon ' + lessonNum);
+
+            document.getElementById('resumeModuleLabel').textContent = moduleLabel;
+            document.getElementById('resumeLessonName').textContent = lessonName;
+
+            var fill = document.getElementById('resumeProgressFill');
+            fill.style.width = pct + '%';
+            fill.style.background = focusCourse.gradient;
+            document.getElementById('resumeProgressText').textContent = pct + '% complété';
+
+            // Méta : dernière activité OU position dans le parcours
+            var metaEl = document.getElementById('resumeMeta');
+            if (p.lastVisitedAt) {
+                var d = new Date(p.lastVisitedAt);
+                var diffDays = Math.floor((Date.now() - d.getTime()) / 86400000);
+                var rel;
+                if (diffDays <= 0) rel = 'dernière visite aujourd\'hui';
+                else if (diffDays === 1) rel = 'dernière visite hier';
+                else if (diffDays < 7) rel = 'dernière visite il y a ' + diffDays + ' jours';
+                else rel = 'dernière visite le ' + d.toLocaleDateString('fr-FR', { day: '2-digit', month: 'short' });
+                metaEl.textContent = 'Leçon ' + lessonNum + ' / ' + totalLessons + ' · ' + rel;
+            } else {
+                metaEl.textContent = pct === 0
+                    ? 'Vous n\'avez pas encore démarré cette formation'
+                    : 'Leçon ' + lessonNum + ' / ' + totalLessons;
+            }
+
+            var cta = document.getElementById('resumeCta');
+            cta.href = 'apprendre.html?id=' + focusCourse.id;
+            var ctaLabel = cta.querySelector('span');
+            if (ctaLabel) ctaLabel.textContent = pct === 0 ? 'Démarrer la formation' : 'Reprendre la leçon';
+        })();
+
+        // --- Vidéo -----------------------------------------------------
+        (function populateVideoCard() {
+            var thumb = document.querySelector('#quickVideo .lms-access-thumb');
+            var badge = document.getElementById('videoBadge');
+            var title = document.getElementById('videoTitle');
+            var desc  = document.getElementById('videoDesc');
+            var cta   = document.getElementById('videoCta');
+            var wrap  = document.getElementById('videoProgressWrap');
+            var fill  = document.getElementById('videoProgressFill');
+            var text  = document.getElementById('videoProgressText');
+
+            if (!focusCourse) return;
+            var p = progress[focusCourse.id] || {};
+            var done = (p.completed || []).length;
+            var total = p.total || focusCourse.modules;
+            var nextModuleIdx = Math.min(done + 1, total);
+            var pct = getProgress(focusCourse.id, focusCourse.modules);
+
+            thumb.style.background = focusCourse.gradient;
+            badge.textContent = Math.round(focusCourse.hours / focusCourse.modules * 10) / 10 + 'h';
+            title.textContent = 'Module ' + nextModuleIdx + ' · ' + focusCourse.name;
+            desc.textContent = pct > 0
+                ? 'Reprenez là où vous vous êtes arrêté(e) et poursuivez votre progression.'
+                : 'Démarrez la première vidéo du parcours pédagogique.';
+
+            wrap.hidden = false;
+            fill.style.width = pct + '%';
+            fill.style.background = focusCourse.gradient;
+            text.textContent = pct + '%';
+
+            cta.href = 'apprendre.html?id=' + focusCourse.id;
+            cta.textContent = (pct > 0 ? 'Reprendre la vidéo' : 'Commencer la vidéo') + ' \u2192';
+        })();
+
+        // --- Exercice --------------------------------------------------
+        (function populateExerciseCard() {
+            var badge = document.getElementById('exerciseBadge');
+            var title = document.getElementById('exerciseTitle');
+            var desc  = document.getElementById('exerciseDesc');
+            var cta   = document.getElementById('exerciseCta');
+            var statsList = document.getElementById('exerciseStats');
+
+            if (!focusCourse) return;
+            // Utilise la progression locale : 1 exercice ≈ 1 module validé
+            var progressData = progress[focusCourse.id] || {};
+            var doneModules = (progressData.completed || []).length;
+            var totalEx = focusCourse.modules;
+            var done = doneModules;
+            var leftCount = Math.max(0, totalEx - done);
+            // Scores simulés : si un champ 'scores' existe, calcule, sinon estime à partir de la progression
+            var avgScore = 0;
+            if (progressData.scores && progressData.scores.length) {
+                avgScore = Math.round(progressData.scores.reduce(function (s, n) { return s + n; }, 0) / progressData.scores.length);
+            } else if (done > 0) {
+                // Estimation : entre 70 et 90 % selon la progression
+                avgScore = 70 + Math.min(20, Math.round(done * 2));
+            }
+
+            // Prochain exercice : déduit du nb déjà fait
+            var typeLabels = { quiz: 'QCM', true_false: 'Vrai/Faux', matching: 'Association', fill_blank: 'Texte à trous', open: 'Question ouverte', exam: 'Examen' };
+            var nextType = 'quiz';
+            badge.textContent = typeLabels[nextType] || 'Exercice';
+
+            title.textContent = 'Exercice ' + (done + 1) + ' · ' + focusCourse.name;
+            desc.textContent = done
+                ? 'Testez vos acquis sur le prochain module. Vous avez déjà complété ' + done + ' exercice' + (done > 1 ? 's' : '') + '.'
+                : 'Premier exercice du parcours — mettez-vous à l\'épreuve !';
+
+            statsList.hidden = false;
+            document.getElementById('exDone').textContent = done;
+            document.getElementById('exScore').textContent = done ? avgScore + '%' : '—';
+            document.getElementById('exLeft').textContent = leftCount;
+
+            cta.href = 'apprendre.html?id=' + focusCourse.id + '#exercices';
+            cta.textContent = (done ? 'Continuer les exercices' : 'Commencer l\'exercice') + ' \u2192';
+        })();
+
+        // --- Support : génération et téléchargement de fichiers -------
+        (function populateSupportCard() {
+            var title = document.getElementById('supportTitle');
+            var desc  = document.getElementById('supportDesc');
+            var buttons = document.querySelectorAll('#supportDownloads .lms-download-btn');
+
+            if (!focusCourse) {
+                buttons.forEach(function (b) { b.disabled = true; });
+                return;
+            }
+            title.textContent = 'Supports : ' + focusCourse.name;
+            desc.textContent = 'Téléchargez les ressources hors-ligne pour étudier partout.';
+
+            function triggerDownload(filename, content, mimeType) {
+                var blob = new Blob([content], { type: mimeType });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+            }
+
+            function slug(s) {
+                return String(s).toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+            }
+
+            function buildManuel(course) {
+                // Manuel HTML auto-portant, imprimable en PDF depuis le navigateur
+                var modules = [];
+                for (var i = 1; i <= course.modules; i++) {
+                    modules.push('<section class="module"><h3>Module ' + i + '</h3><p class="mod-duration">' +
+                        Math.round(course.hours / course.modules * 10) / 10 + ' h · théorie + exercices pratiques</p>' +
+                        '<p>Ce module couvre les concepts clés du module ' + i + '. Chaque leçon alterne vidéo (15–30 min), ' +
+                        'lecture interactive, atelier pratique et un exercice d\'auto-évaluation.</p>' +
+                        '<ul><li>Objectifs pédagogiques</li><li>Cas concret africain</li><li>Exercice corrigé</li><li>Ressources à télécharger</li></ul>' +
+                    '</section>');
+                }
+                return '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">' +
+                    '<title>Manuel — ' + course.name + '</title>' +
+                    '<style>body{font-family:Georgia,serif;max-width:780px;margin:40px auto;padding:0 32px;color:#1F2937;line-height:1.6}' +
+                    'h1{color:#3A50F6;font-size:2rem;margin:0 0 6px}h2{color:#1F2937;border-bottom:2px solid #EBF0FF;padding-bottom:6px;margin-top:32px}' +
+                    'h3{color:#3A50F6;margin-bottom:4px}.module{margin:24px 0;padding:20px;background:#F8FAFC;border-radius:10px}' +
+                    '.mod-duration{color:#64748B;font-size:.9rem;font-style:italic;margin:0 0 10px}' +
+                    'ul{padding-left:22px}header{border-bottom:3px solid #3A50F6;padding-bottom:16px;margin-bottom:24px}' +
+                    '.brand{color:#64748B;font-size:.85rem;letter-spacing:1px;text-transform:uppercase}' +
+                    '@media print{body{margin:0;padding:20px}}</style></head><body>' +
+                    '<header><div class="brand">Cap Learning by Digi Atlas</div>' +
+                    '<h1>' + course.name + '</h1>' +
+                    '<p>Durée totale : <strong>' + course.hours + ' h</strong> · ' + course.modules + ' modules</p></header>' +
+                    '<h2>À propos de cette formation</h2>' +
+                    '<p>Ce manuel rassemble l\'ensemble des supports théoriques de la formation <em>' + course.name + '</em>. ' +
+                    'Il est conçu pour être consulté hors-ligne, en complément des vidéos disponibles sur la plateforme. ' +
+                    'Pour chaque module, vous trouverez : objectifs, notions clés, exemples africains, exercice corrigé et liens de ressources.</p>' +
+                    '<h2>Parcours pédagogique</h2>' + modules.join('') +
+                    '<h2>Pour aller plus loin</h2>' +
+                    '<p>Complétez chaque module par l\'exercice en ligne et le quiz final. À 100 % d\'avancement et note ≥ 10/20, ' +
+                    'votre certificat <strong>Cap Learning by Digi Atlas</strong> vous est délivré automatiquement.</p>' +
+                    '<footer style="margin-top:40px;border-top:2px solid #EBF0FF;padding-top:16px;color:#64748B;font-size:.85rem">' +
+                    '© ' + new Date().getFullYear() + ' Cap Learning by Digi Atlas · Document pédagogique interne · Reproduction interdite.' +
+                    '</footer></body></html>';
+            }
+
+            function buildRecap(course) {
+                var lines = [];
+                lines.push('# ' + course.name);
+                lines.push('');
+                lines.push('**Durée :** ' + course.hours + ' h | **Modules :** ' + course.modules + ' | **Catégorie :** ' + course.category);
+                lines.push('');
+                lines.push('---');
+                lines.push('');
+                lines.push('## Fiche récapitulative');
+                lines.push('');
+                lines.push('Cette fiche résume les notions clés de la formation *' + course.name + '*.');
+                lines.push('Elle est conçue pour être relue en 10 min avant un examen ou un cas pratique.');
+                lines.push('');
+                lines.push('## Points essentiels par module');
+                lines.push('');
+                for (var i = 1; i <= course.modules; i++) {
+                    lines.push('### Module ' + i);
+                    lines.push('- **Objectif :** maîtriser les fondamentaux du module ' + i + '.');
+                    lines.push('- **Notion clé :** application pratique adaptée au contexte africain.');
+                    lines.push('- **À retenir :** exercice corrigé + case study à refaire avant examen.');
+                    lines.push('');
+                }
+                lines.push('## Auto-check avant examen');
+                lines.push('');
+                lines.push('- [ ] Les ' + course.modules + ' modules ont été visionnés.');
+                lines.push('- [ ] Tous les exercices sont complétés avec score ≥ 60 %.');
+                lines.push('- [ ] Le cas pratique final a été soumis et noté.');
+                lines.push('- [ ] Vous êtes capable d\'expliquer chaque notion en 2 minutes.');
+                lines.push('');
+                lines.push('---');
+                lines.push('');
+                lines.push('_© Cap Learning by Digi Atlas — ressource pédagogique à usage personnel._');
+                return lines.join('\n');
+            }
+
+            function buildExercices(course) {
+                var lines = [];
+                lines.push('=== EXERCICES CORRIGÉS — ' + course.name.toUpperCase() + ' ===');
+                lines.push('');
+                lines.push('Durée totale : ' + course.hours + ' h | ' + course.modules + ' modules');
+                lines.push('Document à conserver pour révision hors-ligne.');
+                lines.push('');
+                lines.push('-'.repeat(60));
+                lines.push('');
+                for (var i = 1; i <= Math.min(course.modules, 12); i++) {
+                    lines.push('EXERCICE ' + i + ' — Module ' + i);
+                    lines.push('');
+                    lines.push('Énoncé :');
+                    lines.push('  Appliquez les concepts du module ' + i + ' au cas pratique suivant :');
+                    lines.push('  une entreprise africaine de taille moyenne souhaite se digitaliser.');
+                    lines.push('  Quelle stratégie recommandez-vous en 3 étapes ?');
+                    lines.push('');
+                    lines.push('Corrigé :');
+                    lines.push('  1. Diagnostic des besoins via un audit terrain (outils + usages).');
+                    lines.push('  2. Priorisation des leviers à fort ROI selon la maturité digitale.');
+                    lines.push('  3. Déploiement itératif avec mesure continue des KPIs.');
+                    lines.push('');
+                    lines.push('Critères de réussite : argumentation structurée, exemples concrets,');
+                    lines.push('KPIs chiffrés, adaptation au contexte local.');
+                    lines.push('');
+                    lines.push('-'.repeat(60));
+                    lines.push('');
+                }
+                lines.push('');
+                lines.push('© Cap Learning by Digi Atlas — Reproduction interdite');
+                return lines.join('\n');
+            }
+
+            buttons.forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    var kind = btn.dataset.resource;
+                    var base = slug(focusCourse.name);
+                    btn.classList.add('is-loading');
+                    setTimeout(function () {
+                        if (kind === 'manuel') {
+                            triggerDownload('manuel-' + base + '.html', buildManuel(focusCourse), 'text/html;charset=utf-8');
+                        } else if (kind === 'recap') {
+                            triggerDownload('recap-' + base + '.md', buildRecap(focusCourse), 'text/markdown;charset=utf-8');
+                        } else if (kind === 'exercices') {
+                            triggerDownload('exercices-corriges-' + base + '.txt', buildExercices(focusCourse), 'text/plain;charset=utf-8');
+                        }
+                        btn.classList.remove('is-loading');
+                        btn.classList.add('is-done');
+                        setTimeout(function () { btn.classList.remove('is-done'); }, 1500);
+                    }, 250);
+                });
+            });
+        })();
+
+        // ---- Logout ----
+        document.getElementById('logoutBtn').addEventListener('click', function () {
+            localStorage.removeItem('caplearning_user');
+            window.location.href = 'connexion.html';
+        });
+
+        // ---- Mobile Sidebar Toggle ----
+        var sidebar = document.getElementById('sidebar');
+        var overlay = document.getElementById('sidebarOverlay');
+        var toggleBtn = document.getElementById('mobileToggle');
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('open');
+        }
+
+        toggleBtn.addEventListener('click', function () {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        });
+
+        overlay.addEventListener('click', closeSidebar);
+
+    })();
+    </script>
+    <script src="../js/gamification.js"></script>
+    <script>
+    (function() {
+        Gamification.injectStyles();
+        // Update streak
+        Gamification.updateStreak();
+        // Render dashboard widget
+        Gamification.renderDashboardWidget(document.getElementById('gamif-dashboard-widget'));
+    })();
+    </script>
+    <!-- Trustpilot TrustBox Bootstrap -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+    <!-- WhatsApp Chat Widget -->
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+</html>

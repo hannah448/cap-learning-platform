@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion | Cap Learning</title>
+
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lms.css">
+
+    <style>
+        /* Auth page — self-contained styles */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .auth-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+            font-family: var(--font-body);
+            padding: var(--space-6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtle decorative circles */
+        .auth-page::before,
+        .auth-page::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.07;
+            pointer-events: none;
+        }
+
+        .auth-page::before {
+            width: 600px;
+            height: 600px;
+            background: var(--color-primary);
+            top: -200px;
+            right: -150px;
+        }
+
+        .auth-page::after {
+            width: 400px;
+            height: 400px;
+            background: var(--color-accent);
+            bottom: -120px;
+            left: -100px;
+        }
+
+        .auth-card {
+            width: 100%;
+            max-width: 440px;
+            background: var(--surface-card);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-xl);
+            padding: var(--space-10);
+            position: relative;
+            z-index: 1;
+            animation: authFadeIn 0.5s var(--ease-out) both;
+        }
+
+        @keyframes authFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .auth-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--color-secondary);
+            text-decoration: none;
+            margin-bottom: var(--space-3);
+        }
+
+        .auth-logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            border-radius: var(--radius-lg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: var(--text-lg);
+            font-weight: 700;
+        }
+
+        .auth-header p {
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            line-height: var(--leading-normal);
+        }
+
+        /* Tabs */
+        .auth-tabs {
+            display: flex;
+            background: var(--color-gray-100);
+            border-radius: var(--radius-full);
+            padding: 4px;
+            margin-bottom: var(--space-8);
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: var(--space-3) var(--space-4);
+            border: none;
+            border-radius: var(--radius-full);
+            background: transparent;
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .auth-tab.active {
+            background: var(--surface-card);
+            color: var(--color-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .auth-tab:hover:not(.active) {
+            color: var(--text-primary);
+        }
+
+        /* Forms */
+        .auth-form {
+            display: none;
+        }
+
+        .auth-form.active {
+            display: block;
+            animation: authSlideIn 0.3s var(--ease-out) both;
+        }
+
+        @keyframes authSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .auth-input-group {
+            margin-bottom: var(--space-5);
+        }
+
+        .auth-input-group label {
+            display: block;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: var(--space-3) var(--space-4);
+            border: 1.5px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            color: var(--text-primary);
+            background: var(--surface-primary);
+            transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+            outline: none;
+        }
+
+        .auth-input::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .auth-input:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(58, 80, 246, 0.12);
+        }
+
+        .auth-input.error {
+            border-color: var(--color-error);
+            box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+        }
+
+        .auth-input-row {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .auth-input-row .auth-input-group {
+            flex: 1;
+        }
+
+        .auth-form-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: var(--space-6);
+        }
+
+        .auth-form-footer a {
+            font-size: var(--text-sm);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--duration-fast);
+        }
+
+        .auth-form-footer a:hover {
+            color: var(--color-primary-dark);
+            text-decoration: underline;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: var(--space-3) var(--space-6);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-family: var(--font-body);
+            font-size: var(--text-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .auth-btn-primary {
+            background: var(--color-primary);
+            color: #fff;
+            box-shadow: 0 2px 8px rgba(58, 80, 246, 0.3);
+        }
+
+        .auth-btn-primary:hover {
+            background: var(--color-primary-dark);
+            box-shadow: 0 4px 16px rgba(58, 80, 246, 0.35);
+            transform: translateY(-1px);
+        }
+
+        .auth-btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Divider */
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+            color: var(--text-tertiary);
+            font-size: var(--text-sm);
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--color-gray-200);
+        }
+
+        /* Social */
+        .auth-social-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-3);
+            padding: var(--space-3) var(--space-6);
+            border: 1.5px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            background: var(--surface-primary);
+            font-family: var(--font-body);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all var(--duration-fast);
+        }
+
+        .auth-social-btn:hover {
+            background: var(--color-gray-50);
+            border-color: var(--color-gray-300);
+        }
+
+        .auth-social-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Toggle text */
+        .auth-toggle {
+            text-align: center;
+            margin-top: var(--space-6);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+
+        .auth-toggle a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .auth-toggle a:hover {
+            text-decoration: underline;
+        }
+
+        /* Error message */
+        .auth-error {
+            background: rgba(239, 68, 68, 0.08);
+            color: var(--color-error);
+            font-size: var(--text-sm);
+            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-md);
+            margin-bottom: var(--space-5);
+            display: none;
+        }
+
+        .auth-error.visible {
+            display: block;
+        }
+
+        @media (max-width: 480px) {
+            .auth-card {
+                padding: var(--space-6);
+            }
+
+            .auth-input-row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card">
+            <!-- Header -->
+            <div class="auth-header">
+                <a href="../index.html" class="auth-logo">
+                    <span class="auth-logo-icon">C</span>
+                    Cap Learning
+                    <span class="logo-by" style="margin-left:10px; padding-left:10px; border-left:1px solid rgba(0,0,0,.08); font-size:.7rem; color:var(--color-gray-500); display:inline-flex; align-items:center; gap:6px;">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas" style="height:28px; width:28px; vertical-align:middle;"></span>
+                </a>
+                <p>La plateforme e-learning pour les entrepreneurs africains &middot; Certifi&eacute;s en France</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Connexion</button>
+                <button class="auth-tab" data-tab="signup">Inscription</button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form active" id="loginForm">
+                <div id="loginError" class="auth-error"></div>
+
+                <div class="auth-input-group">
+                    <label for="loginEmail">Adresse e-mail</label>
+                    <input type="email" id="loginEmail" class="auth-input" placeholder="votre@email.com" required>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="loginPassword">Mot de passe</label>
+                    <input type="password" id="loginPassword" class="auth-input" placeholder="Votre mot de passe" required>
+                </div>
+
+                <div class="auth-form-footer">
+                    <a href="#">Mot de passe oubli&eacute; ?</a>
+                </div>
+
+                <button type="submit" class="auth-btn auth-btn-primary">Se connecter</button>
+
+                <div class="auth-divider">ou</div>
+
+                <button type="button" class="auth-social-btn" id="googleLoginBtn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    Continuer avec Google
+                </button>
+
+                <div class="auth-toggle">
+                    Pas encore de compte ? <a data-switch="signup">Cr&eacute;er un compte</a>
+                </div>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form" id="signupForm">
+                <div id="signupError" class="auth-error"></div>
+
+                <div class="auth-input-row">
+                    <div class="auth-input-group">
+                        <label for="signupFirstName">Pr&eacute;nom</label>
+                        <input type="text" id="signupFirstName" class="auth-input" placeholder="Pr&eacute;nom" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <label for="signupLastName">Nom</label>
+                        <input type="text" id="signupLastName" class="auth-input" placeholder="Nom" required>
+                    </div>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="signupEmail">Adresse e-mail</label>
+                    <input type="email" id="signupEmail" class="auth-input" placeholder="votre@email.com" required>
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="signupPassword">Mot de passe</label>
+                    <input type="password" id="signupPassword" class="auth-input" placeholder="Minimum 8 caract&egrave;res" required minlength="8">
+                </div>
+
+                <div class="auth-input-group">
+                    <label for="signupPasswordConfirm">Confirmer le mot de passe</label>
+                    <input type="password" id="signupPasswordConfirm" class="auth-input" placeholder="Retapez votre mot de passe" required minlength="8">
+                </div>
+
+                <button type="submit" class="auth-btn auth-btn-primary">Cr&eacute;er mon compte</button>
+
+                <div class="auth-divider">ou</div>
+
+                <button type="button" class="auth-social-btn" id="googleSignupBtn">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    Continuer avec Google
+                </button>
+
+                <div class="auth-toggle">
+                    D&eacute;j&agrave; un compte ? <a data-switch="login">Se connecter</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin data layer (seed + session API) -->
+    <script src="../js/admin-data.js"></script>
+    <script>
+    // Redirect if already logged in
+    (function () {
+        var s = window.AdminData && window.AdminData.getSession();
+        if (s) {
+            window.location.href = s.role === 'admin' ? 'admin.html' : 'dashboard.html';
+        }
+    })();
+    </script>
+    <script>
+    (function () {
+        // --- Tab switching ---
+        const tabs = document.querySelectorAll('.auth-tab');
+        const forms = document.querySelectorAll('.auth-form');
+        const switchLinks = document.querySelectorAll('[data-switch]');
+
+        function switchTab(targetTab) {
+            tabs.forEach(function (tab) {
+                tab.classList.toggle('active', tab.dataset.tab === targetTab);
+            });
+            forms.forEach(function (form) {
+                form.classList.remove('active');
+            });
+            document.getElementById(targetTab === 'login' ? 'loginForm' : 'signupForm').classList.add('active');
+            // Clear errors on switch
+            document.getElementById('loginError').classList.remove('visible');
+            document.getElementById('signupError').classList.remove('visible');
+        }
+
+        tabs.forEach(function (tab) {
+            tab.addEventListener('click', function () {
+                switchTab(this.dataset.tab);
+            });
+        });
+
+        switchLinks.forEach(function (link) {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                switchTab(this.dataset.switch);
+            });
+        });
+
+        // --- Helpers ---
+        function showError(elementId, message) {
+            var el = document.getElementById(elementId);
+            el.textContent = message;
+            el.classList.add('visible');
+        }
+
+        function hideError(elementId) {
+            var el = document.getElementById(elementId);
+            el.textContent = '';
+            el.classList.remove('visible');
+        }
+
+        function storeUser(userData) {
+            localStorage.setItem('caplearning_user', JSON.stringify(userData));
+        }
+
+        function redirectByRole(role) {
+            window.location.href = role === 'admin' ? 'admin.html' : 'dashboard.html';
+        }
+
+        function redirect() { redirectByRole('learner'); }
+
+        // --- Login ---
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            hideError('loginError');
+
+            var email = document.getElementById('loginEmail').value.trim();
+            var password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showError('loginError', 'Veuillez remplir tous les champs.');
+                return;
+            }
+
+            // AdminData intégration : reconnaissance du rôle admin + session partagée
+            if (window.AdminData) {
+                var existing = window.AdminData.getUserByEmail(email);
+                var user = existing || window.AdminData.createUser({
+                    email: email,
+                    name: email.split('@')[0]
+                });
+                var sess = window.AdminData.setSession(user);
+
+                // Rétrocompat : on garde aussi l'ancien format caplearning_user pour le dashboard
+                storeUser({ name: user.name, email: user.email, loggedIn: true, role: user.role });
+
+                redirectByRole(sess.role);
+                return;
+            }
+
+            // Fallback (sans AdminData) — legacy behaviour
+            var stored = localStorage.getItem('caplearning_user');
+            var legacyUser = stored ? JSON.parse(stored) : null;
+            if (legacyUser && legacyUser.email === email) {
+                legacyUser.loggedIn = true;
+                storeUser(legacyUser);
+                redirect();
+                return;
+            }
+            storeUser({ name: email.split('@')[0], email: email, loggedIn: true });
+            redirect();
+        });
+
+        // --- Signup ---
+        document.getElementById('signupForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            hideError('signupError');
+
+            var firstName = document.getElementById('signupFirstName').value.trim();
+            var lastName = document.getElementById('signupLastName').value.trim();
+            var email = document.getElementById('signupEmail').value.trim();
+            var password = document.getElementById('signupPassword').value;
+            var passwordConfirm = document.getElementById('signupPasswordConfirm').value;
+
+            if (!firstName || !lastName || !email || !password || !passwordConfirm) {
+                showError('signupError', 'Veuillez remplir tous les champs.');
+                return;
+            }
+
+            if (password.length < 8) {
+                showError('signupError', 'Le mot de passe doit contenir au moins 8 caractères.');
+                return;
+            }
+
+            if (password !== passwordConfirm) {
+                showError('signupError', 'Les mots de passe ne correspondent pas.');
+                document.getElementById('signupPasswordConfirm').classList.add('error');
+                return;
+            }
+
+            if (window.AdminData) {
+                try {
+                    var created = window.AdminData.getUserByEmail(email) || window.AdminData.createUser({
+                        name: firstName + ' ' + lastName,
+                        email: email
+                    });
+                    var sess = window.AdminData.setSession(created);
+                    storeUser({ name: created.name, email: created.email, loggedIn: true, role: created.role });
+                    redirectByRole(sess.role);
+                    return;
+                } catch (err) {
+                    showError('signupError', err.message || 'Impossible de créer le compte.');
+                    return;
+                }
+            }
+
+            var newUser = {
+                name: firstName + ' ' + lastName,
+                email: email,
+                loggedIn: true
+            };
+            storeUser(newUser);
+            redirect();
+        });
+
+        // --- Google (placeholder) ---
+        document.getElementById('googleLoginBtn').addEventListener('click', function () {
+            var googleUser = {
+                name: 'Utilisateur Google',
+                email: 'utilisateur@gmail.com',
+                loggedIn: true
+            };
+            storeUser(googleUser);
+            redirect();
+        });
+
+        document.getElementById('googleSignupBtn').addEventListener('click', function () {
+            var googleUser = {
+                name: 'Utilisateur Google',
+                email: 'utilisateur@gmail.com',
+                loggedIn: true
+            };
+            storeUser(googleUser);
+            redirect();
+        });
+
+        // Clear error styling on input focus
+        document.querySelectorAll('.auth-input').forEach(function (input) {
+            input.addEventListener('focus', function () {
+                this.classList.remove('error');
+            });
+        });
+    })();
+    </script>
+    <!-- Trustpilot TrustBox Bootstrap -->
+    <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
+    <!-- WhatsApp Chat Widget -->
+    <script src="../js/whatsapp-widget.js"></script>
+</body>
+</html>

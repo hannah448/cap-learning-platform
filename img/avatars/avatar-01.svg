@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Portrait femme foulard wax">
+  <circle cx="50" cy="50" r="50" fill="#F4A261"/>
+  <path d="M22,100 Q22,70 50,70 Q78,70 78,100 Z" fill="#5D2E1F"/>
+  <ellipse cx="50" cy="48" rx="22" ry="26" fill="#6B3F1D"/>
+  <path d="M26,40 Q28,16 50,10 Q72,16 74,40 Q70,26 60,20 Q55,14 50,14 Q45,14 40,20 Q30,26 26,40 Z" fill="#E76F51"/>
+  <path d="M34,22 Q38,14 44,16 Q42,22 36,26 Z" fill="#F4D35E"/>
+  <path d="M66,22 Q62,14 56,16 Q58,22 64,26 Z" fill="#F4D35E"/>
+  <ellipse cx="42" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <ellipse cx="58" cy="48" rx="1.8" ry="2.4" fill="#1A1A1A"/>
+  <path d="M43,60 Q50,65 57,60" stroke="#3D1A0A" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <circle cx="28" cy="55" r="2.2" fill="#F4D35E"/>
+  <circle cx="72" cy="55" r="2.2" fill="#F4D35E"/>
+</svg>
