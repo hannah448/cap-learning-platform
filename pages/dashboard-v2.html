@@ -368,13 +368,300 @@
         .dash-objective p { color: var(--text-secondary); font-size: 0.92rem; }
         .dash-objective .btn { position: relative; z-index: 1; }
 
+        /* === SIDEBAR NAV === */
+        .dash-layout {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            gap: 32px;
+            align-items: start;
+        }
+        .dash-sidebar {
+            position: sticky;
+            top: 96px;
+            background: #fff;
+            border: 1px solid #EEE8FB;
+            border-radius: 20px;
+            padding: 18px 14px;
+            box-shadow: 0 1px 2px rgba(30, 27, 58, 0.03), 0 10px 28px rgba(30, 27, 58, 0.05);
+        }
+        .dash-sidebar-user {
+            display: flex; align-items: center; gap: 10px;
+            padding: 8px 10px 14px;
+            border-bottom: 1px solid #F0ECFB;
+            margin-bottom: 10px;
+        }
+        .dash-sidebar-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary, #3A50F6), var(--color-accent, #A78BFA));
+            color: #fff; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem;
+        }
+        .dash-sidebar-user-info { line-height: 1.2; }
+        .dash-sidebar-user-name { font-weight: 600; font-size: 0.95rem; }
+        .dash-sidebar-user-plan { font-size: 0.78rem; color: var(--text-secondary); }
+        .dash-nav {
+            display: flex; align-items: center; gap: 10px;
+            padding: 10px 12px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: background 0.18s ease, color 0.18s ease;
+        }
+        .dash-nav:hover { background: #F6F3FE; color: var(--color-primary); }
+        .dash-nav.active {
+            background: linear-gradient(135deg, rgba(58, 80, 246, 0.08), rgba(167, 139, 250, 0.12));
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+        .dash-nav .dash-nav-icon {
+            width: 22px; text-align: center;
+            font-size: 1rem;
+        }
+        .dash-nav .dash-nav-badge {
+            margin-left: auto;
+            background: #FF6B35;
+            color: #fff;
+            font-size: 0.68rem;
+            padding: 2px 7px;
+            border-radius: 10px;
+            font-weight: 700;
+        }
+        .dash-nav-whatsapp {
+            color: #075E54;
+        }
+        .dash-nav-whatsapp:hover { background: #E8F5E9; color: #25D366; }
+        .dash-sidebar-divider {
+            height: 1px; background: #F0ECFB;
+            margin: 12px 0;
+        }
+        .dash-sidebar-footer {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            line-height: 1.4;
+        }
+        .dash-sidebar-footer a { color: var(--color-primary); }
+
+        /* === FICHE DE SUIVI === */
+        .dash-fiche {
+            background: #fff;
+            border: 1px solid #EEE8FB;
+            border-radius: 24px;
+            padding: 32px 36px;
+            box-shadow: 0 1px 2px rgba(30, 27, 58, 0.03), 0 12px 28px rgba(30, 27, 58, 0.05);
+        }
+        .dash-fiche-head {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .dash-fiche-head h2 { font-family: var(--font-display); font-size: 1.5rem; }
+        .dash-fiche-objective {
+            background: linear-gradient(135deg, #FDF7EA, #fff);
+            border: 1px solid #F2E6C8;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+        }
+        .dash-fiche-objective-label {
+            font-size: 0.78rem; color: var(--text-secondary);
+            text-transform: uppercase; letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+        .dash-fiche-objective-txt {
+            font-family: var(--font-display);
+            font-size: 1.1rem; font-weight: 600;
+            color: var(--color-secondary);
+        }
+        .dash-jalons { list-style: none; padding: 0; margin: 0; }
+        .dash-jalon {
+            display: grid;
+            grid-template-columns: 28px 1fr auto;
+            gap: 14px; align-items: center;
+            padding: 14px 4px;
+            border-bottom: 1px dashed #EEE8FB;
+        }
+        .dash-jalon:last-child { border-bottom: 0; }
+        .dash-jalon-check {
+            width: 22px; height: 22px; border-radius: 50%;
+            border: 2px solid #D7CDF5;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; color: #fff;
+            background: #fff;
+        }
+        .dash-jalon.done .dash-jalon-check {
+            background: #25D366; border-color: #25D366;
+        }
+        .dash-jalon.current .dash-jalon-check {
+            border-color: var(--color-primary); background: var(--color-primary);
+            animation: pulse-jalon 2s ease-in-out infinite;
+        }
+        @keyframes pulse-jalon {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(58, 80, 246, 0.5); }
+            50% { box-shadow: 0 0 0 8px rgba(58, 80, 246, 0); }
+        }
+        .dash-jalon-title { font-weight: 500; }
+        .dash-jalon.done .dash-jalon-title { text-decoration: line-through; color: var(--text-secondary); }
+        .dash-jalon-date { font-size: 0.82rem; color: var(--text-secondary); }
+        .dash-fiche-journal {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #F0ECFB;
+        }
+        .dash-fiche-journal h3 { font-size: 1rem; margin-bottom: 12px; font-weight: 600; }
+        .dash-journal-entry {
+            background: #F8F6FD;
+            border-left: 3px solid var(--color-primary);
+            padding: 10px 14px;
+            border-radius: 0 10px 10px 0;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        .dash-journal-entry-date {
+            font-size: 0.78rem; color: var(--text-secondary);
+            margin-bottom: 3px;
+        }
+
+        /* === WHATSAPP MESSAGERIE === */
+        .dash-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: #fff;
+            border-radius: 24px;
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: 64px 1fr auto;
+            gap: 20px; align-items: center;
+            box-shadow: 0 1px 2px rgba(30, 27, 58, 0.04), 0 18px 36px rgba(37, 211, 102, 0.22);
+            position: relative; overflow: hidden;
+        }
+        .dash-whatsapp::after {
+            content: ''; position: absolute; right: -60px; top: -60px;
+            width: 220px; height: 220px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            pointer-events: none;
+        }
+        .dash-whatsapp-icon {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            position: relative; z-index: 1;
+        }
+        .dash-whatsapp h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem; margin-bottom: 4px;
+            position: relative; z-index: 1;
+        }
+        .dash-whatsapp p {
+            font-size: 0.95rem; opacity: 0.92;
+            position: relative; z-index: 1;
+        }
+        .dash-whatsapp-btn {
+            background: #fff;
+            color: #128C7E;
+            padding: 14px 26px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+            position: relative; z-index: 1;
+            white-space: nowrap;
+        }
+        .dash-whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        }
+
+        /* === CERTIFICATS === */
+        .dash-certs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .dash-cert {
+            background: #fff;
+            border: 1px solid #EEE8FB;
+            border-radius: 18px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+        }
+        .dash-cert:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 32px rgba(30, 27, 58, 0.08);
+        }
+        .dash-cert-ribbon {
+            width: 64px; height: 64px; margin: 0 auto 12px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F2C94C, #F2994A);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 8px 20px rgba(242, 153, 74, 0.35);
+        }
+        .dash-cert.locked .dash-cert-ribbon {
+            background: #E5E1F3;
+            box-shadow: none;
+            filter: grayscale(1);
+        }
+        .dash-cert-title { font-weight: 600; font-size: 0.98rem; margin-bottom: 4px; }
+        .dash-cert-meta { font-size: 0.82rem; color: var(--text-secondary); }
+        .dash-cert.obtained .dash-cert-meta { color: #25D366; font-weight: 600; }
+        .dash-cert-badge {
+            display: inline-block;
+            background: #F2994A; color: #fff;
+            font-size: 0.72rem; padding: 3px 10px;
+            border-radius: 100px; margin-top: 8px; font-weight: 600;
+        }
+
+        /* === COMMUNAUTÉ ENRICHIE === */
+        .dash-community-compose {
+            background: linear-gradient(135deg, #F8F6FD 0%, #fff 100%);
+            border: 1px dashed #D7CDF5;
+            border-radius: 18px;
+            padding: 16px 20px;
+            margin-bottom: 18px;
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 14px;
+            align-items: center;
+        }
+        .dash-community-compose input {
+            width: 100%; border: 0; background: transparent;
+            font-family: inherit; font-size: 0.95rem;
+            color: var(--text-primary);
+            padding: 6px 0;
+        }
+        .dash-community-compose input:focus { outline: none; }
+        .dash-community-compose input::placeholder { color: var(--text-secondary); }
+
         /* Responsive */
         @media (max-width: 900px) {
+            .dash-layout { grid-template-columns: 1fr; }
+            .dash-sidebar {
+                position: static;
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                gap: 4px;
+                padding: 14px;
+            }
+            .dash-sidebar-user { grid-column: 1 / -1; }
+            .dash-sidebar-divider, .dash-sidebar-footer { display: none; }
+            .dash-nav { padding: 10px 8px; font-size: 0.85rem; }
+            .dash-nav .dash-nav-badge { display: none; }
             .dash-resume-inner { padding: 28px 24px; grid-template-columns: 1fr; gap: 24px; align-items: start; }
             .dash-formations { grid-template-columns: 1fr; }
             .dash-reco { grid-template-columns: 60px 1fr; gap: 16px; padding: 22px; }
             .dash-reco > .btn { grid-column: 1 / -1; justify-content: center; }
             .dash-objective { grid-template-columns: 1fr; text-align: center; padding: 26px; }
+            .dash-whatsapp { grid-template-columns: 56px 1fr; padding: 22px; }
+            .dash-whatsapp-btn { grid-column: 1 / -1; justify-content: center; text-align: center; }
+            .dash-certs { grid-template-columns: 1fr; }
+            .dash-fiche { padding: 22px; }
         }
     </style>
 </head>
@@ -458,9 +745,48 @@
 
     <main id="main-content" class="dash-main">
         <div class="dash-container">
+            <div class="dash-layout">
+
+            <!-- SIDEBAR NAV -->
+            <aside class="dash-sidebar" aria-label="Navigation tableau de bord">
+                <div class="dash-sidebar-user">
+                    <div class="dash-sidebar-avatar">NM</div>
+                    <div class="dash-sidebar-user-info">
+                        <div class="dash-sidebar-user-name">Nadia M.</div>
+                        <div class="dash-sidebar-user-plan">Plan Premium</div>
+                    </div>
+                </div>
+                <a href="#dashboard" class="dash-nav active">
+                    <span class="dash-nav-icon">📊</span> Dashboard
+                </a>
+                <a href="#mes-formations" class="dash-nav">
+                    <span class="dash-nav-icon">📚</span> Mes formations
+                </a>
+                <a href="#fiche-suivi" class="dash-nav">
+                    <span class="dash-nav-icon">📝</span> Fiche de suivi
+                </a>
+                <a href="https://wa.me/22507000000?text=Bonjour%20Cap%20Learning%2C%20j%27ai%20une%20question" target="_blank" rel="noopener" class="dash-nav dash-nav-whatsapp">
+                    <span class="dash-nav-icon">📱</span> Messagerie WhatsApp
+                    <span class="dash-nav-badge">24/7</span>
+                </a>
+                <a href="#communaute" class="dash-nav">
+                    <span class="dash-nav-icon">👥</span> Communauté
+                </a>
+                <a href="certificat.html" class="dash-nav">
+                    <span class="dash-nav-icon">🎓</span> Certificats
+                </a>
+                <div class="dash-sidebar-divider"></div>
+                <div class="dash-sidebar-footer">
+                    Besoin d'aide ?<br>
+                    <a href="contact.html">Contactez-nous</a>
+                </div>
+            </aside>
+
+            <!-- CONTENU DASHBOARD -->
+            <div class="dash-content">
 
             <!-- HELLO -->
-            <section class="dash-hello">
+            <section class="dash-hello" id="dashboard">
                 <div class="dash-hello-inner">
                     <span class="dash-hello-greeting">Mardi 21 avril &middot; 14h30 à Abidjan</span>
                     <h1>Bonjour Nadia.<br>Il te reste <span class="hl">3 leçons</span> avant ta certification E-commerce.</h1>
@@ -518,7 +844,7 @@
             </div>
 
             <!-- FORMATIONS -->
-            <section class="dash-section">
+            <section class="dash-section" id="mes-formations">
                 <div class="dash-section-head">
                     <h2>Mes formations</h2>
                     <a href="catalogue.html">Tout voir →</a>
@@ -572,11 +898,111 @@
                 </div>
             </section>
 
+            <!-- FICHE DE SUIVI -->
+            <section class="dash-section" id="fiche-suivi">
+                <div class="dash-section-head">
+                    <h2>Ma fiche de suivi</h2>
+                    <span style="font-size: 0.88rem; color: var(--text-secondary);">Mise à jour avec Awa Kanté, CSM</span>
+                </div>
+                <div class="dash-fiche">
+                    <div class="dash-fiche-head">
+                        <h2 style="font-size: 1.2rem; margin: 0;">🎯 Mon projet d'entrepreneure</h2>
+                        <a href="#" class="btn btn-ghost btn-sm">Modifier</a>
+                    </div>
+                    <div class="dash-fiche-objective">
+                        <div class="dash-fiche-objective-label">Objectif principal</div>
+                        <div class="dash-fiche-objective-txt">Lancer ma boutique Shopify d'accessoires wax avec paiement Wave &amp; Orange Money avant septembre 2026.</div>
+                    </div>
+
+                    <h3 style="font-size: 1rem; margin: 0 0 12px; font-weight: 600;">Mes jalons (5 sur 8 complétés)</h3>
+                    <ul class="dash-jalons">
+                        <li class="dash-jalon done">
+                            <span class="dash-jalon-check">✓</span>
+                            <span class="dash-jalon-title">Étude de marché & identification cible</span>
+                            <span class="dash-jalon-date">Semaine 1-2</span>
+                        </li>
+                        <li class="dash-jalon done">
+                            <span class="dash-jalon-check">✓</span>
+                            <span class="dash-jalon-title">Choix du fournisseur wax (Abidjan Textile)</span>
+                            <span class="dash-jalon-date">Semaine 3</span>
+                        </li>
+                        <li class="dash-jalon done">
+                            <span class="dash-jalon-check">✓</span>
+                            <span class="dash-jalon-title">Création de la boutique Shopify (template personnalisé)</span>
+                            <span class="dash-jalon-date">Semaine 4-5</span>
+                        </li>
+                        <li class="dash-jalon done">
+                            <span class="dash-jalon-check">✓</span>
+                            <span class="dash-jalon-title">Séance photo produit & rédaction fiches (10 articles)</span>
+                            <span class="dash-jalon-date">Semaine 6</span>
+                        </li>
+                        <li class="dash-jalon done">
+                            <span class="dash-jalon-check">✓</span>
+                            <span class="dash-jalon-title">Intégration Wave &amp; Orange Money (leçon 4.2 validée)</span>
+                            <span class="dash-jalon-date">Semaine 7</span>
+                        </li>
+                        <li class="dash-jalon current">
+                            <span class="dash-jalon-check">●</span>
+                            <span class="dash-jalon-title">Préparer la stratégie de lancement Instagram &amp; WhatsApp</span>
+                            <span class="dash-jalon-date">En cours — semaine 8</span>
+                        </li>
+                        <li class="dash-jalon">
+                            <span class="dash-jalon-check"></span>
+                            <span class="dash-jalon-title">Lancement officiel : 3 premières ventes &amp; retours clients</span>
+                            <span class="dash-jalon-date">Semaine 10</span>
+                        </li>
+                        <li class="dash-jalon">
+                            <span class="dash-jalon-check"></span>
+                            <span class="dash-jalon-title">Optimisation : automatiser SAV avec ChatGPT (formation IA &amp; Business)</span>
+                            <span class="dash-jalon-date">Semaine 12</span>
+                        </li>
+                    </ul>
+
+                    <div class="dash-fiche-journal">
+                        <h3>Journal de bord</h3>
+                        <div class="dash-journal-entry">
+                            <div class="dash-journal-entry-date">Lundi 20 avril</div>
+                            Fait une simulation Wave avec 5 amis : tout passe bien, le délai de confirmation est &lt; 3s. Rassurant pour la démo.
+                        </div>
+                        <div class="dash-journal-entry">
+                            <div class="dash-journal-entry-date">Jeudi 17 avril</div>
+                            Session mentor avec Awa : elle m'a conseillé de lancer avec 10 articles max pour tester avant d'agrandir le catalogue. Validé.
+                        </div>
+                        <div class="dash-journal-entry">
+                            <div class="dash-journal-entry-date">Mardi 15 avril</div>
+                            Blocage : l'API Orange Money renvoie une erreur 403 en sandbox. Question posée dans la communauté → résolue par Kofi en 1h. 🙏
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MESSAGERIE WHATSAPP -->
+            <section class="dash-section" id="messagerie">
+                <div class="dash-section-head">
+                    <h2>Messagerie</h2>
+                </div>
+                <div class="dash-whatsapp">
+                    <div class="dash-whatsapp-icon">💬</div>
+                    <div>
+                        <h3>Parle-nous sur WhatsApp</h3>
+                        <p>Ta CSM Awa Kanté et les mentors répondent en moyenne en 18 minutes, du lundi au samedi, de 8h à 20h (GMT).</p>
+                    </div>
+                    <a href="https://wa.me/22507000000?text=Bonjour%20Cap%20Learning%2C%20j%27ai%20une%20question" target="_blank" rel="noopener" class="dash-whatsapp-btn">
+                        📱 Ouvrir WhatsApp
+                    </a>
+                </div>
+            </section>
+
             <!-- COMMUNITY -->
-            <section class="dash-section">
+            <section class="dash-section" id="communaute">
                 <div class="dash-section-head">
                     <h2>La communauté cette semaine</h2>
-                    <a href="#">Voir le forum →</a>
+                    <a href="#">Voir tout le forum →</a>
+                </div>
+                <div class="dash-community-compose">
+                    <div class="dash-post-avatar a1" style="width: 44px; height: 44px;">NM</div>
+                    <input type="text" placeholder="Pose une question, partage une victoire, cherche un binôme…" aria-label="Publier dans la communauté">
+                    <button class="btn btn-primary btn-sm">Publier</button>
                 </div>
                 <div class="dash-community">
                     <div class="dash-post">
@@ -603,6 +1029,41 @@
                         </div>
                         <span class="dash-post-reply">5 réponses →</span>
                     </div>
+                    <div class="dash-post">
+                        <div class="dash-post-avatar a1" style="background: linear-gradient(135deg, #2D9CDB, #56CCF2);">MT</div>
+                        <div class="dash-post-content">
+                            <div class="dash-post-author">Mamadou Touré<span class="flag">🇲🇱</span><span class="when">il y a 2 jours</span></div>
+                            <div class="dash-post-text">Partage d'expérience : j'ai utilisé ChatGPT pour rédiger mes fiches produits (formation IA &amp; Business). 3h économisées par semaine. Détails en commentaire 👇</div>
+                        </div>
+                        <span class="dash-post-reply">41 réponses →</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CERTIFICATS -->
+            <section class="dash-section" id="certificats">
+                <div class="dash-section-head">
+                    <h2>Mes certificats</h2>
+                    <a href="certificat.html">Voir mon dernier certificat →</a>
+                </div>
+                <div class="dash-certs">
+                    <a href="certificat.html" class="dash-cert obtained">
+                        <div class="dash-cert-ribbon">🎓</div>
+                        <div class="dash-cert-title">E-commerce &amp; Paiements</div>
+                        <div class="dash-cert-meta">Obtenu le 12 mars 2026</div>
+                        <span class="dash-cert-badge">Téléchargeable</span>
+                    </a>
+                    <a href="certificat.html" class="dash-cert obtained">
+                        <div class="dash-cert-ribbon">🎓</div>
+                        <div class="dash-cert-title">Fondamentaux Entrepreneuriat</div>
+                        <div class="dash-cert-meta">Obtenu le 8 février 2026</div>
+                        <span class="dash-cert-badge">Téléchargeable</span>
+                    </a>
+                    <div class="dash-cert locked">
+                        <div class="dash-cert-ribbon">🔒</div>
+                        <div class="dash-cert-title">Marketing Digital</div>
+                        <div class="dash-cert-meta">0 % — à débloquer</div>
+                    </div>
                 </div>
             </section>
 
@@ -612,9 +1073,11 @@
                     <h3>🌱 Mon objectif de l'année 2026</h3>
                     <p>« Je veux lancer ma boutique Shopify en ligne d'ici septembre. » — modifiable à tout moment</p>
                 </div>
-                <a href="#" class="btn" style="background: #fff; color: var(--color-secondary); border-color: #fff;">Mettre à jour mon objectif</a>
+                <a href="#fiche-suivi" class="btn" style="background: #fff; color: var(--color-secondary); border-color: #fff;">Mettre à jour mon objectif</a>
             </div>
 
+            </div><!-- /.dash-content -->
+            </div><!-- /.dash-layout -->
         </div>
     </main>
 
@@ -654,5 +1117,27 @@
     </footer>
 
     <script src="../js/app.js"></script>
+    <script>
+        // Scrollspy : active link sidebar selon section visible
+        (function() {
+            const sections = ['dashboard', 'mes-formations', 'fiche-suivi', 'messagerie', 'communaute', 'certificats'];
+            const navLinks = document.querySelectorAll('.dash-sidebar .dash-nav[href^="#"]');
+            if (!('IntersectionObserver' in window) || !navLinks.length) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+                    }
+                });
+            }, { rootMargin: '-120px 0px -60% 0px', threshold: 0 });
+
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) observer.observe(el);
+            });
+        })();
+    </script>
 </body>
 </html>
