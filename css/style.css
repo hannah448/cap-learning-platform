@@ -1068,7 +1068,7 @@ h1, h2, h3, h4, h5, h6 {
     animation: floatFaceA 7s ease-in-out infinite;
     z-index: 5;
 }
-/* Portrait central dominant — devant les cartes pour vraiment ressortir */
+/* Portrait central — derrière les cartes pour rester lisible mais visible sur les côtés */
 .hero-face-2 {
     top: 50%;
     left: 50%;
@@ -1077,7 +1077,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 220px;
     height: 280px;
     animation: floatFaceB 8s ease-in-out infinite;
-    z-index: 6;
+    z-index: 1;
 }
 .hero-face-3 {
     bottom: -25px;
@@ -1515,7 +1515,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta-card {
-    background: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
     border-radius: var(--radius-3xl);
     padding: var(--space-16);
     text-align: center;
@@ -1527,8 +1527,8 @@ h1, h2, h3, h4, h5, h6 {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(58,80,246,0.15) 0%, transparent 60%),
-                radial-gradient(circle at 70% 50%, rgba(167,139,250,0.12) 0%, transparent 60%);
+    background: radial-gradient(circle at 30% 50%, rgba(167,139,250,0.18) 0%, transparent 60%),
+                radial-gradient(circle at 70% 50%, rgba(255,255,255,0.08) 0%, transparent 60%);
     pointer-events: none;
 }
 
