@@ -314,14 +314,6 @@
       }
     },
 
-    "copywriting": {
-      "title": "Copywriting qui convertit",
-      "landing_page": "pages/formation-copywriting.html",
-      "lessons": {
-        "_note": "Leçons à créer dans pages/apprendre.html avec le préfixe 'c1-*'. Ajouter ici dès que les IDs existent."
-      }
-    },
-
     "entrepreneuriat-digital": {
       "title": "Entrepreneuriat digital en Afrique",
       "landing_page": "pages/formation-entrepreneuriat-digital.html",

@@ -11,7 +11,7 @@
         users: 'caplearning_users',
         enrollments: 'caplearning_enrollments',
         session: 'caplearning_session',
-        seeded: 'caplearning_seeded_v5'   // v5 → Refonte 6 parcours certifiants marché africain
+        seeded: 'caplearning_seeded_v5'   // v5 → Refonte 5 parcours certifiants marché africain
     };
 
     // Méthodes de paiement affichées dans l'admin (clé → libellé)
@@ -33,26 +33,25 @@
     };
 
     // Catalogue source de vérité (synchro avec les pages de formation)
-    // Refonte 2026 : 6 parcours certifiants pour le marché africain.
+    // Refonte 2026 : 5 parcours certifiants pour le marché africain.
     // Cap Learning délivre uniquement des certificats de complétion Cap Learning
     // (pas de référentiel spécifique externe côté public).
     // - No-Code (ex id '7') absorbé par IA & Business (id '3')
     // - Email Marketing (ex id '8') absorbé par Marketing Digital (id '1')
     // - Mobile Money (ex id '6') fusionné dans E-commerce (id '2')
-    // - Ajout Copywriting (id '9') + Entrepreneuriat Digital (id '10')
+    // - Ajout Entrepreneuriat Digital (id '10')
     const CATALOG = [
         { id: '1',  name: 'Marketing Digital Complet pour Entrepreneurs',  price: 25000, category: 'marketing',     page: 'formation-marketing-digital.html',    duration: 57, modules: 16 },
         { id: '2',  name: 'E-commerce & Paiements Digitaux',               price: 30000, category: 'ecommerce',     page: 'formation-ecommerce.html',            duration: 79, modules: 47 },
         { id: '3',  name: 'IA & Business : Automatisation & Productivité', price: 30000, category: 'ia',            page: 'formation-ia-business.html',          duration: 48, modules: 26 },
         { id: '5',  name: 'Réseaux Sociaux & Community Management',        price: 18000, category: 'marketing',     page: 'formation-reseaux-sociaux.html',      duration: 41, modules: 25 },
-        { id: '9',  name: 'Copywriting : Écrire pour Convertir',           price: 18000, category: 'marketing',     page: 'formation-copywriting.html',          duration: 35, modules: 12 },
         { id: '10', name: 'Entrepreneuriat Digital',                       price: 25000, category: 'entrepreneuriat', page: 'formation-entrepreneuriat-digital.html', duration: 50, modules: 20 }
     ];
 
     const ADMIN_EMAILS = ['hannah@digi-atlas.com'];
 
     // Préfixes utilisés pour générer les identifiants de certificat
-    const CERT_PREFIX = { '1': 'MKT', '2': 'EC', '3': 'IA', '5': 'RS', '9': 'CW', '10': 'ENT' };
+    const CERT_PREFIX = { '1': 'MKT', '2': 'EC', '3': 'IA', '5': 'RS', '10': 'ENT' };
 
     // Seed initial (une seule fois) ---------------------------------
     function seedIfNeeded() {
@@ -168,22 +167,6 @@
               certified: false, grade: null, certifiedAt: null, certificateId: null,
               exerciseResults: [
                   ex('e6-q1', 'Module 13 : Email marketing', 'Quiz : Bases de l\'emailing', 'quiz', 7, 10, 1, '2026-04-08T10:00:00Z')
-              ]
-            },
-            // --- Nadia : Copywriting (nouveau parcours), quasi-terminé → certifiée (progress 95)
-            { id: 'e7', userId: 'u5', courseId: '9', assignedAt: '2026-03-21T08:00:00Z', assignedBy: 'self-purchase',
-              ...pay(18000, '2026-03-21T08:00:00Z', 'wave', 1083),
-              progress: 95, lastActivity: '2026-04-16T07:30:00Z', status: 'active',
-              certified: true, grade: 17, certifiedAt: '2026-04-15T10:00:00Z', certificateId: 'AFL-2026-CW-0087',
-              exerciseResults: [
-                  ex('e7-q1', 'Module 1 : Fondamentaux du copywriting', 'Quiz : Les bases', 'quiz', 9, 10, 1, '2026-03-22T09:00:00Z'),
-                  ex('e7-tf1', 'Module 1', 'Vrai/Faux : Psychologie du lecteur', 'true_false', 5, 5, 1, '2026-03-24T14:20:00Z'),
-                  ex('e7-m1', 'Module 2 : Structures persuasives', 'Association : AIDA, PAS, BAB', 'matching', 9, 10, 1, '2026-03-28T11:00:00Z'),
-                  ex('e7-q2', 'Module 2', 'Quiz : Storytelling africain', 'quiz', 10, 10, 1, '2026-04-01T15:30:00Z'),
-                  ex('e7-fb1', 'Module 3 : Pages de vente', 'Texte à trous : Landing page', 'fill_blank', 7, 8, 1, '2026-04-04T10:15:00Z'),
-                  ex('e7-op1', 'Module 3', 'Rédaction : Page de vente complète', 'open', 18, 20, 1, '2026-04-07T16:40:00Z'),
-                  ex('e7-q3', 'Module 4 : Prompts IA pour copywriting', 'Quiz : Prompts efficaces', 'quiz', 8, 10, 2, '2026-04-11T11:20:00Z'),
-                  ex('e7-ef1', 'Module 5 : Examen final', 'Examen : Campagne complète', 'exam', 34, 40, 1, '2026-04-15T09:30:00Z')
               ]
             },
             // --- Youssef : E-commerce & Paiements (ex-Mobile Money fusionné), décroche (progress 8)

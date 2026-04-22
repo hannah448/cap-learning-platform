@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="../js/migrate-brand.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nadia Mensah — Gestion apprenant · Cap Learning</title>
+    <meta name="description" content="Fiche apprenant Cap Learning : progression, formations, certifications, paiements et notes formateur.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <style>
+        /* ===== Admin — Gérer apprenant v2026 ===== */
+        .ap-main { padding: 100px 0 80px; }
+        .ap-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Breadcrumb */
+        .ap-breadcrumb {
+            display: flex; align-items: center; gap: 10px;
+            font-size: 0.9rem; color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+        .ap-breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+        .ap-breadcrumb a:hover { color: var(--color-primary); }
+        .ap-breadcrumb .sep { color: var(--color-gray-300); }
+        .ap-breadcrumb .current { color: var(--text-primary); font-weight: 600; }
+
+        /* Hero */
+        .ap-hero {
+            position: relative;
+            padding: 36px 40px;
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+        }
+        .ap-hero::before {
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(58, 80, 246, 0.12), transparent 65%);
+            pointer-events: none;
+        }
+        .ap-hero-top { display: flex; gap: 28px; align-items: flex-start; position: relative; }
+        .ap-avatar {
+            width: 84px; height: 84px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+            color: #fff; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-size: 1.8rem; font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(58, 80, 246, 0.28);
+        }
+        .ap-hero-info { flex: 1; min-width: 0; }
+        .ap-name {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(1.8rem, 3.5vw, 2.35rem);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+        }
+        .ap-meta {
+            display: flex; gap: 14px; flex-wrap: wrap;
+            color: var(--text-secondary); font-size: 0.9rem;
+            margin-bottom: 18px;
+        }
+        .ap-meta .sep { color: var(--color-gray-300); }
+        .ap-meta a { color: var(--text-secondary); text-decoration: none; }
+        .ap-meta a:hover { color: var(--color-primary); }
+
+        .ap-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+        .ap-pill {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px 12px; font-size: 0.78rem; font-weight: 500;
+            background: var(--color-gray-100); color: var(--text-primary);
+            border-radius: 999px;
+        }
+        .ap-pill-dot { width: 7px; height: 7px; border-radius: 50%; }
+        .ap-pill.active { background: #D1FAE5; color: #047857; }
+        .ap-pill.active .ap-pill-dot { background: #10B981; }
+        .ap-pill.premium { background: #FEF3C7; color: #92400E; }
+        .ap-pill.premium .ap-pill-dot { background: #D97706; }
+        .ap-pill.warn { background: #FFE4DE; color: #9A3412; }
+        .ap-pill.warn .ap-pill-dot { background: #EA580C; }
+
+        .ap-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+        .ap-icon-btn {
+            width: 36px; height: 36px; display: inline-flex;
+            align-items: center; justify-content: center;
+            border: 1px solid var(--color-gray-200);
+            background: var(--surface-primary); border-radius: 10px;
+            cursor: pointer; color: var(--text-secondary);
+            transition: all 0.15s; text-decoration: none;
+        }
+        .ap-icon-btn:hover {
+            background: var(--color-primary-50);
+            color: var(--color-primary);
+            border-color: var(--color-primary-100);
+        }
+
+        /* Sections */
+        .ap-section { margin-top: 40px; }
+        .ap-section-head {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        .ap-section-head h2 {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em;
+            color: var(--text-secondary);
+        }
+
+        /* Bento KPIs */
+        .ap-bento {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+        .ap-kpi {
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 18px;
+            padding: 22px;
+            transition: all 0.2s;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+        }
+        .ap-kpi:hover { border-color: var(--color-primary-light); transform: translateY(-2px); }
+        .ap-kpi-icon {
+            font-size: 1.3rem; margin-bottom: 14px; display: block;
+            width: 44px; height: 44px;
+            background: var(--color-primary-50);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .ap-kpi-value {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 2rem; font-variant-numeric: tabular-nums; line-height: 1;
+            margin-bottom: 4px; color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+        .ap-kpi-value small {
+            font-family: var(--font-body); font-size: 0.85rem;
+            color: var(--text-secondary); font-weight: 400;
+        }
+        .ap-kpi-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 10px; }
+        .ap-kpi-trend { font-size: 0.8rem; color: #047857; font-weight: 600; margin-top: 4px; }
+
+        /* Ring */
+        .ap-ring { position: relative; width: 64px; height: 64px; margin-bottom: 10px; }
+        .ap-ring svg { transform: rotate(-90deg); }
+        .ap-ring-bg { stroke: var(--color-gray-200); }
+        .ap-ring-fg {
+            stroke: url(#ap-ring-grad); stroke-linecap: round;
+            transition: stroke-dashoffset 1s ease;
+        }
+        .ap-ring-label {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-size: 0.85rem; font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        /* Heatmap */
+        .ap-heatmap {
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 18px;
+            padding: 24px;
+        }
+        .ap-heatmap-grid {
+            display: grid; grid-template-columns: repeat(12, 18px); gap: 5px;
+            justify-content: start;
+        }
+        .ap-heatmap-col { display: grid; grid-template-rows: repeat(7, 18px); gap: 5px; }
+        .ap-heatmap-cell { width: 18px; height: 18px; border-radius: 4px; background: var(--color-gray-100); }
+        .ap-heatmap-cell.l1 { background: rgba(58, 80, 246, 0.18); }
+        .ap-heatmap-cell.l2 { background: rgba(58, 80, 246, 0.38); }
+        .ap-heatmap-cell.l3 { background: rgba(58, 80, 246, 0.65); }
+        .ap-heatmap-cell.l4 { background: var(--color-primary); }
+        .ap-heatmap-legend {
+            display: flex; align-items: center; gap: 8px; margin-top: 16px;
+            font-size: 0.8rem; color: var(--text-secondary);
+        }
+        .ap-heatmap-legend .swatch { width: 11px; height: 11px; border-radius: 3px; }
+
+        /* Formations */
+        .ap-formation {
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 10px;
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 16px;
+            align-items: center;
+            transition: all 0.15s;
+        }
+        .ap-formation:hover { border-color: var(--color-primary-light); }
+        .ap-formation-icon {
+            width: 44px; height: 44px; border-radius: 12px;
+            background: var(--color-primary-50); color: var(--color-primary);
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+        }
+        .ap-formation-icon.accent { background: #FEF3E6; color: #E08B3A; }
+        .ap-formation-body { min-width: 0; }
+        .ap-formation-title {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1rem; margin-bottom: 6px;
+        }
+        .ap-formation-meta { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 10px; }
+        .ap-formation-bar {
+            height: 6px; background: var(--color-gray-100);
+            border-radius: 999px; overflow: hidden;
+        }
+        .ap-formation-bar > span {
+            display: block; height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 999px;
+        }
+        .ap-formation-pct { font-size: 0.85rem; color: var(--text-secondary); margin-top: 6px; font-weight: 500; }
+        .ap-formation-actions { display: flex; gap: 6px; }
+
+        /* Certification */
+        .ap-cert {
+            display: grid; grid-template-columns: 140px 1fr; gap: 28px; align-items: center;
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border: 1px solid #F5E0A8;
+            border-radius: 20px;
+            padding: 28px;
+        }
+        .ap-cert-badge {
+            width: 120px; height: 120px; border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #FBE377, #D97706);
+            display: flex; align-items: center; justify-content: center; font-size: 3rem;
+            box-shadow: inset 0 -10px 24px rgba(0,0,0,0.12), 0 10px 24px rgba(217, 119, 6, 0.3);
+        }
+        .ap-cert-name {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1.35rem; color: #78350F; margin-bottom: 4px;
+        }
+        .ap-cert-score {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 2rem; color: #78350F; margin: 4px 0 6px;
+            letter-spacing: -0.02em;
+        }
+        .ap-cert-score small { font-family: var(--font-body); font-size: 0.9rem; color: #92400E; font-weight: 500; margin-left: 8px; }
+        .ap-cert-id {
+            font-size: 0.82rem; color: #92400E; margin-bottom: 16px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Payment table */
+        .ap-table {
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .ap-row {
+            display: grid;
+            grid-template-columns: 40px 1fr 130px 130px 120px 40px;
+            align-items: center;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--color-gray-100);
+            font-size: 0.9rem;
+        }
+        .ap-row:last-child { border-bottom: none; }
+        .ap-row:hover { background: var(--color-gray-50); }
+        .ap-pay-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.95rem; color: #fff;
+        }
+        .ap-pay-wave { background: #00D9FF; color: #002B36; }
+        .ap-pay-orange { background: #FF7900; }
+        .ap-pay-mtn { background: #FFC700; color: #000; }
+
+        .ap-product-name { font-weight: 600; color: var(--text-primary); }
+        .ap-product-meta { color: var(--text-secondary); font-size: 0.8rem; }
+
+        .ap-tag {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 3px 10px; font-size: 0.78rem; font-weight: 600;
+            border-radius: 999px;
+        }
+        .ap-tag-paid { background: #D1FAE5; color: #047857; }
+        .ap-tag-paid::before { content: '●'; font-size: 0.7rem; }
+        .ap-tag-pending { background: #FEF3C7; color: #92400E; }
+        .ap-tag-pending::before { content: '●'; font-size: 0.7rem; }
+
+        /* Journal */
+        .ap-journal { position: relative; padding-left: 26px; }
+        .ap-journal::before {
+            content: ''; position: absolute; left: 7px; top: 6px; bottom: 6px;
+            width: 2px; background: var(--color-gray-200);
+        }
+        .ap-journal-item {
+            position: relative;
+            padding: 12px 0 12px 22px;
+            font-size: 0.92rem;
+        }
+        .ap-journal-item::before {
+            content: ''; position: absolute; left: -23px; top: 18px;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--surface-primary); border: 2px solid var(--color-primary);
+        }
+        .ap-journal-item.muted::before { border-color: var(--color-gray-300); }
+        .ap-journal-time {
+            font-size: 0.82rem; color: var(--text-tertiary);
+            display: inline-block; min-width: 92px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Notes */
+        .ap-notes {
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-left: 3px solid var(--color-primary);
+            border-radius: 14px;
+            padding: 20px 24px;
+            min-height: 120px;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            position: relative;
+        }
+        .ap-notes:focus { outline: none; border-left-color: var(--color-accent); }
+        .ap-notes-save {
+            position: absolute; bottom: 12px; right: 16px;
+            font-size: 0.75rem; color: var(--text-tertiary);
+            display: flex; align-items: center; gap: 6px;
+            font-variant-numeric: tabular-nums;
+        }
+        .ap-notes-save::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #10B981; }
+
+        /* Danger */
+        .ap-danger {
+            margin-top: 48px;
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .ap-danger summary {
+            padding: 18px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            list-style: none;
+        }
+        .ap-danger summary::-webkit-details-marker { display: none; }
+        .ap-danger summary:hover { background: var(--color-gray-50); }
+        .ap-danger-body {
+            padding: 6px 24px 24px;
+            border-top: 1px solid var(--color-gray-100);
+            font-size: 0.88rem; color: var(--text-secondary);
+        }
+        .ap-danger-body button {
+            display: block; margin-top: 10px; padding: 9px 16px;
+            font-size: 0.88rem; background: transparent;
+            border: 1px solid var(--color-gray-200);
+            border-radius: 10px; color: var(--color-error); cursor: pointer;
+            font-family: var(--font-body);
+        }
+        .ap-danger-body button:hover { background: #FEE2E2; border-color: var(--color-error); }
+
+        [contenteditable]:focus { outline: none; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .ap-hero { padding: 28px 22px; }
+            .ap-hero-top { flex-direction: column; gap: 18px; }
+            .ap-bento { grid-template-columns: repeat(2, 1fr); }
+            .ap-cert { grid-template-columns: 1fr; text-align: center; }
+            .ap-cert-badge { margin: 0 auto; }
+            .ap-row { grid-template-columns: 32px 1fr; gap: 10px; padding: 12px 14px; }
+            .ap-row > *:nth-child(n+3) { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header (identique aux autres pages) -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="admin.html" class="nav-link">Tableau de bord</a></li>
+                    <li><a href="admin.html#apprenants" class="nav-link active">Apprenants</a></li>
+                    <li><a href="admin.html#formations" class="nav-link">Formations</a></li>
+                    <li><a href="admin.html#paiements" class="nav-link">Paiements</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="connexion.html" class="btn btn-ghost btn-sm">Formateur ▾</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="ap-main">
+        <!-- SVG defs for ring gradient -->
+        <svg width="0" height="0" style="position: absolute;">
+            <defs>
+                <linearGradient id="ap-ring-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#3A50F6"/>
+                    <stop offset="100%" stop-color="#A78BFA"/>
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="ap-container">
+
+            <!-- BREADCRUMB -->
+            <nav class="ap-breadcrumb">
+                <a href="admin.html">Apprenants</a>
+                <span class="sep">/</span>
+                <span class="current">Nadia Mensah</span>
+            </nav>
+
+            <!-- HERO -->
+            <section class="ap-hero">
+                <div class="ap-hero-top">
+                    <div class="ap-avatar">NM</div>
+                    <div class="ap-hero-info">
+                        <h1 class="ap-name">Nadia Mensah</h1>
+                        <div class="ap-meta">
+                            <a href="mailto:nadia.mensah@exemple.ci">nadia.mensah@exemple.ci</a>
+                            <span class="sep">·</span>
+                            <span>🇨🇮 Côte d'Ivoire</span>
+                            <span class="sep">·</span>
+                            <span>Membre depuis le 14 fév. 2026</span>
+                            <span class="sep">·</span>
+                            <span>+225 07 XX XX XX XX</span>
+                        </div>
+                        <div class="ap-pills">
+                            <span class="ap-pill active"><span class="ap-pill-dot"></span>En cours</span>
+                            <span class="ap-pill premium"><span class="ap-pill-dot"></span>Plan Premium</span>
+                            <span class="ap-pill warn"><span class="ap-pill-dot"></span>À relancer · 3j</span>
+                        </div>
+                        <div class="ap-actions">
+                            <a href="#" class="btn btn-primary btn-sm">💬 WhatsApp</a>
+                            <a href="mailto:nadia.mensah@exemple.ci" class="btn btn-outline btn-sm">✉ Email</a>
+                            <a href="#" class="btn btn-outline btn-sm">📄 Exporter</a>
+                            <a href="certificat.html" class="btn btn-outline btn-sm">🏆 Émettre certif</a>
+                            <button class="ap-icon-btn" title="Plus">⋯</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- KPI BENTO -->
+            <section class="ap-section">
+                <div class="ap-section-head"><h2>Vue d'ensemble</h2></div>
+                <div class="ap-bento">
+                    <div class="ap-kpi">
+                        <div class="ap-ring">
+                            <svg width="64" height="64" viewBox="0 0 64 64">
+                                <circle class="ap-ring-bg" cx="32" cy="32" r="27" fill="none" stroke-width="6"/>
+                                <circle class="ap-ring-fg" cx="32" cy="32" r="27" fill="none" stroke-width="6"
+                                        stroke-dasharray="169.65" stroke-dashoffset="8.48"/>
+                            </svg>
+                            <div class="ap-ring-label">95%</div>
+                        </div>
+                        <div class="ap-kpi-value">95<small>&nbsp;%</small></div>
+                        <div class="ap-kpi-label">Progression sur E-commerce</div>
+                    </div>
+
+                    <div class="ap-kpi">
+                        <div class="ap-kpi-icon">🔥</div>
+                        <div class="ap-kpi-value">12<small>&nbsp;jours</small></div>
+                        <div class="ap-kpi-label">Série d'affilée</div>
+                        <div class="ap-kpi-trend">+3 vs sem. dernière</div>
+                    </div>
+
+                    <div class="ap-kpi">
+                        <div class="ap-kpi-icon">🎯</div>
+                        <div class="ap-kpi-value">17<small>&nbsp;/&nbsp;20</small></div>
+                        <div class="ap-kpi-label">Score moyen quiz</div>
+                        <div class="ap-kpi-trend">+2 pts vs cohorte</div>
+                    </div>
+
+                    <div class="ap-kpi">
+                        <div class="ap-kpi-icon">⏱</div>
+                        <div class="ap-kpi-value">8<small>h</small>&nbsp;42<small>m</small></div>
+                        <div class="ap-kpi-label">Cette semaine</div>
+                        <div class="ap-kpi-trend">+2h vs sem. dernière</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HEATMAP -->
+            <section class="ap-section">
+                <div class="ap-section-head"><h2>Activité — 12 dernières semaines</h2></div>
+                <div class="ap-heatmap">
+                    <div class="ap-heatmap-grid" id="ap-heatmap"></div>
+                    <div class="ap-heatmap-legend">
+                        <span>Moins</span>
+                        <span class="swatch" style="background: var(--color-gray-100)"></span>
+                        <span class="swatch" style="background: rgba(58,80,246,0.18)"></span>
+                        <span class="swatch" style="background: rgba(58,80,246,0.38)"></span>
+                        <span class="swatch" style="background: rgba(58,80,246,0.65)"></span>
+                        <span class="swatch" style="background: var(--color-primary)"></span>
+                        <span>Plus</span>
+                        <span style="margin-left: auto;">64 leçons vues · 38h d'étude</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FORMATIONS -->
+            <section class="ap-section">
+                <div class="ap-section-head">
+                    <h2>Formations assignées</h2>
+                    <a href="#" class="btn btn-outline btn-sm">+ Assigner</a>
+                </div>
+
+                <div class="ap-formation">
+                    <div class="ap-formation-icon">✍️</div>
+                    <div class="ap-formation-body">
+                        <div class="ap-formation-title">E-commerce — Lancer ta boutique en ligne</div>
+                        <div class="ap-formation-meta">Prochaine leçon : 4.2 Wave + Orange Money · Dernière activité il y a 5j</div>
+                        <div class="ap-formation-bar"><span style="width: 95%;"></span></div>
+                        <div class="ap-formation-pct">95 % · 30 / 32 leçons</div>
+                    </div>
+                    <div class="ap-formation-actions">
+                        <button class="ap-icon-btn" title="Voir">👁</button>
+                        <button class="ap-icon-btn" title="Actions">⋯</button>
+                    </div>
+                </div>
+
+                <div class="ap-formation">
+                    <div class="ap-formation-icon accent">📣</div>
+                    <div class="ap-formation-body">
+                        <div class="ap-formation-title">Marketing digital &amp; acquisition</div>
+                        <div class="ap-formation-meta">Assignée · Pas encore commencée · Relancer ?</div>
+                        <div class="ap-formation-bar"><span style="width: 0%;"></span></div>
+                        <div class="ap-formation-pct">0 %</div>
+                    </div>
+                    <div class="ap-formation-actions">
+                        <button class="ap-icon-btn" title="Relancer">🔔</button>
+                        <button class="ap-icon-btn" title="Actions">⋯</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CERTIFICATIONS -->
+            <section class="ap-section">
+                <div class="ap-section-head"><h2>Certifications</h2></div>
+                <div class="ap-cert">
+                    <div class="ap-cert-badge">🏆</div>
+                    <div>
+                        <div class="ap-cert-name">E-commerce — Niveau Confirmé</div>
+                        <div class="ap-cert-score">17<small>/&nbsp;20 · Très bien</small></div>
+                        <div class="ap-cert-id">Émis le 18 avril 2026 · ID CL-CERT-000147</div>
+                        <div class="ap-actions">
+                            <a href="certificat.html" class="btn btn-primary btn-sm">Télécharger le PDF</a>
+                            <a href="#" class="btn btn-outline btn-sm">Vérifier l'authenticité</a>
+                            <a href="#" class="btn btn-ghost btn-sm">Réémettre</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAIEMENTS -->
+            <section class="ap-section">
+                <div class="ap-section-head"><h2>Paiements</h2></div>
+                <div class="ap-table">
+                    <div class="ap-row">
+                        <div class="ap-pay-icon ap-pay-wave">🌊</div>
+                        <div>
+                            <div class="ap-product-name">E-commerce</div>
+                            <div class="ap-product-meta">Wave Sénégal → CI</div>
+                        </div>
+                        <div>12 mars 2026</div>
+                        <div><strong>45 000 XOF</strong></div>
+                        <div><span class="ap-tag ap-tag-paid">Payé</span></div>
+                        <div><a href="#" style="color: var(--text-secondary);">↗</a></div>
+                    </div>
+                    <div class="ap-row">
+                        <div class="ap-pay-icon ap-pay-orange">🟠</div>
+                        <div>
+                            <div class="ap-product-name">Marketing digital</div>
+                            <div class="ap-product-meta">Orange Money CI</div>
+                        </div>
+                        <div>05 fév. 2026</div>
+                        <div><strong>25 000 XOF</strong></div>
+                        <div><span class="ap-tag ap-tag-paid">Payé</span></div>
+                        <div><a href="#" style="color: var(--text-secondary);">↗</a></div>
+                    </div>
+                    <div class="ap-row">
+                        <div class="ap-pay-icon ap-pay-mtn">📱</div>
+                        <div>
+                            <div class="ap-product-name">IA Business</div>
+                            <div class="ap-product-meta">MTN MoMo · en attente</div>
+                        </div>
+                        <div>20 avril 2026</div>
+                        <div><strong>30 000 XOF</strong></div>
+                        <div><span class="ap-tag ap-tag-pending">En attente</span></div>
+                        <div><a href="#" style="color: var(--text-secondary);">↗</a></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- JOURNAL -->
+            <section class="ap-section">
+                <div class="ap-section-head"><h2>Journal d'activité</h2></div>
+                <div class="ap-journal">
+                    <div class="ap-journal-item">
+                        <span class="ap-journal-time">il y a 5j</span>
+                        Quiz 4.1 — <strong>Angles &amp; bénéfices</strong> — réussi avec 8/10
+                    </div>
+                    <div class="ap-journal-item">
+                        <span class="ap-journal-time">il y a 5j</span>
+                        Leçon 4.1 terminée · 22 min
+                    </div>
+                    <div class="ap-journal-item">
+                        <span class="ap-journal-time">il y a 8j</span>
+                        🏆 <strong>Certification E-commerce</strong> émise — score 17/20
+                    </div>
+                    <div class="ap-journal-item">
+                        <span class="ap-journal-time">il y a 8j</span>
+                        Quiz final passé — 17/20
+                    </div>
+                    <div class="ap-journal-item muted">
+                        <span class="ap-journal-time">il y a 12j</span>
+                        Paiement Wave reçu · 45 000 XOF
+                    </div>
+                    <div class="ap-journal-item muted">
+                        <span class="ap-journal-time">il y a 14j</span>
+                        Connexion depuis Abidjan · Chrome Mobile
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOTES -->
+            <section class="ap-section">
+                <div class="ap-section-head"><h2>Notes formateur <span style="text-transform: none; letter-spacing: 0; font-weight: 400;"> · privé</span></h2></div>
+                <div class="ap-notes" contenteditable="true" id="notes">
+                    Nadia a un vrai potentiel pour lancer sa boutique e-commerce. Engagée, régulière, quiz excellents.
+                    À relancer pour <strong>IA &amp; Business</strong> : pourrait combiner e-commerce +
+                    automatisation SAV avec ChatGPT pour son agence. Prochain contact : mercredi prochain sur WhatsApp.
+                    <div class="ap-notes-save">Auto-save · il y a 2 min</div>
+                </div>
+            </section>
+
+            <!-- DANGER ZONE -->
+            <details class="ap-danger">
+                <summary>
+                    <span style="font-weight: 600;">⚠ Zone admin</span>
+                    <span style="color: var(--text-secondary); font-size: 0.85rem;">Actions irréversibles</span>
+                </summary>
+                <div class="ap-danger-body">
+                    <p>Ces actions nécessitent une confirmation supplémentaire et sont journalisées.</p>
+                    <button>Suspendre l'accès</button>
+                    <button>Réinitialiser toute la progression</button>
+                    <button>Transférer à un autre formateur</button>
+                    <button>Exporter toutes les données (RGPD)</button>
+                    <button style="color: #7F1D1D; border-color: #FCA5A5;">Supprimer le compte</button>
+                </div>
+            </details>
+
+        </div>
+    </main>
+
+    <script src="../js/main.js"></script>
+    <script>
+        // Heatmap 12 sem × 7 jours
+        (function() {
+            const grid = document.getElementById('ap-heatmap');
+            const seed = [0,0,1,0,2,3,2, 0,1,2,3,4,2,0, 2,3,3,4,2,1,0, 1,2,2,1,3,4,2,
+                          0,0,1,2,3,2,1, 0,1,3,4,4,3,1, 2,3,4,3,2,1,0, 3,4,4,2,1,0,2,
+                          1,2,3,3,2,1,0, 2,3,4,4,3,2,1, 1,2,3,4,3,2,3, 2,3,4,4,3,2,1];
+            let idx = 0;
+            for (let w = 0; w < 12; w++) {
+                const col = document.createElement('div');
+                col.className = 'ap-heatmap-col';
+                for (let d = 0; d < 7; d++) {
+                    const cell = document.createElement('div');
+                    const lvl = seed[idx++] || 0;
+                    cell.className = 'ap-heatmap-cell' + (lvl ? ' l' + lvl : '');
+                    col.appendChild(cell);
+                }
+                grid.appendChild(col);
+            }
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script src="../js/migrate-brand.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon espace — Cap Learning</title>
+    <meta name="description" content="Votre tableau de bord Cap Learning : reprenez où vous en étiez, suivez vos formations, gagnez vos certifications.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        /* ===== Dashboard apprenant v2026 ===== */
+        /* Teinte lavande pâle pour différencier l'espace apprenant de l'espace admin */
+        :root { --apprenant-bg: #F6F4FD; }
+        body { background: var(--apprenant-bg); }
+        .dash-main {
+            padding: 110px 0 80px;
+            background:
+                radial-gradient(1100px 520px at 88% -10%, rgba(167, 139, 250, 0.18), transparent 60%),
+                radial-gradient(900px 500px at -5% 10%, rgba(58, 80, 246, 0.08), transparent 55%),
+                var(--apprenant-bg);
+        }
+        .dash-container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* Hello hero */
+        .dash-hello {
+            position: relative;
+            margin-bottom: 32px;
+            padding: 16px 0 8px;
+        }
+        .dash-hello::before {
+            content: ''; position: absolute; top: -30px; left: -60px;
+            width: 340px; height: 340px;
+            background: radial-gradient(circle, rgba(58, 80, 246, 0.09), transparent 65%);
+            pointer-events: none; z-index: 0;
+        }
+        .dash-hello-inner { position: relative; z-index: 1; }
+        .dash-hello-greeting {
+            display: inline-block;
+            font-size: 0.85rem; color: var(--text-secondary);
+            margin-bottom: 12px;
+            letter-spacing: 0.02em;
+        }
+        .dash-hello h1 {
+            font-family: var(--font-display);
+            font-size: clamp(1.75rem, 4.2vw, 2.75rem);
+            line-height: 1.12;
+            letter-spacing: -0.02em;
+            margin-bottom: 14px;
+            max-width: 760px;
+        }
+        .dash-hello h1 .hl {
+            color: var(--color-primary);
+            background: linear-gradient(180deg, transparent 55%, var(--color-primary-50) 55%);
+            padding: 0 4px;
+            border-radius: 4px;
+        }
+        .dash-hello p {
+            font-size: 1.05rem; color: var(--text-secondary);
+            max-width: 640px; line-height: 1.55;
+        }
+
+        /* Reprise — carte ivoire papier éditorial */
+        .dash-resume {
+            position: relative;
+            border-radius: 28px;
+            overflow: hidden;
+            margin-bottom: 32px;
+            min-height: 240px;
+            background: #FDF7EA;
+            border: 1px solid #F2E6C8;
+            isolation: isolate;
+            box-shadow: 0 1px 2px rgba(30, 27, 58, 0.04), 0 18px 36px rgba(30, 27, 58, 0.06);
+        }
+        .dash-resume::before {
+            content: ''; position: absolute; right: -120px; top: -120px;
+            width: 360px; height: 360px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.22), transparent 65%);
+            pointer-events: none; z-index: 0;
+        }
+        .dash-resume::after {
+            content: ''; position: absolute; left: -80px; bottom: -80px;
+            width: 260px; height: 260px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(58, 80, 246, 0.10), transparent 65%);
+            pointer-events: none; z-index: 0;
+        }
+        .dash-resume-inner {
+            position: relative; z-index: 1;
+            padding: 36px 44px;
+            color: var(--text-primary);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 32px;
+            align-items: end;
+            min-height: 240px;
+        }
+        .dash-resume-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 5px 12px; font-size: 0.7rem; font-weight: 700;
+            background: #fff;
+            color: var(--color-primary);
+            border: 1px solid #EDE4F8;
+            border-radius: 999px;
+            text-transform: uppercase; letter-spacing: 0.12em;
+            margin-bottom: 16px;
+        }
+        .dash-resume-label .pulse {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--color-primary);
+            box-shadow: 0 0 0 0 rgba(58, 80, 246, 0.55);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(58, 80, 246, 0.55); }
+            50% { box-shadow: 0 0 0 10px rgba(58, 80, 246, 0); }
+        }
+        .dash-resume h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: clamp(1.4rem, 2.6vw, 1.9rem);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            max-width: 560px;
+            color: var(--color-secondary);
+        }
+        .dash-resume-meta {
+            font-size: 0.9rem; color: var(--text-secondary);
+            display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+        }
+        .dash-resume-meta .sep { color: var(--color-gray-300); }
+        .dash-resume-play {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 14px 28px; border-radius: 999px;
+            background: var(--color-primary); color: #fff;
+            border: none; cursor: pointer;
+            font-family: var(--font-display);
+            font-size: 0.95rem; font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(58, 80, 246, 0.30);
+        }
+        .dash-resume-play:hover { transform: scale(1.03); box-shadow: 0 10px 24px rgba(58, 80, 246, 0.38); }
+
+        /* Stats strip */
+        .dash-stats {
+            display: flex; gap: 32px; flex-wrap: wrap;
+            padding: 20px 28px;
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 18px;
+            margin-bottom: 44px;
+            align-items: center;
+            box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+        }
+        .dash-stat { display: flex; align-items: center; gap: 14px; }
+        .dash-stat-icon {
+            font-size: 1.4rem;
+            width: 44px; height: 44px;
+            background: var(--color-primary-50);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .dash-stat-num {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1.3rem;
+            font-variant-numeric: tabular-nums;
+            color: var(--text-primary);
+        }
+        .dash-stat-lbl {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Sections */
+        .dash-section { margin-bottom: 48px; }
+        .dash-section-head {
+            display: flex; align-items: baseline; justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 16px;
+        }
+        .dash-section-head h2 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.4rem;
+            letter-spacing: -0.01em;
+        }
+        .dash-section-head a {
+            font-size: 0.9rem; color: var(--color-primary);
+            text-decoration: none; font-weight: 500;
+        }
+
+        /* Formation cards */
+        .dash-formations {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        .f-card {
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 18px;
+            padding: 24px;
+            transition: all 0.2s;
+            cursor: pointer;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .f-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--color-primary-light);
+            box-shadow: 0 18px 40px rgba(58, 80, 246, 0.10);
+        }
+        .f-card-icon {
+            width: 48px; height: 48px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; margin-bottom: 16px;
+            background: var(--color-primary-50); color: var(--color-primary);
+        }
+        .f-card-icon.accent { background: #FEF3E6; color: #E08B3A; }
+        .f-card-title {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1.15rem; line-height: 1.25;
+            margin-bottom: 4px;
+            color: var(--text-primary);
+        }
+        .f-card-sub { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 18px; }
+        .f-card-bar {
+            height: 6px; background: var(--color-gray-100);
+            border-radius: 999px; overflow: hidden; margin-bottom: 8px;
+        }
+        .f-card-bar > span {
+            display: block; height: 100%;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+            border-radius: 999px;
+        }
+        .f-card-meta { display: flex; justify-content: space-between; font-size: 0.85rem; }
+        .f-card-pct { font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text-primary); }
+        .f-card-next { color: var(--text-secondary); }
+
+        .f-card.discover {
+            background:
+                repeating-linear-gradient(45deg, var(--surface-primary) 0 12px,
+                rgba(58,80,246,0.025) 12px 24px);
+            border-style: dashed;
+            border-color: var(--color-gray-300);
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            min-height: 200px;
+        }
+        .f-card.discover:hover {
+            border-color: var(--color-primary);
+            background: var(--color-primary-50);
+        }
+        .f-card.discover .plus {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: var(--color-primary-50); color: var(--color-primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; margin: 0 auto 14px; font-weight: 500;
+        }
+        .f-card.discover strong {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1.05rem; display: block; margin-bottom: 6px;
+        }
+        .f-card.discover span { font-size: 0.85rem; color: var(--text-secondary); }
+
+        /* Recommendation (IA) */
+        .dash-reco {
+            display: grid;
+            grid-template-columns: 72px 1fr auto;
+            gap: 24px; align-items: center;
+            padding: 26px 30px;
+            background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-secondary-50) 100%);
+            border: 1px solid var(--color-primary-100);
+            border-radius: 20px;
+            position: relative; overflow: hidden;
+        }
+        .dash-reco::before {
+            content: '✦'; position: absolute; top: 12px; right: 16px;
+            color: var(--color-accent); font-size: 1.25rem; opacity: 0.7;
+        }
+        .dash-reco-avatar {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.8rem; color: #fff;
+        }
+        .dash-reco-tag {
+            display: inline-block;
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--color-primary);
+            margin-bottom: 6px;
+        }
+        .dash-reco-title {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1.2rem; margin-bottom: 4px; color: var(--text-primary);
+        }
+        .dash-reco-sub { font-size: 0.92rem; color: var(--text-secondary); max-width: 520px; line-height: 1.5; }
+
+        /* Community */
+        .dash-community {
+            background: var(--surface-primary);
+            border: 1px solid var(--color-gray-200);
+            border-radius: 18px;
+            overflow: hidden;
+        }
+        .dash-post {
+            display: grid;
+            grid-template-columns: 44px 1fr auto;
+            gap: 14px; align-items: center;
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--color-gray-100);
+            transition: background 0.15s;
+        }
+        .dash-post:last-child { border-bottom: none; }
+        .dash-post:hover { background: var(--color-gray-50); }
+        .dash-post-avatar {
+            width: 40px; height: 40px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display); font-weight: 700; font-size: 0.85rem;
+            color: #fff;
+        }
+        .dash-post-avatar.a1 { background: linear-gradient(135deg, #FF9A8B, #E0734B); }
+        .dash-post-avatar.a2 { background: linear-gradient(135deg, #5EE7B4, #10B981); }
+        .dash-post-avatar.a3 { background: linear-gradient(135deg, #FFD166, #E08B3A); }
+        .dash-post-content { font-size: 0.92rem; min-width: 0; }
+        .dash-post-author {
+            font-weight: 600; color: var(--text-primary); margin-bottom: 2px;
+        }
+        .dash-post-author .flag { margin-left: 4px; }
+        .dash-post-author .when {
+            font-weight: 400; color: var(--text-tertiary); font-size: 0.8rem; margin-left: 8px;
+        }
+        .dash-post-text { color: var(--text-secondary); line-height: 1.5; }
+        .dash-post-reply { font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; }
+
+        /* Objective — carte ivoire papier */
+        .dash-objective {
+            background: #FDF7EA;
+            border: 1px solid #F2E6C8;
+            color: var(--text-primary);
+            border-radius: 24px;
+            padding: 30px 40px;
+            margin-top: 44px;
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 24px; align-items: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 1px 2px rgba(30, 27, 58, 0.04), 0 12px 28px rgba(30, 27, 58, 0.05);
+        }
+        .dash-objective::before {
+            content: ''; position: absolute; right: -120px; top: -80px;
+            width: 320px; height: 320px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.18), transparent 65%);
+            pointer-events: none;
+        }
+        .dash-objective-content { position: relative; z-index: 1; }
+        .dash-objective h3 {
+            font-family: var(--font-display); font-weight: 700;
+            font-size: 1.25rem; margin-bottom: 6px;
+            color: var(--color-secondary);
+        }
+        .dash-objective p { color: var(--text-secondary); font-size: 0.92rem; }
+        .dash-objective .btn { position: relative; z-index: 1; }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .dash-resume-inner { padding: 28px 24px; grid-template-columns: 1fr; gap: 24px; align-items: start; }
+            .dash-formations { grid-template-columns: 1fr; }
+            .dash-reco { grid-template-columns: 60px 1fr; gap: 16px; padding: 22px; }
+            .dash-reco > .btn { grid-column: 1 / -1; justify-content: center; }
+            .dash-objective { grid-template-columns: 1fr; text-align: center; padding: 26px; }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header (identique aux autres pages) -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li><a href="catalogue.html" class="nav-link">Formations</a></li>
+                    <li><a href="plateforme.html" class="nav-link">Plateforme</a></li>
+                    <li><a href="dashboard-v2.html" class="nav-link active">Mon espace</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier.html" class="cart-btn" aria-label="Panier">
+                    <span class="cart-icon">🛒</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+                <a href="connexion.html" class="btn btn-ghost btn-sm">Nadia M. ▾</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="dash-main">
+        <div class="dash-container">
+
+            <!-- HELLO -->
+            <section class="dash-hello">
+                <div class="dash-hello-inner">
+                    <span class="dash-hello-greeting">Mardi 21 avril &middot; 14h30 à Abidjan</span>
+                    <h1>Bonjour Nadia.<br>Il te reste <span class="hl">3 leçons</span> avant ta certification E-commerce.</h1>
+                    <p>Tu as étudié 2h de plus que la semaine dernière. Continue à ce rythme et tu termines vendredi.</p>
+                </div>
+            </section>
+
+            <!-- REPRISE -->
+            <div class="dash-resume">
+                <div class="dash-resume-inner">
+                    <div>
+                        <span class="dash-resume-label"><span class="pulse"></span>Continuer</span>
+                        <h2>Leçon 4.2 — Intégrer Wave et Orange Money dans ta boutique Shopify</h2>
+                        <div class="dash-resume-meta">
+                            <span>E-commerce</span>
+                            <span class="sep">·</span>
+                            <span>18 minutes restantes</span>
+                            <span class="sep">·</span>
+                            <span>720p · offline dispo</span>
+                        </div>
+                    </div>
+                    <a href="apprendre.html" class="dash-resume-play">
+                        <span>▶</span>
+                        Reprendre
+                    </a>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="dash-stats">
+                <div class="dash-stat">
+                    <span class="dash-stat-icon">🔥</span>
+                    <div>
+                        <div class="dash-stat-num">12 jours</div>
+                        <div class="dash-stat-lbl">d'affilée — record perso</div>
+                    </div>
+                </div>
+                <div class="dash-stat">
+                    <span class="dash-stat-icon">🎯</span>
+                    <div>
+                        <div class="dash-stat-num">17 <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-secondary);">/ 20</span></div>
+                        <div class="dash-stat-lbl">au dernier quiz</div>
+                    </div>
+                </div>
+                <div class="dash-stat">
+                    <span class="dash-stat-icon">⏱</span>
+                    <div>
+                        <div class="dash-stat-num">8h 42m</div>
+                        <div class="dash-stat-lbl">cette semaine (+2h)</div>
+                    </div>
+                </div>
+                <div class="dash-stat" style="margin-left: auto;">
+                    <a href="#" class="btn btn-outline btn-sm">Voir tout mon parcours →</a>
+                </div>
+            </div>
+
+            <!-- FORMATIONS -->
+            <section class="dash-section">
+                <div class="dash-section-head">
+                    <h2>Mes formations</h2>
+                    <a href="catalogue.html">Tout voir →</a>
+                </div>
+                <div class="dash-formations">
+                    <a href="apprendre.html" class="f-card">
+                        <div class="f-card-icon">🛍️</div>
+                        <div class="f-card-title">E-commerce</div>
+                        <div class="f-card-sub">8 modules · 32 leçons · 12h</div>
+                        <div class="f-card-bar"><span style="width: 95%;"></span></div>
+                        <div class="f-card-meta">
+                            <span class="f-card-pct">95 %</span>
+                            <span class="f-card-next">3 leçons · Certif proche ✨</span>
+                        </div>
+                    </a>
+
+                    <a href="apprendre.html" class="f-card">
+                        <div class="f-card-icon accent">📣</div>
+                        <div class="f-card-title">Marketing digital</div>
+                        <div class="f-card-sub">6 modules · 24 leçons · 9h</div>
+                        <div class="f-card-bar"><span style="width: 0%;"></span></div>
+                        <div class="f-card-meta">
+                            <span class="f-card-pct">—</span>
+                            <span class="f-card-next">Commencer</span>
+                        </div>
+                    </a>
+
+                    <a href="catalogue.html" class="f-card discover">
+                        <div>
+                            <div class="plus">+</div>
+                            <strong>Découvrir une nouvelle formation</strong>
+                            <span>6 formations disponibles</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- RECOMMENDATION -->
+            <section class="dash-section">
+                <div class="dash-section-head">
+                    <h2>Suggéré pour toi</h2>
+                </div>
+                <div class="dash-reco">
+                    <div class="dash-reco-avatar">🤖</div>
+                    <div>
+                        <span class="dash-reco-tag">✦ Suggestion personnalisée</span>
+                        <div class="dash-reco-title">IA &amp; Business pour entrepreneurs</div>
+                        <div class="dash-reco-sub">Après E-commerce, c'est l'étape logique : tu apprends à automatiser ta boutique et ton SAV avec Claude et ChatGPT. 4h · 25&nbsp;000&nbsp;XOF, ou gratuit avec ton plan Premium.</div>
+                    </div>
+                    <a href="catalogue.html" class="btn btn-primary">En savoir plus</a>
+                </div>
+            </section>
+
+            <!-- COMMUNITY -->
+            <section class="dash-section">
+                <div class="dash-section-head">
+                    <h2>La communauté cette semaine</h2>
+                    <a href="#">Voir le forum →</a>
+                </div>
+                <div class="dash-community">
+                    <div class="dash-post">
+                        <div class="dash-post-avatar a1">AD</div>
+                        <div class="dash-post-content">
+                            <div class="dash-post-author">Aïcha Diop<span class="flag">🇸🇳</span><span class="when">il y a 2h</span></div>
+                            <div class="dash-post-text">Quelqu'un a testé Wave pour encaisser les abonnements mensuels ? Les frais sont OK ?</div>
+                        </div>
+                        <span class="dash-post-reply">12 réponses →</span>
+                    </div>
+                    <div class="dash-post">
+                        <div class="dash-post-avatar a2">KA</div>
+                        <div class="dash-post-content">
+                            <div class="dash-post-author">Kofi Asante<span class="flag">🇬🇭</span><span class="when">il y a 5h</span></div>
+                            <div class="dash-post-text">J'ai intégré Wave + Orange Money sur ma boutique Shopify (leçon 4.2) — j'ai doublé mes ventes cette semaine. Merci Cap Learning ! 🎉</div>
+                        </div>
+                        <span class="dash-post-reply">28 réponses →</span>
+                    </div>
+                    <div class="dash-post">
+                        <div class="dash-post-avatar a3">FO</div>
+                        <div class="dash-post-content">
+                            <div class="dash-post-author">Fatou Ouattara<span class="flag">🇨🇮</span><span class="when">hier</span></div>
+                            <div class="dash-post-text">Je cherche un binôme pour les exercices de la formation Marketing digital. MP si intéressé·e !</div>
+                        </div>
+                        <span class="dash-post-reply">5 réponses →</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OBJECTIVE -->
+            <div class="dash-objective">
+                <div class="dash-objective-content">
+                    <h3>🌱 Mon objectif de l'année 2026</h3>
+                    <p>« Je veux lancer ma boutique Shopify en ligne d'ici septembre. » — modifiable à tout moment</p>
+                </div>
+                <a href="#" class="btn" style="background: #fff; color: var(--color-secondary); border-color: #fff;">Mettre à jour mon objectif</a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer (identique aux autres pages) -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                        <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+                    </a>
+                    <p>La plateforme de formation digitale conçue pour les entrepreneurs africains.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Nos parcours</h4>
+                    <ul>
+                        <li><a href="formation-ecommerce.html">E-commerce</a></li>
+                        <li><a href="formation-ia-business.html">IA &amp; Business</a></li>
+                        <li><a href="formation-marketing-digital.html">Marketing Digital</a></li>
+                        <li><a href="formation-reseaux-sociaux.html">Réseaux Sociaux</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html#faq">FAQ</a></li>
+                        <li><a href="contact.html">Contactez-nous</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cap Learning. Tous droits réservés. Fait avec ❤ depuis l'Afrique.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

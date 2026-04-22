@@ -190,7 +190,6 @@ Chaque apprenant doit produire un projet réel pendant la formation :
 - **Marketing Digital** : stratégie + 1 campagne réelle lancée
 - **RS & CM** : 2 comptes animés 6 semaines + 1 campagne
 - **IA & Business** : 3 automatisations + 1 agent en production
-- **Copywriting** : portfolio de 5 contenus publiés
 - **Entrepreneuriat Digital** : BP + MVP + pitch
 
 ### 7.2 Encadrement
@@ -412,7 +411,7 @@ Chaque apprenant doit produire un projet réel pendant la formation :
 - Objectif : valider le modèle pédagogique
 
 ### Phase 2 (M4-M6) — Déploiement
-- Production 29 modules P1 + ouverture 6 formations
+- Production 29 modules P1 + ouverture 5 formations
 - Recrutement formateurs et mentors
 - Objectif : 200 apprenants en formation
 
@@ -440,7 +439,7 @@ Chaque apprenant doit produire un projet réel pendant la formation :
 
 ### 15.2 Documents à tenir à jour
 
-- Référentiels de compétences (36 compétences × 6 formations)
+- Référentiels de compétences (36 compétences × 5 formations)
 - Référentiels d'évaluation (grilles critériées)
 - Scénarios pédagogiques (146 modules)
 - Guide apprenant (livret d'accueil)

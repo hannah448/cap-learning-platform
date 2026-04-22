@@ -3,7 +3,7 @@
 **Version :** 1.0
 **Date :** 16 avril 2026
 **Rédacteur :** Ingénierie pédagogique Cap Learning
-**Objet :** Recap consolidé des 6 formations, modules intégrés depuis Digi Atlas, modules à produire.
+**Objet :** Recap consolidé des 5 formations, modules intégrés depuis Digi Atlas, modules à produire.
 
 ---
 
@@ -15,9 +15,8 @@
 | 2 | Marketing Digital | 57 h | 1 950 € / 1 279 500 FCFA | 16 | 12 | C1-C6 |
 | 3 | Réseaux Sociaux & Community Management | 41 h | 1 550 € / 1 016 350 FCFA | 25 | 6 | C1-C6 |
 | 4 | IA & Business | 48 h | 2 400 € / 1 574 800 FCFA | 26 | 10 | C1-C6 |
-| 5 | Copywriting & Création de contenu | 35 h | 1 550 € / 1 016 350 FCFA | 12 | 4 | C1-C6 |
-| 6 | Entrepreneuriat Digital | 50 h | 1 950 € / 1 279 500 FCFA | 20 | 8 | C1-C6 |
-| **TOTAL** | — | **310 h** | — | **146** | **52** | **36** |
+| 5 | Entrepreneuriat Digital | 50 h | 1 950 € / 1 279 500 FCFA | 20 | 8 | C1-C6 |
+| **TOTAL** | — | **275 h** | — | **134** | **48** | **36** |
 
 ---
 
@@ -211,28 +210,7 @@
 
 ---
 
-### 3.5 FORMATION COPYWRITING (12 modules)
-
-| Code | Titre | Statut | Source | À tourner | Priorité |
-|---|---|---|---|---|---|
-| COPY-M01 | Fondamentaux copywriting | EXISTANT | Copy M1 | Non | — |
-| COPY-M02 | Objectifs et personas | EXISTANT | Copy M2 | Non | — |
-| COPY-M03 | Stratégie de contenu | EXISTANT | Copy M3 | Non | — |
-| COPY-M04 | Frameworks (AIDA, PAS, 4P, A/B test) | EXISTANT | Copy M4 | Non | — |
-| COPY-M05 | Rédaction performante | EXISTANT | Copy M5 | Non | — |
-| COPY-M06 | SEO-copy | EXISTANT | Copy M6 | Non | — |
-| COPY-M07 | CTA et conversion | EXISTANT | Copy M7 | Non | — |
-| COPY-M08 | IA et copywriting | EXISTANT | Copy M8 | Non | — |
-| COPY-M09 | Emails et séquences | EXISTANT | Copy M9 | Non | — |
-| COPY-M10 | **Storytelling africain (griots, proverbes)** | **NOUVEAU** | — | **Tournage 15 min** | **P1** |
-| COPY-M11 | **Copy multilingue (français + langue locale)** | **NOUVEAU** | — | **Tournage 12 min** | **P2** |
-| COPY-M12 | **Copy WhatsApp et messaging** | **NOUVEAU** | — | **Tournage 10 min** | **P0** |
-
-**Sous-total Copywriting :** 9 existants · 0 à adapter · 3 nouveaux
-
----
-
-### 3.6 FORMATION ENTREPRENEURIAT DIGITAL (20 modules)
+### 3.5 FORMATION ENTREPRENEURIAT DIGITAL (20 modules)
 
 | Code | Titre | Statut | Source | À tourner | Priorité |
 |---|---|---|---|---|---|
@@ -284,14 +262,13 @@
 | 6 | MD-M16 | WhatsApp Business marketing | 15 min | Marketing Digital |
 | 7 | RS-M09 | WhatsApp Business approfondi | 20 min | RS & CM |
 | 8 | IA-M06 | Conformité IA Afrique | 15 min | IA |
-| 9 | COPY-M12 | Copy WhatsApp et messaging | 10 min | Copywriting |
-| 10 | ENT-M03 | Étude marché terrain Afrique | 18 min | Entrepreneuriat |
-| 11 | ENT-M04 | MVP lean | 18 min | Entrepreneuriat |
-| 12 | ENT-M08 | OHADA et statuts | 20 min | Entrepreneuriat |
-| 13 | ENT-M09 | Fiscalité comparée Afrique 6 pays | 20 min | Entrepreneuriat |
-| 14 | ENT-M13 | Bailleurs et VC Afrique | 18 min | Entrepreneuriat |
+| 9 | ENT-M03 | Étude marché terrain Afrique | 18 min | Entrepreneuriat |
+| 10 | ENT-M04 | MVP lean | 18 min | Entrepreneuriat |
+| 11 | ENT-M08 | OHADA et statuts | 20 min | Entrepreneuriat |
+| 12 | ENT-M09 | Fiscalité comparée Afrique 6 pays | 20 min | Entrepreneuriat |
+| 13 | ENT-M13 | Bailleurs et VC Afrique | 18 min | Entrepreneuriat |
 
-**Total P0 : 14 modules · 3 h 43 min cumulées · ~20 jours de tournage**
+**Total P0 : 13 modules · 3 h 33 min cumulées · ~20 jours de tournage**
 
 ### 4.3 Récap tournages par formation
 
@@ -301,9 +278,8 @@
 | Marketing Digital | 5 (2 nouveaux + 3 adaptés) | 56 min | 31 % |
 | RS & CM | 9 (3 nouveaux + 6 adaptés) | 92 min | 36 % |
 | IA & Business | 3 nouveaux | 39 min | 12 % |
-| Copywriting | 3 nouveaux | 37 min | 25 % |
 | Entrepreneuriat Digital | 18 nouveaux | 298 min | 90 % |
-| **TOTAL** | **54** | **696 min (11h36)** | — |
+| **TOTAL** | **51** | **659 min (10h59)** | — |
 
 ---
 
