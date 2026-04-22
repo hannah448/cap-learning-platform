@@ -895,6 +895,36 @@ h1, h2, h3, h4, h5, h6 {
     50% { transform: rotate(-2deg) translateY(-10px); }
 }
 
+/* 2e carte principale mise en avant : IA & Réseaux Sociaux */
+.hero-card-main-alt {
+    position: absolute;
+    top: 36px;
+    right: -24px;
+    width: 300px;
+    transform: rotate(4deg);
+    animation: floatAlt 6.8s ease-in-out infinite;
+    z-index: 1;
+    background: linear-gradient(155deg, #F4F0FF 0%, #FFFFFF 62%);
+    border-left: 4px solid var(--color-accent, #A78BFA);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+.hero-card-main-alt:hover {
+    z-index: 4;
+    transform: rotate(0deg) translateY(-4px) scale(1.02);
+    box-shadow: 0 25px 60px -12px rgba(30, 27, 58, 0.35);
+}
+@keyframes floatAlt {
+    0%, 100% { transform: rotate(4deg) translateY(0); }
+    50% { transform: rotate(4deg) translateY(-8px); }
+}
+.hero-card-badge-ai {
+    background: linear-gradient(135deg, var(--color-accent, #A78BFA), var(--color-primary, #3A50F6));
+    color: #fff;
+}
+.progress-fill-ai {
+    background: linear-gradient(90deg, var(--color-accent, #A78BFA), var(--color-primary, #3A50F6));
+}
+
 .hero-card-header {
     display: flex;
     justify-content: space-between;
@@ -1036,6 +1066,19 @@ h1, h2, h3, h4, h5, h6 {
     width: 150px;
     height: 190px;
     animation: floatFaceA 7s ease-in-out infinite;
+}
+.hero-face-3 {
+    bottom: -30px;
+    left: -85px;
+    width: 140px;
+    height: 175px;
+    transform: rotate(-4deg);
+    animation: floatFaceC 7.5s ease-in-out infinite;
+    z-index: 1;
+}
+@keyframes floatFaceC {
+    0%, 100% { transform: rotate(-4deg) translateY(0); }
+    50% { transform: rotate(-4deg) translateY(-7px); }
 }
 .hero-face-2 {
     bottom: 10px;
