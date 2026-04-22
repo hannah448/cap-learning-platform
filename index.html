@@ -188,6 +188,10 @@
                     </div>
                 </div>
                 <div class="hero-visual">
+                    <div class="hero-faces" aria-hidden="true">
+                        <div class="hero-face hero-face-1"><img src="img/hero-faces/face-1.jpg" alt="" loading="lazy" width="150" height="190"></div>
+                        <div class="hero-face hero-face-2"><img src="img/hero-faces/face-2.jpg" alt="" loading="lazy" width="160" height="200"></div>
+                    </div>
                     <div class="hero-card hero-card-main">
                         <div class="hero-card-header">
                             <span class="hero-card-badge">Populaire</span>
@@ -224,17 +228,39 @@
             </div>
         </section>
 
-        <!-- Logos / Trust Band -->
-        <section class="trust-band">
+        <!-- Trustpilot Reviews Section (remontée ici, remplace l'ancienne "Ils nous font confiance") -->
+        <section class="section" id="trustpilot-reviews">
             <div class="container">
-                <p class="trust-band-title">Ils nous font confiance</p>
-                <div class="trust-logos">
-                    <div class="trust-logo">AfricaStartup</div>
-                    <div class="trust-logo">DigiAfrica</div>
-                    <div class="trust-logo">TechHub Lagos</div>
-                    <div class="trust-logo">Abidjan Digital</div>
-                    <div class="trust-logo">CasaConnect</div>
-                    <div class="trust-logo">NairoBI</div>
+                <div class="section-header">
+                    <span class="section-badge">Avis v&eacute;rifi&eacute;s</span>
+                    <h2 class="section-title">Not&eacute;s <span class="text-gradient">4.8/5</span> sur Trustpilot</h2>
+                    <p class="section-desc">182 avis v&eacute;rifi&eacute;s de nos apprenants &mdash; transparence totale</p>
+                </div>
+
+                <!-- Trustpilot Carousel Widget -->
+                <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="603532e52dba4c0001029abe" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
+                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener">Trustpilot</a>
+                </div>
+
+                <!-- Fallback / trust row (visible while Trustpilot loads) -->
+                <div class="trustpilot-trust-row">
+                    <div class="tp-stat">
+                        <span class="tp-stat-value">4.8<span class="tp-stat-max">/5</span></span>
+                        <span class="tp-stat-label">TrustScore</span>
+                    </div>
+                    <div class="tp-stat">
+                        <span class="tp-stat-value">182</span>
+                        <span class="tp-stat-label">Avis v&eacute;rifi&eacute;s</span>
+                    </div>
+                    <div class="tp-stat">
+                        <span class="tp-stat-value">90%</span>
+                        <span class="tp-stat-label">5 &eacute;toiles</span>
+                    </div>
+                    <div class="tp-stat">
+                        <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-link">
+                            Voir tous les avis &rarr;
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -248,7 +274,7 @@
                     <p class="stat-label">Entrepreneurs formés</p>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number" data-target="6">0</span>
+                    <span class="stat-number" data-target="5">0</span>
                     <p class="stat-label">Parcours certifiants</p>
                 </div>
                 <div class="stat-card">
@@ -586,43 +612,6 @@
 
                 <div class="section-cta">
                     <a href="pages/catalogue.html" class="btn btn-outline btn-lg">Voir toutes les formations &rarr;</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Trustpilot Reviews Section (unique section avis) -->
-        <section class="section" id="trustpilot-reviews">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-badge">Avis v&eacute;rifi&eacute;s</span>
-                    <h2 class="section-title">Not&eacute;s <span class="text-gradient">4.8/5</span> sur Trustpilot</h2>
-                    <p class="section-desc">182 avis v&eacute;rifi&eacute;s de nos apprenants &mdash; transparence totale</p>
-                </div>
-
-                <!-- Trustpilot Carousel Widget -->
-                <div class="trustpilot-widget" data-locale="fr-FR" data-template-id="53aa8912dec7e10d38f59f36" data-businessunit-id="603532e52dba4c0001029abe" data-style-height="140px" data-style-width="100%" data-theme="light" data-stars="4,5" data-review-languages="fr">
-                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener">Trustpilot</a>
-                </div>
-
-                <!-- Fallback / trust row (visible while Trustpilot loads) -->
-                <div class="trustpilot-trust-row">
-                    <div class="tp-stat">
-                        <span class="tp-stat-value">4.8<span class="tp-stat-max">/5</span></span>
-                        <span class="tp-stat-label">TrustScore</span>
-                    </div>
-                    <div class="tp-stat">
-                        <span class="tp-stat-value">182</span>
-                        <span class="tp-stat-label">Avis v&eacute;rifi&eacute;s</span>
-                    </div>
-                    <div class="tp-stat">
-                        <span class="tp-stat-value">90%</span>
-                        <span class="tp-stat-label">5 &eacute;toiles</span>
-                    </div>
-                    <div class="tp-stat">
-                        <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-link">
-                            Voir tous les avis &rarr;
-                        </a>
-                    </div>
                 </div>
             </div>
         </section>
