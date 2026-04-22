@@ -1043,49 +1043,49 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    /* Pas de z-index ici : chaque portrait gère son empilement individuellement */
 }
 .hero-face {
     position: absolute;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 20px 50px -12px rgba(30, 27, 58, 0.28), 0 4px 12px rgba(30, 27, 58, 0.08);
-    border: 4px solid #fff;
+    box-shadow: 0 24px 60px -14px rgba(30, 27, 58, 0.38), 0 6px 16px rgba(30, 27, 58, 0.14);
+    border: 5px solid #fff;
     background: #fff;
 }
 .hero-face img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 18%;
     display: block;
 }
 .hero-face-1 {
-    top: -25px;
-    left: 10px;
-    width: 130px;
-    height: 165px;
+    top: -30px;
+    left: -20px;
+    width: 140px;
+    height: 175px;
     animation: floatFaceA 7s ease-in-out infinite;
-    z-index: 2;
+    z-index: 5;
 }
-/* Portrait central dominant — "au milieu" du composite hero */
+/* Portrait central dominant — devant les cartes pour vraiment ressortir */
 .hero-face-2 {
     top: 50%;
     left: 50%;
-    margin-top: -130px;
-    margin-left: -100px;
-    width: 200px;
-    height: 260px;
+    margin-top: -140px;
+    margin-left: -110px;
+    width: 220px;
+    height: 280px;
     animation: floatFaceB 8s ease-in-out infinite;
-    z-index: 4;
+    z-index: 6;
 }
 .hero-face-3 {
-    bottom: -15px;
-    left: 18px;
-    width: 135px;
-    height: 170px;
+    bottom: -25px;
+    left: -15px;
+    width: 150px;
+    height: 185px;
     animation: floatFaceC 7.5s ease-in-out infinite;
-    z-index: 2;
+    z-index: 5;
 }
 @keyframes floatFaceA {
     0%, 100% { transform: rotate(-7deg) translateY(0); }
