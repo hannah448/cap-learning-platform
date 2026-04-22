@@ -1643,3 +1643,366 @@
         height: 180px;
     }
 }
+
+/* ============================================
+   Sales Pages — Redesign 2026
+   Activation via class `sales-page` + `data-formation`
+   sur <main id="main-content">. Conserve 100% du
+   contenu HTML existant, ne fait qu'améliorer le visuel.
+   ============================================ */
+
+/* Palette par formation — alignée sur les certificats du dashboard */
+.sales-page[data-formation="ecommerce"] {
+    --formation-color: #2D9CDB;
+    --formation-light: #DCEEFA;
+    --formation-lighter: #EFF7FD;
+    --formation-dark: #2F5D78;
+}
+.sales-page[data-formation="ia"] {
+    --formation-color: #7C3AED;
+    --formation-light: #E9E0FD;
+    --formation-lighter: #F4EFFE;
+    --formation-dark: #4C1D95;
+}
+.sales-page[data-formation="marketing"] {
+    --formation-color: #F2994A;
+    --formation-light: #FDE2C8;
+    --formation-lighter: #FEF0E1;
+    --formation-dark: #A5541F;
+}
+.sales-page[data-formation="entrepreneuriat"] {
+    --formation-color: #6FAE9F;
+    --formation-light: #D8ECE5;
+    --formation-lighter: #EBF5F1;
+    --formation-dark: #2F5D4E;
+}
+.sales-page[data-formation="reseaux"] {
+    --formation-color: #E77FB0;
+    --formation-light: #F9DCE9;
+    --formation-lighter: #FCEEF3;
+    --formation-dark: #8B2C5B;
+}
+
+/* --- Hero redesign — clair et aéré, dans l'esprit de la home --- */
+.sales-page .sales-hero {
+    background:
+        radial-gradient(900px 400px at 110% -10%, var(--formation-light) 0%, transparent 60%),
+        linear-gradient(170deg, #FAFAFF 0%, var(--formation-lighter) 100%);
+    color: var(--text-primary);
+    padding: var(--space-12) 0 var(--space-10);
+}
+.sales-page .sales-hero::before {
+    display: none;
+}
+.sales-page .sales-hero-breadcrumb {
+    color: var(--text-tertiary);
+}
+.sales-page .sales-hero-breadcrumb a {
+    color: var(--text-secondary);
+}
+.sales-page .sales-hero-breadcrumb a:hover {
+    color: var(--formation-color);
+}
+.sales-page .sales-hero-tags .tag {
+    background: white !important;
+    border: 1px solid var(--color-gray-200);
+    color: var(--text-secondary) !important;
+    backdrop-filter: none;
+    padding: 6px 14px;
+    font-weight: 600;
+    font-size: var(--text-xs);
+}
+.sales-page .sales-hero-tags .tag:first-child {
+    background: var(--formation-color) !important;
+    color: white !important;
+    border-color: transparent;
+}
+.sales-page .sales-hero h1 {
+    color: var(--text-primary);
+    font-size: clamp(2rem, 4.2vw, 3.25rem);
+    letter-spacing: -0.025em;
+}
+.sales-page .sales-hero-subtitle {
+    color: var(--text-secondary);
+}
+.sales-page .sales-hero-subtitle strong {
+    color: var(--formation-dark);
+    font-weight: 700;
+}
+.sales-page .sales-hero-proof {
+    color: var(--text-secondary);
+    padding: var(--space-5) 0;
+    margin-bottom: var(--space-6);
+    border-top: 1px solid rgba(30, 27, 58, 0.08);
+    border-bottom: 1px solid rgba(30, 27, 58, 0.08);
+    gap: var(--space-5);
+}
+.sales-page .sales-hero-proof strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+.sales-page .sales-hero-instructor {
+    border-top: none;
+    padding-top: 0;
+}
+.sales-page .sales-hero-instructor-name {
+    color: var(--text-primary);
+    font-size: var(--text-base);
+}
+.sales-page .sales-hero-instructor-role {
+    color: var(--text-tertiary);
+}
+
+/* --- Purchase card redesign — plus premium --- */
+.sales-page .sales-purchase {
+    box-shadow: 0 1px 3px rgba(30, 27, 58, 0.06), 0 24px 60px -20px rgba(30, 27, 58, 0.22);
+    border: 1px solid rgba(30, 27, 58, 0.06);
+}
+.sales-page .sales-purchase-preview {
+    background: linear-gradient(135deg, var(--formation-color), var(--formation-dark)) !important;
+    height: 180px;
+    position: relative;
+}
+.sales-page .sales-purchase-preview::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(255,255,255,0.22) 0%, transparent 55%);
+    pointer-events: none;
+}
+.sales-page .sales-purchase-pricing .price-main {
+    font-size: clamp(1.75rem, 2.5vw, 2.25rem);
+}
+.sales-page .sales-purchase-discount {
+    background: var(--formation-light);
+    color: var(--formation-dark);
+}
+.sales-page .sales-purchase .btn-primary {
+    background: var(--formation-color);
+    border-color: var(--formation-color);
+    transition: all var(--duration-fast);
+}
+.sales-page .sales-purchase .btn-primary:hover {
+    background: var(--formation-dark);
+    border-color: var(--formation-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--formation-color) 60%, transparent);
+}
+.sales-page .sales-purchase-includes li::before {
+    color: var(--formation-color);
+}
+
+/* --- Section headers unifiés sur le thème de la formation --- */
+.sales-page .section-badge {
+    background: var(--formation-light);
+    color: var(--formation-dark);
+    border: none;
+}
+.sales-page .section-title .text-gradient {
+    background: linear-gradient(135deg, var(--formation-color), var(--formation-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* --- Outcomes — accent formation --- */
+.sales-page .sales-outcomes {
+    background: white;
+}
+.sales-page .sales-outcomes-grid {
+    max-width: 960px;
+}
+.sales-page .sales-outcome-item {
+    padding: var(--space-5);
+    transition: all var(--duration-base);
+}
+.sales-page .sales-outcome-icon {
+    background: var(--formation-light);
+    color: var(--formation-dark);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-lg);
+    font-size: var(--text-base);
+}
+.sales-page .sales-outcome-item:hover {
+    border-color: var(--formation-color);
+    box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--formation-color) 40%, transparent);
+    transform: translateY(-2px);
+}
+
+/* --- For-who cards — hover coloré --- */
+.sales-page .sales-for-who {
+    background: var(--formation-lighter);
+}
+.sales-page .sales-for-who-item {
+    transition: all var(--duration-base);
+}
+.sales-page .sales-for-who-item:hover {
+    border-color: var(--formation-color);
+    box-shadow: 0 18px 34px -16px color-mix(in srgb, var(--formation-color) 38%, transparent);
+    transform: translateY(-4px);
+}
+
+/* --- Curriculum — modules plus lisibles --- */
+.sales-page .curriculum-section {
+    padding: var(--space-16) 0;
+    background: white;
+}
+.sales-page .module-list {
+    max-width: 860px;
+    margin: 0 auto;
+}
+.sales-page .module-item {
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    background: white;
+    margin-bottom: var(--space-3);
+    overflow: hidden;
+    transition: all var(--duration-fast);
+}
+.sales-page .module-item:hover {
+    border-color: var(--formation-light);
+}
+.sales-page .module-item[open] {
+    border-color: var(--formation-color);
+    box-shadow: 0 10px 24px -14px color-mix(in srgb, var(--formation-color) 30%, transparent);
+}
+.sales-page .module-header {
+    padding: var(--space-4) var(--space-5);
+}
+.sales-page .module-header strong {
+    color: var(--text-primary);
+    font-size: var(--text-base);
+}
+.sales-page .module-header span[style*="color: var(--color-primary)"] {
+    color: var(--formation-color) !important;
+    transition: transform var(--duration-fast);
+}
+.sales-page .module-item[open] .module-header span[style*="color: var(--color-primary)"] {
+    transform: rotate(180deg);
+}
+
+/* --- Social proof — citations + formation accent --- */
+.sales-page .sales-social-proof {
+    background: var(--formation-lighter);
+}
+.sales-page .sales-stat-value {
+    color: var(--formation-color);
+}
+.sales-page .sales-testimonial {
+    position: relative;
+    transition: all var(--duration-base);
+    padding-top: var(--space-8);
+}
+.sales-page .sales-testimonial::before {
+    content: '\201C';
+    position: absolute;
+    top: -8px;
+    left: var(--space-4);
+    font-size: 72px;
+    line-height: 1;
+    font-family: var(--font-display);
+    color: var(--formation-color);
+    opacity: 0.22;
+}
+.sales-page .sales-testimonial:hover {
+    transform: translateY(-4px);
+    border-color: var(--formation-light);
+    box-shadow: 0 14px 28px -14px color-mix(in srgb, var(--formation-color) 28%, transparent);
+}
+.sales-page .sales-testimonial-stars {
+    color: var(--formation-color);
+}
+
+/* --- Instructor --- */
+.sales-page .sales-instructor {
+    background: white;
+}
+.sales-page .sales-instructor-card {
+    border: 1px solid var(--color-gray-200);
+    background: linear-gradient(180deg, white, var(--formation-lighter));
+}
+.sales-page .sales-instructor-title {
+    color: var(--formation-color);
+}
+.sales-page .sales-instructor-stats {
+    flex-wrap: wrap;
+}
+.sales-page .sales-instructor-stats span {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    background: white;
+    padding: var(--space-2) var(--space-4);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-gray-200);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* --- FAQ --- */
+.sales-page .sales-faq {
+    background: white;
+}
+.sales-page .sales-faq-item {
+    transition: all var(--duration-fast);
+}
+.sales-page .sales-faq-item:hover {
+    border-color: var(--formation-light);
+}
+.sales-page .sales-faq-item[open] {
+    border-color: var(--formation-color);
+    box-shadow: 0 6px 18px -10px color-mix(in srgb, var(--formation-color) 30%, transparent);
+}
+.sales-page .sales-faq-item summary::after {
+    color: var(--formation-color);
+    font-weight: 400;
+    transition: transform 0.2s ease;
+}
+
+/* --- Final CTA --- */
+.sales-page .sales-final-cta {
+    background: linear-gradient(180deg, white 0%, var(--formation-lighter) 100%);
+    position: relative;
+    overflow: hidden;
+}
+.sales-page .sales-final-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(500px 300px at 20% 30%, color-mix(in srgb, var(--formation-color) 18%, transparent) 0%, transparent 70%),
+        radial-gradient(400px 300px at 80% 70%, color-mix(in srgb, var(--formation-color) 14%, transparent) 0%, transparent 70%);
+    pointer-events: none;
+}
+.sales-page .sales-final-cta .container {
+    position: relative;
+    z-index: 1;
+}
+.sales-page .sales-final-cta .btn-primary {
+    background: var(--formation-color);
+    border-color: var(--formation-color);
+}
+.sales-page .sales-final-cta .btn-primary:hover {
+    background: var(--formation-dark);
+    border-color: var(--formation-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--formation-color) 55%, transparent);
+}
+.sales-page .sales-final-cta .btn-outline {
+    border-color: var(--formation-color);
+    color: var(--formation-dark);
+}
+.sales-page .sales-final-cta .btn-outline:hover {
+    background: var(--formation-light);
+}
+
+/* --- Responsive ajustements --- */
+@media (max-width: 1024px) {
+    .sales-page .sales-hero-grid { gap: var(--space-8); }
+}
+@media (max-width: 768px) {
+    .sales-page .sales-hero { padding: var(--space-10) 0 var(--space-8); }
+    .sales-page .sales-testimonial::before { font-size: 56px; }
+}
