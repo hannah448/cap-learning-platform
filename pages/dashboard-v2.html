@@ -76,18 +76,7 @@
             isolation: isolate;
             box-shadow: 0 1px 2px rgba(30, 27, 58, 0.04), 0 18px 36px rgba(30, 27, 58, 0.06);
         }
-        .dash-resume::before {
-            content: ''; position: absolute; right: -120px; top: -120px;
-            width: 360px; height: 360px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(167, 139, 250, 0.22), transparent 65%);
-            pointer-events: none; z-index: 0;
-        }
-        .dash-resume::after {
-            content: ''; position: absolute; left: -80px; bottom: -80px;
-            width: 260px; height: 260px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(58, 80, 246, 0.10), transparent 65%);
-            pointer-events: none; z-index: 0;
-        }
+        /* Blobs de dégradé supprimés — carte ivoire plate */
         .dash-resume-inner {
             position: relative; z-index: 1;
             padding: 36px 44px;
@@ -601,19 +590,46 @@
         .dash-cert-ribbon {
             width: 64px; height: 64px; margin: 0 auto 12px;
             border-radius: 50%;
-            background: #F2994A;
+            background: #2D9CDB;
             display: flex; align-items: center; justify-content: center;
             font-size: 2rem;
-            box-shadow: 0 8px 20px rgba(242, 153, 74, 0.25);
+            box-shadow: 0 8px 20px rgba(45, 156, 219, 0.22);
         }
         .dash-cert.locked .dash-cert-ribbon {
-            background: #E5E1F3;
+            opacity: 0.4;
             box-shadow: none;
-            filter: grayscale(1);
         }
+        .dash-cert.locked { opacity: 0.85; }
+        /* Une couleur par formation vendue */
+        .dash-cert[data-formation="ecommerce"] .dash-cert-ribbon {
+            background: #2D9CDB;
+            box-shadow: 0 8px 20px rgba(45, 156, 219, 0.22);
+        }
+        .dash-cert[data-formation="ecommerce"] .dash-cert-badge { background: #2D9CDB; }
+        .dash-cert[data-formation="ia"] .dash-cert-ribbon {
+            background: #A78BFA;
+            box-shadow: 0 8px 20px rgba(167, 139, 250, 0.24);
+        }
+        .dash-cert[data-formation="ia"] .dash-cert-badge { background: #A78BFA; }
+        .dash-cert[data-formation="marketing"] .dash-cert-ribbon {
+            background: #F2994A;
+            box-shadow: 0 8px 20px rgba(242, 153, 74, 0.22);
+        }
+        .dash-cert[data-formation="marketing"] .dash-cert-badge { background: #F2994A; }
+        .dash-cert[data-formation="entrepreneuriat"] .dash-cert-ribbon {
+            background: #6FAE9F;
+            box-shadow: 0 8px 20px rgba(111, 174, 159, 0.22);
+        }
+        .dash-cert[data-formation="entrepreneuriat"] .dash-cert-badge { background: #6FAE9F; }
+        .dash-cert[data-formation="reseaux"] .dash-cert-ribbon {
+            background: #E77FB0;
+            box-shadow: 0 8px 20px rgba(231, 127, 176, 0.24);
+        }
+        .dash-cert[data-formation="reseaux"] .dash-cert-badge { background: #E77FB0; }
         .dash-cert-title { font-weight: 600; font-size: 0.98rem; margin-bottom: 4px; }
         .dash-cert-meta { font-size: 0.82rem; color: var(--text-secondary); }
         .dash-cert.obtained .dash-cert-meta { color: #7AA68A; font-weight: 600; }
+        .dash-cert.progress .dash-cert-meta { color: var(--text-secondary); font-weight: 500; }
         .dash-cert-badge {
             display: inline-block;
             background: #F2994A; color: #fff;
@@ -1050,21 +1066,32 @@
                     <a href="certificat.html">Voir mon dernier certificat →</a>
                 </div>
                 <div class="dash-certs">
-                    <a href="certificat.html" class="dash-cert obtained">
-                        <div class="dash-cert-ribbon">🎓</div>
+                    <a href="certificat.html" class="dash-cert progress" data-formation="ecommerce">
+                        <div class="dash-cert-ribbon">🛒</div>
                         <div class="dash-cert-title">E-commerce &amp; Paiements</div>
+                        <div class="dash-cert-meta">95 % — plus que 3 leçons</div>
+                        <span class="dash-cert-badge">Presque !</span>
+                    </a>
+                    <a href="certificat.html" class="dash-cert obtained" data-formation="ia">
+                        <div class="dash-cert-ribbon">🤖</div>
+                        <div class="dash-cert-title">IA &amp; Business</div>
                         <div class="dash-cert-meta">Obtenu le 12 mars 2026</div>
                         <span class="dash-cert-badge">Téléchargeable</span>
                     </a>
-                    <a href="certificat.html" class="dash-cert obtained">
-                        <div class="dash-cert-ribbon">🎓</div>
-                        <div class="dash-cert-title">Fondamentaux Entrepreneuriat</div>
+                    <a href="certificat.html" class="dash-cert obtained" data-formation="reseaux">
+                        <div class="dash-cert-ribbon">📱</div>
+                        <div class="dash-cert-title">Réseaux Sociaux &amp; CM</div>
                         <div class="dash-cert-meta">Obtenu le 8 février 2026</div>
                         <span class="dash-cert-badge">Téléchargeable</span>
                     </a>
-                    <div class="dash-cert locked">
-                        <div class="dash-cert-ribbon">🔒</div>
+                    <div class="dash-cert locked" data-formation="marketing">
+                        <div class="dash-cert-ribbon">📈</div>
                         <div class="dash-cert-title">Marketing Digital</div>
+                        <div class="dash-cert-meta">0 % — à débloquer</div>
+                    </div>
+                    <div class="dash-cert locked" data-formation="entrepreneuriat">
+                        <div class="dash-cert-ribbon">🚀</div>
+                        <div class="dash-cert-title">Entrepreneuriat Digital</div>
                         <div class="dash-cert-meta">0 % — à débloquer</div>
                     </div>
                 </div>
