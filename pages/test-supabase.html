@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+    <meta charset="UTF-8">
+    <title>Cap Learning — Test Supabase</title>
+    <link rel="stylesheet" href="../css/tokens.css">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 20px; background: var(--color-bg); color: var(--color-text); }
+        h1 { font-size: 22px; margin-bottom: 8px; }
+        h2 { font-size: 16px; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--color-border); }
+        .status { padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; background: var(--color-surface-2); font-size: 14px; }
+        .status.ok { background: var(--accent-ent-bg); color: var(--accent-ent-text); }
+        .status.err { background: var(--accent-rs-bg); color: var(--accent-rs-text); }
+        .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin: 8px 0; }
+        input { padding: 9px 12px; border: 1px solid var(--color-border); border-radius: 8px; background: var(--color-surface); color: var(--color-text); font-size: 14px; min-width: 200px; }
+        button { padding: 9px 16px; border: 1px solid var(--accent-ia); background: var(--accent-ia); color: #fff; border-radius: 8px; font-weight: 600; font-size: 14px; cursor: pointer; }
+        button.ghost { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border); }
+        button:hover { transform: translateY(-1px); }
+        pre { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: 12px; max-height: 300px; overflow: auto; font-size: 12px; line-height: 1.5; white-space: pre-wrap; word-break: break-all; }
+        .muted { color: var(--color-text-mute); font-size: 13px; }
+        code { background: var(--color-surface-2); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h1>Cap Learning — Test Supabase</h1>
+    <p class="muted">Page de validation : vérifie que la chaîne <code>config → client → auth → db</code> fonctionne. À supprimer une fois en prod.</p>
+
+    <div id="status" class="status">⏳ Initialisation…</div>
+
+    <h2>1. Inscription (signUp)</h2>
+    <div class="row">
+        <input type="email" id="signupEmail" placeholder="email@test.com">
+        <input type="password" id="signupPassword" placeholder="Min 8 caractères">
+        <input type="text" id="signupName" placeholder="Ton nom" style="min-width: 140px;">
+        <button onclick="doSignup()">Sign up</button>
+    </div>
+
+    <h2>2. Connexion (signIn)</h2>
+    <div class="row">
+        <input type="email" id="signinEmail" placeholder="email@test.com">
+        <input type="password" id="signinPassword" placeholder="Mot de passe">
+        <button onclick="doSignin()">Sign in</button>
+    </div>
+
+    <h2>3. État courant</h2>
+    <div class="row">
+        <button class="ghost" onclick="doGetUser()">Get user</button>
+        <button class="ghost" onclick="doGetProfile()">Get profile</button>
+        <button class="ghost" onclick="doIsAdmin()">isAdmin?</button>
+        <button class="ghost" onclick="doSignout()">Sign out</button>
+    </div>
+
+    <h2>4. DB (test des helpers CapData)</h2>
+    <div class="row">
+        <button class="ghost" onclick="doListEnroll()">getMyEnrollments()</button>
+        <button class="ghost" onclick="doListProgress()">getProgress('ecommerce')</button>
+        <button class="ghost" onclick="doAdminStats()">adminGetStats() (admin only)</button>
+    </div>
+
+    <h2>Logs</h2>
+    <pre id="log">(vide)</pre>
+
+    <!-- ---- Cap Learning DB stack ---- -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script src="../js/auth.js?v=2"></script>
+    <script src="../js/db.js?v=2"></script>
+
+    <script>
+        var logEl = document.getElementById('log');
+        var statusEl = document.getElementById('status');
+        var logs = [];
+
+        function log(label, data) {
+            var line = '[' + new Date().toLocaleTimeString() + '] ' + label;
+            if (data !== undefined) line += '\n' + JSON.stringify(data, null, 2);
+            logs.unshift(line);
+            logEl.textContent = logs.slice(0, 30).join('\n\n');
+        }
+
+        function setStatus(msg, type) {
+            statusEl.textContent = msg;
+            statusEl.className = 'status' + (type ? ' ' + type : '');
+        }
+
+        // Sanity check
+        window.addEventListener('load', function () {
+            setTimeout(function () {
+                if (!window.CapDB) {
+                    setStatus('❌ CapDB indispo. Vérifie js/config.js (URL + anon key).', 'err');
+                    return;
+                }
+                if (!window.CapAuth || !window.CapData) {
+                    setStatus('❌ CapAuth ou CapData manquant.', 'err');
+                    return;
+                }
+                setStatus('✅ Stack OK : Supabase ' + window.CapConfig.SUPABASE_URL.replace('https://', '').split('.')[0] + ' connecté. Tu peux tester.', 'ok');
+                log('Init OK', {
+                    SUPABASE_URL: window.CapConfig.SUPABASE_URL,
+                    hasCapDB: !!window.CapDB,
+                    hasCapAuth: !!window.CapAuth,
+                    hasCapData: !!window.CapData
+                });
+
+                // Affiche le user actuel s'il est déjà connecté
+                window.CapAuth.getProfile().then(function (p) {
+                    if (p) log('Already signed in', { email: p.email, role: p.role });
+                });
+            }, 300);
+        });
+
+        // ============ SIGNUP ============
+        async function doSignup() {
+            try {
+                var email = document.getElementById('signupEmail').value.trim();
+                var pw = document.getElementById('signupPassword').value;
+                var name = document.getElementById('signupName').value.trim();
+                var res = await CapAuth.signUp(email, pw, { full_name: name, country: 'SN' });
+                log('SIGNUP OK', { user: res.user && res.user.email, session: !!res.session });
+                setStatus('✅ Inscription OK : ' + email + (res.session ? ' (connecté)' : ' (vérifie ton email si confirm activé)'), 'ok');
+            } catch (e) {
+                log('SIGNUP ERREUR', { message: e.message, code: e.code });
+                setStatus('❌ ' + e.message, 'err');
+            }
+        }
+
+        // ============ SIGNIN ============
+        async function doSignin() {
+            try {
+                var email = document.getElementById('signinEmail').value.trim();
+                var pw = document.getElementById('signinPassword').value;
+                var res = await CapAuth.signIn(email, pw);
+                var profile = await CapAuth.getProfile();
+                log('SIGNIN OK', { email: res.user && res.user.email, role: profile && profile.role });
+                setStatus('✅ Connecté en tant que ' + email + (profile && profile.role === 'admin' ? ' (ADMIN)' : ''), 'ok');
+            } catch (e) {
+                log('SIGNIN ERREUR', { message: e.message });
+                setStatus('❌ ' + e.message, 'err');
+            }
+        }
+
+        async function doSignout() {
+            try { await CapAuth.signOut(); log('SIGNOUT OK'); setStatus('🚪 Déconnecté.'); }
+            catch (e) { log('SIGNOUT ERREUR', { message: e.message }); }
+        }
+
+        async function doGetUser() {
+            try { var u = await CapAuth.getUser(); log('getUser()', u ? { id: u.id, email: u.email } : null); }
+            catch (e) { log('getUser ERREUR', { message: e.message }); }
+        }
+        async function doGetProfile() {
+            try { var p = await CapAuth.getProfile(); log('getProfile()', p); }
+            catch (e) { log('getProfile ERREUR', { message: e.message }); }
+        }
+        async function doIsAdmin() {
+            try { var b = await CapAuth.isAdmin(); log('isAdmin()', b); }
+            catch (e) { log('isAdmin ERREUR', { message: e.message }); }
+        }
+
+        async function doListEnroll() {
+            try { var r = await CapData.getMyEnrollments(); log('getMyEnrollments()', r); }
+            catch (e) { log('getMyEnrollments ERREUR', { message: e.message }); }
+        }
+        async function doListProgress() {
+            try { var r = await CapData.getProgress('ecommerce'); log('getProgress(ecommerce)', r); }
+            catch (e) { log('getProgress ERREUR', { message: e.message }); }
+        }
+        async function doAdminStats() {
+            try { var r = await CapData.adminGetStats(); log('adminGetStats()', r); }
+            catch (e) { log('adminGetStats ERREUR (RLS bloque si pas admin → normal)', { message: e.message }); }
+        }
+    </script>
+</body>
+</html>

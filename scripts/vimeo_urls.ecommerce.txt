@@ -1,0 +1,97 @@
+# =============================================================================
+# vimeo_urls.ecommerce.txt — Pack E-COMMERCE (Élargi sans Wix)
+# -----------------------------------------------------------------------------
+# 45 vidéos — Shopify + thèmes e-com transverses
+# Exclus : toutes vidéos contenant 'wix' (vitrine + e-commerce)
+# =============================================================================
+
+# bienvenue-developper-e-commerce-1-v1
+https://vimeo.com/927130382
+# bienvenue-fondamentaux-e-commerce-1-v1
+https://vimeo.com/927130338
+# bienvenue-shopify-1-v1
+https://vimeo.com/927130135
+# configuration-paiements-expeditions-1-v1
+https://vimeo.com/927129953
+# creation-pages-principales-e-commerce-1-v2
+https://vimeo.com/927129356
+# creation-pages-principales-e-commerce-2-v1
+https://vimeo.com/927129179
+# decouverte-et-configuration-shopify-1-v2
+https://vimeo.com/927128599
+# extensions-applications-shopify-1-v1
+https://vimeo.com/927128424
+# gestion-commandes-relation-client-1-v1
+https://vimeo.com/927128270
+# gestion-index-google-e-commerce-1-v1
+https://vimeo.com/927127762
+# gestion-index-google-shopify-1-v1
+https://vimeo.com/927127498
+# integration-blog-shopify-1-v1
+https://vimeo.com/927126627
+# introduction-shopify-e-commerce-1-v1
+https://vimeo.com/927125825
+# lancement-promotion-boutique-en-ligne-1-v1
+https://vimeo.com/927125486
+# m-communauteetventeinstagram-1-v1
+https://vimeo.com/927150384
+# m-communauteetventeinstagram-2-v1
+https://vimeo.com/927149545
+# m-configurernomdomainehebergementshopify-1-v2
+https://vimeo.com/1063596312
+# m-decouvrircomptabiliteecommerce-1-v1
+https://vimeo.com/1109612410
+# m-definirarborescencesiteecommerce-1-v1
+https://vimeo.com/1114250302
+# m-definirarborescencesiteecommerce-2-v1
+https://vimeo.com/1114247909
+# m-definirarborescencesiteecommerce-3-v1
+https://vimeo.com/1114248331
+# m-espionnerconcurenceventeenligne-1-v1
+https://vimeo.com/927170254
+# m-etablirstrategiecontenuecommerce-1-v1
+https://vimeo.com/927168741
+# m-googleadscampagneshopping-1-v1
+https://vimeo.com/928713989
+# m-introductiondropshipping-1-v1
+https://vimeo.com/1009103319
+# m-introductionspecificitesecommerce-1-v1
+https://vimeo.com/928735232
+# m-lancement-site-vitrine-e-commerce-1-v1
+https://vimeo.com/928735187
+# m-legislationventeenligne-1-v1
+https://vimeo.com/930175262
+# m-marketinginfluenceaugmentersesventes-1-v1
+https://vimeo.com/928733083
+# m-marketinginfluenceaugmentersesventes-2-v1
+https://vimeo.com/928742024
+# m-preparation-conception-site-e-commerce-1-v3
+https://vimeo.com/1033757304
+# m-preparationcertificationshopify-1-v1
+https://vimeo.com/1119382811
+# m-preparationcertificationstrategieecommerce-1-v1
+https://vimeo.com/1119382671
+# m-referencementnaturelsiteetpagesproduits-1-v1
+https://vimeo.com/928763494
+# m-tiktocvendreproduits-1-v1
+https://vimeo.com/928778719
+# m-tiktocvendreproduits-2-v1
+https://vimeo.com/928779364
+# m-trouverdesproduits-1-v1
+https://vimeo.com/1011953159
+# m-trouverfournisseursdropshipping-1-v1
+https://vimeo.com/1012020993
+# m-trouverproduitsdropshipping-1-v1
+https://vimeo.com/1015253538
+# maintenance-evolution-boutique-1-v1
+https://vimeo.com/928795734
+# optimisation-referencement-naturel-e-commerce-1-v2
+https://vimeo.com/928796370
+# personnalisation-design-boutique-1-v2
+https://vimeo.com/928796832
+# personnalisation-design-e-commerce-1-v1
+https://vimeo.com/928797096
+# preparation-conception-site-e-commerce-1-v1
+https://vimeo.com/928797659
+# travailler-tunnel-achat-site-e-commerce-1-v1
+https://vimeo.com/928811339

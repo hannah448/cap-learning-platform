@@ -1,0 +1,64 @@
+# =============================================================================
+# vimeo_urls.reseaux_sociaux.txt — Pack RÉSEAUX SOCIAUX
+# -----------------------------------------------------------------------------
+# 28 vidéos — Insta, Facebook, TikTok, LinkedIn, YouTube, Pinterest,
+# community management, influence, ads. Versions les plus récentes uniquement.
+# Note : 5 vidéos déjà téléchargées via le pack e-commerce seront sautées auto.
+# =============================================================================
+
+# bienvenue-reseaux sociaux-1-v1
+https://vimeo.com/927130198
+# m-batircommunaute-1-v1
+https://vimeo.com/927153288
+# m-communauteetventeinstagram-1-v1
+https://vimeo.com/927150384
+# m-communauteetventeinstagram-2-v1
+https://vimeo.com/927149545
+# m-creercomptesreseauxsociaux-v1
+https://vimeo.com/1063518006
+# m-developperreseau-1-v3
+https://vimeo.com/927184493
+# m-facebookadsinstagramads-1-v2
+https://vimeo.com/927168625
+# m-facebookadsinstagramads-2-v2
+https://vimeo.com/927983329
+# m-facebookadsinstagramads-creersoncomptepro-1-v2
+https://vimeo.com/927976679
+# m-guidepourcommunitymanager-1-v1
+https://vimeo.com/1020181348
+# m-instagram-1-v2
+https://vimeo.com/1034144539
+# m-instagram-2-v2
+https://vimeo.com/1034140700
+# m-instagram-3-v2
+https://vimeo.com/928726187
+# m-linkedin-1-v2
+https://vimeo.com/928733266
+# m-marketinginfluenceaugmentersesventes-1-v1
+https://vimeo.com/928733083
+# m-marketinginfluenceaugmentersesventes-2-v1
+https://vimeo.com/928742024
+# m-outilsiareseauxsociaux-1-v1
+https://vimeo.com/1013078866
+# m-pinterest-1-v2
+https://vimeo.com/928756439
+# m-pinterestecommercantes-1-v1
+https://vimeo.com/928757063
+# m-preparationcertificationreseauxsociaux-1-v1
+https://vimeo.com/1119383186
+# m-tiktocvendreproduits-1-v1
+https://vimeo.com/928778719
+# m-tiktocvendreproduits-2-v1
+https://vimeo.com/928779364
+# m-tiktok-1-v2
+https://vimeo.com/1125117457
+# m-travailleravecmarketplacetiktok-1-v1
+https://vimeo.com/1109358459
+# m-vendregraceafacebookinstagramads-1-v1
+https://vimeo.com/928789992
+# m-vendregraceafacebookinstagramads-2-v1
+https://vimeo.com/928789368
+# m-vendregraceafacebookinstagramads-3-v1
+https://vimeo.com/928789793
+# m-youtube-1-v3
+https://vimeo.com/928788792

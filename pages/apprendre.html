@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="../js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -10,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/lms.css">
     <style>
@@ -1108,6 +1112,14 @@
     </style>
 </head>
 <body>
+
+    <!-- ===== Cap Learning Supabase stack (auth + progression) ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script src="../js/auth.js?v=2"></script>
+    <script src="../js/db.js?v=2"></script>
+
     <button class="learn-sidebar-toggle" id="sidebar-toggle" aria-label="Menu">&#9776;</button>
 
     <div class="learn-layout">
@@ -1139,11 +1151,8 @@
         <!-- Main content -->
         <main class="learn-main">
             <!-- Video player -->
-            <div class="learn-player" id="player-area">
-                <div class="learn-player-placeholder">
-                    <div class="play-icon" id="play-btn">&#9654;</div>
-                    <p id="player-title">Cliquez pour démarrer la leçon</p>
-                </div>
+            <div class="learn-player" id="player-area" style="display: none;">
+                <!-- Rempli par js/video-player.js — CapPlayer.mount(...) -->
             </div>
 
             <!-- Lesson content -->
@@ -1778,19 +1787,105 @@
 
     if (!course) { window.location.href = 'dashboard.html'; }
 
-    // Check auth
-    const user = JSON.parse(localStorage.getItem('caplearning_user') || 'null');
-    if (!user || !user.loggedIn) { window.location.href = 'connexion.html'; }
+    // ===== AUTH CHECK (Supabase) =====
+    // Check rapide via la session locale Supabase (évite un await bloquant ici).
+    // La vérif réelle se fait async juste après pour valider/refresh.
+    function quickAuthCheck() {
+        try {
+            var raw = localStorage.getItem('caplearning_supabase_auth');
+            if (!raw) return false;
+            var s = JSON.parse(raw);
+            if (!s) return false;
+            // Supabase v2 stocke la session en racine ou sous .currentSession selon version
+            var session = s.currentSession || s;
+            if (!session.access_token) return false;
+            if (session.expires_at && session.expires_at < Math.floor(Date.now() / 1000)) return false;
+            return true;
+        } catch (e) { return false; }
+    }
+    if (!quickAuthCheck()) {
+        sessionStorage.setItem('caplearning_redirect_after_login', window.location.pathname + window.location.search);
+        window.location.href = 'connexion.html';
+    }
 
-    // Progress
+    // Mapping courseId (UI legacy) → course_db_id (Supabase enrollments / lesson_progress)
+    const COURSE_DB_IDS = {
+        '1':  'marketing',
+        '2':  'ecommerce',
+        '3':  'ia-business',
+        '5':  'reseaux-sociaux',
+        '10': 'entrepreneuriat'
+    };
+    const courseDbId = COURSE_DB_IDS[courseId] || courseId;
+
+    // ===== PROGRESS =====
+    // Cache local immédiat (rendu rapide) — la DB hydratera derrière en async
     let progressData = JSON.parse(localStorage.getItem('caplearning_progress') || '{}');
     if (!progressData[courseId]) {
         progressData[courseId] = { completed: [], quizScores: {} };
     }
 
+    // Sauvegarde locale (rapide, immédiate)
     function saveProgress() {
         localStorage.setItem('caplearning_progress', JSON.stringify(progressData));
     }
+
+    // Push progression d'une leçon vers Supabase (fire-and-forget)
+    function saveProgressToDb(lessonId, completed, pct) {
+        if (!window.CapData) return;
+        try {
+            window.CapData.setProgress(courseDbId, lessonId, pct != null ? pct : (completed ? 1 : 0.5), !!completed)
+                .catch(function (e) {
+                    // RLS peut bloquer si l'apprenant n'a pas d'enrollment 'active' pour ce cours
+                    // (cas attendu en pré-prod). On loggue silencieusement, le local reste source.
+                    if (window.CapConfig && window.CapConfig.DEBUG) {
+                        console.warn('[apprendre] DB save skipped:', e.message);
+                    }
+                });
+        } catch (e) { /* swallow */ }
+    }
+
+    // Hydrate progressData depuis Supabase + revalide la session (en arrière-plan)
+    (async function hydrateFromSupabase() {
+        var tries = 0;
+        while ((!window.CapAuth || !window.CapData) && tries++ < 60) {
+            await new Promise(function (r) { setTimeout(r, 30); });
+        }
+        if (!window.CapAuth || !window.CapData) return;
+
+        try {
+            // Vérif réelle (la session locale peut être stale)
+            var profile = await window.CapAuth.getProfile();
+            if (!profile) {
+                window.location.href = 'connexion.html';
+                return;
+            }
+
+            // Charge la progression réelle depuis la DB
+            var rows = await window.CapData.getProgress(courseDbId);
+            var dbCompleted = rows.filter(function (r) { return r.completed; })
+                                  .map(function (r) { return r.lesson_id; });
+
+            // Merge avec local (DB ∪ local — DB en priorité, local pour offline-first)
+            var localCompleted = progressData[courseId].completed || [];
+            var merged = Array.from(new Set(localCompleted.concat(dbCompleted)));
+            progressData[courseId].completed = merged;
+            saveProgress();
+
+            // Push tout ce qui est local mais pas en DB (réconciliation upward)
+            var toPush = localCompleted.filter(function (id) { return dbCompleted.indexOf(id) === -1; });
+            toPush.forEach(function (lessonId) { saveProgressToDb(lessonId, true); });
+
+            // Re-render si la sidebar est déjà construite
+            if (typeof renderSidebar === 'function') {
+                renderSidebar();
+            }
+        } catch (e) {
+            if (window.CapConfig && window.CapConfig.DEBUG) {
+                console.warn('[apprendre] hydrate Supabase échoué:', e.message);
+            }
+        }
+    })();
 
     // Flatten lessons
     let allLessons = [];
@@ -1867,13 +1962,36 @@
         const activeEl = document.querySelector(`.learn-lesson[data-index="${index}"]`);
         if (activeEl) activeEl.classList.add('active');
 
-        // Update player
+        // Update player (CapPlayer — S3/HLS + MP4 via video-player.js)
         const playerArea = document.getElementById('player-area');
         if (lesson.type === 'video') {
-            playerArea.style.display = 'flex';
-            playerArea.style.background = course.gradient;
-            document.getElementById('player-title').textContent = lesson.title;
+            playerArea.style.display = 'block';
+            playerArea.style.background = '';
+            if (window.CapPlayer) {
+                CapPlayer.mount(playerArea, lesson.id, {
+                    // Démo active tant qu'aucune source n'est publiée dans video-mapping.json
+                    demoMode: location.search.indexOf('demo=1') !== -1,
+                    onProgress: function (pct) {
+                        // Marque complet à 95 % pour éviter les fins anticipées
+                        if (pct >= 0.95 &&
+                            !progressData[courseId].completed.includes(lesson.id)) {
+                            markCompleted(lesson.id);
+                        }
+                    },
+                    onComplete: function () { markCompleted(lesson.id); },
+                    onPending:  function () { /* affichage géré par CapPlayer */ }
+                });
+            } else {
+                // Fallback silencieux si video-player.js n'a pas pu charger
+                playerArea.innerHTML =
+                    '<div class="cap-player-state">' +
+                    '<span class="cap-player-state-icon">🎬</span>' +
+                    '<p class="cap-player-state-title">' + lesson.title + '</p>' +
+                    '<p class="cap-player-state-desc">Lecteur indisponible.</p>' +
+                    '</div>';
+            }
         } else {
+            if (window.CapPlayer) CapPlayer.unmount(playerArea);
             playerArea.style.display = 'none';
         }
 
@@ -2591,14 +2709,19 @@
     // ===== NAVIGATION =====
     function markCompleted(lessonId) {
         if (!progressData[courseId].completed.includes(lessonId)) {
+            // 1. Update optimistic UI immédiat (local)
             progressData[courseId].completed.push(lessonId);
             saveProgress();
             renderSidebar();
             // Update complete button without re-rendering the whole lesson
             var completeBtn = document.getElementById('btn-complete');
-            completeBtn.textContent = 'Terminé ✓';
-            completeBtn.classList.add('done');
+            if (completeBtn) {
+                completeBtn.textContent = 'Terminé ✓';
+                completeBtn.classList.add('done');
+            }
             updateProgress();
+            // 2. Persist en DB Supabase (fire-and-forget)
+            saveProgressToDb(lessonId, true, 1);
         }
     }
 
@@ -2783,5 +2906,8 @@
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
     <script src="../js/whatsapp-widget.js"></script>
+    <!-- Cap Player (HLS via S3 + Cloudflare, MP4 fallback) -->
+    <script src="../js/video-player.js" defer></script>
+    <script src="../js/theme.js" defer></script>
 </body>
 </html>

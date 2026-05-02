@@ -1937,3 +1937,116 @@
         justify-content: center;
     }
 }
+
+/* ==========================================================================
+   CAP PLAYER — Lecteur vidéo (HLS via S3 + Cloudflare)
+   Monté par js/video-player.js dans #player-area
+   ========================================================================== */
+
+.learn-player {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #000;
+    border-radius: var(--radius-lg, 14px);
+    overflow: hidden;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.18);
+}
+
+/* <video> natif rendu par CapPlayer (HLS + MP4) */
+.cap-player-video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background: #000;
+    object-fit: contain;
+}
+
+/* Iframes éventuels (non utilisés dans la stack S3+Cloudflare,
+   gardés pour compat si une leçon pointe vers un embed externe) */
+.cap-player-iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* États : pending / error — fond dégradé marque */
+.learn-player.cap-player-pending {
+    background: linear-gradient(135deg, #3A50F6 0%, #A78BFA 100%);
+}
+
+.learn-player.cap-player-error {
+    background: linear-gradient(135deg, #64748B 0%, #334155 100%);
+}
+
+.cap-player-state {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-6, 32px);
+    color: #ffffff;
+    gap: var(--space-3, 12px);
+}
+
+.cap-player-state-icon {
+    font-size: 3rem;
+    line-height: 1;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.25));
+}
+
+.cap-player-state-title {
+    margin: 0;
+    font-size: var(--text-xl, 1.25rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.cap-player-state-desc {
+    margin: 0;
+    max-width: 44ch;
+    font-size: var(--text-base, 1rem);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+/* Badge "Aperçu démo" en surimpression */
+.cap-player-demo-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 2;
+    padding: 4px 10px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: rgba(58, 80, 246, 0.92);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.3);
+}
+
+/* Responsive : réduit le padding/texte sur mobile */
+@media (max-width: 600px) {
+    .cap-player-state {
+        padding: var(--space-4, 16px);
+        gap: var(--space-2, 8px);
+    }
+    .cap-player-state-icon { font-size: 2.25rem; }
+    .cap-player-state-title { font-size: var(--text-lg, 1.125rem); }
+    .cap-player-state-desc  { font-size: 0.92rem; }
+}
+
+/* Réduit les animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+    .cap-player-video,
+    .cap-player-iframe { transition: none !important; }
+}

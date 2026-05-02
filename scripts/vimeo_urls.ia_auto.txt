@@ -1,0 +1,95 @@
+# =============================================================================
+# vimeo_urls.ia_auto.txt — Pack IA + AUTOMATISATION
+# -----------------------------------------------------------------------------
+# 43 vidéos uniques — IA, prompting, agents, ChatGPT, RGPD-IA,
+# automatisation (Make, n8n, Zapier, workflows, Airtable, Notion).
+# Versions les plus récentes uniquement, doublons URL filtrés.
+# Note : 14 vidéos déjà téléchargées via le pack auto-no-code seront sautées auto.
+# =============================================================================
+
+# m-ajouter-des-outils-aux-IA-grace-aux-MCP-1-v1
+https://vimeo.com/1168494528
+# m-assurer-une-veille-active-sur-les-evolutions-de-l-IA-1-v1
+https://vimeo.com/1181868951
+# m-automatisercestquoi-1-v1
+https://vimeo.com/1109616710
+# m-basesdelautomatisation-1-v1
+https://vimeo.com/1107748693
+# m-bonuspromptsofferts-1-v1
+https://vimeo.com/988825037
+# m-certification-auto-no-code-1-v1
+https://vimeo.com/1168037193
+# m-comprendre-impact-de-ia-sur-les-rs-1-v1
+https://vimeo.com/1154640576
+# m-construire-un-plan-de-recommandation-pour-integrer-ia-1-v1
+https://vimeo.com/1151920933
+# m-creer-des-videos-avec-ia-1-v1
+https://vimeo.com/1154636099
+# m-creer-des-workflows-automatisés-1-v1
+https://vimeo.com/1157863482
+# m-creer-un-agent-IA-1-v1
+https://vimeo.com/1168055074
+# m-creerplanningeditorialautomatise-1-v1
+https://vimeo.com/1108983116
+# m-definir-le-champ-d-action-d-un-agent-IA-1-v1
+https://vimeo.com/1168025877
+# m-dodontprompting-1-v1
+https://vimeo.com/988824735
+# m-IA-Act-et-la-RGPD-1-v1
+https://vimeo.com/1168501806
+# m-IA-responsable-et-le -developpement-durable-1-v1
+https://vimeo.com/1168023093
+# m-identifier-les-contenus-a-automatiser-1-v1
+https://vimeo.com/1157864238
+# m-identifier-les-opportunités-ia-dans-une-activite-1-v1
+https://vimeo.com/1161788529
+# m-identifier-les-taches-automatisables-1-v1
+https://vimeo.com/1168493297
+# m-introduction-stratégique-a-l-IA-1-v1
+https://vimeo.com/1165928352
+# m-lexiqueetmotsclesdelautomatisation-1-v1
+https://vimeo.com/1107748870
+# m-limites-risques-contraintes-des-IA-1-v1
+https://vimeo.com/1161790421
+# m-maitriser-les-bases-de-données-Airtable-et-Notion-1-v1
+https://vimeo.com/1165931525
+# m-Maîtriser-Zapier-1-v1
+https://vimeo.com/1168028515
+# m-n8n-1-v1
+https://vimeo.com/1162544357
+# m-notionpoursorganiser-1-v2
+https://vimeo.com/1063578076
+# m-optimiser-un-agent-IA-1-v1
+https://vimeo.com/1168039859
+# m-panoramadesoutilsdautomatisation-1-v1
+https://vimeo.com/1109629868
+# m-produire-des-contenus-diversifiés-et-professionnes-avec-ia-1-v1
+https://vimeo.com/1162545937
+# m-prompter-bibliographie-1-v1
+https://vimeo.com/988825006
+# m-prompter-conclusionmodule-1-v1
+https://vimeo.com/988825055
+# m-prompter-presentationmoduleetobjectifs-1-v1
+https://vimeo.com/988825093
+# m-promptercestquoi-1-v1
+https://vimeo.com/988824820
+# m-promptertonstyle-1-v1
+https://vimeo.com/988824971
+# m-realiser-un-audit-en-vue-d-integrer-l-ia-1-v1
+https://vimeo.com/1151925220
+# m-rediger-des-contenus-textuels-avec-ia-1-v1
+https://vimeo.com/1156475418
+# m-rgpdetprotectiondonnees-1-v1
+https://vimeo.com/1039711263
+# m-surveiller-l-e-reputation-avec-l-ia-1-v1
+https://vimeo.com/1173265299
+# m-synthetiser-des donnees-grace-a-l-IA-1-v1
+https://vimeo.com/1168516112
+# m-tester-et-deployer-ses-workflows-ia-1-v1
+https://vimeo.com/1157861158
+# m-utilisation-chat-gpt-1-v2
+https://vimeo.com/1175511316
+# m-utiliser-ia-moderation-reponse-commentaires-1-v1
+https://vimeo.com/1156472982
+# m-utiliser-une-ia-de-planification-et-de-diffusion des contenus-1-v1
+https://vimeo.com/1157865408

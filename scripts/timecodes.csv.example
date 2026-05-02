@@ -1,0 +1,31 @@
+source_file,start,end,lesson_id,output_name
+# ============================================================
+# Cap Learning — timecodes pour cut_videos_from_csv.sh
+# ------------------------------------------------------------
+# source_file : nom du fichier dans ./videos_originales/
+# start / end : HH:MM:SS (ou HH:MM:SS.mmm, ou secondes brutes)
+# lesson_id   : clé dans js/video-mapping.json (ex: s1-1, n2-3, l1-2…)
+# output_name : nom lisible du fichier de sortie (slugifié auto)
+# Les lignes commençant par # sont à supprimer avant exécution.
+# ============================================================
+# --- Catalogue Réseaux Sociaux (RS6452 / RS7064 / RS7076 / RS7522) ---
+RS6452_session1.mp4,00:02:00,00:10:30,s1-1,bloc1_presence_digitale
+RS6452_session1.mp4,00:38:00,00:46:30,s1-2,bloc1_whatsapp_business
+RS7064_session1.mp4,00:05:15,00:16:45,s2-1,bloc2_instagram_business
+RS7064_session2.mp4,00:12:00,00:23:30,s3-1,bloc3_tiktok_viral
+RS7522_session1.mp4,00:03:00,00:14:30,s4-1,bloc4_facebook_ads
+RS7076_session1.mp4,00:08:00,00:17:00,s5-1,bloc5_chatgpt_entrepreneurs
+RS7076_session2.mp4,00:10:00,00:18:30,s6-1,bloc6_visuels_ia
+RS6452_session2.mp4,00:20:00,00:31:00,s7-1,bloc7_community_management
+RS7522_session2.mp4,00:42:00,00:50:30,s8-1,bloc8_kpis_resultats
+RS7064_session3.mp4,00:05:00,00:13:00,s9-1,bloc9_linkedin_afrique
+RS6452_session3.mp4,00:14:00,00:23:00,s10-1,bloc10_seo_local
+# --- Catalogue Automatisation No-Code (RS7311) ---
+RS7311_module1.mp4,00:02:00,00:10:30,n1-1,blocA_automatiser_tpe
+RS7311_module2.mp4,00:00:30,00:12:00,n2-1,blocB_n8n_gratuit
+RS7311_module3.mp4,00:04:00,00:13:00,n3-1,blocC_zapier
+RS7311_module4.mp4,00:03:00,00:12:30,n4-1,blocD_airtable
+RS7311_module5.mp4,00:01:00,00:12:30,n5-1,blocE_agent_ia
+RS7311_module6.mp4,00:07:00,00:16:30,n6-1,blocF_make_avance
+RS7311_module7.mp4,00:02:00,00:11:00,n7-1,blocG_donnees_ia
+RS7311_module8.mp4,00:05:00,00:13:00,n8-1,blocH_prompt_engineering

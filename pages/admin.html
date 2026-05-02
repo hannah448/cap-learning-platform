@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="../js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -11,17 +13,43 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/components.css">
     <link rel="stylesheet" href="../css/admin.css">
 </head>
 <body class="admin-body">
-    <!-- Session guard: redirects if not admin -->
-    <script src="../js/admin-data.js"></script>
+    <!-- ===== Cap Learning Supabase stack ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script src="../js/auth.js?v=2"></script>
+    <script src="../js/db.js?v=2"></script>
+
+    <!-- AdminData (bridge Supabase ↔ ancienne API) -->
+    <script src="../js/admin-data.js?v=3"></script>
+
+    <!-- Session guard : utilise CapAuth (asynchrone) car Supabase nécessite un await -->
     <script>
-        (function () {
-            const s = window.AdminData && window.AdminData.getSession();
-            if (!s || s.role !== 'admin') location.href = 'connexion.html';
+        (async function () {
+            // Attente que CapAuth soit prêt
+            var tries = 0;
+            while (!window.CapAuth && tries++ < 60) {
+                await new Promise(function (r) { setTimeout(r, 30); });
+            }
+            if (!window.CapAuth) {
+                location.href = 'connexion.html';
+                return;
+            }
+            try {
+                var profile = await window.CapAuth.getProfile();
+                if (!profile || profile.role !== 'admin') {
+                    location.replace('connexion.html');
+                }
+            } catch (e) {
+                location.replace('connexion.html');
+            }
         })();
     </script>
 
@@ -346,6 +374,25 @@
         <button class="toast-close" onclick="document.getElementById('toast').hidden=true">&times;</button>
     </div>
 
-    <script src="../js/admin.js"></script>
+    <!-- admin.js attend que AdminData (Supabase bridge) soit hydraté avant de tourner.
+         Sinon il appelle requireAdmin() avant les données → renvoie null → page vide. -->
+    <script>
+        (async function () {
+            // Attente que AdminData expose .ready() (jusqu'à 3s)
+            var tries = 0;
+            while ((!window.AdminData || typeof window.AdminData.ready !== 'function') && tries++ < 100) {
+                await new Promise(function (r) { setTimeout(r, 30); });
+            }
+            if (window.AdminData && window.AdminData.ready) {
+                try { await window.AdminData.ready(); } catch (e) { console.warn('AdminData ready failed', e); }
+            }
+            // OK, charge admin.js (qui va consommer AdminData hydraté)
+            var s = document.createElement('script');
+            s.src = '../js/admin.js';
+            s.onerror = function () { console.error('Échec de chargement de admin.js'); };
+            document.body.appendChild(s);
+        })();
+    </script>
+    <script src="../js/theme.js" defer></script>
 </body>
 </html>

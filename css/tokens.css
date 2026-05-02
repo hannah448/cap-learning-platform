@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Cap Learning — Design Tokens v1.3
+   --------------------------------------------------------------------------
+   Source : design system livré (cap_learning_integration_preview_1.html)
+   À charger AVANT style.css/components.css/lms.css/admin.css.
+
+   Mode dark : application d'attribut [data-theme="dark"] sur <html>.
+   Anti-flash : voir <script> inline dans <head> de chaque page.
+   ========================================================================== */
+
+:root,
+[data-theme="light"] {
+    /* ---------- Surfaces & textes (light) ---------- */
+    --color-bg:           #FAFAF9;
+    --color-surface:      #FFFFFF;
+    --color-surface-2:    #F5F5F4;
+    --color-border:       #E7E5E4;
+    --color-border-soft:  #F5F5F4;
+    --color-text:         #1C1917;
+    --color-text-soft:    #57534E;
+    --color-text-mute:    #A8A29E;
+
+    /* ---------- 5 accents par catégorie ---------- */
+    /* Réseaux sociaux (orange) */
+    --accent-rs:          #FB6E45;
+    --accent-rs-bg:       #FFE0D6;
+    --accent-rs-text:     #7C2410;
+
+    /* Marketing (jaune) */
+    --accent-mkt:         #FCB829;
+    --accent-mkt-bg:      #FEF0C7;
+    --accent-mkt-text:    #6B3F0F;
+
+    /* Entrepreneuriat (vert) */
+    --accent-ent:         #2DD4A8;
+    --accent-ent-bg:      #CCFBF1;
+    --accent-ent-text:    #115E4F;
+
+    /* IA business (bleu) */
+    --accent-ia:          #3460E5;
+    --accent-ia-bg:       #DDE6FF;
+    --accent-ia-text:     #1E2F7A;
+
+    /* E-commerce (violet) */
+    --accent-ecom:        #A855F7;
+    --accent-ecom-bg:     #F3E8FF;
+    --accent-ecom-text:   #581C87;
+
+    /* ---------- Ombres ---------- */
+    --shadow-sm: 0 1px 2px rgba(28, 25, 23, 0.04);
+    --shadow-md: 0 4px 12px rgba(28, 25, 23, 0.08);
+}
+
+[data-theme="dark"] {
+    /* ---------- Surfaces & textes (dark) ---------- */
+    --color-bg:           #1C1917;
+    --color-surface:      #292524;
+    --color-surface-2:    #44403C;
+    --color-border:       #44403C;
+    --color-border-soft:  #292524;
+    --color-text:         #FAFAF9;
+    --color-text-soft:    #D6D3D1;
+    --color-text-mute:    #78716C;
+
+    /* ---------- 5 accents en dark (versions ajustées contraste) ---------- */
+    --accent-rs:          #FF8B6B;
+    --accent-rs-bg:       #4A1F0E;
+    --accent-rs-text:     #FFC4A8;
+
+    --accent-mkt:         #FCC74A;
+    --accent-mkt-bg:      #4A2F0A;
+    --accent-mkt-text:    #FEE9A0;
+
+    --accent-ent:         #5EE0BC;
+    --accent-ent-bg:      #0E3D32;
+    --accent-ent-text:    #99F0DA;
+
+    --accent-ia:          #5A82EE;
+    --accent-ia-bg:       #1A2654;
+    --accent-ia-text:     #B5C7FF;
+
+    --accent-ecom:        #BC79F8;
+    --accent-ecom-bg:     #3D1361;
+    --accent-ecom-text:   #DCC4FB;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* ==========================================================================
+   COMPATIBILITÉ — anciennes variables (style.css existant)
+   --------------------------------------------------------------------------
+   Garde tes classes existantes fonctionnelles en aliassant vers les nouveaux
+   tokens. Tu peux migrer progressivement quand tu veux.
+   ========================================================================== */
+
+:root {
+    /* Ancien primary bleu #3A50F6 → mappé sur accent IA (#3460E5, très proche) */
+    --color-primary-alias:       var(--accent-ia);
+    --color-primary-bg-alias:    var(--accent-ia-bg);
+    --color-primary-text-alias:  var(--accent-ia-text);
+
+    /* Ancien accent violet #A78BFA → mappé sur accent ECOM (#A855F7, très proche) */
+    --color-accent-alias:        var(--accent-ecom);
+    --color-accent-bg-alias:     var(--accent-ecom-bg);
+    --color-accent-text-alias:   var(--accent-ecom-text);
+}
+
+/* ==========================================================================
+   Catégorisation par page — utiliser <body data-category="rs|mkt|ent|ia|ecom">
+   pour qu'une page hérite automatiquement de son accent.
+   ========================================================================== */
+
+[data-category="rs"]   { --accent: var(--accent-rs);   --accent-bg: var(--accent-rs-bg);   --accent-text: var(--accent-rs-text); }
+[data-category="mkt"]  { --accent: var(--accent-mkt);  --accent-bg: var(--accent-mkt-bg);  --accent-text: var(--accent-mkt-text); }
+[data-category="ent"]  { --accent: var(--accent-ent);  --accent-bg: var(--accent-ent-bg);  --accent-text: var(--accent-ent-text); }
+[data-category="ia"]   { --accent: var(--accent-ia);   --accent-bg: var(--accent-ia-bg);   --accent-text: var(--accent-ia-text); }
+[data-category="ecom"] { --accent: var(--accent-ecom); --accent-bg: var(--accent-ecom-bg); --accent-text: var(--accent-ecom-text); }
+
+/* ==========================================================================
+   Transitions douces pour le switch de thème
+   ========================================================================== */
+
+html {
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+/* Désactive les transitions si l'utilisateur préfère reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    html,
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+    }
+}
+
+/* ==========================================================================
+   Theme toggle button (cf. partials/theme-toggle.html)
+   ========================================================================== */
+
+.cap-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-text-soft);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.cap-theme-toggle:hover {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+    transform: translateY(-1px);
+}
+
+.cap-theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-ia);
+    outline-offset: 2px;
+}
+
+.cap-theme-toggle-icon {
+    display: block;
+}
+
+/* Affiche soleil en mode clair, lune en mode sombre */
+[data-theme="light"] .cap-theme-toggle-moon,
+[data-theme="dark"]  .cap-theme-toggle-sun {
+    display: none;
+}

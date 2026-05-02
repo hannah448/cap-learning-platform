@@ -2001,8 +2001,656 @@
 /* --- Responsive ajustements --- */
 @media (max-width: 1024px) {
     .sales-page .sales-hero-grid { gap: var(--space-8); }
+    .sales-page .sales-outcomes-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
     .sales-page .sales-hero { padding: var(--space-10) 0 var(--space-8); }
+    .sales-page .sales-hero-grid { grid-template-columns: 1fr; gap: var(--space-6); }
+    .sales-page .sales-hero h1 { font-size: clamp(1.75rem, 6vw, 2.4rem); line-height: 1.15; }
+    .sales-page .sales-hero-visual { max-width: 420px; margin: 0 auto; }
+    .sales-page .sales-purchase-card { padding: var(--space-5); }
     .sales-page .sales-testimonial::before { font-size: 56px; }
+    .sales-page .sales-testimonials-grid { grid-template-columns: 1fr; gap: var(--space-4); }
+    .sales-page .sales-for-who-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+    .sales-page .sales-outcomes-grid { grid-template-columns: 1fr; gap: var(--space-3); }
+    .sales-page .sales-final-cta { padding: var(--space-8) var(--space-5); border-radius: var(--radius-xl); }
+    .sales-page .sales-final-cta h2 { font-size: clamp(1.5rem, 5vw, 2rem); }
+    .sales-page .sales-instructor-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: var(--space-6);
+    }
+    .sales-page .sales-instructor-photo {
+        margin: 0 auto var(--space-4);
+    }
+    .sales-page .module-header {
+        padding: var(--space-3) var(--space-4);
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+    .sales-page .sales-hero-tags { flex-wrap: wrap; gap: 6px; }
+    .sales-page .sales-hero-tags .tag { font-size: 0.72rem; padding: 4px 10px; }
+}
+@media (max-width: 480px) {
+    .sales-page .sales-hero { padding: var(--space-8) 0 var(--space-6); }
+    .sales-page .section-title, .sales-page .curriculum-section h2, .sales-page .sales-faq h2 {
+        font-size: clamp(1.4rem, 6vw, 1.8rem);
+        line-height: 1.2;
+    }
+    .sales-page .sales-purchase-price .price-current { font-size: 2rem; }
+    .sales-page .btn-block, .sales-page .btn-lg { font-size: 0.95rem; padding: var(--space-3) var(--space-4); }
+}
+
+/* ============================================================
+   SALES TOC — table des matières flottante (pages produit)
+   ============================================================ */
+.sales-toc {
+    display: none;
+    position: fixed;
+    top: 120px;
+    left: 16px;
+    width: 220px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding: 16px 12px;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-xl);
+    box-shadow: 0 12px 32px -16px rgba(30,27,58,0.18);
+    z-index: 50;
+    font-family: var(--font-body);
+}
+.sales-toc::-webkit-scrollbar { width: 4px; }
+.sales-toc::-webkit-scrollbar-thumb { background: var(--color-gray-300); border-radius: 4px; }
+.sales-toc-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    padding: 2px 8px 12px;
+    border-bottom: 1px solid var(--color-gray-100);
+    margin-bottom: 6px;
+}
+.sales-toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.sales-toc-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.15s var(--ease-out);
+    line-height: 1.3;
+}
+.sales-toc-link:hover {
+    background: var(--formation-lighter, var(--color-gray-50));
+    color: var(--formation-dark, var(--text-primary));
+}
+.sales-toc-link.active {
+    background: var(--formation-light, var(--color-primary-50));
+    color: var(--formation-dark, var(--color-primary));
+    font-weight: 600;
+}
+.sales-toc-link.active::before {
+    content: '';
+    width: 3px;
+    height: 16px;
+    background: var(--formation-color, var(--color-primary));
+    border-radius: 2px;
+    margin-right: 2px;
+    margin-left: -10px;
+}
+.sales-toc-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+.sales-toc-label {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@media (min-width: 1280px) {
+    .sales-toc { display: block; }
+}
+
+/* ============================================================
+   CATALOGUE — couleurs par formation (harmonisation avec pages produit)
+   ============================================================ */
+.course-card[data-formation="ecommerce"] { --formation-color: #2D9CDB; --formation-light: #DCEEFA; --formation-lighter: #EFF7FD; --formation-dark: #2F5D78; }
+.course-card[data-formation="ia"] { --formation-color: #7C3AED; --formation-light: #E9E0FD; --formation-lighter: #F4EFFE; --formation-dark: #4C1D95; }
+.course-card[data-formation="marketing"] { --formation-color: #F2994A; --formation-light: #FDE2C8; --formation-lighter: #FEF0E1; --formation-dark: #A5541F; }
+.course-card[data-formation="entrepreneuriat"] { --formation-color: #6FAE9F; --formation-light: #D8ECE5; --formation-lighter: #EBF5F1; --formation-dark: #2F5D4E; }
+.course-card[data-formation="reseaux"] { --formation-color: #E77FB0; --formation-light: #F9DCE9; --formation-lighter: #FCEEF3; --formation-dark: #8B2C5B; }
+
+/* Visuel placeholder — dégradé doux propre à la formation */
+.course-card[data-formation] .course-card-img-placeholder {
+    background: linear-gradient(135deg, var(--formation-color) 0%, var(--formation-dark) 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+.course-card[data-formation] .course-card-img-placeholder::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25) 0%, transparent 55%);
+    pointer-events: none;
+}
+.course-card[data-formation] .course-card-img-placeholder span {
+    position: relative;
+    z-index: 1;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+}
+
+/* Tag principal — teinté par formation */
+.course-card[data-formation] .course-card-tags .tag:first-child {
+    background: var(--formation-light);
+    color: var(--formation-dark);
+    border: 1px solid color-mix(in srgb, var(--formation-color) 25%, transparent);
+}
+
+/* Prix — teinté par formation */
+.course-card[data-formation] .price-current {
+    color: var(--formation-dark);
+}
+
+/* Bordure au hover — teintée par formation */
+.course-card[data-formation]:hover {
+    border-color: color-mix(in srgb, var(--formation-color) 40%, transparent);
+    box-shadow: 0 20px 40px -18px color-mix(in srgb, var(--formation-color) 35%, transparent);
+}
+
+/* Bouton "Acheter" — utilise la couleur de la formation */
+.course-card[data-formation] .btn-primary {
+    background: linear-gradient(135deg, var(--formation-color) 0%, var(--formation-dark) 100%);
+    border-color: transparent;
+    box-shadow: 0 6px 18px -8px color-mix(in srgb, var(--formation-color) 60%, transparent);
+}
+.course-card[data-formation] .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--formation-color) 70%, transparent);
+    filter: brightness(1.05);
+}
+
+/* Badge popular/hot/new — cohérence visuelle légère */
+.course-card[data-formation] .course-badge {
+    backdrop-filter: blur(6px);
+}
+
+/* ============================================================
+   SALES RELATED FORMATIONS
+   Section "Formations liées" affichée en fin de page produit
+   juste avant le final-CTA. Cross-selling vers les 4 autres
+   formations, avec thème couleur par data-formation.
+   ============================================================ */
+.sales-related {
+    padding: 72px 20px 56px;
+    background: linear-gradient(180deg, #FAFBFF 0%, #FFFFFF 100%);
+    position: relative;
+}
+.sales-related .container { max-width: 1200px; margin: 0 auto; }
+.sales-related .section-title {
+    text-align: center;
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    line-height: 1.25;
+    margin-bottom: 8px;
+}
+.sales-related-desc {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 40px;
+    color: var(--color-gray-600);
+    font-size: 1.05rem;
+}
+.sales-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 22px;
+}
+.sales-related-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    background: #fff;
+    border: 1px solid var(--color-gray-200);
+    box-shadow: 0 2px 10px rgba(30, 27, 58, 0.06);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    text-decoration: none;
+    color: inherit;
+}
+.sales-related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px -14px rgba(30, 27, 58, 0.22);
+    border-color: color-mix(in srgb, var(--formation-color, #3A50F6) 40%, var(--color-gray-200));
+}
+.sales-related-thumb {
+    height: 112px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--formation-color, var(--color-primary)) 0%, var(--formation-dark, #1E1B3A) 100%);
+    position: relative;
+    overflow: hidden;
+}
+.sales-related-thumb::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(180px 120px at 75% 25%, rgba(255,255,255,0.22), transparent 70%);
+    pointer-events: none;
+}
+.sales-related-icon {
+    font-size: 2.4rem;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.18));
+    z-index: 1;
+}
+.sales-related-body {
+    padding: 18px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.sales-related-badge {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--formation-light, var(--color-primary-50));
+    color: var(--formation-dark, var(--color-primary));
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.sales-related-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin: 0 0 6px;
+    line-height: 1.3;
+}
+.sales-related-desc-text {
+    color: var(--color-gray-600);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0 0 14px;
+    flex: 1;
+}
+.sales-related-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    font-size: 0.9rem;
+}
+.sales-related-price {
+    font-weight: 800;
+    color: var(--formation-dark, var(--color-primary));
+    font-size: 1rem;
+}
+.sales-related-duration {
+    color: var(--color-gray-600);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+.sales-related-btn {
+    align-self: flex-start;
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    border: 1.5px solid var(--formation-color, var(--color-primary));
+    color: var(--formation-dark, var(--color-primary));
+    background: transparent;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: background .2s ease, color .2s ease;
+    text-decoration: none;
+}
+.sales-related-btn:hover {
+    background: var(--formation-color, var(--color-primary));
+    color: #fff;
+}
+
+/* Per-formation color binding for related cards */
+.sales-related-card[data-formation="ecommerce"] { --formation-color: #2D9CDB; --formation-light: #DCEEFA; --formation-dark: #2F5D78; }
+.sales-related-card[data-formation="ia"] { --formation-color: #7C3AED; --formation-light: #E9E0FD; --formation-dark: #4C1D95; }
+.sales-related-card[data-formation="marketing"] { --formation-color: #F2994A; --formation-light: #FDE2C8; --formation-dark: #A5541F; }
+.sales-related-card[data-formation="entrepreneuriat"] { --formation-color: #6FAE9F; --formation-light: #D8ECE5; --formation-dark: #2F5D4E; }
+.sales-related-card[data-formation="reseaux"] { --formation-color: #E77FB0; --formation-light: #F9DCE9; --formation-dark: #8B2C5B; }
+
+@media (max-width: 768px) {
+    .sales-related { padding: 48px 16px 32px; }
+    .sales-related-grid { gap: 14px; }
+    .sales-related-thumb { height: 90px; }
+    .sales-related-icon { font-size: 1.9rem; }
+}
+
+/* ============================================================
+   COMPARE PAGE — Comparatif des 5 formations
+   Tableau sticky, cartes de décision rapide, responsive avec
+   scroll horizontal sur mobile.
+   ============================================================ */
+.compare-hero {
+    padding: 90px 20px 52px;
+    text-align: center;
+    background: linear-gradient(135deg, #F8F7FE 0%, #EEF0FC 60%, #F4ECFB 100%);
+    position: relative;
+    overflow: hidden;
+}
+.compare-hero::before {
+    content: '';
+    position: absolute;
+    top: -140px; left: -120px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(58,80,246,0.14), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+.compare-hero::after {
+    content: '';
+    position: absolute;
+    bottom: -160px; right: -140px;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(167,139,250,0.17), transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+.compare-hero > .container { position: relative; z-index: 1; }
+.compare-hero .section-badge {
+    display: inline-block;
+    background: rgba(58,80,246,0.10);
+    color: var(--color-primary, #3A50F6);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+.compare-hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.9rem);
+    line-height: 1.15;
+    margin: 0 auto 14px;
+    max-width: 860px;
+}
+.compare-hero .section-desc {
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--color-gray-600);
+    font-size: 1.1rem;
+    line-height: 1.55;
+}
+
+/* Decision helpers */
+.compare-helpers {
+    padding: 48px 20px 24px;
+    background: #fff;
+}
+.compare-helpers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+.compare-helper {
+    padding: 20px 22px;
+    border-radius: var(--radius-xl);
+    background: linear-gradient(180deg, #F7F8FE 0%, #FFFFFF 100%);
+    border: 1px solid var(--color-gray-200);
+    position: relative;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.compare-helper:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 26px -12px rgba(30,27,58,0.2);
+}
+.compare-helper-icon {
+    font-size: 1.8rem;
+    display: block;
+    margin-bottom: 8px;
+}
+.compare-helper h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: var(--color-gray-900);
+}
+.compare-helper p {
+    margin: 0 0 10px;
+    color: var(--color-gray-600);
+    font-size: .92rem;
+    line-height: 1.45;
+}
+.compare-helper a {
+    display: inline-block;
+    color: var(--color-primary, #3A50F6);
+    font-weight: 600;
+    text-decoration: none;
+    font-size: .9rem;
+    margin-right: 10px;
+}
+.compare-helper a:hover {
+    text-decoration: underline;
+}
+
+/* Comparison table */
+.compare-table-wrap {
+    padding: 36px 20px 80px;
+    background: #fff;
+}
+.compare-table-scroll {
+    max-width: 1240px;
+    margin: 0 auto;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 18px 40px -20px rgba(30, 27, 58, 0.22);
+    border: 1px solid var(--color-gray-200);
+    background: #fff;
+}
+.compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 980px;
+    background: #fff;
+    font-size: .94rem;
+    line-height: 1.5;
+}
+.compare-table th,
+.compare-table td {
+    padding: 16px 18px;
+    vertical-align: top;
+    border-bottom: 1px solid var(--color-gray-200);
+    text-align: left;
+    background: #fff;
+}
+.compare-table thead th {
+    padding-top: 28px;
+    padding-bottom: 24px;
+    background: #fff;
+    border-bottom: 2px solid var(--color-gray-200);
+}
+.compare-table tbody tr:last-child th,
+.compare-table tbody tr:last-child td { border-bottom: none; }
+.compare-table tbody th {
+    width: 180px;
+    background: #FAFBFF;
+    font-weight: 600;
+    color: var(--color-gray-700);
+    font-size: .875rem;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+}
+.compare-col-head {
+    text-align: center;
+    min-width: 180px;
+    vertical-align: top;
+}
+.compare-col-emoji {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--formation-color, var(--color-primary)) 0%, var(--formation-dark, var(--color-primary-dark)) 100%);
+    color: #fff;
+    font-size: 1.9rem;
+    margin: 0 auto 12px;
+    box-shadow: 0 10px 22px -10px color-mix(in srgb, var(--formation-color, #3A50F6) 70%, transparent);
+}
+.compare-col-title {
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    margin: 0 0 6px;
+    line-height: 1.25;
+}
+.compare-col-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--formation-light, var(--color-primary-50));
+    color: var(--formation-dark, var(--color-primary));
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+.compare-table tbody td {
+    color: var(--color-gray-700);
+    font-size: .92rem;
+}
+.compare-cell-price {
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 1.08rem;
+}
+.compare-cell-rating {
+    color: var(--color-gray-900);
+    font-weight: 700;
+}
+.compare-cell-rating .compare-stars { color: #F5C518; margin-right: 4px; }
+.compare-cell-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--formation-light, var(--color-primary-50));
+    color: var(--formation-dark, var(--color-primary));
+    font-size: .78rem;
+    font-weight: 700;
+    margin-right: 4px;
+}
+.compare-cta {
+    display: inline-block;
+    padding: 10px 18px;
+    font-size: .88rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--formation-color, #3A50F6) 0%, var(--formation-dark, #1E1B3A) 100%);
+    color: #fff !important;
+    text-decoration: none;
+    transition: transform .2s ease, box-shadow .2s ease;
+    box-shadow: 0 6px 14px -6px color-mix(in srgb, var(--formation-color, #3A50F6) 60%, transparent);
+}
+.compare-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px -8px color-mix(in srgb, var(--formation-color, #3A50F6) 60%, transparent);
+}
+
+/* Color bindings for each column (theme propagates to thead + all td in same column via data-formation on thead + td) */
+.compare-table [data-formation="ecommerce"] { --formation-color: #2D9CDB; --formation-light: #DCEEFA; --formation-dark: #2F5D78; }
+.compare-table [data-formation="ia"] { --formation-color: #7C3AED; --formation-light: #E9E0FD; --formation-dark: #4C1D95; }
+.compare-table [data-formation="marketing"] { --formation-color: #F2994A; --formation-light: #FDE2C8; --formation-dark: #A5541F; }
+.compare-table [data-formation="entrepreneuriat"] { --formation-color: #6FAE9F; --formation-light: #D8ECE5; --formation-dark: #2F5D4E; }
+.compare-table [data-formation="reseaux"] { --formation-color: #E77FB0; --formation-light: #F9DCE9; --formation-dark: #8B2C5B; }
+
+/* Scroll hint on mobile */
+.compare-scroll-hint {
+    text-align: center;
+    padding: 8px 0 16px;
+    color: var(--color-gray-500);
+    font-size: .85rem;
+}
+@media (min-width: 1024px) {
+    .compare-scroll-hint { display: none; }
+}
+
+/* Final CTA block */
+.compare-final {
+    padding: 64px 20px 80px;
+    background: linear-gradient(135deg, #1E1B3A 0%, #2D2960 55%, #3A50F6 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.compare-final::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+        radial-gradient(600px 300px at 20% 20%, rgba(167,139,250,0.28), transparent 60%),
+        radial-gradient(500px 260px at 80% 80%, rgba(58,80,246,0.25), transparent 60%);
+    pointer-events: none;
+}
+.compare-final > .container { position: relative; z-index: 1; }
+.compare-final h2 {
+    color: #fff;
+    font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+    margin-bottom: 12px;
+}
+.compare-final p {
+    color: rgba(255,255,255,0.85);
+    max-width: 640px;
+    margin: 0 auto 24px;
+    font-size: 1.05rem;
+}
+.compare-final .btn-primary {
+    background: linear-gradient(135deg, #FFFFFF 0%, #F0F2FE 100%);
+    color: var(--color-primary, #3A50F6);
+    box-shadow: 0 10px 30px rgba(58,80,246,0.35);
+}
+.compare-final .btn-outline {
+    background: transparent;
+    color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.35);
+}
+.compare-final .btn-outline:hover {
+    background: rgba(255,255,255,0.12);
+}
+.compare-final-actions {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .compare-hero { padding: 56px 16px 32px; }
+    .compare-hero h1 { font-size: clamp(1.5rem, 6vw, 2rem); }
+    .compare-helpers { padding: 28px 16px 8px; }
+    .compare-table-wrap { padding: 20px 12px 48px; }
+    .compare-table { min-width: 860px; font-size: .88rem; }
+    .compare-table th, .compare-table td { padding: 12px 12px; }
+    .compare-col-emoji { width: 48px; height: 48px; font-size: 1.55rem; }
+    .compare-col-title { font-size: .95rem; }
+    .compare-final { padding: 48px 16px 56px; }
 }

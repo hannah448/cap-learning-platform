@@ -1,0 +1,21 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowUploadToCapLearningBucket",
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:PutObjectAcl",
+        "s3:GetObject",
+        "s3:DeleteObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::caplearning-videos",
+        "arn:aws:s3:::caplearning-videos/*"
+      ]
+    }
+  ],
+  "_comment": "Policy minimaliste pour un utilisateur IAM 'caplearning-uploader' utilisé par upload_s3_afrique.sh. Attacher cette policy à l'utilisateur puis: aws configure avec ses access/secret keys."
+}

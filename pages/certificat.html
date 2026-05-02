@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="../js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -386,9 +388,16 @@
             .cert-inner::before, .cert-inner::after { display: none; }
         }
     </style>
+    <link rel="stylesheet" href="../css/tokens.css">
 </head>
 <body>
-    <script src="../js/admin-data.js"></script>
+    <!-- ===== Cap Learning Supabase stack (DB certificates + fallback AdminData) ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script src="../js/auth.js?v=2"></script>
+    <script src="../js/db.js?v=2"></script>
+    <script src="../js/admin-data.js?v=2"></script>
 
     <div class="cert-toolbar" id="toolbar">
         <h1>Certificat officiel Cap Learning</h1>
@@ -400,138 +409,226 @@
         </div>
     </div>
 
-    <div id="cert-root"></div>
+    <div id="cert-root">
+        <div style="text-align:center;padding:80px 20px;color:#64748b;font-family:-apple-system,sans-serif">
+            ⏳ Chargement du certificat…
+        </div>
+    </div>
 
     <script>
-    (function () {
+    (async function () {
         const root = document.getElementById('cert-root');
         const params = new URLSearchParams(location.search);
-        const enrollmentId = params.get('e');
+        const verifCode = params.get('c');         // ← nouveau : verification_code Supabase (URL publique)
+        const enrollmentId = params.get('e');      // ← legacy : compat admin
+
+        function escapeHtml(s) {
+            return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            })[c]);
+        }
+
+        function showError(title, msg) {
+            root.innerHTML = `
+                <div class="cert-error">
+                    <h2>${escapeHtml(title)}</h2>
+                    <p>${msg}</p>
+                    <p><a href="dashboard.html">Retour au tableau de bord</a></p>
+                </div>`;
+        }
+
+        // ============================================================
+        // PATH 1 — Vérification publique via verification_code (Supabase)
+        // ============================================================
+        if (verifCode) {
+            // Attente que CapData soit chargé
+            var tries = 0;
+            while (!window.CapData && tries++ < 60) {
+                await new Promise(r => setTimeout(r, 30));
+            }
+            if (!window.CapData) {
+                showError('Service indisponible', 'Impossible de joindre la base de données. Réessaie dans un instant.');
+                return;
+            }
+
+            try {
+                const cert = await window.CapData.getCertificateByCode(verifCode);
+                if (!cert) {
+                    showError('Certificat introuvable',
+                        `Aucun certificat ne correspond au code <code>${escapeHtml(verifCode)}</code>.`);
+                    return;
+                }
+
+                // Course mapping local (le course_id est un slug type 'ecommerce')
+                const COURSE_INFO = {
+                    'marketing':       { name: 'Marketing Digital Complet',           duration: 57 },
+                    'ecommerce':       { name: 'E-commerce & Paiements Digitaux',     duration: 79 },
+                    'ia-business':     { name: 'IA & Business',                       duration: 48 },
+                    'reseaux-sociaux': { name: 'Réseaux Sociaux & CM',                duration: 41 },
+                    'entrepreneuriat': { name: 'Entrepreneuriat Digital',             duration: 50 }
+                };
+                const course = COURSE_INFO[cert.course_id] || { name: cert.course_id, duration: '—' };
+                const userName = (cert.profiles && cert.profiles.full_name) || 'Apprenant Cap Learning';
+
+                renderCertificate({
+                    userName: userName,
+                    courseName: course.name,
+                    courseDuration: course.duration,
+                    issuedAt: cert.issued_at,
+                    certificateId: cert.verification_code,
+                    grade: 16,            // V1 : pas encore de quiz scoring → mention Bien par défaut
+                    mention: 'Bien'
+                });
+                return;
+            } catch (e) {
+                showError('Erreur de chargement', `Impossible de récupérer le certificat : ${escapeHtml(e.message)}`);
+                return;
+            }
+        }
+
+        // ============================================================
+        // PATH 2 — Legacy admin via ?e=<enrollmentId> (AdminData bridge)
+        // ============================================================
+        if (!enrollmentId) {
+            showError('Paramètre manquant',
+                'Utilisation : <code>certificat.html?c=&lt;code-vérification&gt;</code> (apprenant) ' +
+                'ou <code>certificat.html?e=&lt;enrollmentId&gt;</code> (admin).');
+            return;
+        }
+
+        // Attente AdminData hydraté
+        if (window.AdminData && typeof window.AdminData.ready === 'function') {
+            try { await window.AdminData.ready(); } catch (e) {}
+        }
         const D = window.AdminData;
-
-        if (!D || !enrollmentId) {
-            root.innerHTML = `
-                <div class="cert-error">
-                    <h2>Paramètre manquant</h2>
-                    <p>Aucun identifiant d'inscription fourni. Utilisation : <code>certificat.html?e=&lt;enrollmentId&gt;</code></p>
-                    <p><a href="admin.html">Retour au panneau d'administration</a></p>
-                </div>`;
+        if (!D) {
+            showError('Service indisponible', 'AdminData non chargé.');
             return;
         }
 
-        const enrollment = D.getEnrollmentById(enrollmentId);
+        // Compat : essaie getEnrollmentById, sinon find dans getEnrollments()
+        let enrollment = null;
+        if (typeof D.getEnrollmentById === 'function') {
+            enrollment = D.getEnrollmentById(enrollmentId);
+        } else if (typeof D.getEnrollments === 'function') {
+            enrollment = (D.getEnrollments() || []).find(function (e) { return e.id === enrollmentId; });
+        }
+
         if (!enrollment) {
-            root.innerHTML = `
-                <div class="cert-error">
-                    <h2>Certificat introuvable</h2>
-                    <p>Aucune inscription ne correspond à l'identifiant <code>${enrollmentId}</code>.</p>
-                    <p><a href="admin.html">Retour au panneau d'administration</a></p>
-                </div>`;
+            showError('Certificat introuvable',
+                `Aucune inscription ne correspond à l'identifiant <code>${escapeHtml(enrollmentId)}</code>.`);
             return;
         }
-        if (!enrollment.certified) {
-            root.innerHTML = `
-                <div class="cert-error">
-                    <h2>Certification non délivrée</h2>
-                    <p>Cet apprenant n'est pas encore certifié pour cette formation. Retour à l'espace admin pour délivrer le certificat.</p>
-                    <p><a href="admin.html">Retour au panneau d'administration</a></p>
-                </div>`;
+        if (!enrollment.certified && enrollment.status !== 'completed') {
+            showError('Certification non délivrée',
+                'Cet apprenant n\'est pas encore certifié pour cette formation. ' +
+                'Retour à l\'espace admin pour délivrer le certificat.');
             return;
         }
 
-        const user = D.getUser(enrollment.userId);
-        const course = D.getCourse(enrollment.courseId);
+        const user = (typeof D.getUser === 'function') ? D.getUser(enrollment.userId) : null;
+        const course = (typeof D.getCourse === 'function') ? D.getCourse(enrollment.courseId) : null;
         if (!user || !course) {
-            root.innerHTML = `<div class="cert-error"><h2>Données manquantes</h2><p><a href="admin.html">Retour</a></p></div>`;
+            showError('Données manquantes', 'Profil apprenant ou cours introuvable.');
             return;
         }
 
-        const dateFr = new Date(enrollment.certifiedAt).toLocaleDateString('fr-FR', {
-            day: '2-digit', month: 'long', year: 'numeric'
-        });
-        const year = new Date(enrollment.certifiedAt).getFullYear();
-
-        // Mention : note /20
-        const grade = enrollment.grade;
+        const issuedAt = enrollment.certifiedAt || enrollment.completedAt || enrollment.completed_at || new Date().toISOString();
+        const grade = enrollment.grade != null ? enrollment.grade : 16;
         const mention = grade >= 16 ? 'Très bien'
                       : grade >= 14 ? 'Bien'
                       : grade >= 12 ? 'Assez bien'
                       : 'Passable';
 
-        document.title = `Certificat — ${user.name} — ${course.name}`;
+        renderCertificate({
+            userName: user.name,
+            courseName: course.name,
+            courseDuration: course.duration || course.hours || '—',
+            issuedAt: issuedAt,
+            certificateId: enrollment.certificateId || enrollment.id,
+            grade: grade,
+            mention: mention
+        });
 
-        root.innerHTML = `
-            <article class="cert-page" role="document" aria-label="Certificat de réussite">
-                <div class="cert-inner">
-                    <header class="cert-header">
-                        <div class="cert-logo">
-                            <div class="cert-logo-mark">A</div>
-                            <div>
-                                <div class="cert-logo-text">Afri<span class="cert-logo-accent">Learn</span></div>
-                                <div class="cert-logo-tag">E-learning premium</div>
+        // ============================================================
+        // RENDER (commun aux deux paths)
+        // ============================================================
+        function renderCertificate(data) {
+            const dateFr = new Date(data.issuedAt).toLocaleDateString('fr-FR', {
+                day: '2-digit', month: 'long', year: 'numeric'
+            });
+            const year = new Date(data.issuedAt).getFullYear();
+
+            document.title = `Certificat — ${data.userName} — ${data.courseName}`;
+
+            root.innerHTML = `
+                <article class="cert-page" role="document" aria-label="Certificat de réussite">
+                    <div class="cert-inner">
+                        <header class="cert-header">
+                            <div class="cert-logo">
+                                <div class="cert-logo-mark">C</div>
+                                <div>
+                                    <div class="cert-logo-text">Cap <span class="cert-logo-accent">Learning</span></div>
+                                    <div class="cert-logo-tag">E-learning premium</div>
+                                </div>
+                            </div>
+                            <div class="cert-digi-atlas">
+                                <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas">
+                                <span class="cert-digi-atlas-label">Édité par Digi Atlas &middot; France</span>
+                            </div>
+                        </header>
+
+                        <div class="cert-body">
+                            <div class="cert-eyebrow">Certificat de réussite</div>
+                            <h1 class="cert-title">Certificat d'accomplissement</h1>
+                            <div class="cert-divider"></div>
+                            <p class="cert-lead">Nous certifions par la présente que</p>
+                            <div class="cert-learner">${escapeHtml(data.userName)}</div>
+                            <p class="cert-lead">a suivi et réussi avec succès la formation en ligne</p>
+                            <div class="cert-course">« ${escapeHtml(data.courseName)} »</div>
+
+                            <div class="cert-grade-block">
+                                <div class="cert-grade-item">
+                                    <div class="cert-grade-value">${data.grade}/20</div>
+                                    <div class="cert-grade-label">Note finale</div>
+                                </div>
+                                <div class="cert-grade-item">
+                                    <div class="cert-grade-value">${escapeHtml(data.mention)}</div>
+                                    <div class="cert-grade-label">Mention</div>
+                                </div>
+                                <div class="cert-grade-item">
+                                    <div class="cert-grade-value">${escapeHtml(String(data.courseDuration))} h</div>
+                                    <div class="cert-grade-label">Durée totale</div>
+                                </div>
                             </div>
                         </div>
-                        <div class="cert-digi-atlas">
-                            <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas">
-                            <span class="cert-digi-atlas-label">Édité par Digi Atlas &middot; France</span>
-                        </div>
-                    </header>
 
-                    <div class="cert-body">
-                        <div class="cert-eyebrow">Certificat de réussite</div>
-                        <h1 class="cert-title">Certificat d'accomplissement</h1>
-                        <div class="cert-divider"></div>
-                        <p class="cert-lead">Nous certifions par la présente que</p>
-                        <div class="cert-learner">${escapeHtml(user.name)}</div>
-                        <p class="cert-lead">a suivi et réussi avec succès la formation en ligne</p>
-                        <div class="cert-course">« ${escapeHtml(course.name)} »</div>
+                        <footer class="cert-footer">
+                            <div class="cert-sig">
+                                <div class="cert-sig-name">Hannah Peters</div>
+                                <div class="cert-sig-line"></div>
+                                <div class="cert-sig-role">Directrice pédagogique &middot; Digi Atlas</div>
+                            </div>
 
-                        <div class="cert-grade-block">
-                            <div class="cert-grade-item">
-                                <div class="cert-grade-value">${grade}/20</div>
-                                <div class="cert-grade-label">Note finale</div>
+                            <div class="cert-stamp" aria-hidden="true">
+                                <div class="cert-stamp-inner"></div>
+                                <div class="cert-stamp-line">Cap Learning</div>
+                                <div class="cert-stamp-line cert-stamp-big">${year}</div>
+                                <div class="cert-stamp-line">Certifié</div>
                             </div>
-                            <div class="cert-grade-item">
-                                <div class="cert-grade-value">${escapeHtml(mention)}</div>
-                                <div class="cert-grade-label">Mention</div>
+
+                            <div class="cert-meta">
+                                <div>Délivré le <strong>${escapeHtml(dateFr)}</strong></div>
+                                <div>N° certificat : <strong>${escapeHtml(data.certificateId)}</strong></div>
+                                <div>Vérifiable sur cap-learning.com/pages/certificat.html?c=${escapeHtml(data.certificateId)}</div>
                             </div>
-                            <div class="cert-grade-item">
-                                <div class="cert-grade-value">${course.duration} h</div>
-                                <div class="cert-grade-label">Durée totale</div>
-                            </div>
-                        </div>
+                        </footer>
                     </div>
-
-                    <footer class="cert-footer">
-                        <div class="cert-sig">
-                            <div class="cert-sig-name">Hannah Peters</div>
-                            <div class="cert-sig-line"></div>
-                            <div class="cert-sig-role">Directrice pédagogique &middot; Digi Atlas</div>
-                        </div>
-
-                        <div class="cert-stamp" aria-hidden="true">
-                            <div class="cert-stamp-inner"></div>
-                            <div class="cert-stamp-line">Cap Learning</div>
-                            <div class="cert-stamp-line cert-stamp-big">${year}</div>
-                            <div class="cert-stamp-line">Certifié</div>
-                        </div>
-
-                        <div class="cert-meta">
-                            <div>Délivré le <strong>${escapeHtml(dateFr)}</strong></div>
-                            <div>N° certificat : <strong>${escapeHtml(enrollment.certificateId)}</strong></div>
-                            <div>Vérifiable sur caplearning.digi-atlas.com</div>
-                        </div>
-                    </footer>
-                </div>
-            </article>
-        `;
-
-        function escapeHtml(s) {
-            return String(s || '').replace(/[&<>"']/g, c => ({
-                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-            })[c]);
+                </article>
+            `;
         }
     })();
     </script>
+    <script src="../js/theme.js" defer></script>
 </body>
 </html>

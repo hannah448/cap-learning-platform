@@ -1,0 +1,690 @@
+# vimeo_urls.txt — généré automatiquement depuis l'API Vimeo
+# Dossier: moocs (folder_id 20023674) — utilisateur 214478041
+# Total: 341 vidéos
+# Durée totale: 196.9 heures
+#
+# Format: une URL par ligne. Lignes commençant par # ignorées par yt-dlp.
+# Le commentaire au-dessus de chaque URL est le titre Vimeo (utile pour le suivi).
+
+# ajouter-fonctionnalites-avancees-1-v1
+https://vimeo.com/927130479
+# bienvenue-copywriting-1-v1
+https://vimeo.com/927130424
+# bienvenue-developper-e-commerce-1-v1
+https://vimeo.com/927130382
+# bienvenue-fondamentaux-e-commerce-1-v1
+https://vimeo.com/927130338
+# bienvenue-formation-en-ligne-1-v1
+https://vimeo.com/927130299
+# bienvenue-freelance-1-v1
+https://vimeo.com/927130246
+# bienvenue-reseaux sociaux-1-v1
+https://vimeo.com/927130198
+# bienvenue-shopify-1-v1
+https://vimeo.com/927130135
+# bienvenue-wix-1-v1
+https://vimeo.com/927130105
+# configuration-paiements-expeditions-1-v1
+https://vimeo.com/927129953
+# creation-pages-principales-1-v1
+https://vimeo.com/927129599
+# creation-pages-principales-e-commerce-1-v2
+https://vimeo.com/927129356
+# creation-pages-principales-e-commerce-2-v1
+https://vimeo.com/927129179
+# creation-pages-principales-e-commerce-wix-1-v1
+https://vimeo.com/927129104
+# creation-site-vitrine-1-v1
+https://vimeo.com/927128919
+# decouverte-et-configuration-shopify-1-v2
+https://vimeo.com/927128599
+# extensions-applications-shopify-1-v1
+https://vimeo.com/927128424
+# gestion-commandes-relation-client-1-v1
+https://vimeo.com/927128270
+# gestion-fiches-produits-1-v1
+https://vimeo.com/927128097
+# gestion-index-google-1-v1
+https://vimeo.com/927127841
+# gestion-index-google-e-commerce-1-v1
+https://vimeo.com/927127762
+# gestion-index-google-shopify-1-v1
+https://vimeo.com/927127498
+# integration-blog-1-v1
+https://vimeo.com/927127074
+# integration-blog-shopify-1-v1
+https://vimeo.com/927126627
+# interface-wix-1-v1
+https://vimeo.com/927126163
+# interface-wix-e-commerce-1-v1
+https://vimeo.com/927126059
+# introduction-shopify-e-commerce-1-v1
+https://vimeo.com/927125825
+# lancement-promotion-boutique-en-ligne-1-v1
+https://vimeo.com/927125486
+# lancement-site-vitrine-1-v1
+https://vimeo.com/927125337
+# m-accroitresanotoriete-1-v3
+https://vimeo.com/1125105035
+# m-adaptervotreton-1-v3
+https://vimeo.com/967601483
+# m-administrermicroentreprise-1-v2
+https://vimeo.com/927157757
+# m-affiliation-1-v2
+https://vimeo.com/1019736974
+# m-ajouter-des-outils-aux-IA-grace-aux-MCP-1-v1
+https://vimeo.com/1168494528
+# m-analyser-les-kpis-grace-a-lia-1-v1
+https://vimeo.com/1153956690
+# m-analyserfluxdeproductiondecontenu-1-v1
+https://vimeo.com/1109617426
+# m-analyserresultatsstrategiecm-1-v1
+https://vimeo.com/1055516701
+# m-applicationsconnecteessurmake-1-v1
+https://vimeo.com/1107751730
+# m-assurancebanquelivraison-1-v1
+https://vimeo.com/927156075
+# m-assurer-une-veille-active-sur-les-evolutions-de-l-IA-1-v1
+https://vimeo.com/1181868951
+# m-automatisercestquoi-1-v1
+https://vimeo.com/1109616710
+# m-avantagesopportunitesia-1-v1
+https://vimeo.com/988382208
+# m-basesdefonctionnement-1-v1
+https://vimeo.com/1107748629
+# m-basesdelautomatisation-1-v1
+https://vimeo.com/1107748693
+# m-batircommunaute-1-v1
+https://vimeo.com/927153288
+# m-biensentoureraveclacollab-1-v2
+https://vimeo.com/1084203918
+# m-bonnespratiquesutilisationresponsable-1-v1
+https://vimeo.com/988790989
+# m-bonuspromptsofferts-1-v1
+https://vimeo.com/988825037
+# m-budgetstrategiewebmarketing-1-v1
+https://vimeo.com/1061220135
+# m-cadrereglementairedirectiveia-1-v1
+https://vimeo.com/1074301919
+# m-campagnepresse-1-v1
+https://vimeo.com/927151462
+# m-caracteristiquesciblewebmarketing-1-v1
+https://vimeo.com/1061206496
+# m-cartographier-ses-processus-1-v1
+https://vimeo.com/1168521567
+# m-certification-auto-no-code-1-v1
+https://vimeo.com/1168037193
+# m-comment-developper-une-strategie-de-gestion-d-erreurs-1-v1
+https://vimeo.com/1168519226
+# m-communauteetventeinstagram-1-v1
+https://vimeo.com/927150384
+# m-communauteetventeinstagram-2-v1
+https://vimeo.com/927149545
+# m-comprendre-impact-de-ia-sur-les-rs-1-v1
+https://vimeo.com/1154640576
+# m-comprendrefonctionnementtaxesaides-1-v1
+https://vimeo.com/1079378658
+# m-concevoir-des-contenus-accessibles-1-v1
+https://vimeo.com/1168525314
+# m-concevoir-son-site-web-grace-a-lovable-1-v1
+https://vimeo.com/1168527439
+# m-concevoirformation-1-v1
+https://vimeo.com/927146969
+# m-concevoirformation-1-v4
+https://vimeo.com/927146530
+# m-conditionsocialeassurance-1-v1
+https://vimeo.com/1087720309
+# m-conditionsocialeepargne-1-v1
+https://vimeo.com/1002740237
+# m-conditionsocialeintrocaravel-1-v1
+https://vimeo.com/1002740028
+# m-conditionsocialeintrowemind-1-v1
+https://vimeo.com/1002736670
+# m-conditionsocialemutuelle-1-v1
+https://vimeo.com/1002736454
+# m-conditionsocialeparentalite-1-v1
+https://vimeo.com/1002735953
+# m-conditionsocialeprevoyance-1-v1
+https://vimeo.com/1002736191
+# m-conditionsocialeresponsabilitecivilepro-1-v1
+https://vimeo.com/1002736332
+# m-conditionsocialeretraite-1-v1
+https://vimeo.com/1002740057
+# m-conditionsocialestatutsjuridiques-1-v1
+https://vimeo.com/1002735772
+# m-configurationpaiementsexpeditionswix-1-v1
+https://vimeo.com/927145909
+# m-configurernomdomainehebergementshopify-1-v2
+https://vimeo.com/1063596312
+# m-conformiteloisite-1-v2
+https://vimeo.com/930166094
+# m-conformiteloisite-2-v1
+https://vimeo.com/927144468
+# m-connecterbasededonneesamake-1-v1
+https://vimeo.com/1107757149
+# m-connecteriaamake-1-v1
+https://vimeo.com/1107751241
+# m-construire-un-plan-de-recommandation-pour-integrer-ia-1-v1
+https://vimeo.com/1151920933
+# m-construirebusinessplan-1-v1
+https://vimeo.com/927144110
+# m-construirebusinessplan-2-v1
+https://vimeo.com/927143866
+# m-creer-des-contenus-interactifs-et-engageants-1-v1
+https://vimeo.com/1154370535
+# m-creer-des-videos-avec-ia-1-v1
+https://vimeo.com/1154636099
+# m-creer-des-visuels-avec-l-lia-1-v1
+https://vimeo.com/1160182203
+# m-creer-des-workflows-automatisés-1-v1
+https://vimeo.com/1157863482
+# m-creer-un-agent-IA-1-v1
+https://vimeo.com/1168055074
+# m-creer-un-agent-IA-1-v1
+https://vimeo.com/1168029553
+# m-creer-un-calendrier-editorial-1-v1
+https://vimeo.com/1183306902
+# m-creercomptesreseauxsociaux-v1
+https://vimeo.com/1063518006
+# m-creeridentitegraphique-1-v1
+https://vimeo.com/927142813
+# m-creermicroentreprise-1-v2
+https://vimeo.com/927142357
+# m-creerplanningeditorialautomatise-1-v1
+https://vimeo.com/1108983116
+# m-creersamicroentreprise-1-v1
+https://vimeo.com/1079391925
+# m-creervisuelscanva-1-v1
+https://vimeo.com/1034474932
+# m-creervisuelscanva-1-v2
+https://vimeo.com/1063584064
+# m-créervotreprogrammedeformation-1-v1
+https://vimeo.com/927139527
+# m-declencheraction-1-v2
+https://vimeo.com/927176575
+# m-decouvrircomptabiliteecommerce-1-v1
+https://vimeo.com/1109612410
+# m-decouvririacanva-1-v1
+https://vimeo.com/1034474678
+# m-decouvririacanva-1-v2
+https://vimeo.com/1068766547
+# m-definir-le-champ-d-action-d-un-agent-IA-1-v1
+https://vimeo.com/1168025877
+# m-definirarborescencesiteecommerce-1-v1
+https://vimeo.com/1114250302
+# m-definirarborescencesiteecommerce-2-v1
+https://vimeo.com/1114247909
+# m-definirarborescencesiteecommerce-3-v1
+https://vimeo.com/1114248331
+# m-definiroffre-1-v1
+https://vimeo.com/927181687
+# m-defisia-1-v1
+https://vimeo.com/988382500
+# m-deployerstrategieaffiliation-1-v1
+https://vimeo.com/927184794
+# m-developperreseau-1-v1
+https://vimeo.com/927175885
+# m-developperreseau-1-v2
+https://vimeo.com/927185223
+# m-developperreseau-1-v3
+https://vimeo.com/927184493
+# m-dodontprompting-1-v1
+https://vimeo.com/988824735
+# m-donneescleswebmarketing-1-v1
+https://vimeo.com/1056797736
+# m-ecrirepageengageante-1-v3
+https://vimeo.com/967843052
+# m-ecriturevisuelle-1-v3
+https://vimeo.com/968741218
+# m-elaborerplanactionwebmarketing-1-v1
+https://vimeo.com/1063490922
+# m-emailing-2-v1
+https://vimeo.com/927170662
+# m-enjeuxethiques-1-v1
+https://vimeo.com/988790788
+# m-ereindependance-1-v1
+https://vimeo.com/927170585
+# m-espionnerconcurenceventeenligne-1-v1
+https://vimeo.com/927170254
+# m-espionnerconcurrence-1-v2
+https://vimeo.com/927170445
+# m-etablirbusinessmodel-1-v1
+https://vimeo.com/927169789
+# m-etablirstrategiecontenuecommerce-1-v1
+https://vimeo.com/927168741
+# m-ethiquedansia-conclusionmodule-1-v1
+https://vimeo.com/988791049
+# m-ethiquedansia-presentationmoduleetobjectifs-1-v1
+https://vimeo.com/988791074
+# m-etude-de-marche-1-v1
+https://vimeo.com/1183309449
+# m-etudiersonmarcheretveille-1-v1
+https://vimeo.com/1084996179
+# m-facebookadsinstagramads-1-v2
+https://vimeo.com/927168625
+# m-facebookadsinstagramads-2-v2
+https://vimeo.com/927983329
+# m-facebookadsinstagramads-creersoncomptepro-1-v2
+https://vimeo.com/927976679
+# m-facteursuccessformation-1-v1
+https://vimeo.com/927975160
+# m-filtrerconditionnerpouroptimiser-1-v1
+https://vimeo.com/1107750893
+# m-financablecpf-1-v1
+https://vimeo.com/927974832
+# m-fixerobjectifssmart-1-v1
+https://vimeo.com/1056772136
+# m-fixerprixetrerentable-1-v1
+https://vimeo.com/927974292
+# m-fixertarifs-1-v1
+https://vimeo.com/927974059
+# m-fonctionnementmicroentreprise-1-v1
+https://vimeo.com/1079364154
+# m-fondamentauxingenieriepedagogique-1-v1
+https://vimeo.com/927973849
+# m-fondamentauxingenieriepedagogique-2-v1
+https://vimeo.com/927973668
+# m-fondamentauxingenieriepedagogique-3-v1
+https://vimeo.com/927973574
+# m-fournisseursconfiance-1-v1
+https://vimeo.com/928715374
+# m-generationtexteia-v1
+https://vimeo.com/1070260831
+# m-generationvisuelsia-v1
+https://vimeo.com/1070261155
+# m-geo-1-v1
+https://vimeo.com/1147263916
+# m-gererlogistique-1-v1
+https://vimeo.com/928001569
+# m-gererpremierrdvclient-1-v1
+https://vimeo.com/1075978708
+# m-gestioncategoriesproduitswix-1-v1
+https://vimeo.com/928001263
+# m-gestioncommandesoptimisationrelationclientwix-1-v1
+https://vimeo.com/928001079
+# m-gestioncommandesoptimisationrelationclientwix-2-v1
+https://vimeo.com/928000700
+# m-gestiontresorerie-1-v1
+https://vimeo.com/1114248691
+# m-googleads-1-v2
+https://vimeo.com/1136087819
+# m-googleadscampagneshopping-1-v1
+https://vimeo.com/928713989
+# m-guidepourcommunitymanager-1-v1
+https://vimeo.com/1020181348
+# m-hommeetiaconclusion-1-v1
+https://vimeo.com/988382853
+# m-IA-Act-et-la-RGPD-1-v1
+https://vimeo.com/1168501806
+# m-IA-Act-et-la-RGPD-1-v1
+https://vimeo.com/1168501705
+# m-IA-responsable-et-le -developpement-durable-1-v1
+https://vimeo.com/1168023093
+# m-iaauservicedevoscontenus-1-v2
+https://vimeo.com/928726419
+# m-iaauservicedevoscontenus-1-v3
+https://vimeo.com/1040047528
+# m-iagen-allerplusloin-1-v1
+https://vimeo.com/995087823
+# m-iagen-differentstypes-1-v1
+https://vimeo.com/995084728
+# m-iagen-intro-1-v1
+https://vimeo.com/995083454
+# m-iagen-texttoaudio-1-v1
+https://vimeo.com/995087256
+# m-iagen-texttoimage-1-v1
+https://vimeo.com/995086098
+# m-iagen-texttotext-1-v1
+https://vimeo.com/995085378
+# m-iagen-texttovideo-1-v1
+https://vimeo.com/995086582
+# m-iatransformetravailetcompétences-1-v1
+https://vimeo.com/988429363
+# m-identifier-des-axes-ameliorations-grace-aux-donnees-1-v1
+https://vimeo.com/1151930391
+# m-identifier-les-contenus-a-automatiser-1-v1
+https://vimeo.com/1157864238
+# m-identifier-les-opportunités-ia-dans-une-activite-1-v1
+https://vimeo.com/1161788529
+# m-identifier-les-taches-automatisables-1-v1
+https://vimeo.com/1168493297
+# m-identifierapplicationsquotidienproperso-1-v1
+https://vimeo.com/988429617
+# m-identifierrisquessecuritedonnees-1-v1
+https://vimeo.com/988790931
+# m-identitevisuelle-v1
+https://vimeo.com/928725791
+# m-impactia-conclusionmodule-1-v1
+https://vimeo.com/988429744
+# m-impactrelationsdansorganisations-1-v1
+https://vimeo.com/988429523
+# m-impactsia-presentationmoduleetobjectifs-1-v1
+https://vimeo.com/988429323
+# m-indicateursqualitenonconformites-1-v1
+https://vimeo.com/1109358109
+# m-instagram-1-v2
+https://vimeo.com/1034144539
+# m-instagram-2-v2
+https://vimeo.com/1034140700
+# m-instagram-3-v2
+https://vimeo.com/928726187
+# m-introcopywriting-1-v4
+https://vimeo.com/964298966
+# m-introcreationsiteinternet-1-v1
+https://vimeo.com/928735676
+# m-introcreationsiteinternet-2-v1
+https://vimeo.com/928735008
+# m-introcreationsiteinternet-2-v2
+https://vimeo.com/928734883
+# m-introcreationsiteinternet-installerhttps-1-v1
+https://vimeo.com/928735600
+# m-introcreationsiteinternet-securisersite-1-v1
+https://vimeo.com/928734719
+# m-introduction-creation-site-ecommerce-wix-1-v1
+https://vimeo.com/928735141
+# m-introduction-stratégique-a-l-IA-1-v1
+https://vimeo.com/1165928352
+# m-introductiondropshipping-1-v1
+https://vimeo.com/1009103319
+# m-introductionspecificitesecommerce-1-v1
+https://vimeo.com/928735232
+# m-introia-presentationmoduleetobjectifs-1-v1
+https://vimeo.com/988383377
+# m-lancement-site-vitrine-e-commerce-1-v1
+https://vimeo.com/928735187
+# m-legislationventeenligne-1-v1
+https://vimeo.com/930175262
+# m-leviersenfonctiononcontexte-1-v1
+https://vimeo.com/1061222006
+# m-lexiqueetmotsclesdelautomatisation-1-v1
+https://vimeo.com/1107748870
+# m-limites-risques-contraintes-des-IA-1-v1
+https://vimeo.com/1161790421
+# m-linkedin-1-v2
+https://vimeo.com/928733266
+# m-maitriser-les-bases-de-données-Airtable-et-Notion-1-v1
+https://vimeo.com/1165931525
+# m-Maîtriser-Zapier-1-v1
+https://vimeo.com/1168028515
+# m-marketinginfluenceaugmentersesventes-1-v1
+https://vimeo.com/928733083
+# m-marketinginfluenceaugmentersesventes-2-v1
+https://vimeo.com/928742024
+# m-marketplaces-1-v1
+https://vimeo.com/928741891
+# m-marketplaces-2-v1
+https://vimeo.com/928741804
+# m-marketplaces-3-v1
+https://vimeo.com/928740642
+# m-methodesducopywriting-1-v1
+https://vimeo.com/1039689620
+# m-mobilisercompetencesprojetcm-1-v1
+https://vimeo.com/1055531374
+# m-monter-une-video-avec-capcut-1-v1
+https://vimeo.com/1184834344
+# m-n8n-1-v1
+https://vimeo.com/1162544357
+# m-negociationfreelance-1-v1
+https://vimeo.com/928740854
+# m-notionpoursorganiser-1-v2
+https://vimeo.com/1063578076
+# m-optimiser-un-agent-IA-1-v1
+https://vimeo.com/1168039859
+# m-organiserwebinaires-1-v1
+https://vimeo.com/928741452
+# m-outilsderelationclient-1-v1
+https://vimeo.com/1063557043
+# m-outilsiareseauxsociaux-1-v1
+https://vimeo.com/1013078866
+# m-panoramadesoutilsdautomatisation-1-v1
+https://vimeo.com/1109629868
+# m-performancesitegoogleanalytics-1-v1
+https://vimeo.com/928740726
+# m-pertinenceoffre-1-v1
+https://vimeo.com/928741682
+# m-pinterest-1-v1
+https://vimeo.com/928740134
+# m-pinterest-1-v2
+https://vimeo.com/928756439
+# m-pinterestecommercantes-1-v1
+https://vimeo.com/928757063
+# m-plateformeformation-1-v1
+https://vimeo.com/928757273
+# m-pluginrelierfournisseursite-1-v1
+https://vimeo.com/1015253065
+# m-portagesalarial-1-v2
+https://vimeo.com/928757947
+# m-preparation-conception-site-e-commerce-1-v3
+https://vimeo.com/1033757304
+# m-preparationcertificationcopywriting-1-v1
+https://vimeo.com/1119382574
+# m-preparationcertificationdevenirfreelance-1-v1
+https://vimeo.com/1119384106
+# m-preparationcertificationia-1-v1
+https://vimeo.com/1119383918
+# m-preparationcertificationiars-1-v1
+https://vimeo.com/1160191950
+# m-preparationcertificationreseauxsociaux-1-v1
+https://vimeo.com/1119383186
+# m-preparationcertificationshopify-1-v1
+https://vimeo.com/1119382811
+# m-preparationcertificationstrategieecommerce-1-v1
+https://vimeo.com/1119382671
+# m-preparationcertificationwebmarketing-1-v1
+https://vimeo.com/1119383501
+# m-principauxleviersacquisition-1-v1
+https://vimeo.com/1061221346
+# m-priseparole-1-v1
+https://vimeo.com/928758026
+# m-produire-des-contenus-diversifiés-et-professionnes-avec-ia-1-v1
+https://vimeo.com/1162545937
+# m-produire-des-contenus-diversifiés-et-professionnes-avec-ia-1-v1
+https://vimeo.com/1162520364
+# m-prompter-bibliographie-1-v1
+https://vimeo.com/988825006
+# m-prompter-conclusionmodule-1-v1
+https://vimeo.com/988825055
+# m-prompter-presentationmoduleetobjectifs-1-v1
+https://vimeo.com/988825093
+# m-promptercestquoi-1-v1
+https://vimeo.com/988824820
+# m-promptertonstyle-1-v1
+https://vimeo.com/988824971
+# m-protectiondonneespersonnellesetia-1-v1
+https://vimeo.com/1075991237
+# m-questcequeia-1-v1
+https://vimeo.com/988383053
+# m-r-strategiecontenuefficace-2-v1
+https://vimeo.com/928759359
+# m-realiser-un-audit-en-vue-d-integrer-l-ia-1-v1
+https://vimeo.com/1151925220
+# m-rediger-des-contenus-textuels-avec-ia-1-v1
+https://vimeo.com/1156475418
+# m-referencementnaturelsiteetpagesproduits-1-v1
+https://vimeo.com/928763494
+# m-reglementationhandicapetinclusion-1-v1
+https://vimeo.com/1073201006
+# m-relationclient-1-v1
+https://vimeo.com/928763665
+# m-rendreproduitsservicesaccessiblespersonnesenhandicap-1-v1
+https://vimeo.com/1063488558
+# m-rgpdetprotectiondonnees-1-v1
+https://vimeo.com/1039711263
+# m-savoirvousorgniser-1-v3
+https://vimeo.com/1019750090
+# m-savoirvousvendre-1-v2
+https://vimeo.com/928764090
+# m-savoirvousvendre-2-v2
+https://vimeo.com/1019734819
+# m-selancermarketplace-1-v1
+https://vimeo.com/928764791
+# m-seocopywriting-1-v1
+https://vimeo.com/968816007
+# m-statutetnommarque-1-v1
+https://vimeo.com/928764946
+# m-strategiecommercialeetmiseenplace-1-v1
+https://vimeo.com/1074304247
+# m-strategiecontenu-1-v3
+https://vimeo.com/1019485579
+# m-strategiecontenuefficace-1-v1
+https://vimeo.com/928765208
+# m-strategiecontenuefficace-3-v1
+https://vimeo.com/928777882
+# m-surveiller-l-e-reputation-avec-l-ia-1-v1
+https://vimeo.com/1173265299
+# m-synthetiser-des donnees-grace-a-l-IA-1-v1
+https://vimeo.com/1168516112
+# m-techniqueabtesting-1-v1
+https://vimeo.com/1039689843
+# m-tester-et-deployer-ses-workflows-ia-1-v1
+https://vimeo.com/1157861158
+# m-tiktocvendreproduits-1-v1
+https://vimeo.com/928778719
+# m-tiktocvendreproduits-2-v1
+https://vimeo.com/928779364
+# m-tiktok-1-v2
+https://vimeo.com/1125117457
+# m-travailleravecmarketplacetiktok-1-v1
+https://vimeo.com/1109358459
+# m-travaillercontenu-1-v2
+https://vimeo.com/928783620
+# m-travaillerimagemarque-1-v1
+https://vimeo.com/928784884
+# m-travaillertunnelachatwix-1-v1
+https://vimeo.com/928785060
+# m-travaillertunnelachatwix-2-v1
+https://vimeo.com/928785306
+# m-trouverdesproduits-1-v1
+https://vimeo.com/1011953159
+# m-trouverfournisseursdropshipping-1-v1
+https://vimeo.com/1012020993
+# m-trouverpremieresmissions-1-v1
+https://vimeo.com/1089027408
+# m-trouverproduitsdropshipping-1-v1
+https://vimeo.com/1015253538
+# m-trouversesfournisseurs-1-v1
+https://vimeo.com/928792037
+# m-trouvervospremiersclientsetdeveloppervoscanauxdacquisition-1-v1
+https://vimeo.com/928790143
+# m-tutoplateforme-1-v3
+https://vimeo.com/928791959
+# m-utilisation-chat-gpt-1-v2
+https://vimeo.com/1175511316
+# m-utiliser-ia-moderation-reponse-commentaires-1-v1
+https://vimeo.com/1156472982
+# m-utiliser-une-ia-de-planification-et-de-diffusion des contenus-1-v1
+https://vimeo.com/1157865408
+# m-vendregraceafacebookinstagramads-1-v1
+https://vimeo.com/928789992
+# m-vendregraceafacebookinstagramads-2-v1
+https://vimeo.com/928789368
+# m-vendregraceafacebookinstagramads-3-v1
+https://vimeo.com/928789793
+# m-youtube-1-v3
+https://vimeo.com/928788792
+# maintenance-et-mise-a-jour-1-v2
+https://vimeo.com/928789074
+# maintenance-evolution-boutique-1-v1
+https://vimeo.com/928795734
+# optimisation-referencement-naturel-1-v1
+https://vimeo.com/928796096
+# optimisation-referencement-naturel-e-commerce-1-v2
+https://vimeo.com/928796370
+# optimisation-referencement-naturel-e-commerce-wix-1-v1
+https://vimeo.com/928796531
+# personnalisation-design-1-v1
+https://vimeo.com/928796568
+# personnalisation-design-boutique-1-v2
+https://vimeo.com/928796832
+# personnalisation-design-e-commerce-1-v1
+https://vimeo.com/928797096
+# preparation-conception-site-1-v1
+https://vimeo.com/928797267
+# preparation-conception-site-e-commerce-1-v1
+https://vimeo.com/928797659
+# r-040924-solitudefreelance-1
+https://vimeo.com/1006182225
+# r-041024-maitriserchatgpt-1
+https://vimeo.com/1019377845
+# r-041121-retraiteindependants
+https://vimeo.com/928800883
+# r-041223-decouvrezlescollectifsdefreelance-1
+https://vimeo.com/928801009
+# r-060423-chatgpt
+https://vimeo.com/928801275
+# r-060624-ia-pour-createurs-de-contenu
+https://vimeo.com/957008096
+# r-061221-rgpd
+https://vimeo.com/928801534
+# r-061222-laboiteainde
+https://vimeo.com/928801712
+# r-070721-creationgraphique
+https://vimeo.com/928802042
+# r-071123-auto-sabotage
+https://vimeo.com/928802184
+# r-081021-recrutement
+https://vimeo.com/928802680
+# r-090523-creer-son-portfolio
+https://vimeo.com/928802943
+# r-120421-maisonedition
+https://vimeo.com/928803139
+# r-120522-fondamentauxingeneriepedagogique
+https://vimeo.com/928805283
+# r-130122-gerersontemps
+https://vimeo.com/928805411
+# r-130922-businesscollectivite
+https://vimeo.com/928805552
+# r-140426-classe-bonus-UGC-la-strategie-de-contenu-qui-cartonne
+https://vimeo.com/1185084876
+# r-150124-mutuelleprevoyanceparentalite-1
+https://vimeo.com/928805605
+# r-150125-pomptingsezame
+https://vimeo.com/1047891695
+# r-150922-tiktok
+https://vimeo.com/928805943
+# r-151123-temps-fort-shopify-v2
+https://vimeo.com/928806103
+# r-170925-iaethique
+https://vimeo.com/1119430421
+# r-180521-micronutrition
+https://vimeo.com/928806261
+# r-181022-stressprofessionnel
+https://vimeo.com/928806487
+# r-190325-numeriqueresponsable
+https://vimeo.com/1067363665
+# r-190422-creativlink
+https://vimeo.com/928806688
+# r-200324-changerbusinessmodeletdevenirrentable
+https://vimeo.com/928806814
+# r-220223-autocompassion
+https://vimeo.com/928808614
+# r-221124-syndromeimposteur
+https://vimeo.com/1035172592
+# r-230224-utilisernotionorganiserparfaitement
+https://vimeo.com/928808881
+# r-231023-formalites-admin-urssaf-tva
+https://vimeo.com/928809057
+# r-240423-microentreprisenumbr
+https://vimeo.com/928809183
+# r-241125-Agatos-santé-mentale-ia
+https://vimeo.com/1140308328
+# r-260623-ad-missions
+https://vimeo.com/928809314
+# r-270923-numbr-statut-juridique
+https://vimeo.com/928809387
+# r-280624-l-engagement-au-cœur-de-son-activité-de-freelance
+https://vimeo.com/970604515
+# r-290425-commentbiengererfinances-1
+https://vimeo.com/1081459579
+# r-300821-priseparole-1
+https://vimeo.com/928809515
+# r-300821-priseparole-2
+https://vimeo.com/928810407
+# r-facteursuccessformation-1
+https://vimeo.com/928810933
+# r-facteursuccessformation-2
+https://vimeo.com/928810978
+# replay-freebee-comptabilite-micro-entreprise
+https://vimeo.com/928810859
+# travailler-tunnel-achat-site-e-commerce-1-v1
+https://vimeo.com/928811339

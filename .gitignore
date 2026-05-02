@@ -20,3 +20,36 @@ npm-debug.log*
 # Build artifacts
 dist/
 build/
+
+# --- Cap Learning / video pipeline ---
+# Secrets (JAMAIS commit)
+scripts/vimeo_cookies.txt
+scripts/.aws-credentials
+scripts/*.pem
+
+# --- Cap Learning / Supabase ---
+# Config frontend (anon key publique mais on garde par hygiène multi-env)
+js/config.js
+# Backups HTML créés par inject-design-system.sh
+*.html.bak
+
+# Données locales (trop lourdes / spécifiques à la machine)
+# Pattern global : tous les dossiers de vidéos sources/intermédiaires/processed
+scripts/videos_*/
+scripts/videos_originales/
+scripts/videos_afrique_720p/
+scripts/videos_afrique_480p/
+# Fichiers vidéo isolés
+scripts/**/*.mp4
+scripts/**/*.mov
+scripts/**/*.mkv
+scripts/**/*.webm
+
+# Logs runtime
+scripts/download_vimeo_log.txt
+scripts/upload_s3_log.txt
+scripts/traitement_log.txt
+
+# Fichiers de travail (garder les .example versionnés)
+scripts/vimeo_urls.txt
+scripts/timecodes.csv

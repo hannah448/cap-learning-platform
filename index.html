@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -11,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/tokens.css">
+
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/components.css">
 </head>
@@ -25,6 +29,11 @@
             <div class="top-bar-actions">
                 <button class="lang-toggle" aria-label="Changer de langue">
                     <span class="lang-icon">&#127760;</span> FR
+                </button>
+                <!-- Theme toggle (Cap Learning DS v1.3) -->
+                <button type="button" class="cap-theme-toggle" aria-label="Basculer le thème clair / sombre" onclick="CapTheme && CapTheme.toggle()" title="Basculer le thème clair / sombre">
+                    <svg class="cap-theme-toggle-icon cap-theme-toggle-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="cap-theme-toggle-icon cap-theme-toggle-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
                 </button>
             </div>
         </div>
@@ -84,9 +93,12 @@
                                     </div>
                                 </a>
                             </div>
-                            <div style="border-top:1px solid var(--border, #e5e7eb); margin-top:12px; padding-top:12px; text-align:center;">
-                                <a href="pages/catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--primary, #FF6B35); font-weight:600;">
-                                    Voir les 5 parcours certifiants &rarr;
+                            <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                                <a href="pages/catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Voir les 5 parcours &rarr;
+                                </a>
+                                <a href="pages/comparatif.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Comparer &rarr;
                                 </a>
                             </div>
                         </div>
@@ -434,9 +446,9 @@
                 <!-- Course Cards Grid -->
                 <div class="courses-grid" id="courses-grid">
                     <!-- Course 2 - E-commerce -->
-                    <article class="course-card" data-category="ecommerce" data-id="2" data-price="30000" data-name="E-commerce &amp; Paiements Digitaux">
+                    <article class="course-card" data-category="ecommerce" data-formation="ecommerce" data-id="2" data-price="30000" data-name="E-commerce &amp; Paiements Digitaux">
                         <div class="course-card-image">
-                            <div class="course-card-img-placeholder" style="background: linear-gradient(135deg, #2D9CDB, #56CCF2);">
+                            <div class="course-card-img-placeholder">
                                 <span>&#128722;</span>
                             </div>
                             <span class="course-badge course-badge-popular">Bestseller</span>
@@ -473,9 +485,9 @@
                     </article>
 
                     <!-- Course 3 - IA & Business -->
-                    <article class="course-card" data-category="ia" data-id="3" data-price="30000" data-name="IA &amp; Business">
+                    <article class="course-card" data-category="ia" data-formation="ia" data-id="3" data-price="30000" data-name="IA &amp; Business">
                         <div class="course-card-image">
-                            <div class="course-card-img-placeholder" style="background: linear-gradient(135deg, #A855F7, #6366F1);">
+                            <div class="course-card-img-placeholder">
                                 <span>&#129302;</span>
                             </div>
                             <span class="course-badge course-badge-hot">Tendance 2026</span>
@@ -512,9 +524,9 @@
                     </article>
 
                     <!-- Course 1 - Marketing Digital -->
-                    <article class="course-card" data-category="marketing" data-id="1" data-price="25000" data-name="Marketing Digital Complet">
+                    <article class="course-card" data-category="marketing" data-formation="marketing" data-id="1" data-price="25000" data-name="Marketing Digital Complet">
                         <div class="course-card-image">
-                            <div class="course-card-img-placeholder" style="background: linear-gradient(135deg, #FF6B35, #F7931E);">
+                            <div class="course-card-img-placeholder">
                                 <span>&#128200;</span>
                             </div>
                             <span class="course-badge course-badge-popular">Bestseller</span>
@@ -551,9 +563,9 @@
                     </article>
 
                     <!-- Course 10 - Entrepreneuriat Digital -->
-                    <article class="course-card" data-category="entrepreneuriat" data-id="10" data-price="25000" data-name="Entrepreneuriat Digital">
+                    <article class="course-card" data-category="entrepreneuriat" data-formation="entrepreneuriat" data-id="10" data-price="25000" data-name="Entrepreneuriat Digital">
                         <div class="course-card-image">
-                            <div class="course-card-img-placeholder" style="background: linear-gradient(135deg, #22C55E, #16A34A);">
+                            <div class="course-card-img-placeholder">
                                 <span>&#128640;</span>
                             </div>
                             <span class="course-badge course-badge-new">Nouveau 2026</span>
@@ -590,9 +602,9 @@
                     </article>
 
                     <!-- Course 5 - Réseaux Sociaux -->
-                    <article class="course-card" data-category="marketing" data-id="5" data-price="18000" data-name="R&eacute;seaux Sociaux &amp; Community Management">
+                    <article class="course-card" data-category="marketing" data-formation="reseaux" data-id="5" data-price="18000" data-name="R&eacute;seaux Sociaux &amp; Community Management">
                         <div class="course-card-image">
-                            <div class="course-card-img-placeholder" style="background: linear-gradient(135deg, #F472B6, #EC4899);">
+                            <div class="course-card-img-placeholder">
                                 <span>&#128241;</span>
                             </div>
                             <button class="course-wishlist" aria-label="Ajouter aux favoris">&#9825;</button>
@@ -780,5 +792,6 @@
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
     <script src="js/whatsapp-widget.js"></script>
+    <script src="js/theme.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,177 @@
+# =============================================================================
+# vimeo_urls.marketing_digital.txt — Formation MARKETING DIGITAL
+# -----------------------------------------------------------------------------
+# 6 modules — vidéos disponibles sur Vimeo Pro Digi-Atlas
+# =============================================================================
+
+
+=== MODULE 1 : Définir une stratégie de marketing digital ===
+
+# Faire une étude de marché
+# slug: m-etude-de-marche-1-v1
+https://vimeo.com/1183309449
+
+# Se fixer des objectifs SMART
+# slug: m-fixerobjectifssmart-1-v1
+https://vimeo.com/1056772136
+
+# Définir sa cible et ses personas
+# slug: m-caracteristiquesciblewebmarketing-1-v1
+https://vimeo.com/1061206496
+
+# Principaux leviers d'acquisition
+# slug: m-principauxleviersacquisition-1-v1
+https://vimeo.com/1061221346
+
+# Choisir ses leviers en fonction de son contexte
+# slug: m-leviersenfonctiononcontexte-1-v1
+https://vimeo.com/1061222006
+
+# Établir sa stratégie de contenu
+# slug: m-strategiecontenu-1-v3
+https://vimeo.com/1019485579
+
+
+=== MODULE 2 : Maîtriser le référencement naturel ===
+
+# Comprendre le référencement naturel
+# slug: m-referencementnaturelsiteetpagesproduits-1-v1
+https://vimeo.com/928763494
+
+# Rendre ses contenus accessibles aux personnes en situation de handicap
+# slug: m-rendreproduitsservicesaccessiblespersonnesenhandicap-1-v1
+https://vimeo.com/1063488558
+
+# Comprendre et maîtriser le GEO
+# slug: m-geo-1-v1
+https://vimeo.com/1147263916
+
+
+=== MODULE 3 : Mettre en place sa stratégie sur les réseaux sociaux ===
+
+# Créer ses comptes sur les réseaux sociaux
+# slug: m-creercomptesreseauxsociaux-v1
+https://vimeo.com/1063518006
+
+# Animer un compte Instagram (1/3)
+# slug: m-instagram-1-v2
+https://vimeo.com/1034144539
+
+# Animer un compte Instagram (2/3)
+# slug: m-instagram-2-v2
+https://vimeo.com/1034140700
+
+# Animer un compte Instagram (3/3)
+# slug: m-instagram-3-v2
+https://vimeo.com/928726187
+
+# Animer un compte LinkedIn
+# slug: m-linkedin-1-v2
+https://vimeo.com/928733266
+
+# Animer un compte Pinterest
+# slug: m-pinterest-1-v2
+https://vimeo.com/928756439
+
+# Animer un compte TikTok
+# slug: m-tiktok-1-v2
+https://vimeo.com/1125117457
+
+# Animer un compte YouTube
+# slug: m-youtube-1-v3
+https://vimeo.com/928788792
+
+# Créer ses visuels avec Canva
+# slug: m-creervisuelscanva-1-v2
+https://vimeo.com/1063584064
+
+# Monter ses vidéos avec CapCut
+# slug: m-monter-une-video-avec-capcut-1-v1
+https://vimeo.com/1184834344
+
+# Créer un calendrier éditorial
+# slug: m-creer-un-calendrier-editorial-1-v1
+https://vimeo.com/1183306902
+
+# KPI des réseaux sociaux (analyser community management)
+# slug: m-analyserresultatsstrategiecm-1-v1
+https://vimeo.com/1055516701
+
+
+=== MODULE 4 : Création de contenu avec l'IA ===
+
+# Produire des contenus écrits diversifiés avec IA
+# slug: m-produire-des-contenus-diversifies-et-professionnes-avec-ia-1-v1
+https://vimeo.com/1162545937
+
+# Générer des visuels avec IA
+# slug: m-generationvisuelsia-v1
+https://vimeo.com/1070261155
+
+# Créer des vidéos avec IA
+# slug: m-creer-des-videos-avec-ia-1-v1
+https://vimeo.com/1154636099
+
+# Apprendre à prompter — Présentation module
+# slug: m-prompter-presentationmoduleetobjectifs-1-v1
+https://vimeo.com/988825093
+
+# Apprendre à prompter — Le prompting c'est quoi ?
+# slug: m-promptercestquoi-1-v1
+https://vimeo.com/988824820
+
+# Apprendre à prompter — Ton style
+# slug: m-promptertonstyle-1-v1
+https://vimeo.com/988824971
+
+# Apprendre à prompter — Do & Don't
+# slug: m-dodontprompting-1-v1
+https://vimeo.com/988824735
+
+# Apprendre à prompter — Bibliographie
+# slug: m-prompter-bibliographie-1-v1
+https://vimeo.com/988825006
+
+# Apprendre à prompter — Bonus prompts offerts
+# slug: m-bonuspromptsofferts-1-v1
+https://vimeo.com/988825037
+
+# Apprendre à prompter — Conclusion module
+# slug: m-prompter-conclusionmodule-1-v1
+https://vimeo.com/988825055
+
+
+=== MODULE 5 : Maîtriser les publicités payantes ===
+
+# Facebook Ads + Instagram Ads — créer son compte pro
+# slug: m-facebookadsinstagramads-creersoncomptepro-1-v2
+https://vimeo.com/927976679
+
+# Facebook Ads + Instagram Ads (1/2)
+# slug: m-facebookadsinstagramads-1-v2
+https://vimeo.com/927168625
+
+# Facebook Ads + Instagram Ads (2/2)
+# slug: m-facebookadsinstagramads-2-v2
+https://vimeo.com/927983329
+
+# Réaliser des campagnes avec Google Ads
+# slug: m-googleads-1-v2
+https://vimeo.com/1136087819
+
+
+=== MODULE 6 : Analyser les résultats avec les KPI ===
+
+# Analyser les KPIs grâce à l'IA
+# slug: m-analyser-les-kpis-grace-a-lia-1-v1
+https://vimeo.com/1153956690
+
+
+# =============================================================================
+# ⚠ VIDÉOS À TOURNER (pas encore disponibles sur Vimeo)
+# =============================================================================
+#   - Module 2 — Rédiger des contenus optimisés SEO
+#   - Module 5 — Comprendre les publicités payantes
+#   - Module 5 — Reporting d'une publicité et analyse des résultats
+#   - Module 6 — Maîtriser les différents KPI
+#   - Module 6 — Créer un tableau de bord et adapter sa stratégie

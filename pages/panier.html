@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="../js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -10,9 +12,50 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/components.css">
     <style>
+        /* ── Trust bar ── */
+        .cart-trust-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: var(--space-8);
+            padding: 16px 18px;
+            background: linear-gradient(135deg, #F4EEFE 0%, #EDE7FC 100%);
+            border: 1px solid rgba(167,139,250,0.35);
+            border-radius: var(--radius-xl);
+        }
+        .cart-trust-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .cart-trust-icon {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.15rem;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(58,80,246,0.15);
+            color: #3A50F6;
+        }
+        .cart-trust-item strong {
+            display: block;
+            font-size: 0.88rem;
+            color: #1E1B3A;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        .cart-trust-item span {
+            font-size: 0.74rem;
+            color: #5B5A6C;
+            line-height: 1.3;
+        }
+
         /* ── Payment method selector ── */
         .pay-methods-section {
             margin-top: var(--space-5);
@@ -395,9 +438,12 @@
                                     </div>
                                 </a>
                             </div>
-                            <div style="border-top:1px solid var(--border, #e5e7eb); margin-top:12px; padding-top:12px; text-align:center;">
-                                <a href="catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--primary, #FF6B35); font-weight:600;">
-                                    Voir les 5 parcours certifiants &rarr;
+                            <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                                <a href="catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Voir les 5 parcours &rarr;
+                                </a>
+                                <a href="comparatif.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Comparer &rarr;
                                 </a>
                             </div>
                         </div>
@@ -448,9 +494,41 @@
                     <span style="color: var(--text-primary); font-weight: 500;">Mon Panier</span>
                 </div>
 
-                <h1 style="font-family: var(--font-display); font-size: var(--text-3xl); margin-bottom: var(--space-8);">
+                <h1 style="font-family: var(--font-display); font-size: var(--text-3xl); margin-bottom: var(--space-4);">
                     Mon Panier <span id="cart-count" style="font-size: var(--text-lg); color: var(--text-secondary); font-weight: 400;"></span>
                 </h1>
+
+                <!-- Trust bar -->
+                <div class="cart-trust-bar" aria-label="Garanties d'achat">
+                    <div class="cart-trust-item">
+                        <span class="cart-trust-icon">&#128274;</span>
+                        <div>
+                            <strong>Paiement sécurisé</strong>
+                            <span>SSL &middot; 3D Secure</span>
+                        </div>
+                    </div>
+                    <div class="cart-trust-item">
+                        <span class="cart-trust-icon">&#9851;</span>
+                        <div>
+                            <strong>Satisfait ou remboursé</strong>
+                            <span>Garantie 14 jours</span>
+                        </div>
+                    </div>
+                    <div class="cart-trust-item">
+                        <span class="cart-trust-icon">&#9889;</span>
+                        <div>
+                            <strong>Accès instantané</strong>
+                            <span>Dès validation du paiement</span>
+                        </div>
+                    </div>
+                    <div class="cart-trust-item">
+                        <span class="cart-trust-icon">&#127891;</span>
+                        <div>
+                            <strong>Certificat inclus</strong>
+                            <span>Téléchargeable en fin de parcours</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Empty State -->
                 <div class="cart-empty" id="cart-empty" style="display: none;">
@@ -882,5 +960,6 @@
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
     <script src="../js/whatsapp-widget.js"></script>
+    <script src="../js/theme.js" defer></script>
 </body>
 </html>

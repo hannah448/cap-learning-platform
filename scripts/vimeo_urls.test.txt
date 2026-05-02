@@ -1,0 +1,31 @@
+# vimeo_urls.test.txt — TEST sur le module auto-no-code
+# Sert à valider auth Vimeo + yt-dlp avant de lancer le full batch
+#
+# m-applicationsconnecteessurmake-1-v1
+https://vimeo.com/1107751730
+# m-automatisercestquoi-1-v1
+https://vimeo.com/1109616710
+# m-basesdelautomatisation-1-v1
+https://vimeo.com/1107748693
+# m-certification-auto-no-code-1-v1
+https://vimeo.com/1168037193
+# m-connecterbasededonneesamake-1-v1
+https://vimeo.com/1107757149
+# m-connecteriaamake-1-v1
+https://vimeo.com/1107751241
+# m-creer-des-workflows-automatisés-1-v1
+https://vimeo.com/1157863482
+# m-creerplanningeditorialautomatise-1-v1
+https://vimeo.com/1108983116
+# m-identifier-les-contenus-a-automatiser-1-v1
+https://vimeo.com/1157864238
+# m-identifier-les-taches-automatisables-1-v1
+https://vimeo.com/1168493297
+# m-lexiqueetmotsclesdelautomatisation-1-v1
+https://vimeo.com/1107748870
+# m-Maîtriser-Zapier-1-v1
+https://vimeo.com/1168028515
+# m-n8n-1-v1
+https://vimeo.com/1162544357
+# m-panoramadesoutilsdautomatisation-1-v1
+https://vimeo.com/1109629868

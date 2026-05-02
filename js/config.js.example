@@ -1,0 +1,25 @@
+/* =============================================================================
+   Cap Learning — Frontend config (Supabase)
+   -----------------------------------------------------------------------------
+   Copie ce fichier en config.js et remplis avec tes vraies valeurs.
+
+   Trouve-les dans : Supabase Dashboard → Settings → API
+   - Project URL    → SUPABASE_URL
+   - anon public    → SUPABASE_ANON_KEY
+
+   ⚠️ NE COMMIT JAMAIS config.js (déjà dans .gitignore).
+   La anon key est faite pour être publique côté client (la sécurité vient des
+   policies RLS au niveau Postgres). Ne JAMAIS mettre service_role ici.
+   ============================================================================= */
+
+window.CapConfig = {
+    // À remplacer par tes vraies valeurs Supabase :
+    SUPABASE_URL:       'https://YOUR-PROJECT-REF.supabase.co',
+    SUPABASE_ANON_KEY:  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.YOUR_ANON_KEY_HERE',
+
+    // Optionnel : domaine public pour les redirects auth
+    PUBLIC_BASE_URL:    'https://cap-learning.com',
+
+    // Mode dev/prod (pour logs verbeux en dev)
+    DEBUG:              false
+};

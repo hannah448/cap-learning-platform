@@ -1,0 +1,23 @@
+{
+  "CORSRules": [
+    {
+      "AllowedHeaders": ["*"],
+      "AllowedMethods": ["GET", "HEAD"],
+      "AllowedOrigins": [
+        "https://cap-learning.com",
+        "https://www.cap-learning.com",
+        "https://cap-learning.sn",
+        "https://www.cap-learning.sn",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000"
+      ],
+      "ExposeHeaders": [
+        "Content-Length",
+        "Content-Range",
+        "Accept-Ranges",
+        "ETag"
+      ],
+      "MaxAgeSeconds": 3000
+    }
+  ]
+}

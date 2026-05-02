@@ -1,0 +1,35 @@
+# =============================================================================
+# vimeo_urls.txt.example — modèle pour download_vimeo.sh
+# -----------------------------------------------------------------------------
+# Une URL Vimeo par ligne. Lignes vides et lignes commençant par # ignorées.
+#
+# Pour utiliser :
+#   1. cp vimeo_urls.txt.example vimeo_urls.txt
+#   2. Remplace les exemples par tes vraies URLs
+#   3. ./download_vimeo.sh
+#
+# Formats acceptés par yt-dlp :
+#   https://vimeo.com/123456789
+#   https://vimeo.com/123456789/abc123hash          (lien privé avec hash)
+#   https://vimeo.com/manage/videos/123456789       (dashboard admin)
+#   https://player.vimeo.com/video/123456789
+#
+# Astuce pour récupérer les 80 URLs rapidement :
+#   - Dashboard Vimeo → Videos → filtre par dossier/album Digi-Atlas
+#   - Sélection multiple → clic droit → "Copy links"
+#   - Colle ici, une par ligne
+# =============================================================================
+
+# --- Réussite Sociale (RS) — 10 vidéos ---
+https://vimeo.com/REMPLACE_MOI_RS_01
+https://vimeo.com/REMPLACE_MOI_RS_02
+https://vimeo.com/REMPLACE_MOI_RS_03
+# ... etc
+
+# --- No-Code — 8 vidéos ---
+https://vimeo.com/REMPLACE_MOI_NOCODE_01
+https://vimeo.com/REMPLACE_MOI_NOCODE_02
+# ... etc
+
+# --- Autres formations Digi-Atlas (optionnel) ---
+# https://vimeo.com/...

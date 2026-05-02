@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="../js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -11,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/lms.css">
 
@@ -29,45 +33,167 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+            background:
+                radial-gradient(1200px 600px at -10% -20%, rgba(58,80,246,0.35) 0%, transparent 55%),
+                radial-gradient(900px 500px at 110% 120%, rgba(167,139,250,0.35) 0%, transparent 55%),
+                linear-gradient(135deg, #1E1B3A 0%, #2D2960 55%, #3A50F6 100%);
             font-family: var(--font-body);
             padding: var(--space-6);
             position: relative;
             overflow: hidden;
         }
 
-        /* Subtle decorative circles */
+        /* Floating blobs */
         .auth-page::before,
         .auth-page::after {
             content: '';
             position: absolute;
             border-radius: 50%;
-            opacity: 0.07;
             pointer-events: none;
+            filter: blur(40px);
         }
 
         .auth-page::before {
-            width: 600px;
-            height: 600px;
-            background: var(--color-primary);
-            top: -200px;
-            right: -150px;
+            width: 520px;
+            height: 520px;
+            background: radial-gradient(circle, rgba(167,139,250,0.45), transparent 70%);
+            top: -180px;
+            right: -120px;
+            animation: authFloat 18s ease-in-out infinite;
         }
 
         .auth-page::after {
-            width: 400px;
-            height: 400px;
-            background: var(--color-accent);
-            bottom: -120px;
+            width: 420px;
+            height: 420px;
+            background: radial-gradient(circle, rgba(58,80,246,0.45), transparent 70%);
+            bottom: -140px;
             left: -100px;
+            animation: authFloat 22s ease-in-out infinite reverse;
+        }
+        @keyframes authFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -20px) scale(1.08); }
+        }
+
+        /* Split layout */
+        .auth-shell {
+            width: 100%;
+            max-width: 980px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        @media (max-width: 900px) {
+            .auth-shell { grid-template-columns: 1fr; max-width: 460px; }
+            .auth-aside { display: none; }
+        }
+
+        /* Side panel with testimonial */
+        .auth-aside {
+            color: #fff;
+            padding: var(--space-4);
+        }
+        .auth-aside-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.95);
+        }
+        .auth-aside h2 {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+            line-height: 1.15;
+            margin: 18px 0 14px;
+            color: #fff;
+        }
+        .auth-aside p {
+            color: rgba(255,255,255,0.82);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        .auth-aside-list {
+            list-style: none;
+            padding: 0;
+            margin: 24px 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .auth-aside-list li {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            color: rgba(255,255,255,0.92);
+            font-size: 0.95rem;
+        }
+        .auth-aside-list li::before {
+            content: '✓';
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A78BFA, #6366F1);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .auth-testimonial {
+            margin-top: 32px;
+            padding: 18px;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+        }
+        .auth-testimonial p {
+            color: #fff;
+            font-size: 0.94rem;
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .auth-testimonial-author {
+            display: flex; gap: 10px; align-items: center;
+        }
+        .auth-testimonial-avatar {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A78BFA, #6366F1);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+        .auth-testimonial-name {
+            font-size: 0.82rem;
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        .auth-testimonial-role {
+            font-size: 0.72rem;
+            color: rgba(255,255,255,0.7);
         }
 
         .auth-card {
             width: 100%;
-            max-width: 440px;
+            max-width: 460px;
+            margin-left: auto;
             background: var(--surface-card);
             border-radius: var(--radius-2xl);
-            box-shadow: var(--shadow-xl);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.25), 0 8px 24px rgba(58,80,246,0.15);
             padding: var(--space-10);
             position: relative;
             z-index: 1;
@@ -255,14 +381,14 @@
         }
 
         .auth-btn-primary {
-            background: var(--color-primary);
+            background: linear-gradient(135deg, #3A50F6, #A78BFA);
             color: #fff;
-            box-shadow: 0 2px 8px rgba(58, 80, 246, 0.3);
+            box-shadow: 0 6px 20px rgba(58, 80, 246, 0.35);
         }
 
         .auth-btn-primary:hover {
-            background: var(--color-primary-dark);
-            box-shadow: 0 4px 16px rgba(58, 80, 246, 0.35);
+            filter: brightness(1.05);
+            box-shadow: 0 10px 28px rgba(58, 80, 246, 0.45);
             transform: translateY(-1px);
         }
 
@@ -365,6 +491,30 @@
 </head>
 <body>
     <div class="auth-page">
+        <div class="auth-shell">
+            <!-- Aside : value prop -->
+            <aside class="auth-aside">
+                <span class="auth-aside-eyebrow">&#127881; +12 000 entrepreneurs</span>
+                <h2>Rejoignez la communauté Cap Learning</h2>
+                <p>Des formations pensées pour l'Afrique, avec un coach dédié et une communauté active pour passer de l'idée au business.</p>
+                <ul class="auth-aside-list">
+                    <li>Accès à vie aux cours mis à jour chaque année</li>
+                    <li>Certificats reconnus, émis depuis la France</li>
+                    <li>Communauté WhatsApp active &amp; Office Hours mensuelles</li>
+                    <li>Paiement Mobile Money &middot; Wave &middot; Orange Money</li>
+                </ul>
+                <div class="auth-testimonial">
+                    <p>« En 3 mois, j'ai lancé ma boutique Shopify avec Wave. Le support CSM d'Awa a été décisif. »</p>
+                    <div class="auth-testimonial-author">
+                        <div class="auth-testimonial-avatar">FN</div>
+                        <div>
+                            <div class="auth-testimonial-name">Fatou Ndiaye</div>
+                            <div class="auth-testimonial-role">E-commerce &middot; Dakar</div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
         <div class="auth-card">
             <!-- Header -->
             <div class="auth-header">
@@ -468,22 +618,86 @@
                 </div>
             </form>
         </div>
+        </div>
     </div>
 
-    <!-- Admin data layer (seed + session API) -->
-    <script src="../js/admin-data.js"></script>
+    <!-- ========================================================== -->
+    <!-- Cap Learning — Auth Supabase (vraie DB)                    -->
+    <!-- ========================================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script src="../js/auth.js?v=2"></script>
+
     <script>
-    // Redirect if already logged in
-    (function () {
-        var s = window.AdminData && window.AdminData.getSession();
-        if (s) {
-            window.location.href = s.role === 'admin' ? 'admin.html' : 'dashboard.html';
+    // Si déjà connecté : redirige automatiquement, SAUF si l'URL contient
+    // ?stay=1 ou #stay (pratique pour se déconnecter / tester un autre compte)
+    (async function () {
+        var stay = /[?&]stay=1\b/.test(location.search) || location.hash === '#stay';
+        if (stay) return;
+
+        // Attendre que CapAuth soit prêt
+        var tries = 0;
+        while (!window.CapAuth && tries++ < 30) {
+            await new Promise(function (r) { setTimeout(r, 30); });
         }
+        if (!window.CapAuth) return;
+
+        try {
+            var profile = await window.CapAuth.getProfile();
+            if (!profile) return;
+
+            // Afficher une bannière "déjà connecté" avec 2 boutons
+            // au lieu de rediriger silencieusement.
+            var banner = document.createElement('div');
+            banner.style.cssText = [
+                'position: fixed', 'top: 0', 'left: 0', 'right: 0',
+                'background: var(--color-surface, #fff)',
+                'border-bottom: 1px solid var(--color-border, #ddd)',
+                'padding: 14px 20px', 'z-index: 99999',
+                'display: flex', 'align-items: center', 'justify-content: center',
+                'gap: 14px', 'flex-wrap: wrap',
+                'box-shadow: 0 4px 12px rgba(0,0,0,0.06)',
+                'font-family: -apple-system, BlinkMacSystemFont, sans-serif',
+                'font-size: 14px'
+            ].join(';');
+            var destUrl = profile.role === 'admin' ? 'admin.html' : 'dashboard.html';
+            var destLabel = profile.role === 'admin' ? 'panneau admin' : 'tableau de bord';
+
+            // Fonction globale exposée pour pouvoir être appelée via onclick (plus robuste
+            // que addEventListener si un autre script de la page intercepte les events).
+            window.__capSignOutFromBanner = async function () {
+                var btn = document.getElementById('capSignOut');
+                if (btn) { btn.disabled = true; btn.textContent = '⏳ Déconnexion…'; }
+                try { await window.CapAuth.signOut(); } catch (e) {}
+                // Vide aussi les anciennes clés legacy par sécurité
+                try {
+                    localStorage.removeItem('caplearning_user');
+                    localStorage.removeItem('caplearning_admin_session_v1');
+                } catch (e) {}
+                location.reload();
+                return false;
+            };
+
+            banner.innerHTML =
+                '<span>✅ Connectée en tant que <strong>' + (profile.email || '') + '</strong>' +
+                (profile.role === 'admin' ? ' <span style="background:#3460E5;color:#fff;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;margin-left:6px">ADMIN</span>' : '') +
+                '</span>' +
+                // Vrai lien <a href> : marche sans JS, ne peut pas être bloqué par un autre listener
+                '<a href="' + destUrl + '" style="padding:8px 16px;background:#3460E5;color:#fff;border:none;border-radius:8px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block">' +
+                'Aller à mon ' + destLabel + ' →</a>' +
+                // Bouton avec onclick inline (pas addEventListener) pour bypass tout interceptor JS
+                '<button id="capSignOut" type="button" onclick="window.__capSignOutFromBanner();return false;" style="padding:8px 16px;background:#fff;color:#333;border:1px solid #ddd;border-radius:8px;font-weight:600;cursor:pointer">Se déconnecter</button>';
+            document.body.appendChild(banner);
+            // Décale le contenu pour ne pas être masqué
+            document.body.style.paddingTop = (banner.offsetHeight + 8) + 'px';
+        } catch (e) { /* pas de session, on reste */ }
     })();
     </script>
+
     <script>
     (function () {
-        // --- Tab switching ---
+        // --- Tab switching (UI) ---
         const tabs = document.querySelectorAll('.auth-tab');
         const forms = document.querySelectorAll('.auth-form');
         const switchLinks = document.querySelectorAll('[data-switch]');
@@ -492,19 +706,14 @@
             tabs.forEach(function (tab) {
                 tab.classList.toggle('active', tab.dataset.tab === targetTab);
             });
-            forms.forEach(function (form) {
-                form.classList.remove('active');
-            });
+            forms.forEach(function (form) { form.classList.remove('active'); });
             document.getElementById(targetTab === 'login' ? 'loginForm' : 'signupForm').classList.add('active');
-            // Clear errors on switch
             document.getElementById('loginError').classList.remove('visible');
             document.getElementById('signupError').classList.remove('visible');
         }
 
         tabs.forEach(function (tab) {
-            tab.addEventListener('click', function () {
-                switchTab(this.dataset.tab);
-            });
+            tab.addEventListener('click', function () { switchTab(this.dataset.tab); });
         });
 
         switchLinks.forEach(function (link) {
@@ -520,28 +729,67 @@
             el.textContent = message;
             el.classList.add('visible');
         }
-
         function hideError(elementId) {
             var el = document.getElementById(elementId);
             el.textContent = '';
             el.classList.remove('visible');
         }
 
-        function storeUser(userData) {
-            localStorage.setItem('caplearning_user', JSON.stringify(userData));
+        function setLoading(form, isLoading) {
+            var btn = form.querySelector('button[type="submit"]');
+            if (!btn) return;
+            if (isLoading) {
+                btn.dataset.originalText = btn.textContent;
+                btn.textContent = '⏳ Chargement…';
+                btn.disabled = true;
+            } else {
+                if (btn.dataset.originalText) btn.textContent = btn.dataset.originalText;
+                btn.disabled = false;
+            }
         }
 
-        function redirectByRole(role) {
-            window.location.href = role === 'admin' ? 'admin.html' : 'dashboard.html';
+        async function redirectByRole(profile) {
+            // Récupère l'URL demandée avant le login (si page-guard a redirigé)
+            var redirect = sessionStorage.getItem('caplearning_redirect_after_login');
+            sessionStorage.removeItem('caplearning_redirect_after_login');
+
+            if (redirect && redirect.indexOf('connexion.html') === -1) {
+                // Reconstruit l'URL relative (on est dans /pages/)
+                window.location.replace(redirect.replace(/^\/pages\//, '').replace(/^\//, '../'));
+                return;
+            }
+            window.location.replace(profile && profile.role === 'admin' ? 'admin.html' : 'dashboard.html');
         }
 
-        function redirect() { redirectByRole('learner'); }
+        async function ensureCapAuth() {
+            var tries = 0;
+            while (!window.CapAuth && tries++ < 50) {
+                await new Promise(function (r) { setTimeout(r, 30); });
+            }
+            if (!window.CapAuth) {
+                throw new Error('Service d\'authentification indisponible. Recharge la page.');
+            }
+        }
 
-        // --- Login ---
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
+        // --- Mapping erreurs Supabase → français ---
+        function humanizeAuthError(err) {
+            var msg = (err && err.message) || '';
+            if (/Invalid login credentials/i.test(msg)) return 'Email ou mot de passe incorrect.';
+            if (/Email not confirmed/i.test(msg))       return 'Email non confirmé. Vérifie ta boîte mail.';
+            if (/User already registered/i.test(msg))   return 'Un compte existe déjà avec cet email. Connecte-toi.';
+            if (/at least 8/i.test(msg))                return 'Le mot de passe doit faire au moins 8 caractères.';
+            if (/Password should/i.test(msg))           return 'Mot de passe trop faible.';
+            if (/rate limit/i.test(msg))                return 'Trop de tentatives. Réessaie dans quelques minutes.';
+            if (/Failed to fetch/i.test(msg))           return 'Connexion à Cap Learning échouée. Vérifie ta connexion internet.';
+            return msg || 'Une erreur est survenue.';
+        }
+
+        // --- Login Supabase ---
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
             hideError('loginError');
 
+            var form = this;
             var email = document.getElementById('loginEmail').value.trim();
             var password = document.getElementById('loginPassword').value;
 
@@ -550,113 +798,81 @@
                 return;
             }
 
-            // AdminData intégration : reconnaissance du rôle admin + session partagée
-            if (window.AdminData) {
-                var existing = window.AdminData.getUserByEmail(email);
-                var user = existing || window.AdminData.createUser({
-                    email: email,
-                    name: email.split('@')[0]
-                });
-                var sess = window.AdminData.setSession(user);
-
-                // Rétrocompat : on garde aussi l'ancien format caplearning_user pour le dashboard
-                storeUser({ name: user.name, email: user.email, loggedIn: true, role: user.role });
-
-                redirectByRole(sess.role);
-                return;
+            setLoading(form, true);
+            try {
+                await ensureCapAuth();
+                await window.CapAuth.signIn(email, password);
+                var profile = await window.CapAuth.getProfile();
+                redirectByRole(profile);
+            } catch (err) {
+                setLoading(form, false);
+                showError('loginError', humanizeAuthError(err));
             }
-
-            // Fallback (sans AdminData) — legacy behaviour
-            var stored = localStorage.getItem('caplearning_user');
-            var legacyUser = stored ? JSON.parse(stored) : null;
-            if (legacyUser && legacyUser.email === email) {
-                legacyUser.loggedIn = true;
-                storeUser(legacyUser);
-                redirect();
-                return;
-            }
-            storeUser({ name: email.split('@')[0], email: email, loggedIn: true });
-            redirect();
         });
 
-        // --- Signup ---
-        document.getElementById('signupForm').addEventListener('submit', function (e) {
+        // --- Signup Supabase ---
+        document.getElementById('signupForm').addEventListener('submit', async function (e) {
             e.preventDefault();
             hideError('signupError');
 
+            var form = this;
             var firstName = document.getElementById('signupFirstName').value.trim();
-            var lastName = document.getElementById('signupLastName').value.trim();
-            var email = document.getElementById('signupEmail').value.trim();
-            var password = document.getElementById('signupPassword').value;
+            var lastName  = document.getElementById('signupLastName').value.trim();
+            var email     = document.getElementById('signupEmail').value.trim();
+            var password  = document.getElementById('signupPassword').value;
             var passwordConfirm = document.getElementById('signupPasswordConfirm').value;
 
             if (!firstName || !lastName || !email || !password || !passwordConfirm) {
                 showError('signupError', 'Veuillez remplir tous les champs.');
                 return;
             }
-
             if (password.length < 8) {
                 showError('signupError', 'Le mot de passe doit contenir au moins 8 caractères.');
                 return;
             }
-
             if (password !== passwordConfirm) {
                 showError('signupError', 'Les mots de passe ne correspondent pas.');
                 document.getElementById('signupPasswordConfirm').classList.add('error');
                 return;
             }
 
-            if (window.AdminData) {
-                try {
-                    var created = window.AdminData.getUserByEmail(email) || window.AdminData.createUser({
-                        name: firstName + ' ' + lastName,
-                        email: email
-                    });
-                    var sess = window.AdminData.setSession(created);
-                    storeUser({ name: created.name, email: created.email, loggedIn: true, role: created.role });
-                    redirectByRole(sess.role);
-                    return;
-                } catch (err) {
-                    showError('signupError', err.message || 'Impossible de créer le compte.');
-                    return;
+            setLoading(form, true);
+            try {
+                await ensureCapAuth();
+                var res = await window.CapAuth.signUp(email, password, {
+                    full_name: firstName + ' ' + lastName,
+                    country: 'SN'
+                });
+                if (res && res.session) {
+                    // Auto-confirm activé : on est connecté direct
+                    var profile = await window.CapAuth.getProfile();
+                    redirectByRole(profile);
+                } else {
+                    // Confirm email activé : il faut valider par email
+                    setLoading(form, false);
+                    showError('signupError',
+                        '✅ Compte créé. Vérifie ta boîte mail pour confirmer ton adresse, puis reviens te connecter.');
+                    setTimeout(function () { switchTab('login'); }, 3500);
                 }
+            } catch (err) {
+                setLoading(form, false);
+                showError('signupError', humanizeAuthError(err));
             }
-
-            var newUser = {
-                name: firstName + ' ' + lastName,
-                email: email,
-                loggedIn: true
-            };
-            storeUser(newUser);
-            redirect();
         });
 
-        // --- Google (placeholder) ---
-        document.getElementById('googleLoginBtn').addEventListener('click', function () {
-            var googleUser = {
-                name: 'Utilisateur Google',
-                email: 'utilisateur@gmail.com',
-                loggedIn: true
-            };
-            storeUser(googleUser);
-            redirect();
-        });
+        // --- Google (placeholder, à activer plus tard via Supabase OAuth) ---
+        var googleLoginBtn = document.getElementById('googleLoginBtn');
+        var googleSignupBtn = document.getElementById('googleSignupBtn');
+        function googleNotReady(e) {
+            e.preventDefault();
+            alert('Connexion Google bientôt disponible. Pour l\'instant, utilise email + mot de passe.');
+        }
+        if (googleLoginBtn) googleLoginBtn.addEventListener('click', googleNotReady);
+        if (googleSignupBtn) googleSignupBtn.addEventListener('click', googleNotReady);
 
-        document.getElementById('googleSignupBtn').addEventListener('click', function () {
-            var googleUser = {
-                name: 'Utilisateur Google',
-                email: 'utilisateur@gmail.com',
-                loggedIn: true
-            };
-            storeUser(googleUser);
-            redirect();
-        });
-
-        // Clear error styling on input focus
+        // Clear error styling on focus
         document.querySelectorAll('.auth-input').forEach(function (input) {
-            input.addEventListener('focus', function () {
-                this.classList.remove('error');
-            });
+            input.addEventListener('focus', function () { this.classList.remove('error'); });
         });
     })();
     </script>
@@ -664,5 +880,6 @@
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
     <script src="../js/whatsapp-widget.js"></script>
+    <script src="../js/theme.js" defer></script>
 </body>
 </html>

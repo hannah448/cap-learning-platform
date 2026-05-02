@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="../js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -11,12 +13,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/components.css">
     <style>
         .about-hero {
             padding: 120px 0 80px;
-            background: linear-gradient(135deg, #fff7f2 0%, #fef3ec 50%, #fff 100%);
+            background: linear-gradient(135deg, #F4EEFE 0%, #EDE7FC 50%, #FBF7F0 100%);
             position: relative;
             overflow: hidden;
         }
@@ -24,49 +28,63 @@
             content: '';
             position: absolute;
             top: -50%; right: -10%;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(255,107,53,0.08), transparent 70%);
+            width: 560px; height: 560px;
+            background: radial-gradient(circle, rgba(167,139,250,0.22), transparent 70%);
             border-radius: 50%;
         }
-        .about-hero-inner { max-width: 860px; position: relative; }
+        .about-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -8%;
+            width: 460px; height: 460px;
+            background: radial-gradient(circle, rgba(58,80,246,0.16), transparent 70%);
+            border-radius: 50%;
+        }
+        .about-hero-inner { max-width: 860px; position: relative; z-index: 1; }
         .about-hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; margin: 16px 0 20px; }
         .about-hero .lead { font-size: 1.15rem; color: var(--text-muted, #555); line-height: 1.65; }
         .about-section { padding: 80px 0; }
-        .about-section.alt { background: #fafafa; }
+        .about-section.alt { background: #FBF7F0; }
         .about-grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 40px; align-items: start; }
         .about-stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 24px; margin-top: 40px; }
         .about-stat {
             background: #fff;
-            border: 1px solid #eee;
+            border: 1px solid #EAE4DA;
             border-radius: 16px;
             padding: 28px 24px;
             text-align: center;
-            transition: transform .2s, box-shadow .2s;
+            transition: transform .2s, box-shadow .2s, border-color .2s;
         }
-        .about-stat:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); }
-        .about-stat-value { font-size: 2.4rem; font-weight: 700; color: var(--primary, #FF6B35); line-height: 1; }
+        .about-stat:hover { transform: translateY(-4px); box-shadow: 0 18px 38px -14px rgba(58,80,246,0.22); border-color: rgba(167,139,250,0.4); }
+        .about-stat-value {
+            font-size: 2.6rem; font-weight: 700; line-height: 1;
+            background: linear-gradient(135deg, #3A50F6, #A78BFA);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         .about-stat-label { color: #555; margin-top: 8px; font-size: .95rem; }
         .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
         .pillar-card {
             background: #fff;
-            border: 1px solid #eee;
+            border: 1px solid #EAE4DA;
             border-radius: 18px;
             padding: 32px 28px;
-            transition: border-color .2s, transform .2s;
+            transition: border-color .2s, transform .2s, box-shadow .2s;
         }
-        .pillar-card:hover { border-color: var(--primary, #FF6B35); transform: translateY(-4px); }
-        .pillar-icon { font-size: 2rem; display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: 14px; background: #fff3ec; margin-bottom: 16px; }
+        .pillar-card:hover { border-color: #A78BFA; transform: translateY(-4px); box-shadow: 0 20px 40px -18px rgba(58,80,246,0.22); }
+        .pillar-icon { font-size: 2rem; display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: 14px; background: linear-gradient(135deg, rgba(58,80,246,0.10), rgba(167,139,250,0.15)); color: #3A50F6; margin-bottom: 16px; }
         .pillar-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
         .pillar-card p { color: #555; line-height: 1.6; font-size: .97rem; }
         .timeline { position: relative; padding-left: 36px; margin-top: 40px; }
-        .timeline::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--primary, #FF6B35), #ffd2b8); }
+        .timeline::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, #3A50F6, #A78BFA); }
         .timeline-item { position: relative; padding-bottom: 36px; }
-        .timeline-item::before { content: ''; position: absolute; left: -30px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: var(--primary, #FF6B35); box-shadow: 0 0 0 4px #fff3ec; }
-        .timeline-year { font-weight: 700; color: var(--primary, #FF6B35); font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; }
+        .timeline-item::before { content: ''; position: absolute; left: -30px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg, #3A50F6, #A78BFA); box-shadow: 0 0 0 4px #EDE7FC; }
+        .timeline-year { font-weight: 700; color: #3A50F6; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; }
         .timeline-item h4 { margin: 6px 0 8px; font-size: 1.15rem; }
         .timeline-item p { color: #555; line-height: 1.6; font-size: .97rem; }
         .quote-block {
-            border-left: 4px solid var(--primary, #FF6B35);
+            border-left: 4px solid #A78BFA;
             padding: 8px 0 8px 24px;
             font-style: italic;
             color: #333;
@@ -76,17 +94,28 @@
         }
         .quote-author { display: block; margin-top: 12px; font-style: normal; font-weight: 600; color: #222; font-size: .95rem; }
         .about-cta {
-            background: linear-gradient(135deg, #FF6B35, #e85d2a);
+            background: linear-gradient(135deg, #3A50F6 0%, #6366F1 60%, #A78BFA 100%);
             color: #fff;
             border-radius: 24px;
             padding: 56px 40px;
             text-align: center;
             margin-top: 40px;
+            position: relative;
+            overflow: hidden;
         }
+        .about-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.22), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(167,139,250,0.35), transparent 50%);
+            pointer-events: none;
+        }
+        .about-cta > * { position: relative; z-index: 1; }
         .about-cta h2 { color: #fff; font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
-        .about-cta p { color: rgba(255,255,255,0.9); margin: 12px auto 28px; max-width: 620px; }
-        .about-cta .btn { background: #fff; color: var(--primary, #FF6B35); }
-        .about-cta .btn:hover { background: #fff3ec; }
+        .about-cta p { color: rgba(255,255,255,0.92); margin: 12px auto 28px; max-width: 620px; }
+        .about-cta .btn { background: #fff; color: #3A50F6; }
+        .about-cta .btn:hover { background: #EDE7FC; color: #4338CA; }
         .country-badges { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
         .country-badge {
             display: inline-flex; align-items: center; gap: 8px;
@@ -155,9 +184,12 @@
                                     </div>
                                 </a>
                             </div>
-                            <div style="border-top:1px solid var(--border, #e5e7eb); margin-top:12px; padding-top:12px; text-align:center;">
-                                <a href="catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--primary, #FF6B35); font-weight:600;">
-                                    Voir les 5 parcours certifiants &rarr;
+                            <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                                <a href="catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Voir les 5 parcours &rarr;
+                                </a>
+                                <a href="comparatif.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Comparer &rarr;
                                 </a>
                             </div>
                         </div>
@@ -458,5 +490,6 @@
     </footer>
 
     <script src="../js/app.js"></script>
+    <script src="../js/theme.js" defer></script>
 </body>
 </html>

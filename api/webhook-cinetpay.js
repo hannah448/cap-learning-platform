@@ -16,6 +16,7 @@
 const { verifyCinetPayWebhook } = require('./lib/signature');
 const { verifyTransaction, labelForPaymentMethod } = require('./lib/cinetpay');
 const { createAndPayInvoice } = require('./lib/pennylane');
+const { findProfileByEmail, upsertEnrollment } = require('./lib/supabase-admin');
 
 // Default VAT rate per country. Extend as you launch in new markets.
 const VAT_BY_COUNTRY = {
@@ -101,13 +102,58 @@ module.exports = async function handler(req, res) {
             `(${created ? 'created' : 'already_existed'})`
         );
 
-        // TODO: unlock course access for customer in your user DB
-        // TODO: send confirmation email from Cap Learning brand (in addition to Pennylane's)
+        // 4. Crée l'enrollment Supabase (donne accès à la formation)
+        // metadata.course_id doit être l'identifiant DB de la formation
+        // ('ecommerce' | 'marketing' | 'ia-business' | 'reseaux-sociaux' | 'entrepreneuriat')
+        // qui DOIT être passé par le frontend lors de l'init du paiement.
+        let enrollmentResult = null;
+        const courseDbId = metadata.course_db_id || metadata.course_id;
+
+        if (!courseDbId) {
+            console.warn(`[webhook-cinetpay] ${transactionId}: pas de course_db_id en metadata, enrollment ignorée`);
+        } else {
+            try {
+                const profile = await findProfileByEmail(customerEmail);
+                if (!profile) {
+                    // L'utilisateur n'a pas encore de compte Cap Learning. Cas possible si
+                    // l'achat se fait sans signup préalable. À gérer en V2 (auto-invite via
+                    // Supabase Auth Admin API). Pour l'instant : log warning + flag pour
+                    // gestion manuelle par Hannah.
+                    console.warn(
+                        `[webhook-cinetpay] ${transactionId}: aucun profile trouvé pour ${customerEmail}. ` +
+                        `Enrollment NON créée — apprenant doit s'inscrire avec ce même email pour réclamation manuelle.`
+                    );
+                } else {
+                    enrollmentResult = await upsertEnrollment({
+                        userId: profile.id,
+                        courseId: courseDbId,
+                        cinetpayTransactionId: transactionId,
+                        pennylaneInvoiceId: invoice.id,
+                        amountXof: tx.amount,
+                        paymentMethod: tx.payment_method
+                    });
+                    console.log(
+                        `[webhook-cinetpay] ${transactionId} → enrollment ${enrollmentResult.id} ` +
+                        `(user=${profile.email}, course=${courseDbId}, status=${enrollmentResult.status})`
+                    );
+                }
+            } catch (e) {
+                // On loggue mais on ne fait pas planter le webhook : la facture Pennylane
+                // est déjà créée, on ne veut pas que CinetPay retente le webhook
+                // en boucle. Hannah verra les erreurs dans les logs Vercel.
+                console.error(`[webhook-cinetpay] ${transactionId} enrollment failed:`, e.message);
+            }
+        }
+
+        // TODO V2: send confirmation email from Cap Learning brand
+        //         (en plus de la facture envoyée auto par Pennylane)
 
         return res.status(200).json({
             ok: true,
             invoice_id: invoice.id,
-            created,
+            invoice_created: created,
+            enrollment_id: enrollmentResult ? enrollmentResult.id : null,
+            enrollment_status: enrollmentResult ? enrollmentResult.status : 'skipped'
         });
     } catch (err) {
         console.error('[webhook-cinetpay] error:', err);

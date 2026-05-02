@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
     <script src="../js/migrate-brand.js"></script>
 <meta charset="UTF-8">
@@ -11,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/lms.css">
     <style>
@@ -374,44 +378,102 @@
 
     </div>
 
+    <!-- ============== Cap Learning Supabase stack ============== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script src="../js/auth.js?v=2"></script>
+    <script src="../js/db.js?v=2"></script>
+
     <script>
-    (function () {
+    (async function () {
         'use strict';
 
-        // ---- Auth Check ----
-        const user = JSON.parse(localStorage.getItem('caplearning_user') || 'null');
-        if (!user) {
+        // ---- Wait for CapAuth + CapData ready ----
+        var waitTries = 0;
+        while ((!window.CapAuth || !window.CapData) && waitTries++ < 60) {
+            await new Promise(function (r) { setTimeout(r, 30); });
+        }
+        if (!window.CapAuth || !window.CapData) {
+            console.error('[Dashboard] CapAuth/CapData indisponibles. Vérifie js/config.js.');
             window.location.href = 'connexion.html';
             return;
         }
 
+        // ---- Auth Check (Supabase session) ----
+        var profile = null;
+        try { profile = await window.CapAuth.getProfile(); } catch (e) {}
+        if (!profile) {
+            sessionStorage.setItem('caplearning_redirect_after_login', window.location.pathname);
+            window.location.replace('connexion.html');
+            return;
+        }
+
         // ---- Course Data ----
-        // Refonte 2026 : 6 parcours certifiants. No-Code absorbé dans IA & Business,
-        // Email Marketing absorbé dans Marketing Digital, Mobile Money dans E-commerce.
+        // course_db_id = identifiant texte stocké dans la table enrollments Supabase.
+        // Refonte 2026 : 5 parcours certifiants.
         const ALL_COURSES = [
-            { id: '1',  name: 'Marketing Digital Complet',           category: 'marketing',       gradient: 'linear-gradient(135deg, #FF6B35, #F7931E)', icon: '\uD83D\uDCC8', hours: 57, modules: 16, page: 'formation-marketing-digital.html' },
-            { id: '2',  name: 'E-commerce & Paiements Digitaux',     category: 'ecommerce',       gradient: 'linear-gradient(135deg, #2D9CDB, #56CCF2)', icon: '\uD83D\uDED2', hours: 79, modules: 47, page: 'formation-ecommerce.html' },
-            { id: '3',  name: 'IA & Business',                       category: 'ia',              gradient: 'linear-gradient(135deg, #A855F7, #6366F1)', icon: '\uD83E\uDD16', hours: 48, modules: 26, page: 'formation-ia-business.html' },
-            { id: '5',  name: 'R\u00e9seaux Sociaux & CM',           category: 'marketing',       gradient: 'linear-gradient(135deg, #F472B6, #EC4899)', icon: '\uD83D\uDCF1', hours: 41, modules: 25, page: 'formation-reseaux-sociaux.html' },
-            { id: '10', name: 'Entrepreneuriat Digital',             category: 'entrepreneuriat', gradient: 'linear-gradient(135deg, #22C55E, #16A34A)', icon: '\uD83D\uDE80', hours: 50, modules: 20, page: 'formation-entrepreneuriat-digital.html' }
+            { id: '1',  course_db_id: 'marketing',       name: 'Marketing Digital Complet',           category: 'marketing',       gradient: 'linear-gradient(135deg, #FF6B35, #F7931E)', icon: '\uD83D\uDCC8', hours: 57, modules: 16, page: 'formation-marketing-digital.html' },
+            { id: '2',  course_db_id: 'ecommerce',       name: 'E-commerce & Paiements Digitaux',     category: 'ecommerce',       gradient: 'linear-gradient(135deg, #2D9CDB, #56CCF2)', icon: '\uD83D\uDED2', hours: 79, modules: 47, page: 'formation-ecommerce.html' },
+            { id: '3',  course_db_id: 'ia-business',     name: 'IA & Business',                       category: 'ia',              gradient: 'linear-gradient(135deg, #A855F7, #6366F1)', icon: '\uD83E\uDD16', hours: 48, modules: 26, page: 'formation-ia-business.html' },
+            { id: '5',  course_db_id: 'reseaux-sociaux', name: 'R\u00e9seaux Sociaux & CM',           category: 'marketing',       gradient: 'linear-gradient(135deg, #F472B6, #EC4899)', icon: '\uD83D\uDCF1', hours: 41, modules: 25, page: 'formation-reseaux-sociaux.html' },
+            { id: '10', course_db_id: 'entrepreneuriat', name: 'Entrepreneuriat Digital',             category: 'entrepreneuriat', gradient: 'linear-gradient(135deg, #22C55E, #16A34A)', icon: '\uD83D\uDE80', hours: 50, modules: 20, page: 'formation-entrepreneuriat-digital.html' }
         ];
 
-        // ---- Purchased Courses (cart + explicit purchases) ----
-        const cart = JSON.parse(localStorage.getItem('caplearning_cart') || '[]');
-        const purchased = JSON.parse(localStorage.getItem('caplearning_purchased') || '[]');
+        const COURSES_BY_DB_ID = {};
+        ALL_COURSES.forEach(function (c) { COURSES_BY_DB_ID[c.course_db_id] = c; });
 
-        // Build set of purchased course IDs
+        // ---- Purchased Courses (depuis enrollments Supabase) ----
+        var enrollments = [];
+        try { enrollments = await window.CapData.getMyEnrollments(); }
+        catch (e) { console.warn('[Dashboard] enrollments indisponibles:', e.message); }
+
         const purchasedIds = new Set();
-        cart.forEach(function (item) {
-            if (item.id) purchasedIds.add(String(item.id));
-        });
-        purchased.forEach(function (item) {
-            var id = typeof item === 'object' ? item.id : item;
-            if (id) purchasedIds.add(String(id));
+        enrollments.forEach(function (e) {
+            if (e.status === 'pending' || e.status === 'refunded') return;
+            var c = COURSES_BY_DB_ID[e.course_id];
+            if (c) purchasedIds.add(c.id);
         });
 
-        // ---- Progress Data ----
-        const progress = JSON.parse(localStorage.getItem('caplearning_progress') || '{}');
+        // L'admin voit tous les cours (pour testing en interne)
+        if (profile.role === 'admin') {
+            ALL_COURSES.forEach(function (c) { purchasedIds.add(c.id); });
+        }
+
+        // Compat panier en cours (achats non encore payés) — reste en localStorage
+        const cart = JSON.parse(localStorage.getItem('caplearning_cart') || '[]');
+        cart.forEach(function (item) { if (item.id) purchasedIds.add(String(item.id)); });
+
+        // ---- Progress Data (depuis lesson_progress Supabase, en parallèle) ----
+        var progress = {};
+        var progressByCourse = await Promise.all(
+            ALL_COURSES
+                .filter(function (c) { return purchasedIds.has(c.id); })
+                .map(async function (c) {
+                    try {
+                        var rows = await window.CapData.getProgress(c.course_db_id);
+                        return { id: c.id, rows: rows };
+                    } catch (e) {
+                        return { id: c.id, rows: [] };
+                    }
+                })
+        );
+        progressByCourse.forEach(function (p) {
+            // last_watched_at le plus récent du course (ms epoch, 0 si jamais vu)
+            var lastWatchedMs = 0;
+            p.rows.forEach(function (r) {
+                if (r.last_watched_at) {
+                    var t = Date.parse(r.last_watched_at);
+                    if (t && t > lastWatchedMs) lastWatchedMs = t;
+                }
+            });
+            progress[p.id] = {
+                completed: p.rows.filter(function (r) { return r.completed; })
+                                 .map(function (r) { return r.lesson_id; }),
+                lastWatchedMs: lastWatchedMs,
+                total: null
+            };
+        });
 
         function getProgress(courseId, totalModules) {
             var p = progress[courseId];
@@ -421,10 +483,12 @@
             return Math.round((p.completed.length / total) * 100);
         }
 
-        // ---- Populate User Info ----
-        var firstName = user.firstName || user.prenom || user.name || 'Apprenant';
-        var lastName = user.lastName || user.nom || '';
-        var email = user.email || '';
+        // ---- Populate User Info (depuis profile Supabase) ----
+        var fullName = (profile.full_name || '').trim();
+        var nameParts = fullName.split(/\s+/).filter(Boolean);
+        var firstName = nameParts[0] || (profile.email && profile.email.split('@')[0]) || 'Apprenant';
+        var lastName = nameParts.slice(1).join(' ') || '';
+        var email = profile.email || '';
         var initials = (firstName.charAt(0) + (lastName ? lastName.charAt(0) : '')).toUpperCase();
 
         document.getElementById('welcomeHeading').textContent = 'Bonjour, ' + firstName + ' !';
@@ -515,17 +579,47 @@
 
         if (savedId) {
             focusCourse = activeCoursesList.find(function (c) { return c.id === savedId; }) || null;
+            // Si le course sauvegardé n'a aucune activité réelle (lastWatchedMs=0)
+            // ET qu'un autre course a une activité récente → ignore le savedId
+            // pour que le tri auto choisisse le bon course.
+            if (focusCourse) {
+                var savedHasActivity = !!(progress[focusCourse.id] && progress[focusCourse.id].lastWatchedMs > 0);
+                var anyOtherActivity = activeCoursesList.some(function (c) {
+                    return c.id !== focusCourse.id && progress[c.id] && progress[c.id].lastWatchedMs > 0;
+                });
+                if (!savedHasActivity && anyOtherActivity) {
+                    focusCourse = null;
+                    try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+                }
+            }
         }
         if (!focusCourse && activeCoursesList.length) {
+            // Priorité (du plus haut au plus bas) :
+            //   1. Cours avec activité récente (last_watched_at) — le plus récent gagne
+            //   2. Cours en cours (pct 1..99) sans activité — le plus avancé gagne
+            //   3. Cours non démarrés (pct 0)
+            //   4. Cours terminés (pct 100)
+            function bucketOf(c) {
+                var pct = getProgress(c.id, c.modules);
+                var lw = (progress[c.id] && progress[c.id].lastWatchedMs) || 0;
+                if (lw > 0 && pct < 100) return 1;       // activité récente
+                if (pct > 0 && pct < 100) return 2;      // en cours sans timestamp DB
+                if (pct === 0) return 3;                 // jamais commencé
+                return 4;                                // terminé
+            }
             focusCourse = activeCoursesList
                 .slice()
                 .sort(function (a, b) {
-                    var pa = getProgress(a.id, a.modules);
-                    var pb = getProgress(b.id, b.modules);
-                    // En cours (1..99) prioritaires, puis non démarrés (0), puis terminés (100)
-                    var wa = pa === 0 ? 50 : pa === 100 ? 101 : pa;
-                    var wb = pb === 0 ? 50 : pb === 100 ? 101 : pb;
-                    return wb - wa;
+                    var ba = bucketOf(a), bb = bucketOf(b);
+                    if (ba !== bb) return ba - bb;
+                    // Tie-breaker dans le même bucket
+                    if (ba === 1) {
+                        return (progress[b.id].lastWatchedMs || 0) - (progress[a.id].lastWatchedMs || 0);
+                    }
+                    if (ba === 2) {
+                        return getProgress(b.id, b.modules) - getProgress(a.id, a.modules);
+                    }
+                    return 0;
                 })[0];
             if (focusCourse) localStorage.setItem(STORAGE_KEY, focusCourse.id);
         }
@@ -871,8 +965,10 @@
             });
         })();
 
-        // ---- Logout ----
-        document.getElementById('logoutBtn').addEventListener('click', function () {
+        // ---- Logout (Supabase signOut + redirection) ----
+        document.getElementById('logoutBtn').addEventListener('click', async function () {
+            try { await window.CapAuth.signOut(); } catch (e) { /* swallow */ }
+            // Compat ancien : nettoie aussi les anciennes clés localStorage
             localStorage.removeItem('caplearning_user');
             window.location.href = 'connexion.html';
         });
@@ -910,5 +1006,6 @@
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
     <script src="../js/whatsapp-widget.js"></script>
+    <script src="../js/theme.js" defer></script>
 </body>
 </html>

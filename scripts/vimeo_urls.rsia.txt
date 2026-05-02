@@ -1,0 +1,28 @@
+# =============================================================================
+# vimeo_urls.rsia.txt — Pack RSIA : Intégrer l'IA dans la gestion des RS
+# -----------------------------------------------------------------------------
+# 11 vidéos, ordre pédagogique
+# =============================================================================
+
+# m-impactsia-presentationmoduleetobjectifs-1-v1
+https://vimeo.com/988429323
+# m-comprendre-impact-de-ia-sur-les-rs-1-v1
+https://vimeo.com/1154640576
+# m-outilsiareseauxsociaux-1-v1
+https://vimeo.com/1013078866
+# m-creer-des-videos-avec-ia-1-v1
+https://vimeo.com/1154636099
+# m-produire-des-contenus-diversifies-et-professionnes-avec-ia-1-v1
+https://vimeo.com/1162545937
+# m-utiliser-ia-moderation-reponse-commentaires-1-v1
+https://vimeo.com/1156472982
+# m-utiliser-une-ia-de-planification-et-de-diffusion-des-contenus-1-v1
+https://vimeo.com/1157865408
+# m-surveiller-l-e-reputation-avec-l-ia-1-v1
+https://vimeo.com/1173265299
+# m-assurer-une-veille-active-sur-les-evolutions-de-l-IA-1-v1
+https://vimeo.com/1181868951
+# m-impactia-conclusionmodule-1-v1
+https://vimeo.com/988429744
+# m-preparationcertificationiars-1-v1
+https://vimeo.com/1160191950
