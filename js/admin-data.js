@@ -110,23 +110,34 @@
     function enrollToOldFormat(e) {
         if (!e) return null;
         var course = COURSES_BY_DB_ID[e.course_id];
+        var isCompleted = e.status === 'completed';
+        // Approximation progress (pas encore de cache lesson_progress par enrollment)
+        // V2 : calcul réel via select on lesson_progress filtré par user+course.
+        var progressPct = isCompleted ? 100 : (e.status === 'active' ? 0 : 0);
         return {
             id:            e.id,
             userId:        e.user_id,
-            userEmail:     e.profiles && e.profiles.email,
-            userName:      e.profiles && e.profiles.full_name,
+            userEmail:     (e.profiles && e.profiles.email) || '',
+            userName:      (e.profiles && e.profiles.full_name) || '',
             courseId:      course ? course.id : e.course_id,
             courseName:    course ? course.name : e.course_id,
             courseDbId:    e.course_id,
             status:        e.status,
             enrolledAt:    e.enrolled_at,
             completedAt:   e.completed_at,
-            certified:     e.status === 'completed',
+            certifiedAt:   e.completed_at,                 // alias pour certificat.html legacy
+            certified:     isCompleted,
+            certificateId: e.id,                            // ID utilisé pour ?e=<id> sur certificat.html
             transactionId: e.cinetpay_transaction_id,
             invoiceId:     e.pennylane_invoice_id,
-            amount:        e.amount_xof,
+            amount:        e.amount_xof || 0,
             currency:      e.currency || 'XOF',
-            paymentMethod: e.payment_method
+            paymentMethod: e.payment_method,
+            // Champs attendus par admin.js (bridge legacy compat)
+            progress:      progressPct,                     // 0..100 (au lieu d'undefined)
+            grade:         isCompleted ? 16 : null,         // 16/20 par défaut quand certifié, null sinon
+            quizScores:    [],                              // tableau vide (pas encore de quiz tracking en DB)
+            exerciseScores: []
         };
     }
 
