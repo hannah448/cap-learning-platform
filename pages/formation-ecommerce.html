@@ -718,15 +718,24 @@
     </div>
 
     <script src="../js/app.js"></script>
+
+    <!-- ===== Cap Learning Auth + Quick-Buy stack ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/auth-modal.js"></script>
+    <script src="../js/buy-flow.js"></script>
     <script>
+        // Quick-buy : "Acheter" → modale signup/login si besoin → /api/create-checkout
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = { id: '2', name: 'E-commerce de A à Z', price: 30000, category: 'ecommerce' };
-                if (Cart.add(item)) {
-                    showToast('"E-commerce de A à Z" ajouté au panier');
-                } else {
-                    showToast('Cette formation est déjà dans votre panier');
-                }
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.CapBuy.handleBuyClick({
+                    courseDbId: 'ecommerce',
+                    courseLabel: 'E-commerce & Paiements Digitaux',
+                    priceXof: 30000
+                });
             });
         });
     </script>
