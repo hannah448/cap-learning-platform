@@ -20,15 +20,24 @@
 
 const { select } = require('./lib/supabase-admin');
 
+// Required pour que la plateforme tourne (auth + DB)
 const REQUIRED_VARS = [
     'SUPABASE_URL',
     'SUPABASE_SERVICE_ROLE_KEY'
 ];
 
-const OPTIONAL_VARS = [
+// Required pour pouvoir traiter des paiements (passerelle Wave/OM/MTN/cartes)
+// En leur absence, l'auth + le dashboard fonctionnent mais le checkout est cassé.
+const PAYMENT_VARS = [
     'CINETPAY_API_KEY',
     'CINETPAY_SITE_ID',
-    'CINETPAY_SECRET_KEY',
+    'CINETPAY_SECRET_KEY'
+];
+
+// Optionnels — la plateforme fonctionne sans, avec dégradation contrôlée :
+//   - PENNYLANE_API_KEY : sans → factures à émettre manuellement (webhook continue)
+//   - PUBLIC_BASE_URL   : utile pour les URLs de retour CinetPay (sinon valeur par défaut)
+const OPTIONAL_VARS = [
     'PENNYLANE_API_KEY',
     'PUBLIC_BASE_URL'
 ];
@@ -41,9 +50,13 @@ module.exports = async function handler(req, res) {
     }
 
     const env = {};
-    REQUIRED_VARS.concat(OPTIONAL_VARS).forEach(function (k) {
+    REQUIRED_VARS.concat(PAYMENT_VARS, OPTIONAL_VARS).forEach(function (k) {
         env[k] = !!process.env[k];
     });
+
+    const reqComplete = REQUIRED_VARS.every(function (k) { return !!process.env[k]; });
+    const payComplete = PAYMENT_VARS.every(function (k) { return !!process.env[k]; });
+    const optComplete = OPTIONAL_VARS.every(function (k) { return !!process.env[k]; });
 
     const result = {
         status: 'ok',
@@ -52,8 +65,10 @@ module.exports = async function handler(req, res) {
             ts: new Date().toISOString()
         },
         env: env,
-        env_required_complete: REQUIRED_VARS.every(function (k) { return !!process.env[k]; }),
-        env_optional_complete: OPTIONAL_VARS.every(function (k) { return !!process.env[k]; }),
+        env_required_complete: reqComplete,    // Supabase (auth + DB)
+        env_payment_complete:  payComplete,    // CinetPay (passerelle paiement)
+        env_optional_complete: optComplete,    // Pennylane + base URL
+        platform_ready_to_sell: reqComplete && payComplete,  // peut accepter des paiements
         supabase: { connected: false }
     };
 

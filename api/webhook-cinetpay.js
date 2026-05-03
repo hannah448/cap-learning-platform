@@ -79,28 +79,44 @@ module.exports = async function handler(req, res) {
         // Reverse-calc HT from TTC (amount from CinetPay is TTC)
         const unitPriceHt = Math.round(tx.amount / (1 + vatRate / 100));
 
-        const { invoice, created } = await createAndPayInvoice({
-            externalReference: transactionId,
-            customer: {
-                email: customerEmail,
-                name: `${body.cpm_custom || ''}`.trim() || customerEmail.split('@')[0],
-                phone: body.cel_phone_num ? `+${body.cpm_phone_prefixe}${body.cel_phone_num}` : null,
-                country,
-            },
-            item: {
-                label: courseLabel,
-                unitPriceHt,
-                vatRate,
-                quantity: 1,
-            },
-            paymentMethodLabel: labelForPaymentMethod(tx.payment_method),
-            paidAtISO: tx.payment_date ? new Date(tx.payment_date).toISOString() : new Date().toISOString(),
-        });
-
-        console.log(
-            `[webhook-cinetpay] ${transactionId} → Pennylane invoice ${invoice.id} ` +
-            `(${created ? 'created' : 'already_existed'})`
-        );
+        // Création facture Pennylane — NON-BLOQUANT.
+        // L'API Pennylane n'est dispo qu'à partir de l'abonnement supérieur. Tant que ce
+        // n'est pas activé, on log un warning et on continue vers la création de
+        // l'enrollment Supabase (cf. étape 4 plus bas) pour ne pas bloquer le client.
+        // Les factures comptables sont alors à émettre manuellement (ou à rejouer
+        // quand Pennylane sera branché — voir le script de réconciliation à venir).
+        let invoice = null;
+        let created = false;
+        try {
+            const result = await createAndPayInvoice({
+                externalReference: transactionId,
+                customer: {
+                    email: customerEmail,
+                    name: `${body.cpm_custom || ''}`.trim() || customerEmail.split('@')[0],
+                    phone: body.cel_phone_num ? `+${body.cpm_phone_prefixe}${body.cel_phone_num}` : null,
+                    country,
+                },
+                item: {
+                    label: courseLabel,
+                    unitPriceHt,
+                    vatRate,
+                    quantity: 1,
+                },
+                paymentMethodLabel: labelForPaymentMethod(tx.payment_method),
+                paidAtISO: tx.payment_date ? new Date(tx.payment_date).toISOString() : new Date().toISOString(),
+            });
+            invoice = result.invoice;
+            created = result.created;
+            console.log(
+                `[webhook-cinetpay] ${transactionId} → Pennylane invoice ${invoice.id} ` +
+                `(${created ? 'created' : 'already_existed'})`
+            );
+        } catch (pennylaneErr) {
+            console.warn(
+                `[webhook-cinetpay] ${transactionId} → Pennylane SKIPPED: ${pennylaneErr.message}. ` +
+                `Facture à émettre manuellement. L'enrollment va quand même être créée.`
+            );
+        }
 
         // 4. Crée l'enrollment Supabase (donne accès à la formation)
         // metadata.course_id doit être l'identifiant DB de la formation
@@ -128,7 +144,7 @@ module.exports = async function handler(req, res) {
                         userId: profile.id,
                         courseId: courseDbId,
                         cinetpayTransactionId: transactionId,
-                        pennylaneInvoiceId: invoice.id,
+                        pennylaneInvoiceId: invoice ? invoice.id : null,
                         amountXof: tx.amount,
                         paymentMethod: tx.payment_method
                     });
@@ -150,8 +166,9 @@ module.exports = async function handler(req, res) {
 
         return res.status(200).json({
             ok: true,
-            invoice_id: invoice.id,
+            invoice_id: invoice ? invoice.id : null,
             invoice_created: created,
+            invoice_skipped: !invoice,
             enrollment_id: enrollmentResult ? enrollmentResult.id : null,
             enrollment_status: enrollmentResult ? enrollmentResult.status : 'skipped'
         });
