@@ -16,7 +16,18 @@
 const { verifyCinetPayWebhook } = require('./lib/signature');
 const { verifyTransaction, labelForPaymentMethod } = require('./lib/cinetpay');
 const { createAndPayInvoice } = require('./lib/pennylane');
-const { findProfileByEmail, upsertEnrollment } = require('./lib/supabase-admin');
+const { findProfileByEmail, upsertEnrollment, select } = require('./lib/supabase-admin');
+
+// Lookup profile par user_id (UUID Supabase) — préféré au lookup par email
+async function findProfileById(userId) {
+    if (!userId) return null;
+    try {
+        const rows = await select('profiles', 'id=eq.' + encodeURIComponent(userId) + '&select=id,email,full_name&limit=1');
+        return rows && rows[0] ? rows[0] : null;
+    } catch (e) {
+        return null;
+    }
+}
 
 // Default VAT rate per country. Extend as you launch in new markets.
 const VAT_BY_COUNTRY = {
@@ -119,25 +130,44 @@ module.exports = async function handler(req, res) {
         }
 
         // 4. Crée l'enrollment Supabase (donne accès à la formation)
-        // metadata.course_id doit être l'identifiant DB de la formation
-        // ('ecommerce' | 'marketing' | 'ia-business' | 'reseaux-sociaux' | 'entrepreneuriat')
-        // qui DOIT être passé par le frontend lors de l'init du paiement.
+        //
+        // Stratégie de lookup user :
+        //   1. metadata.user_id (préféré, posé par /api/create-checkout depuis Supabase) → exact match
+        //   2. fallback metadata.customer_email (legacy) → match par email (peut échouer si edge case)
+        //
+        // Avec le flow "force signup before buy", l'étape 2 ne devrait jamais être déclenchée
+        // sauf retry CinetPay sur une transaction antérieure au refactor.
         let enrollmentResult = null;
         const courseDbId = metadata.course_db_id || metadata.course_id;
+        const metadataUserId = metadata.user_id;
 
         if (!courseDbId) {
             console.warn(`[webhook-cinetpay] ${transactionId}: pas de course_db_id en metadata, enrollment ignorée`);
         } else {
             try {
-                const profile = await findProfileByEmail(customerEmail);
+                let profile = null;
+
+                // Path 1 : lookup par user_id (rapide + fiable)
+                if (metadataUserId) {
+                    profile = await findProfileById(metadataUserId);
+                    if (!profile) {
+                        console.warn(
+                            `[webhook-cinetpay] ${transactionId}: user_id ${metadataUserId} introuvable. ` +
+                            `Tentative fallback par email...`
+                        );
+                    }
+                }
+
+                // Path 2 : fallback email (legacy ou metadata corrompue)
+                if (!profile && customerEmail) {
+                    profile = await findProfileByEmail(customerEmail);
+                }
+
                 if (!profile) {
-                    // L'utilisateur n'a pas encore de compte Cap Learning. Cas possible si
-                    // l'achat se fait sans signup préalable. À gérer en V2 (auto-invite via
-                    // Supabase Auth Admin API). Pour l'instant : log warning + flag pour
-                    // gestion manuelle par Hannah.
-                    console.warn(
-                        `[webhook-cinetpay] ${transactionId}: aucun profile trouvé pour ${customerEmail}. ` +
-                        `Enrollment NON créée — apprenant doit s'inscrire avec ce même email pour réclamation manuelle.`
+                    console.error(
+                        `[webhook-cinetpay] ${transactionId}: aucun profile trouvé ` +
+                        `(user_id=${metadataUserId || 'absent'}, email=${customerEmail}). ` +
+                        `Enrollment NON créée — gestion manuelle par admin requise.`
                     );
                 } else {
                     enrollmentResult = await upsertEnrollment({
@@ -155,8 +185,7 @@ module.exports = async function handler(req, res) {
                 }
             } catch (e) {
                 // On loggue mais on ne fait pas planter le webhook : la facture Pennylane
-                // est déjà créée, on ne veut pas que CinetPay retente le webhook
-                // en boucle. Hannah verra les erreurs dans les logs Vercel.
+                // est déjà créée, on ne veut pas que CinetPay retente en boucle.
                 console.error(`[webhook-cinetpay] ${transactionId} enrollment failed:`, e.message);
             }
         }
