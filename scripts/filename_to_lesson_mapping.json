@@ -1,0 +1,1179 @@
+{
+  "_doc": {
+    "source": "Matrice des formations Digi Atlas",
+    "source_file_id": "1nkKDUclxIUNnpmAt7EK8aFfxe19b7OFn5jLZy0oqnhs",
+    "source_url": "https://docs.google.com/spreadsheets/d/1nkKDUclxIUNnpmAt7EK8aFfxe19b7OFn5jLZy0oqnhs/edit",
+    "tab_used": "Matrice Formations",
+    "extraction_date": "2026-05-14T05:01:58.854895",
+    "matching_strategy": [
+      "Stripped _720p_afrique suffix from each filename",
+      "Normalized (lowercase, accents stripped, special chars to -)",
+      "Matched against col 8 \"Nom des vidéos en ligne\" in Matrice Formations tab",
+      "Fallback: ignore -v\\d+ version suffix when exact match fails",
+      "Manual override for 3 problem cases (version mismatch / missing entry)"
+    ],
+    "lesson_id_explanation": "lesson_id is the value of col 5 \"URL (Slug) cours/quiz\" — the canonical slug used in Cap Learning. course is derived by mapping the formation columns (15-52) to Cap Learning course ids: ecommerce, no-code, ia-business, reseaux-sociaux, marketing-digital, entrepreneuriat-digital.",
+    "totals": {
+      "input_filenames": 59,
+      "matched": 58,
+      "unmatched": 1
+    }
+  },
+  "mappings": [
+    {
+      "filename": "bienvenue-developper-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "presentation-developper-son-e-commerce",
+      "module_slug": "presentation",
+      "lesson_slug": "presentation-developper-son-e-commerce",
+      "title": "Présentation de la formation développer son e-commerce grâce au marketing digital ",
+      "module_name": "Tout savoir sur la formation",
+      "video_source_in_sheet": "bienvenue-developper-e-commerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Développer son e-commerce grâce au marketing digital",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 718,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "bienvenue-fondamentaux-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "presentation-fondamentaux-e-commerce",
+      "module_slug": "presentation",
+      "lesson_slug": "presentation-fondamentaux-e-commerce",
+      "title": "Présentation de la formation les fondamentaux pour lancer son e-commerce",
+      "module_name": "Tout savoir sur la formation",
+      "video_source_in_sheet": "bienvenue-fondamentaux-e-commerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Les fondamentaux pour se lancer dans le e-commerce",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 719,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "bienvenue-shopify-1-v1_720p_afrique.mp4",
+      "lesson_id": "presentation-creer-son-site-e-commerce-shopify",
+      "module_slug": "presentation",
+      "lesson_slug": "presentation-creer-son-site-e-commerce-shopify",
+      "title": "Présentation de la formation créer son site e-commerce avec Shopify",
+      "module_name": "Tout savoir sur la formation",
+      "video_source_in_sheet": "bienvenue-shopify-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Créer son site e-commerce avec Shopify",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 720,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "configuration-paiements-expeditions-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-configuration-paiements-expeditions",
+      "module_slug": "integrer-fonctionnalites-e-commerce",
+      "lesson_slug": "cours-configuration-paiements-expeditions",
+      "title": "Cours - Configuration des paiements et des expéditions",
+      "module_name": "Intégrer les fonctionnalités e-commerce",
+      "video_source_in_sheet": "configuration-paiements-expeditions-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 101,
+      "duplicate_rows": [
+        101,
+        583,
+        680
+      ]
+    },
+    {
+      "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique.mp4",
+      "lesson_id": "cours-creation-pages-principales-e-commerce",
+      "module_slug": "construire-structure-navigation-pages-son-site",
+      "lesson_slug": "cours-creation-pages-principales-e-commerce",
+      "title": "Cours - Création des pages principales de son e-commerce - Partie 1",
+      "module_name": "Construire la structure, la navigation et les pages de son site",
+      "video_source_in_sheet": "creation-pages-principales-e-commerce-1-v2",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 88,
+      "duplicate_rows": [
+        88,
+        580,
+        677
+      ]
+    },
+    {
+      "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique.mp4",
+      "lesson_id": "cours-creation-pages-principales-e-commerce-2",
+      "module_slug": "construire-structure-navigation-pages-son-site",
+      "lesson_slug": "cours-creation-pages-principales-e-commerce-2",
+      "title": "Cours - Création des pages principales de son e-commerce - Partie 2",
+      "module_name": "Construire la structure, la navigation et les pages de son site",
+      "video_source_in_sheet": "creation-pages-principales-e-commerce-2-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 89,
+      "duplicate_rows": [
+        89,
+        581,
+        678
+      ]
+    },
+    {
+      "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique.mp4",
+      "lesson_id": "cours-configurer-nom-domaine-hebergement-avec-shopify",
+      "module_slug": "definir-configurer-shopify-nom-de-domaine-hebergement",
+      "lesson_slug": "cours-configurer-nom-domaine-hebergement-avec-shopify",
+      "title": "Cours - Configurer son nom de domaine et hébergement avec Shopify",
+      "module_name": "Définir et configurer Shopify, nom de domaine et hébergement",
+      "video_source_in_sheet": "m-configurernomdomainehebergementshopify-1-v2",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE"
+      ],
+      "confidence": "low",
+      "match_reason": "No exact match. Closest logical match: cours-configurer-nom-domaine-hebergement-avec-shopify (initial setup of Shopify).",
+      "matched_row": 85
+    },
+    {
+      "filename": "extensions-applications-shopify-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-extensions-applications-shopify",
+      "module_slug": "definir-configurer-shopify-nom-de-domaine-hebergement",
+      "lesson_slug": "cours-extensions-applications-shopify",
+      "title": "Cours - Extensions et applications Shopify",
+      "module_name": "Définir et configurer Shopify, nom de domaine et hébergement",
+      "video_source_in_sheet": "extensions-applications-shopify-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 84,
+      "duplicate_rows": [
+        84,
+        120,
+        630
+      ]
+    },
+    {
+      "filename": "gestion-commandes-relation-client-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-gestion-commandes-relation-client",
+      "module_slug": "mettre-en-place-outils-de-relation-client",
+      "lesson_slug": "cours-gestion-commandes-relation-client",
+      "title": "Cours - Gestion des commandes et de la relation client·e",
+      "module_name": "Mettre en place les outils de la relation client",
+      "video_source_in_sheet": "gestion-commandes-relation-client-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 95,
+      "duplicate_rows": [
+        95,
+        122,
+        691
+      ]
+    },
+    {
+      "filename": "gestion-index-google-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-gestion-index-google-ecommerce",
+      "module_slug": "gestion-index-google",
+      "lesson_slug": "cours-gestion-index-google-ecommerce",
+      "title": "Cours - Gestion de l’index Google - ecommerce",
+      "module_name": "Gestion de l’index Google",
+      "video_source_in_sheet": "gestion-index-google-e-commerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Wix e-commerce",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 351,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "gestion-index-google-shopify-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-gestion-index-google-shopify",
+      "module_slug": "referencer-site-internet-shopify",
+      "lesson_slug": "cours-gestion-index-google-shopify",
+      "title": "Cours - Gestion de l’index google avec Shopify",
+      "module_name": "Référencer son site internet Shopify",
+      "video_source_in_sheet": "gestion-index-google-shopify-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 112,
+      "duplicate_rows": [
+        112,
+        587,
+        635
+      ]
+    },
+    {
+      "filename": "integration-blog-shopify-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-integration-blog-shopify",
+      "module_slug": "integrer-contenus-sur-pages-de-son-site",
+      "lesson_slug": "cours-integration-blog-shopify",
+      "title": "Cours - Intégration d’un blog à Shopify ",
+      "module_name": "Intégrer ses contenus sur les pages de son site",
+      "video_source_in_sheet": "integration-blog-shopify-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 94,
+      "duplicate_rows": [
+        94,
+        579,
+        648
+      ]
+    },
+    {
+      "filename": "introduction-shopify-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-introduction-shopify-e-commerce",
+      "module_slug": "definir-configurer-shopify-nom-de-domaine-hebergement",
+      "lesson_slug": "cours-introduction-shopify-e-commerce",
+      "title": "Cours - Introduction à Shopify et au e-commerce",
+      "module_name": "Définir et configurer Shopify, nom de domaine et hébergement",
+      "video_source_in_sheet": "introduction-shopify-e-commerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 83,
+      "duplicate_rows": [
+        83,
+        212,
+        638
+      ]
+    },
+    {
+      "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-lancement-promotion-boutique-en-ligne",
+      "module_slug": "integrer-fonctionnalites-e-commerce",
+      "lesson_slug": "cours-lancement-promotion-boutique-en-ligne",
+      "title": "Cours - Lancement et promotion d’une boutique en ligne",
+      "module_name": "Intégrer les fonctionnalités e-commerce",
+      "video_source_in_sheet": "lancement-promotion-boutique-en-ligne-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 102,
+      "duplicate_rows": [
+        102,
+        585,
+        692
+      ]
+    },
+    {
+      "filename": "m-Maitriser-Zapier-1-v1_720p_afrique.mp4",
+      "lesson_id": "Cours - Maîtriser Zapier",
+      "module_slug": "maitriser-zapier",
+      "lesson_slug": "Cours - Maîtriser Zapier",
+      "title": "cours-maitriser-zapier",
+      "module_name": "Maîtriser Zapier",
+      "video_source_in_sheet": "m-Maîtriser-Zapier-1-v1",
+      "course": "no-code",
+      "formations": [
+        "Auto No Code - Certifiante"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 23,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-applicationsconnecteessurmake-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-les-applications-connectees-sur-make",
+      "module_slug": "utiliser-un-outil-d-automatisation",
+      "lesson_slug": "cours-les-applications-connectees-sur-make",
+      "title": "Cours - Les applications connectées sur Make",
+      "module_name": "Utiliser un outil d’automatisation",
+      "video_source_in_sheet": "m-applicationsconnecteessurmake-1-v1",
+      "course": "no-code",
+      "formations": [
+        "IA + Automatisation - CERTIFIANTE",
+        "Auto No Code - Certifiante"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 179,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-automatisercestquoi-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-automatiser-c-est-quoi",
+      "module_slug": "decouvrir-l-automatisation",
+      "lesson_slug": "cours-automatiser-c-est-quoi",
+      "title": "Cours - Automatiser : c’est quoi ?",
+      "module_name": "Découvrir l’automatisation",
+      "video_source_in_sheet": "m-automatisercestquoi-1-v1",
+      "course": "no-code",
+      "formations": [
+        "IA + Automatisation - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 173,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-basesdelautomatisation-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-bases-de-l-automatisation",
+      "module_slug": "identifier-les-contenus-a-automatiser",
+      "lesson_slug": "cours-bases-de-l-automatisation",
+      "title": "Cours : les bases de l’automatisation",
+      "module_name": "Automatiser votre gestion des réseaux sociaux",
+      "video_source_in_sheet": "m-basesdelautomatisation-1-v1",
+      "course": "ia-business",
+      "formations": [
+        "IA + RS - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 42,
+      "duplicate_rows": [
+        42,
+        176
+      ]
+    },
+    {
+      "filename": "m-communauteetventeinstagram-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-communaute-et-vente-instagram",
+      "module_slug": "communaute-et-vente-instagram",
+      "lesson_slug": "cours-communaute-et-vente-instagram",
+      "title": "Cours - Bâtir une communauté et vendre sur Instagram - partie 1",
+      "module_name": "Bâtir une communauté et vendre sur instagram",
+      "video_source_in_sheet": "m-communauteetventeinstagram-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Développer son e-commerce grâce au marketing digital",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 565,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-communauteetventeinstagram-2-v1_720p_afrique.mp4",
+      "lesson_id": "cours-communaute-et-vente-instagram-2",
+      "module_slug": "communaute-et-vente-instagram",
+      "lesson_slug": "cours-communaute-et-vente-instagram-2",
+      "title": "Cours - Bâtir une communauté et vendre sur Instagram - partie 2",
+      "module_name": "Bâtir une communauté et vendre sur instagram",
+      "video_source_in_sheet": "m-communauteetventeinstagram-2-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Développer son e-commerce grâce au marketing digital",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 564,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-configurernomdomainehebergementshopify-1-v2_720p_afrique.mp4",
+      "lesson_id": "cours-configurer-nom-domaine-hebergement-avec-shopify",
+      "module_slug": "definir-configurer-shopify-nom-de-domaine-hebergement",
+      "lesson_slug": "cours-configurer-nom-domaine-hebergement-avec-shopify",
+      "title": "Cours - Configurer son nom de domaine et hébergement avec Shopify",
+      "module_name": "Définir et configurer Shopify, nom de domaine et hébergement",
+      "video_source_in_sheet": "m-configurernomdomainehebergementshopify-1-v2",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 85,
+      "duplicate_rows": [
+        85,
+        119
+      ]
+    },
+    {
+      "filename": "m-connecterbasededonneesamake-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-connecter-une-base-de-donnees-a-make",
+      "module_slug": "utiliser-un-outil-d-automatisation",
+      "lesson_slug": "cours-connecter-une-base-de-donnees-a-make",
+      "title": "Cours - Connecter une base de données à Make",
+      "module_name": "Utiliser un outil d’automatisation",
+      "video_source_in_sheet": "m-connecterbasededonneesamake-1-v1",
+      "course": "no-code",
+      "formations": [
+        "IA + Automatisation - CERTIFIANTE",
+        "Auto No Code - Certifiante"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 180,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-connecteriaamake-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-connecter-une-ia-a-make",
+      "module_slug": "utiliser-un-outil-d-automatisation",
+      "lesson_slug": "cours-connecter-une-ia-a-make",
+      "title": "Cours - Connecter une IA à Make",
+      "module_name": "Utiliser un outil d’automatisation",
+      "video_source_in_sheet": "m-connecteriaamake-1-v1",
+      "course": "no-code",
+      "formations": [
+        "IA + Automatisation - CERTIFIANTE",
+        "Auto No Code - Certifiante"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 181,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-creer-des-workflows-automatises",
+      "module_slug": "identifier-les-contenus-a-automatiser",
+      "lesson_slug": "cours-creer-des-workflows-automatises",
+      "title": "Cours - Créer des workflows automatisés",
+      "module_name": "Automatiser votre gestion des réseaux sociaux",
+      "video_source_in_sheet": "m-creer-des-workflows-automatisés-1-v1",
+      "course": "ia-business",
+      "formations": [
+        "IA + RS - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 44,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-creer-un-planning-editorial-automatise",
+      "module_slug": "automatiser-la-production-de-contenu",
+      "lesson_slug": "cours-creer-un-planning-editorial-automatise",
+      "title": "Cours - Créer un planning éditorial automatisé",
+      "module_name": "Automatiser la production de contenu",
+      "video_source_in_sheet": "m-creerplanningeditorialautomatise-1-v1",
+      "course": "no-code",
+      "formations": [
+        "IA + Automatisation - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 183,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-decouvrir-la-comptabilite-d-un-ecommerce",
+      "module_slug": "comptabilite-et-gestion-financiere",
+      "lesson_slug": "cours-decouvrir-la-comptabilite-d-un-ecommerce",
+      "title": "Cours - Découvrir la comptabilité d’un e-commerce",
+      "module_name": "Comptabilité et gestion financière",
+      "video_source_in_sheet": "m-decouvrircomptabiliteecommerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 188,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-definirarborescencesiteecommerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-definir-arborescence-site-ecommerce-structurer-efficacement-pages-menus-et-parcours",
+      "module_slug": "construire-la-structure-la-navigation-et-les-pages-de-son-site",
+      "lesson_slug": "cours-definir-arborescence-site-ecommerce-structurer-efficacement-pages-menus-et-parcours",
+      "title": "Cours - Définir l’arborescence de son site e-commerce : structurer efficacement les pages, menus et parcours utilisateur - partie 1",
+      "module_name": "Construire la structure, la navigation et les pages de son site",
+      "video_source_in_sheet": "m-definirarborescencesiteecommerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 214,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-definirarborescencesiteecommerce-2-v1_720p_afrique.mp4",
+      "lesson_id": "cours-definir-arborescence-site-ecommerce-structurer-efficacement-pages-menus-et-parcours",
+      "module_slug": "construire-la-structure-la-navigation-et-les-pages-de-son-site",
+      "lesson_slug": "cours-definir-arborescence-site-ecommerce-structurer-efficacement-pages-menus-et-parcours",
+      "title": "Cours - Définir l’arborescence de son site e-commerce : structurer efficacement les pages, menus et parcours utilisateur - partie 2",
+      "module_name": "Construire la structure, la navigation et les pages de son site",
+      "video_source_in_sheet": "m-definirarborescencesiteecommerce-2-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 215,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-definirarborescencesiteecommerce-3-v1_720p_afrique.mp4",
+      "lesson_id": "cours-definir-arborescence-site-ecommerce-structurer-efficacement-pages-menus-et-parcours",
+      "module_slug": "construire-la-structure-la-navigation-et-les-pages-de-son-site",
+      "lesson_slug": "cours-definir-arborescence-site-ecommerce-structurer-efficacement-pages-menus-et-parcours",
+      "title": "Cours - Définir l’arborescence de son site e-commerce : structurer efficacement les pages, menus et parcours utilisateur - partie 3",
+      "module_name": "Construire la structure, la navigation et les pages de son site",
+      "video_source_in_sheet": "m-definirarborescencesiteecommerce-3-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 216,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-etudier-concurence-vente-en-ligne",
+      "module_slug": "preparer-definir-cahier-des-charges-projet",
+      "lesson_slug": "cours-etudier-concurence-vente-en-ligne",
+      "title": "Cours - Etudier la concurrence de la vente en ligne",
+      "module_name": "Préparer et définir le cahier des charges de son projet",
+      "video_source_in_sheet": "m-espionnerconcurenceventeenligne-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 79,
+      "duplicate_rows": [
+        79,
+        116,
+        613
+      ]
+    },
+    {
+      "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-etablir-strategie-contenu-e-commerce",
+      "module_slug": "integrer-contenus-sur-pages-de-son-site",
+      "lesson_slug": "cours-etablir-strategie-contenu-e-commerce",
+      "title": "Cours - Etablir une stratégie de contenu adaptée au e-commerce",
+      "module_name": "Intégrer ses contenus sur les pages de son site",
+      "video_source_in_sheet": "m-etablirstrategiecontenuecommerce-1-v3",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "medium",
+      "match_reason": "Version-suffix-ignored match (file version differs from sheet)",
+      "matched_row": 90,
+      "duplicate_rows": [
+        90,
+        207,
+        617
+      ]
+    },
+    {
+      "filename": "m-googleadscampagneshopping-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-google-ads-campagne-shopping",
+      "module_slug": "utiliser-les-solutions-publicitaires",
+      "lesson_slug": "cours-google-ads-campagne-shopping",
+      "title": "Cours - Google ads : campagne shopping",
+      "module_name": "Utiliser les solutions publicitaires",
+      "video_source_in_sheet": "m-googleadscampagneshopping-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE",
+        "Développer son e-commerce grâce au marketing digital",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 251,
+      "duplicate_rows": [
+        251,
+        728
+      ]
+    },
+    {
+      "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-identifier-les-contenus-a-automatiser",
+      "module_slug": "identifier-les-contenus-a-automatiser",
+      "lesson_slug": "cours-identifier-les-contenus-a-automatiser",
+      "title": "Cours - Identifier les contenus à automatiser",
+      "module_name": "Automatiser votre gestion des réseaux sociaux",
+      "video_source_in_sheet": "m-identifier-les-contenus-a-automatiser-1-v1",
+      "course": "ia-business",
+      "formations": [
+        "IA + RS - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 43,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique.mp4",
+      "lesson_id": "Cours - Identifier les tâches automatisables dans une activité",
+      "module_slug": "identifier-les-taches-automatisables-dans-une-activite",
+      "lesson_slug": "Cours - Identifier les tâches automatisables dans une activité",
+      "title": "cours-identifier-les-taches-automatisables-dans-une-activite",
+      "module_name": "Identifier les tâches automatisables dans une activité",
+      "video_source_in_sheet": "m-identifier-les-taches-automatisables-1-v1",
+      "course": "no-code",
+      "formations": [
+        "Auto No Code - Certifiante"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 25,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-introductiondropshipping-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-introduction-dropshipping",
+      "module_slug": "introduction-dropshipping",
+      "lesson_slug": "cours-introduction-dropshipping",
+      "title": "Cours – Introduction au dropshipping",
+      "module_name": "Introduction au dropshipping",
+      "video_source_in_sheet": "m-introductiondropshipping-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Dropshipping",
+        "Capsule dropshipping"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 553,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-introduction-specificites-e-commerce",
+      "module_slug": "definir-configurer-shopify-nom-de-domaine-hebergement",
+      "lesson_slug": "cours-introduction-specificites-e-commerce",
+      "title": "Cours - Introduction aux spécificités du e-commerce",
+      "module_name": "Définir et configurer Shopify, nom de domaine et hébergement",
+      "video_source_in_sheet": "m-introductionspecificitesecommerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 81,
+      "duplicate_rows": [
+        81,
+        211,
+        661
+      ]
+    },
+    {
+      "filename": "m-lancement-site-vitrine-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-lancement-site-vitrine-ecommerce",
+      "module_slug": "lancement-site-vitrine",
+      "lesson_slug": "cours-lancement-site-vitrine-ecommerce",
+      "title": "Cours - Lancement de votre site vitrine - ecommerce",
+      "module_name": "Lancement de votre site vitrine",
+      "video_source_in_sheet": "m-lancement-site-vitrine-e-commerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Wix e-commerce",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 349,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-legislationventeenligne-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-legislation-vente-en-ligne",
+      "module_slug": "mettre-en-place-outils-de-relation-client",
+      "lesson_slug": "cours-legislation-vente-en-ligne",
+      "title": "Cours - Législation pour la vente en ligne",
+      "module_name": "Mettre en place les outils de la relation client",
+      "video_source_in_sheet": "m-legislationventeenligne-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 98,
+      "duplicate_rows": [
+        98,
+        674
+      ]
+    },
+    {
+      "filename": "m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-lexique-et-mots-cles-de-l-automatisation",
+      "module_slug": "comprendre-l-automatisation",
+      "lesson_slug": "cours-lexique-et-mots-cles-de-l-automatisation",
+      "title": "Cours - Lexique et mots-clés de l’automatisation",
+      "module_name": "Comprendre l’automatisation",
+      "video_source_in_sheet": "m-lexiqueetmotsclesdelautomatisation-1-v1",
+      "course": "no-code",
+      "formations": [
+        "IA + Automatisation - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 178,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-marketing-influence-augmenter-ses-ventes",
+      "module_slug": "utiliser-les-reseaux-sociaux-pour-vendre",
+      "lesson_slug": "cours-marketing-influence-augmenter-ses-ventes",
+      "title": "Cours - Marketing d'influence pour augmenter ses ventes - Partie 1",
+      "module_name": "Utiliser les réseaux sociaux pour vendre",
+      "video_source_in_sheet": "m-marketinginfluenceaugmentersesventes-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE",
+        "Développer son e-commerce grâce au marketing digital",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 242,
+      "duplicate_rows": [
+        242,
+        746
+      ]
+    },
+    {
+      "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique.mp4",
+      "lesson_id": "cours-marketing-influence-augmenter-ses-ventes-2",
+      "module_slug": "utiliser-les-reseaux-sociaux-pour-vendre",
+      "lesson_slug": "cours-marketing-influence-augmenter-ses-ventes-2",
+      "title": "Cours - Marketing d'influence pour augmenter ses ventes - Partie 2",
+      "module_name": "Utiliser les réseaux sociaux pour vendre",
+      "video_source_in_sheet": "m-marketinginfluenceaugmentersesventes-2-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE",
+        "Développer son e-commerce grâce au marketing digital",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 243,
+      "duplicate_rows": [
+        243,
+        747
+      ]
+    },
+    {
+      "filename": "m-n8n-1-v1_720p_afrique.mp4",
+      "lesson_id": "Cours - Maîtriser N8N",
+      "module_slug": "maitriser-n8n",
+      "lesson_slug": "Cours - Maîtriser N8N",
+      "title": "cours-maitriser-n8n",
+      "module_name": "Maîtriser N8N",
+      "video_source_in_sheet": "m-n8n-1-v1",
+      "course": "no-code",
+      "formations": [
+        "Auto No Code - Certifiante"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 21,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-panoramadesoutilsdautomatisation-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-panorama-des-outils-d-automatisation",
+      "module_slug": "decouvrir-l-automatisation",
+      "lesson_slug": "cours-panorama-des-outils-d-automatisation",
+      "title": "Cours - Panorama des outils d’automatisation",
+      "module_name": "Découvrir l’automatisation",
+      "video_source_in_sheet": "m-panoramadesoutilsdautomatisation-1-v1",
+      "course": "no-code",
+      "formations": [
+        "IA + Automatisation - CERTIFIANTE"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 174,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique.mp4",
+      "lesson_id": "cours-preparation-conception-site-e-commerce",
+      "module_slug": "preparer-definir-cahier-des-charges-projet",
+      "lesson_slug": "cours-preparation-conception-site-e-commerce",
+      "title": "Cours - Préparation et conception de son site",
+      "module_name": "Préparer et définir le cahier des charges de son projet",
+      "video_source_in_sheet": "m-preparation-conception-site-e-commerce-1-v3",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 78,
+      "duplicate_rows": [
+        78,
+        118,
+        699
+      ]
+    },
+    {
+      "filename": "m-preparationcertificationshopify-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-preparation-certification-shopify",
+      "module_slug": "en-route-vers-la-certification",
+      "lesson_slug": "cours-preparation-certification-shopify",
+      "title": "Cours - Préparation à la certification \"Shopify\"",
+      "module_name": "En route vers la certification",
+      "video_source_in_sheet": "m-preparationcertificationshopify-1-v1",
+      "course": "ecommerce",
+      "formations": [],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 313,
+      "duplicate_rows": null,
+      "course_fix_reason": "Auto-derived was \"unknown\" but title/context clearly belongs to ecommerce track"
+    },
+    {
+      "filename": "m-preparationcertificationstrategieecommerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-preparation-certification-strategie-ecommerce",
+      "module_slug": "en-route-vers-la-certification",
+      "lesson_slug": "cours-preparation-certification-strategie-ecommerce",
+      "title": "Cours - Préparation à la certification \"Stratégie e-commerce\"",
+      "module_name": "En route vers la certification",
+      "video_source_in_sheet": "m-preparationcertificationstrategieecommerce-1-v1",
+      "course": "ecommerce",
+      "formations": [],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 311,
+      "duplicate_rows": [
+        311,
+        312
+      ],
+      "course_fix_reason": "Auto-derived was \"unknown\" but title/context clearly belongs to ecommerce track"
+    },
+    {
+      "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-referencement-naturel-site-et-pages-produits",
+      "module_slug": "referencer-site-internet-shopify",
+      "lesson_slug": "cours-referencement-naturel-site-et-pages-produits",
+      "title": "Cours - SEO : référencement de votre site et vos pages produits",
+      "module_name": "Référencer son site internet Shopify",
+      "video_source_in_sheet": "m-referencementnaturelsiteetpagesproduits-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Maîtriser marketing digital - Certifiante",
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 108,
+      "duplicate_rows": [
+        108,
+        218,
+        447,
+        713
+      ],
+      "course_fix_reason": "Auto-derived was \"marketing-digital\" but title/context clearly belongs to ecommerce track"
+    },
+    {
+      "filename": "m-tiktocvendreproduits-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-tik-toc-vendre-produits",
+      "module_slug": "utiliser-les-reseaux-sociaux-pour-vendre",
+      "lesson_slug": "cours-tik-toc-vendre-produits",
+      "title": "Cours - Percer sur tik tok pour vendre ses produits - partie 1",
+      "module_name": "Utiliser les réseaux sociaux pour vendre",
+      "video_source_in_sheet": "m-tiktocvendreproduits-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE",
+        "Développer son e-commerce grâce au marketing digital",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 239,
+      "duplicate_rows": [
+        239,
+        700
+      ]
+    },
+    {
+      "filename": "m-tiktocvendreproduits-2-v1_720p_afrique.mp4",
+      "lesson_id": "cours-tik-toc-vendre-produits-2",
+      "module_slug": "utiliser-les-reseaux-sociaux-pour-vendre",
+      "lesson_slug": "cours-tik-toc-vendre-produits-2",
+      "title": "Cours - Percer sur tik tok pour vendre ses produits - partie 2",
+      "module_name": "Utiliser les réseaux sociaux pour vendre",
+      "video_source_in_sheet": "m-tiktocvendreproduits-2-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Pack e-commerce\n - CERTIFIANTE",
+        "Stratégie e-commerce - CERTIFIANTE",
+        "Développer son e-commerce grâce au marketing digital",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 240,
+      "duplicate_rows": [
+        240,
+        712
+      ]
+    },
+    {
+      "filename": "m-trouverdesproduits-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-trouver-produits",
+      "module_slug": "trouver-produits",
+      "lesson_slug": "cours-trouver-produits",
+      "title": "Cours - Trouver des produits",
+      "module_name": "Trouver des produits",
+      "video_source_in_sheet": "m-trouverdesproduits-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Dropshipping"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 578,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-trouverfournisseursdropshipping-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-trouver-ses-fournisseurs-dropshipping",
+      "module_slug": "trouver-ses-fournisseurs-dropshipping",
+      "lesson_slug": "cours-trouver-ses-fournisseurs-dropshipping",
+      "title": "Cours – Trouver ses fournisseurs en Dropshipping",
+      "module_name": "Trouver ses fournisseurs en Dropshipping",
+      "video_source_in_sheet": "m-trouverfournisseursdropshipping-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Dropshipping",
+        "Capsule dropshipping"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 631,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "m-trouverproduitsdropshipping-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-trouver-des-produits-en-dropshipping",
+      "module_slug": "trouver-des-produits-en-dropshipping",
+      "lesson_slug": "cours-trouver-des-produits-en-dropshipping",
+      "title": "Cours - Trouver des produits en dropshipping",
+      "module_name": "Trouver des produits en dropshipping",
+      "video_source_in_sheet": "m-trouverproduitsdropshipping-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Capsule dropshipping"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 753,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "maintenance-evolution-boutique-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-maintenance-evolution-boutique",
+      "module_slug": "mettre-en-place-solution-de-suivi",
+      "lesson_slug": "cours-maintenance-evolution-boutique",
+      "title": "Cours - Maintenance et évolution de la boutique",
+      "module_name": "Mettre en place une solution de suivi",
+      "video_source_in_sheet": "maintenance-evolution-boutique-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 107,
+      "duplicate_rows": [
+        107,
+        584,
+        693
+      ]
+    },
+    {
+      "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique.mp4",
+      "lesson_id": "cours-optimisation-referencement-naturel-e-commerce",
+      "module_slug": "referencer-site-internet-shopify",
+      "lesson_slug": "cours-optimisation-referencement-naturel-e-commerce",
+      "title": "Cours - Optimisation et référencement naturel d’un e-commerce",
+      "module_name": "Référencer son site internet Shopify",
+      "video_source_in_sheet": "optimisation-referencement-naturel-e-commerce-1-v2",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 110,
+      "duplicate_rows": [
+        110,
+        220,
+        687
+      ]
+    },
+    {
+      "filename": "personnalisation-design-boutique-1-v2_720p_afrique.mp4",
+      "lesson_id": "cours-personnalisation-design-boutique",
+      "module_slug": "construire-structure-navigation-pages-son-site",
+      "lesson_slug": "cours-personnalisation-design-boutique",
+      "title": "Cours - Personnalisation du design de la boutique ",
+      "module_name": "Construire la structure, la navigation et les pages de son site",
+      "video_source_in_sheet": "personnalisation-design-boutique-1-v2",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 86,
+      "duplicate_rows": [
+        86,
+        121,
+        672
+      ]
+    },
+    {
+      "filename": "personnalisation-design-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-personnalisation-design-ecommerce",
+      "module_slug": "personnalisation-design",
+      "lesson_slug": "cours-personnalisation-design-ecommerce",
+      "title": "Cours - Personnalisation du design - ecommerce",
+      "module_name": "Personnalisation du design",
+      "video_source_in_sheet": "personnalisation-design-e-commerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Wix e-commerce",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 335,
+      "duplicate_rows": null
+    },
+    {
+      "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-preparation-conception-site-e-commerce",
+      "module_slug": "preparer-definir-cahier-des-charges-projet",
+      "lesson_slug": "cours-preparation-conception-site-e-commerce",
+      "title": "Cours - Préparation et conception de son site",
+      "module_name": "Préparer et définir le cahier des charges de son projet",
+      "video_source_in_sheet": "m-preparation-conception-site-e-commerce-1-v3",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "medium",
+      "match_reason": "Version mismatch: file is v1, sheet only has v3 (m-preparation-conception-site-e-commerce-1-v3). Same logical lesson.",
+      "matched_row": 78
+    },
+    {
+      "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique.mp4",
+      "lesson_id": "cours-travailler-tunnel-achat-site-e-commerce",
+      "module_slug": "construire-structure-navigation-pages-son-site",
+      "lesson_slug": "cours-travailler-tunnel-achat-site-e-commerce",
+      "title": "Cours - Travailler le tunnel d’achat d’un site e-commerce",
+      "module_name": "Construire la structure, la navigation et les pages de son site",
+      "video_source_in_sheet": "travailler-tunnel-achat-site-e-commerce-1-v1",
+      "course": "ecommerce",
+      "formations": [
+        "Shopify - CERTIFIANTE",
+        "Dropshipping",
+        "État"
+      ],
+      "confidence": "high",
+      "match_reason": "Exact slug match on col 8 (Nom des vidéos en ligne)",
+      "matched_row": 87,
+      "duplicate_rows": [
+        87,
+        217,
+        681
+      ]
+    }
+  ],
+  "unmatched": [
+    "m-certification-auto-no-code-1-v1_720p_afrique.mp4"
+  ]
+}

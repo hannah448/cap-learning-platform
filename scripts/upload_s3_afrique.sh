@@ -31,8 +31,9 @@ LOG_FILE="./upload_s3_log.txt"
 # Un seul CDN dessert cap-learning.com ET cap-learning.sn
 CDN_HOST="${CDN_HOST:-cdn.cap-learning.com}"
 
-# ACL : "private" (recommandé, via CDN signé) ou "public-read" (accès direct S3)
-S3_ACL="private"
+# NB: ACLs désactivées par défaut sur les buckets S3 créés depuis 2023
+# ("Bucket owner enforced"). On ne passe donc pas --acl à aws s3 cp.
+# La protection d'accès est gérée par la bucket policy (IPs Cloudflare uniquement).
 
 # Cache-Control envoyé avec chaque objet (1 an, immutable)
 CACHE_CONTROL="public, max-age=31536000, immutable"
@@ -79,7 +80,6 @@ fi
     echo "  Cap Learning — Upload S3 ($(date))"
     echo "  Bucket : s3://$S3_BUCKET/$S3_PREFIX/"
     echo "  Région : $AWS_REGION"
-    echo "  ACL    : $S3_ACL"
     echo "  CDN    : ${CDN_HOST:-(aucun, URLs S3 directes)}"
     echo "  Total  : $TOTAL fichier(s)"
     echo "============================================================"
@@ -102,7 +102,6 @@ for F in "${FILES[@]}"; do
 
     aws s3 cp "$F" "s3://$S3_BUCKET/$KEY" \
         --region "$AWS_REGION" \
-        --acl "$S3_ACL" \
         --content-type "video/mp4" \
         --cache-control "$CACHE_CONTROL" \
         --only-show-errors

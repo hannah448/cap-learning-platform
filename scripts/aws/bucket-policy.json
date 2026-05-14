@@ -32,6 +32,5 @@
         }
       }
     }
-  ],
-  "_comment": "Seuls les IPs Cloudflare peuvent GET les objets. L'accès direct au bucket S3 depuis un navigateur utilisateur est bloqué (hotlink protection). Met à jour la liste d'IP depuis https://www.cloudflare.com/ips-v4 (et ips-v6) — Cloudflare change la liste ~1x/an."
+  ]
 }

@@ -50,15 +50,17 @@
 
     // --------- Config ---------
 
-    // Résout le sibling video-mapping.json à partir de l'emplacement
-    // de ce script, pour fonctionner quelle que soit la page hôte.
-    var MAPPING_URL = (function () {
+    // Résout les sibling JSON à partir de l'emplacement de ce script
+    // (fonctionne quelle que soit la page hôte).
+    var _SCRIPT_BASE = (function () {
         var cs = document.currentScript;
         if (cs && cs.src) {
-            return cs.src.replace(/video-player\.js(\?.*)?$/, 'video-mapping.json');
+            return cs.src.replace(/video-player\.js(\?.*)?$/, '');
         }
-        return '../js/video-mapping.json';
+        return '../js/';
     })();
+    var MAPPING_URL  = _SCRIPT_BASE + 'video-mapping.json';
+    var MANIFEST_URL = _SCRIPT_BASE + 'video-assets-manifest.json';
 
     // Source de démo publique (utilisée seulement si opts.demoMode)
     // Tears of Steel HLS (Mux test streams, libre de droits)
@@ -70,6 +72,8 @@
 
     var _mapping = null;
     var _mappingPromise = null;
+    var _manifest = null;
+    var _manifestPromise = null;
     var _scriptPromises = {};
 
     function loadMapping(overrideUrl) {
@@ -124,6 +128,53 @@
                     courseTitle: courses[key].title,
                     lessonId:    lessonId,
                     data:        lessons[lessonId]
+                };
+            }
+        }
+        return null;
+    }
+
+    // Charge video-assets-manifest.json (catalogue des vidéos uploadées S3/CDN).
+    // Renvoie toujours une promesse — null en cas d'absence (le manifest est optionnel).
+    function loadManifest() {
+        if (_manifest) return Promise.resolve(_manifest);
+        if (_manifestPromise) return _manifestPromise;
+        _manifestPromise = fetch(MANIFEST_URL)
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (j) { _manifest = j; return j; })
+            .catch(function () { _manifest = null; return null; });
+        return _manifestPromise;
+    }
+
+    /**
+     * Cherche une vidéo dans le manifest S3 par :
+     *   - lesson_id   (slug long, ex: 'presentation-developper-son-e-commerce')
+     *   - slug        (nom de fichier sans extension)
+     *   - alias       (clés courtes ex: 'l1-1' si renseignées dans le manifest)
+     *
+     * Si trouvé, renvoie un "lesson" synthétique compatible avec le rendu MP4.
+     */
+    function findLessonInManifest(manifest, lessonId) {
+        if (!manifest || !Array.isArray(manifest.videos)) return null;
+        var videos = manifest.videos;
+        for (var i = 0; i < videos.length; i++) {
+            var v = videos[i];
+            if (!v) continue;
+            var aliases = Array.isArray(v.aliases) ? v.aliases : [];
+            if (v.lesson_id === lessonId || v.slug === lessonId || aliases.indexOf(lessonId) !== -1) {
+                var url = v.cdn_url || v.mp4_url || v.s3_url;
+                if (!url) return null;
+                return {
+                    courseKey:   v.course || 'unknown',
+                    courseTitle: v.course || '',
+                    lessonId:    lessonId,
+                    data: {
+                        title:    v.title || lessonId,
+                        status:   'live',
+                        provider: 'mp4',
+                        mp4:      { url: url },
+                        _source:  { manifest: true, filename: v.filename }
+                    }
                 };
             }
         }
@@ -369,12 +420,24 @@
             // Unmount précédent
             this.unmount(el);
 
-            return loadMapping(options.mappingUrl).then(function (mapping) {
-                var lesson = findLesson(mapping, lessonId);
+            // Charge mapping + manifest en parallèle. Manifest est best-effort
+            // (peut être absent en dev local), mapping est obligatoire.
+            return Promise.all([
+                loadMapping(options.mappingUrl).catch(function () { return null; }),
+                loadManifest()
+            ]).then(function (results) {
+                var mapping = results[0];
+                var manifest = results[1];
+
+                // Résolution :
+                //   1. video-mapping.json (lesson_id court ex: 'l1-1', source de vérité historique)
+                //   2. video-assets-manifest.json (slug/lesson_id long du catalogue S3, fallback)
+                var lesson = findLesson(mapping, lessonId)
+                          || findLessonInManifest(manifest, lessonId);
 
                 if (!lesson) {
                     if (options.demoMode) { renderDemo(el, null, options); return { status: 'demo' }; }
-                    renderError(el, 'Leçon « ' + lessonId + ' » introuvable dans le mapping.');
+                    renderError(el, 'Leçon « ' + lessonId + ' » introuvable (ni dans le mapping, ni dans le catalogue S3).');
                     return { status: 'missing' };
                 }
 

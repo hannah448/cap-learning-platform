@@ -16,6 +16,5 @@
         "arn:aws:s3:::caplearning-videos/*"
       ]
     }
-  ],
-  "_comment": "Policy minimaliste pour un utilisateur IAM 'caplearning-uploader' utilisé par upload_s3_afrique.sh. Attacher cette policy à l'utilisateur puis: aws configure avec ses access/secret keys."
+  ]
 }

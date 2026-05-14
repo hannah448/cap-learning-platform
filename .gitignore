@@ -47,8 +47,9 @@ scripts/**/*.webm
 
 # Logs runtime
 scripts/download_vimeo_log.txt
-scripts/upload_s3_log.txt
 scripts/traitement_log.txt
+# Note : scripts/upload_s3_log.txt est volontairement versionné — il sert
+# de source-of-truth pour reproduire/auditer l'upload S3.
 
 # Fichiers de travail (garder les .example versionnés)
 scripts/vimeo_urls.txt
