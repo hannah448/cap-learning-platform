@@ -1,0 +1,52 @@
+legacy_id,legacy_title,course_db_id,best_match_slug,best_match_title,score,note
+l1-1,Introduction au marketing digital en Afrique,marketing,,,0,NO_MATCH
+l1-tf,Vrai/Faux : Le digital en Afrique,marketing,,,0,NO_MATCH
+l1-2,Définir votre stratégie digitale,marketing,,,0,NO_MATCH
+l1-fill,Texte à trous : Stratégie digitale,marketing,,,0,NO_MATCH
+l1-3,Comprendre votre audience cible,marketing,,,0,NO_MATCH
+l1-match,Association : Concepts marketing,marketing,,,0,NO_MATCH
+l1-kw,Synthèse : Décrivez votre stratégie,marketing,,,0,NO_MATCH
+l2-1,Optimiser votre page Facebook Business,marketing,,,0,NO_MATCH
+l2-tf,Vrai/Faux : Facebook Business,marketing,,,0,NO_MATCH
+l2-2,Strat\u00e9gie de contenu Instagram,marketing,,,0,NO_MATCH
+l2-fill,Texte \u00e0 trous : Instagram,marketing,,,0,NO_MATCH
+l2-3,Facebook Ads : votre premi\u00e8re campagne,marketing,,,0,NO_MATCH
+l2-match,Association : Pub Facebook,marketing,,,0,NO_MATCH
+l2-quiz,Quiz : Facebook & Instagram,marketing,,,0,NO_MATCH
+l3-1,Les bases du r\u00e9f\u00e9rencement naturel,marketing,,,0,NO_MATCH
+l3-tf,Vrai/Faux : SEO Fondamentaux,marketing,,,0,NO_MATCH
+l3-2,Recherche de mots-cl\u00e9s pour votre march\u00e9,marketing,,,0,NO_MATCH
+l3-fill,Texte \u00e0 trous : SEO pratique,marketing,,,0,NO_MATCH
+l3-match,Association : Outils SEO,marketing,,,0,NO_MATCH
+l3-kw,Synth\u00e8se : Plan SEO,marketing,,,0,NO_MATCH
+e1-1,Le e-commerce en Afrique : \u00e9tat des lieux,ecommerce,introduction-shopify-e-commerce-1-v1,Cours - Introduction à Shopify et au e-commerce,0.143,LOW
+e1-tf,Vrai/Faux : E-commerce Afrique,ecommerce,introduction-shopify-e-commerce-1-v1,Cours - Introduction à Shopify et au e-commerce,0.143,LOW
+e1-2,Choisir votre niche et vos produits,ecommerce,m-trouverdesproduits-1-v1,Cours - Trouver des produits,0.167,LOW
+e1-fill,Texte \u00e0 trous : Strat\u00e9gie e-commerce,ecommerce,introduction-shopify-e-commerce-1-v1,Cours - Introduction à Shopify et au e-commerce,0.111,LOW
+e1-ex,Synth\u00e8se : Validation de votre id\u00e9e,ecommerce,,,0,NO_MATCH
+e2-1,Shopify vs WooCommerce : le bon choix,ecommerce,extensions-applications-shopify-1-v1,Cours - Extensions et applications Shopify,0.125,LOW
+e2-match,Association : Plateformes e-commerce,ecommerce,introduction-shopify-e-commerce-1-v1,Cours - Introduction à Shopify et au e-commerce,0.167,LOW
+e2-2,Configuration pas \u00e0 pas,ecommerce,configuration-paiements-expeditions-1-v1,Cours - Configuration des paiements et des expéditions,0.167,LOW
+e2-quiz,Quiz : E-commerce,ecommerce,introduction-shopify-e-commerce-1-v1,Cours - Introduction à Shopify et au e-commerce,0.2,MID
+e3-1,Vue d\,ecommerce,,,0,NO_MATCH
+e3-tf,Vrai/Faux : Paiements en Afrique,ecommerce,configuration-paiements-expeditions-1-v1,Cours - Configuration des paiements et des expéditions,0.143,LOW
+e3-2,"Wave, Orange Money, MTN MoMo, M-Pesa : qui pour quel march\u00e9 ?",ecommerce,,,0,NO_MATCH
+e3-match,Association : Op\u00e9rateur \u2192 Zone,ecommerce,,,0,NO_MATCH
+e3-fill,Texte \u00e0 trous : Paiements mobiles,ecommerce,configuration-paiements-expeditions-1-v1,Cours - Configuration des paiements et des expéditions,0.125,LOW
+e3-quiz,Quiz : \u00c9cosyst\u00e8me des paiements,ecommerce,configuration-paiements-expeditions-1-v1,Cours - Configuration des paiements et des expéditions,0.143,LOW
+e4-1,"Choisir son agr\u00e9gateur : PayDunya, CinetPay, Flutterwave",ecommerce,,,0,NO_MATCH
+e4-2,"Int\u00e9gration technique : API, webhook, retour de paiement",ecommerce,,,0,NO_MATCH
+e4-order,Remise en ordre : Flux de paiement,ecommerce,,,0,NO_MATCH
+e4-tf,Vrai/Faux : S\u00e9curit\u00e9 & conformit\u00e9,ecommerce,,,0,NO_MATCH
+e4-ex,Synth\u00e8se : Architecture de paiement,ecommerce,,,0,NO_MATCH
+i1-1,L\,ia-business,,,0,NO_MATCH
+i1-tf,Vrai/Faux : IA & Entrepreneurs,ia-business,,,0,NO_MATCH
+i1-2,ChatGPT & Claude : prise en main,ia-business,,,0,NO_MATCH
+i1-match,Association : Outils IA,ia-business,,,0,NO_MATCH
+i1-ex,Synth\u00e8se : Vos prompts business,ia-business,,,0,NO_MATCH
+i1-quiz,Quiz : IA Fondamentaux,ia-business,,,0,NO_MATCH
+s1-1,D\u00e9finir votre strat\u00e9gie r\u00e9seaux sociaux,reseaux-sociaux,,,0,NO_MATCH
+s1-tf,Vrai/Faux : Strat\u00e9gie social media,reseaux-sociaux,,,0,NO_MATCH
+s1-2,Cr\u00e9er du contenu viral,reseaux-sociaux,,,0,NO_MATCH
+s1-order,Remise en ordre : Cr\u00e9ation de contenu,reseaux-sociaux,,,0,NO_MATCH
+s1-ex,Synth\u00e8se : Calendrier \u00e9ditorial,reseaux-sociaux,,,0,NO_MATCH

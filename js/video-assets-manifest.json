@@ -215,10 +215,10 @@
       "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-certification-auto-no-code-1-v1_720p_afrique.mp4",
       "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-certification-auto-no-code-1-v1_720p_afrique.mp4",
       "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-certification-auto-no-code-1-v1_720p_afrique.mp4",
-      "lesson_id": null,
-      "title": null,
-      "course": null,
-      "confidence": "unmatched"
+      "lesson_id": "certification-no-code",
+      "title": "Obtention de votre certificat No-Code",
+      "course": "no-code",
+      "confidence": "manual"
     },
     {
       "filename": "m-communauteetventeinstagram-1-v1_720p_afrique.mp4",
