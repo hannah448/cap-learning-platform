@@ -134,6 +134,34 @@
         return res.data;
     }
 
+    /**
+     * Connexion OAuth Google.
+     * Redirige vers Google pour validation, puis Supabase redirige de retour
+     * vers redirectTo (dashboard.html par défaut).
+     * Le profile est auto-créé par le trigger handle_new_user() côté DB.
+     */
+    async function signInWithGoogle(redirectTo) {
+        var dest = redirectTo
+            || (window.CapConfig && window.CapConfig.PUBLIC_BASE_URL
+                ? window.CapConfig.PUBLIC_BASE_URL + '/pages/dashboard.html'
+                : window.location.origin + '/pages/dashboard.html');
+
+        var res = await db.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+                redirectTo: dest,
+                // queryParams optionnels — utiles pour forcer le choix du compte
+                queryParams: {
+                    access_type: 'offline',
+                    prompt: 'select_account'
+                }
+            }
+        });
+        if (res.error) throw res.error;
+        // Note : pas de retour synchrone — la page se redirige vers Google
+        return res.data;
+    }
+
     async function signOut() {
         var res = await db.auth.signOut();
         currentUser = null;
@@ -241,6 +269,7 @@
         signUp: signUp,
         signIn: signIn,
         signInWithMagicLink: signInWithMagicLink,
+        signInWithGoogle: signInWithGoogle,
         signOut: signOut,
         getUser: getUser,
         getProfile: getProfile,

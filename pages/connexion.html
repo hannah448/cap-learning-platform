@@ -860,15 +860,51 @@
             }
         });
 
-        // --- Google (placeholder, à activer plus tard via Supabase OAuth) ---
+        // --- Google OAuth (Supabase Auth Providers → Google) ---
+        async function handleGoogleAuth(e) {
+            e.preventDefault();
+            var btn = e.currentTarget;
+            var errorElId = btn.id === 'googleLoginBtn' ? 'loginError' : 'signupError';
+            hideError(errorElId);
+
+            // Loading state (la page va rediriger vers Google donc visible 1-2 sec)
+            if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
+            btn.textContent = '⏳ Redirection Google…';
+            btn.disabled = true;
+            btn.style.opacity = '0.7';
+
+            try {
+                await ensureCapAuth();
+                // Mémorise la destination demandée pour après la redirection retour
+                var redirectAfterLogin = sessionStorage.getItem('caplearning_redirect_after_login');
+                var dest;
+                if (redirectAfterLogin && redirectAfterLogin.indexOf('connexion.html') === -1) {
+                    // Reconstruit l'URL absolue à partir de l'origin courant
+                    dest = window.location.origin + redirectAfterLogin;
+                } else {
+                    // Par défaut : dashboard (l'admin sera re-redirigé par le guard si role=admin)
+                    dest = window.location.origin + '/pages/dashboard.html';
+                }
+                await window.CapAuth.signInWithGoogle(dest);
+                // signInWithGoogle déclenche une redirection vers Google
+                // → on n'arrive normalement jamais ici
+            } catch (err) {
+                btn.disabled = false;
+                btn.style.opacity = '';
+                if (btn.dataset.originalText) btn.textContent = btn.dataset.originalText;
+
+                var msg = humanizeAuthError(err);
+                // Erreur Supabase si provider Google pas encore activé côté dashboard
+                if (/provider.*not enabled|provider.*google.*not/i.test(err.message || '')) {
+                    msg = 'Connexion Google pas encore configurée. Réessaie dans quelques minutes ou utilise email + mot de passe.';
+                }
+                showError(errorElId, msg);
+            }
+        }
         var googleLoginBtn = document.getElementById('googleLoginBtn');
         var googleSignupBtn = document.getElementById('googleSignupBtn');
-        function googleNotReady(e) {
-            e.preventDefault();
-            alert('Connexion Google bientôt disponible. Pour l\'instant, utilise email + mot de passe.');
-        }
-        if (googleLoginBtn) googleLoginBtn.addEventListener('click', googleNotReady);
-        if (googleSignupBtn) googleSignupBtn.addEventListener('click', googleNotReady);
+        if (googleLoginBtn) googleLoginBtn.addEventListener('click', handleGoogleAuth);
+        if (googleSignupBtn) googleSignupBtn.addEventListener('click', handleGoogleAuth);
 
         // Clear error styling on focus
         document.querySelectorAll('.auth-input').forEach(function (input) {
