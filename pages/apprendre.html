@@ -1178,6 +1178,10 @@
         </main>
     </div>
 
+    <!-- Cap Player chargé SYNCHRONE avant l'IIFE pour que CapPlayer soit défini
+         au moment où goToLesson() s'exécute pour la 1re leçon (cf. fin du <script>). -->
+    <script src="../js/video-player.js"></script>
+
     <script>
     // ===== COURSE DATA =====
     // Pedagogical design: exercises follow Bloom's taxonomy
@@ -2906,8 +2910,7 @@
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
     <script src="../js/whatsapp-widget.js"></script>
-    <!-- Cap Player (HLS via S3 + Cloudflare, MP4 fallback) -->
-    <script src="../js/video-player.js" defer></script>
+    <!-- Cap Player : chargé plus haut, AVANT l'IIFE initialLesson (voir <script src=video-player.js> avant le bloc principal) -->
     <script src="../js/theme.js" defer></script>
 </body>
 </html>
