@@ -18,15 +18,17 @@
       "5. Le player (js/video-player.js) détecte automatiquement le provider et charge hls.js"
     ],
     "schema_version": 1,
-    "last_updated": null
+    "last_updated": "2026-05-17T08:41:53+00:00"
   },
-
   "_defaults": {
     "provider": "vimeo",
     "privacy_mode": "domain_restricted",
-    "allowed_domains": ["caplearning.com", "www.caplearning.com", "caplearning.vercel.app"]
+    "allowed_domains": [
+      "caplearning.com",
+      "www.caplearning.com",
+      "caplearning.vercel.app"
+    ]
   },
-
   "_example_filled_entry": {
     "l1-1": {
       "title": "Introduction au marketing digital en Afrique",
@@ -39,14 +41,16 @@
       "duration_seconds": 750,
       "poster": null,
       "subtitles": [
-        { "lang": "fr", "label": "Français", "default": true }
+        {
+          "lang": "fr",
+          "label": "Français",
+          "default": true
+        }
       ],
       "notes": "Exemple rempli — à recopier ensuite pour chaque leçon."
     }
   },
-
   "courses": {
-
     "marketing-digital": {
       "title": "Marketing digital & acquisition",
       "landing_page": "pages/formation-marketing-digital.html",
@@ -55,7 +59,10 @@
           "title": "Introduction au marketing digital en Afrique",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 750,
           "poster": null,
           "subtitles": []
@@ -64,7 +71,10 @@
           "title": "Définir votre stratégie digitale",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1695,
           "poster": null,
           "subtitles": []
@@ -73,104 +83,180 @@
           "title": "Comprendre votre audience cible",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 2100,
           "poster": null,
           "subtitles": []
         },
         "l2-1": {
           "title": "Optimiser votre page Facebook Business",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 1500,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-etablirstrategiecontenuecommerce-1-v1",
+            "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "l2-2": {
           "title": "Stratégie de contenu Instagram",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 1920,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-creerplanningeditorialautomatise-1-v1",
+            "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "l2-3": {
           "title": "Facebook Ads : votre première campagne",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 2100,
           "poster": null,
           "subtitles": []
         },
         "l3-1": {
           "title": "Les bases du référencement naturel",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 1800,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-referencementnaturelsiteetpagesproduits-1-v1",
+            "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "l3-2": {
           "title": "Recherche de mots-clés pour votre marché",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1500,
           "poster": null,
           "subtitles": []
+        },
+        "l3-3": {
+          "title": "Google Ads : campagnes Shopping pour e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-googleadscampagneshopping-1-v1",
+            "filename": "m-googleadscampagneshopping-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         }
       }
     },
-
     "ecommerce": {
       "title": "E-commerce & Shopify en Afrique",
       "landing_page": "pages/formation-ecommerce.html",
       "lessons": {
         "e1-1": {
           "title": "Le e-commerce en Afrique : état des lieux",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 1080,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/bienvenue-developper-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "bienvenue-developper-e-commerce-1-v1",
+            "filename": "bienvenue-developper-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "e1-2": {
           "title": "Choisir votre niche et vos produits",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 1320,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-introductiondropshipping-1-v1",
+            "filename": "m-introductiondropshipping-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "e2-1": {
           "title": "Shopify vs WooCommerce : le bon choix",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 1500,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/bienvenue-shopify-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "bienvenue-shopify-1-v1",
+            "filename": "bienvenue-shopify-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "e2-2": {
           "title": "Configuration pas à pas",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 2400,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-configurernomdomainehebergementshopify-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-configurernomdomainehebergementshopify-1-v2",
+            "filename": "m-configurernomdomainehebergementshopify-1-v2_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "e3-1": {
           "title": "Vue d'ensemble du Mobile Money en Afrique",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1080,
           "poster": null,
           "subtitles": []
@@ -179,7 +265,10 @@
           "title": "Wave, Orange Money, MTN MoMo, M-Pesa : qui pour quel marché ?",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1200,
           "poster": null,
           "subtitles": []
@@ -188,23 +277,527 @@
           "title": "Choisir son agrégateur : PayDunya, CinetPay, Flutterwave",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1320,
           "poster": null,
           "subtitles": []
         },
         "e4-2": {
           "title": "Intégration technique : API, webhook, retour de paiement",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 1680,
           "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "configuration-paiements-expeditions-1-v1",
+            "filename": "configuration-paiements-expeditions-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e1-1b": {
+          "title": "Fondamentaux e-commerce (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/bienvenue-fondamentaux-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "bienvenue-fondamentaux-e-commerce-1-v1",
+            "filename": "bienvenue-fondamentaux-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e2-1b": {
+          "title": "Découverte & configuration Shopify (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "decouverte-et-configuration-shopify-1-v2",
+            "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e5-1": {
+          "title": "Création des pages principales e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "creation-pages-principales-e-commerce-1-v2",
+            "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e5-1b": {
+          "title": "Création des pages principales (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "creation-pages-principales-e-commerce-2-v1",
+            "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e5-2": {
+          "title": "Personnalisation design e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "personnalisation-design-e-commerce-1-v1",
+            "filename": "personnalisation-design-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e5-3": {
+          "title": "Extensions et applications Shopify",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "extensions-applications-shopify-1-v1",
+            "filename": "extensions-applications-shopify-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e5-4": {
+          "title": "Intégration blog Shopify",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "integration-blog-shopify-1-v1",
+            "filename": "integration-blog-shopify-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e6-1": {
+          "title": "Gestion de l'index Google e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "gestion-index-google-e-commerce-1-v1",
+            "filename": "gestion-index-google-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e6-2": {
+          "title": "Gestion de l'index Google Shopify",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "gestion-index-google-shopify-1-v1",
+            "filename": "gestion-index-google-shopify-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e6-3": {
+          "title": "Référencement local boutique en ligne",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
           "subtitles": []
+        },
+        "e7-1": {
+          "title": "Gestion des commandes et relation client",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "gestion-commandes-relation-client-1-v1",
+            "filename": "gestion-commandes-relation-client-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e7-2": {
+          "title": "Maintenance et évolution de la boutique",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "maintenance-evolution-boutique-1-v1",
+            "filename": "maintenance-evolution-boutique-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e7-3": {
+          "title": "Lancement et promotion boutique en ligne",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "lancement-promotion-boutique-en-ligne-1-v1",
+            "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e7-4": {
+          "title": "Préparation et conception du site e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "preparation-conception-site-e-commerce-1-v1",
+            "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e7-5": {
+          "title": "Travailler le tunnel d'achat",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "travailler-tunnel-achat-site-e-commerce-1-v1",
+            "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e8-1": {
+          "title": "Découvrir la comptabilité e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-decouvrircomptabiliteecommerce-1-v1",
+            "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e8-2": {
+          "title": "Définir l'arborescence du site e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-definirarborescencesiteecommerce-1-v1",
+            "filename": "m-definirarborescencesiteecommerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e8-2b": {
+          "title": "Arborescence du site (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-2-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-definirarborescencesiteecommerce-2-v1",
+            "filename": "m-definirarborescencesiteecommerce-2-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e8-2c": {
+          "title": "Arborescence du site (3e partie)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-3-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-definirarborescencesiteecommerce-3-v1",
+            "filename": "m-definirarborescencesiteecommerce-3-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e8-3": {
+          "title": "Espionner la concurrence en vente en ligne",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-espionnerconcurenceventeenligne-1-v1",
+            "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e8-4": {
+          "title": "Législation de la vente en ligne",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-legislationventeenligne-1-v1",
+            "filename": "m-legislationventeenligne-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e9-1": {
+          "title": "Préparation à la certification Shopify",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparationcertificationshopify-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-preparationcertificationshopify-1-v1",
+            "filename": "m-preparationcertificationshopify-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e9-2": {
+          "title": "Préparation à la certification Stratégie e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparationcertificationstrategieecommerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-preparationcertificationstrategieecommerce-1-v1",
+            "filename": "m-preparationcertificationstrategieecommerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e1-1c": {
+          "title": "Introduction aux spécificités e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-introductionspecificitesecommerce-1-v1",
+            "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e1-2b": {
+          "title": "Trouver des fournisseurs dropshipping",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-trouverdesproduits-1-v1",
+            "filename": "m-trouverdesproduits-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e5-2b": {
+          "title": "Personnalisation design boutique (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "personnalisation-design-boutique-1-v2",
+            "filename": "personnalisation-design-boutique-1-v2_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e6-1b": {
+          "title": "Optimisation du référencement naturel e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "optimisation-referencement-naturel-e-commerce-1-v2",
+            "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e7-3b": {
+          "title": "Lancement site vitrine e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-lancement-site-vitrine-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-lancement-site-vitrine-e-commerce-1-v1",
+            "filename": "m-lancement-site-vitrine-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e7-4b": {
+          "title": "Préparation & conception du site (3e partie)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-preparation-conception-site-e-commerce-1-v3",
+            "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e2-1c": {
+          "title": "Cours - Introduction à Shopify et au e-commerce",
+          "status": "live",
+          "provider": "mp4",
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "introduction-shopify-e-commerce-1-v1",
+            "filename": "introduction-shopify-e-commerce-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e1-2bb": {
+          "title": "Cours – Trouver ses fournisseurs en Dropshipping",
+          "status": "live",
+          "provider": "mp4",
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-trouverfournisseursdropshipping-1-v1",
+            "filename": "m-trouverfournisseursdropshipping-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "e1-2c": {
+          "title": "Cours - Trouver des produits en dropshipping",
+          "status": "live",
+          "provider": "mp4",
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-trouverproduitsdropshipping-1-v1",
+            "filename": "m-trouverproduitsdropshipping-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         }
       }
     },
-
     "ia-business": {
       "title": "IA & Business pour entrepreneurs",
       "landing_page": "pages/formation-ia-business.html",
@@ -213,7 +806,10 @@
           "title": "L'IA pour les entrepreneurs : vue d'ensemble",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 900,
           "poster": null,
           "subtitles": []
@@ -222,14 +818,29 @@
           "title": "ChatGPT & Claude : prise en main",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1500,
           "poster": null,
           "subtitles": []
+        },
+        "n1-1b": {
+          "title": "Cours : les bases de l’automatisation",
+          "status": "live",
+          "provider": "mp4",
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-basesdelautomatisation-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-basesdelautomatisation-1-v1",
+            "filename": "m-basesdelautomatisation-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         }
       }
     },
-
     "reseaux-sociaux": {
       "title": "Réseaux sociaux pour entrepreneurs",
       "landing_page": "pages/formation-reseaux-sociaux.html",
@@ -238,7 +849,10 @@
           "title": "Définir votre stratégie réseaux sociaux",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1200,
           "poster": null,
           "subtitles": []
@@ -247,39 +861,430 @@
           "title": "Créer du contenu viral",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1500,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-1": {
+          "title": "Marketing d'influence : trouver et activer des partenariats",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-marketinginfluenceaugmentersesventes-1-v1",
+            "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "s2-1b": {
+          "title": "Marketing d'influence (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-marketinginfluenceaugmentersesventes-2-v1",
+            "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "s2-2": {
+          "title": "TikTok : vendre ses produits via du contenu viral",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-tiktocvendreproduits-1-v1",
+            "filename": "m-tiktocvendreproduits-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "s2-2b": {
+          "title": "TikTok (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-tiktocvendreproduits-2-v1",
+            "filename": "m-tiktocvendreproduits-2-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "s2-3": {
+          "title": "Communauté & ventes Instagram",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-communauteetventeinstagram-1-v1",
+            "filename": "m-communauteetventeinstagram-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "s2-3b": {
+          "title": "Communauté Instagram (suite)",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-communauteetventeinstagram-2-v1",
+            "filename": "m-communauteetventeinstagram-2-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "s2-4": {
+          "title": "Maîtriser Instagram (contenu, hashtags, reels)",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-4b": {
+          "title": "Maîtriser Instagram (suite)",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-5": {
+          "title": "Facebook Ads & Instagram Ads — bases",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-5b": {
+          "title": "Facebook & Instagram Ads (suite)",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-6": {
+          "title": "Vendre grâce à Facebook & Instagram Ads — avancé",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-6b": {
+          "title": "Vendre via FB/Insta Ads (suite 2)",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-6c": {
+          "title": "Vendre via FB/Insta Ads (suite 3)",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-7": {
+          "title": "Développer son réseau d'influence",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-7b": {
+          "title": "Développer son réseau (suite)",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "s2-7c": {
+          "title": "Développer son réseau (3e partie)",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
           "poster": null,
           "subtitles": []
         }
       }
     },
-
     "no-code": {
       "title": "No-Code pour prototyper son idée",
       "landing_page": null,
       "lessons": {
         "n1-1": {
           "title": "Qu'est-ce que le No-Code ?",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 900,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-automatisercestquoi-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-automatisercestquoi-1-v1",
+            "filename": "m-automatisercestquoi-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         },
         "n1-2": {
           "title": "Bubble : votre première application",
-          "status": "pending",
-          "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "status": "live",
+          "provider": "mp4",
           "duration_seconds": 2100,
           "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-lexiqueetmotsclesdelautomatisation-1-v1",
+            "filename": "m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n2-1": {
+          "title": "Maîtriser Zapier",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-Maitriser-Zapier-1-v1",
+            "filename": "m-Maitriser-Zapier-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n2-2": {
+          "title": "Connecter une IA à Make",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-connecteriaamake-1-v1",
+            "filename": "m-connecteriaamake-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n2-3": {
+          "title": "Créer des workflows automatisés",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-creer-des-workflows-automatises-1-v1",
+            "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n2-4": {
+          "title": "Applications connectées sur Make",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-applicationsconnecteessurmake-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-applicationsconnecteessurmake-1-v1",
+            "filename": "m-applicationsconnecteessurmake-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n2-5": {
+          "title": "Connecter une base de données à Make",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecterbasededonneesamake-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-connecterbasededonneesamake-1-v1",
+            "filename": "m-connecterbasededonneesamake-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n2-6": {
+          "title": "Panorama des outils d'automatisation",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-panoramadesoutilsdautomatisation-1-v1",
+            "filename": "m-panoramadesoutilsdautomatisation-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n2-7": {
+          "title": "n8n : alternative open-source à Zapier/Make",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-n8n-1-v1",
+            "filename": "m-n8n-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n3-1": {
+          "title": "Identifier les contenus à automatiser",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-identifier-les-contenus-a-automatiser-1-v1",
+            "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n3-2": {
+          "title": "Identifier les tâches automatisables",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-identifier-les-taches-automatisables-1-v1",
+            "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
+        },
+        "n4-1": {
+          "title": "Ajouter des outils aux IA grâce aux MCP",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
           "subtitles": []
+        },
+        "n4-2": {
+          "title": "Bonus : prompts offerts",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "n5-1": {
+          "title": "IA Act & RGPD : conformité",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "n5-2": {
+          "title": "IA responsable & développement durable",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "n5-3": {
+          "title": "Assurer une veille active sur l'IA",
+          "status": "pending",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": []
+        },
+        "n6-1": {
+          "title": "Obtention de votre certificat No-Code",
+          "status": "live",
+          "provider": "mp4",
+          "duration_seconds": null,
+          "poster": null,
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-certification-auto-no-code-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-certification-auto-no-code-1-v1",
+            "filename": "m-certification-auto-no-code-1-v1_720p_afrique.mp4",
+            "confidence": "anchor"
+          }
         }
       }
     },
-
     "email-marketing": {
       "title": "Email marketing qui convertit",
       "landing_page": null,
@@ -288,7 +1293,10 @@
           "title": "Pourquoi l'email marketing reste roi",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 900,
           "poster": null,
           "subtitles": []
@@ -297,7 +1305,10 @@
           "title": "Construire votre liste email",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1500,
           "poster": null,
           "subtitles": []
@@ -306,14 +1317,16 @@
           "title": "Écrire des emails qui convertissent",
           "status": "pending",
           "provider": "vimeo",
-          "vimeo": { "id": "", "hash": "" },
+          "vimeo": {
+            "id": "",
+            "hash": ""
+          },
           "duration_seconds": 1800,
           "poster": null,
           "subtitles": []
         }
       }
     },
-
     "entrepreneuriat-digital": {
       "title": "Entrepreneuriat digital en Afrique",
       "landing_page": "pages/formation-entrepreneuriat-digital.html",
@@ -321,6 +1334,5 @@
         "_note": "Leçons à créer dans pages/apprendre.html avec le préfixe 'd1-*' ou 'ed1-*'. Ajouter ici dès que les IDs existent."
       }
     }
-
   }
 }
