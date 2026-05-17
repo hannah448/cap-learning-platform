@@ -80,7 +80,9 @@
         if (_mapping && !overrideUrl) return Promise.resolve(_mapping);
         if (_mappingPromise && !overrideUrl) return _mappingPromise;
         var url = overrideUrl || MAPPING_URL;
-        var p = fetch(url)
+        // cache: 'no-cache' → force revalidation côté browser (envoie If-Modified-Since)
+        // → évite de servir un mapping stale quand le JSON est mis à jour côté serveur
+        var p = fetch(url, { cache: 'no-cache' })
             .then(function (r) {
                 if (!r.ok) throw new Error('video-mapping.json HTTP ' + r.status);
                 return r.json();
@@ -139,7 +141,7 @@
     function loadManifest() {
         if (_manifest) return Promise.resolve(_manifest);
         if (_manifestPromise) return _manifestPromise;
-        _manifestPromise = fetch(MANIFEST_URL)
+        _manifestPromise = fetch(MANIFEST_URL, { cache: 'no-cache' })
             .then(function (r) { return r.ok ? r.json() : null; })
             .then(function (j) { _manifest = j; return j; })
             .catch(function () { _manifest = null; return null; });
