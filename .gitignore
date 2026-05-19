@@ -28,8 +28,11 @@ scripts/.aws-credentials
 scripts/*.pem
 
 # --- Cap Learning / Supabase ---
-# Config frontend (anon key publique mais on garde par hygiène multi-env)
-js/config.js
+# js/config.js est versionné — la anon key est publique par design
+# (la sécurité vient des policies RLS au niveau Postgres).
+# Si tu utilises plusieurs environnements (staging/prod), gère plutôt via
+# branches Git différentes ou variables Vercel build-time.
+
 # Backups HTML créés par inject-design-system.sh
 *.html.bak
 
