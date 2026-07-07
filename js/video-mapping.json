@@ -18,7 +18,7 @@
       "5. Le player (js/video-player.js) détecte automatiquement le provider et charge hls.js"
     ],
     "schema_version": 1,
-    "last_updated": "2026-05-17T08:41:53+00:00"
+    "last_updated": "2026-07-07T00:00:00+00:00"
   },
   "_defaults": {
     "provider": "vimeo",
@@ -70,26 +70,48 @@
         "l1-2": {
           "title": "Définir votre stratégie digitale",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 1695,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-elaborerplanactionwebmarketing-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-elaborerplanactionwebmarketing-1-v1",
+            "filename": "m-elaborerplanactionwebmarketing-1-v1_720p_afrique.mp4",
+            "confidence": "proposed",
+            "vimeo_url": "https://vimeo.com/1063490922",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "l1-3": {
           "title": "Comprendre votre audience cible",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 2100,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-caracteristiquesciblewebmarketing-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-caracteristiquesciblewebmarketing-1-v1",
+            "filename": "m-caracteristiquesciblewebmarketing-1-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1061206496",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "l2-1": {
           "title": "Optimiser votre page Facebook Business",
@@ -126,14 +148,25 @@
         "l2-3": {
           "title": "Facebook Ads : votre première campagne",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 2100,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-facebookadsinstagramads-creersoncomptepro-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-facebookadsinstagramads-creersoncomptepro-1-v2",
+            "filename": "m-facebookadsinstagramads-creersoncomptepro-1-v2_720p_afrique.mp4",
+            "confidence": "proposed",
+            "vimeo_url": "https://vimeo.com/927976679",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "l3-1": {
           "title": "Les bases du référencement naturel",
@@ -154,14 +187,25 @@
         "l3-2": {
           "title": "Recherche de mots-clés pour votre marché",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 1500,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "optimisation-referencement-naturel-1-v1",
+            "filename": "optimisation-referencement-naturel-1-v1_720p_afrique.mp4",
+            "confidence": "proposed",
+            "vimeo_url": "https://vimeo.com/928796096",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "l3-3": {
           "title": "Google Ads : campagnes Shopping pour e-commerce",
@@ -805,26 +849,48 @@
         "i1-1": {
           "title": "L'IA pour les entrepreneurs : vue d'ensemble",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 900,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-questcequeia-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-questcequeia-1-v1",
+            "filename": "m-questcequeia-1-v1_720p_afrique.mp4",
+            "confidence": "proposed",
+            "vimeo_url": "https://vimeo.com/988383053",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "i1-2": {
           "title": "ChatGPT & Claude : prise en main",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 1500,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-utilisation-chat-gpt-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-utilisation-chat-gpt-1-v2",
+            "filename": "m-utilisation-chat-gpt-1-v2_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1175511316",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "n1-1b": {
           "title": "Cours : les bases de l’automatisation",
@@ -848,26 +914,48 @@
         "s1-1": {
           "title": "Définir votre stratégie réseaux sociaux",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 1200,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-strategiecontenu-1-v3_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-strategiecontenu-1-v3",
+            "filename": "m-strategiecontenu-1-v3_720p_afrique.mp4",
+            "confidence": "proposed",
+            "vimeo_url": "https://vimeo.com/1019485579",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s1-2": {
           "title": "Créer du contenu viral",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 1500,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-strategiecontenuefficace-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-strategiecontenuefficace-1-v1",
+            "filename": "m-strategiecontenuefficace-1-v1_720p_afrique.mp4",
+            "confidence": "proposed",
+            "vimeo_url": "https://vimeo.com/928765208",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-1": {
           "title": "Marketing d'influence : trouver et activer des partenariats",
@@ -971,7 +1059,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-instagram-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-instagram-1-v2",
+            "filename": "m-instagram-1-v2_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1034144539",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-4b": {
           "title": "Maîtriser Instagram (suite)",
@@ -979,7 +1078,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-instagram-2-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-instagram-2-v2",
+            "filename": "m-instagram-2-v2_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1034140700",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-5": {
           "title": "Facebook Ads & Instagram Ads — bases",
@@ -987,7 +1097,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-facebookadsinstagramads-1-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-facebookadsinstagramads-1-v2",
+            "filename": "m-facebookadsinstagramads-1-v2_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/927168625",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-5b": {
           "title": "Facebook & Instagram Ads (suite)",
@@ -995,7 +1116,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-facebookadsinstagramads-2-v2_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-facebookadsinstagramads-2-v2",
+            "filename": "m-facebookadsinstagramads-2-v2_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/927983329",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-6": {
           "title": "Vendre grâce à Facebook & Instagram Ads — avancé",
@@ -1003,7 +1135,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-vendregraceafacebookinstagramads-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-vendregraceafacebookinstagramads-1-v1",
+            "filename": "m-vendregraceafacebookinstagramads-1-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/928789992",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-6b": {
           "title": "Vendre via FB/Insta Ads (suite 2)",
@@ -1011,7 +1154,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-vendregraceafacebookinstagramads-2-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-vendregraceafacebookinstagramads-2-v1",
+            "filename": "m-vendregraceafacebookinstagramads-2-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/928789368",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-6c": {
           "title": "Vendre via FB/Insta Ads (suite 3)",
@@ -1019,7 +1173,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-vendregraceafacebookinstagramads-3-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-vendregraceafacebookinstagramads-3-v1",
+            "filename": "m-vendregraceafacebookinstagramads-3-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/928789793",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-7": {
           "title": "Développer son réseau d'influence",
@@ -1027,7 +1192,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-batircommunaute-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-batircommunaute-1-v1",
+            "filename": "m-batircommunaute-1-v1_720p_afrique.mp4",
+            "confidence": "proposed",
+            "vimeo_url": "https://vimeo.com/927153288",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-7b": {
           "title": "Développer son réseau (suite)",
@@ -1035,7 +1211,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-guidepourcommunitymanager-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-guidepourcommunitymanager-1-v1",
+            "filename": "m-guidepourcommunitymanager-1-v1_720p_afrique.mp4",
+            "confidence": "to-review",
+            "vimeo_url": "https://vimeo.com/1020181348",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "s2-7c": {
           "title": "Développer son réseau (3e partie)",
@@ -1233,7 +1420,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-ajouter-des-outils-aux-IA-grace-aux-MCP-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-ajouter-des-outils-aux-IA-grace-aux-MCP-1-v1",
+            "filename": "m-ajouter-des-outils-aux-IA-grace-aux-MCP-1-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1168494528",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "n4-2": {
           "title": "Bonus : prompts offerts",
@@ -1241,7 +1439,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-bonuspromptsofferts-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-bonuspromptsofferts-1-v1",
+            "filename": "m-bonuspromptsofferts-1-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/988825037",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "n5-1": {
           "title": "IA Act & RGPD : conformité",
@@ -1249,7 +1458,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-IA-Act-et-la-RGPD-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-IA-Act-et-la-RGPD-1-v1",
+            "filename": "m-IA-Act-et-la-RGPD-1-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1168501806",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "n5-2": {
           "title": "IA responsable & développement durable",
@@ -1257,7 +1477,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-IA-responsable-et-le-developpement-durable-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-IA-responsable-et-le-developpement-durable-1-v1",
+            "filename": "m-IA-responsable-et-le-developpement-durable-1-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1168023093",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "n5-3": {
           "title": "Assurer une veille active sur l'IA",
@@ -1265,7 +1496,18 @@
           "provider": "mp4",
           "duration_seconds": null,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-assurer-une-veille-active-sur-les-evolutions-de-l-IA-1-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-assurer-une-veille-active-sur-les-evolutions-de-l-IA-1-v1",
+            "filename": "m-assurer-une-veille-active-sur-les-evolutions-de-l-IA-1-v1_720p_afrique.mp4",
+            "confidence": "anchor",
+            "vimeo_url": "https://vimeo.com/1181868951",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "n6-1": {
           "title": "Obtention de votre certificat No-Code",
@@ -1292,14 +1534,25 @@
         "em1-1": {
           "title": "Pourquoi l'email marketing reste roi",
           "status": "pending",
-          "provider": "vimeo",
+          "provider": "mp4",
           "vimeo": {
             "id": "",
             "hash": ""
           },
           "duration_seconds": 900,
           "poster": null,
-          "subtitles": []
+          "subtitles": [],
+          "mp4": {
+            "url": "https://cdn.cap-learning.com/cap-learning/videos/m-emailing-2-v1_720p_afrique.mp4"
+          },
+          "_source": {
+            "manifest_slug": "m-emailing-2-v1",
+            "filename": "m-emailing-2-v1_720p_afrique.mp4",
+            "confidence": "to-review",
+            "vimeo_url": "https://vimeo.com/927170662",
+            "batch": "batch2-2026-07-07",
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+          }
         },
         "em1-2": {
           "title": "Construire votre liste email",

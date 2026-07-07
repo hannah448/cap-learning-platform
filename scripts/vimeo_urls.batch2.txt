@@ -1,0 +1,77 @@
+# vimeo_urls.batch2.txt — Batch 2 : 22 vidéos pour les leçons pending
+# Généré le 2026-07-07 depuis le croisement video-mapping.json (31 pending)
+# × vimeo_urls.full.txt (catalogue Digi-Atlas, dossier moocs).
+#
+# Usage :
+#   cd scripts/
+#   URLS_FILE=vimeo_urls.batch2.txt ./download_vimeo.sh
+#   ./process_videos_afrique.sh   # encodage 720p
+#   ./upload_s3_afrique.sh        # upload S3 + CloudFront
+#   → puis passer status "pending" → "live" dans js/video-mapping.json
+#
+# Format : une URL par ligne, commentaire au-dessus = slug Vimeo → lesson_id.
+
+# ── Réseaux Sociaux (11) ──
+
+# m-strategiecontenu-1-v3 → s1-1
+https://vimeo.com/1019485579
+# m-strategiecontenuefficace-1-v1 → s1-2
+https://vimeo.com/928765208
+# m-instagram-1-v2 → s2-4
+https://vimeo.com/1034144539
+# m-instagram-2-v2 → s2-4b
+https://vimeo.com/1034140700
+# m-facebookadsinstagramads-1-v2 → s2-5
+https://vimeo.com/927168625
+# m-facebookadsinstagramads-2-v2 → s2-5b
+https://vimeo.com/927983329
+# m-vendregraceafacebookinstagramads-1-v1 → s2-6
+https://vimeo.com/928789992
+# m-vendregraceafacebookinstagramads-2-v1 → s2-6b
+https://vimeo.com/928789368
+# m-vendregraceafacebookinstagramads-3-v1 → s2-6c
+https://vimeo.com/928789793
+# m-batircommunaute-1-v1 → s2-7
+https://vimeo.com/927153288
+# m-guidepourcommunitymanager-1-v1 → s2-7b (à arbitrer — alt: 1185084876 classe bonus UGC)
+https://vimeo.com/1020181348
+
+# ── Marketing Digital (4) ──
+
+# m-elaborerplanactionwebmarketing-1-v1 → l1-2
+https://vimeo.com/1063490922
+# m-caracteristiquesciblewebmarketing-1-v1 → l1-3
+https://vimeo.com/1061206496
+# m-facebookadsinstagramads-creersoncomptepro-1-v2 → l2-3
+https://vimeo.com/927976679
+# optimisation-referencement-naturel-1-v1 → l3-2
+https://vimeo.com/928796096
+
+# ── No-Code (5) — matches exacts ──
+
+# m-ajouter-des-outils-aux-IA-grace-aux-MCP-1-v1 → n4-1
+https://vimeo.com/1168494528
+# m-bonuspromptsofferts-1-v1 → n4-2
+https://vimeo.com/988825037
+# m-IA-Act-et-la-RGPD-1-v1 → n5-1 (doublon Vimeo dispo : 1168501705)
+https://vimeo.com/1168501806
+# m-IA-responsable-et-le -developpement-durable-1-v1 → n5-2 (espace parasite dans le titre Vimeo)
+https://vimeo.com/1168023093
+# m-assurer-une-veille-active-sur-les-evolutions-de-l-IA-1-v1 → n5-3
+https://vimeo.com/1181868951
+
+# ── Email Marketing (1) ──
+
+# m-emailing-2-v1 → em1-1
+https://vimeo.com/927170662
+
+# ── IA & Business (2) ──
+
+# m-questcequeia-1-v1 → i1-1
+https://vimeo.com/988383053
+# m-utilisation-chat-gpt-1-v2 → i1-2
+https://vimeo.com/1175511316
+
+# ── Restent hors batch (9) ──
+# À arbitrer : e6-3 (optimisation-referencement-naturel-e-commerce-wix-1-v1 / 928796531, orientée Wix)
+# À tourner  : l1-1, e3-1, e3-2, e4-1, em1-2, em1-3, s2-7c (contenus Afrique / inexistants)
