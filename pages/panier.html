@@ -778,6 +778,12 @@
     </div>
 
     <script src="../js/app.js"></script>
+    <!-- Supabase (auth) + checkout réel CinetPay -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script src="../js/auth.js?v=2"></script>
+    <script src="../js/checkout.js?v=1"></script>
     <script>
     // ── PAYMENT METHOD SELECTION ──
     var selectedMethod = 'wave';
@@ -830,14 +836,7 @@
                 return;
             }
 
-            var user = JSON.parse(localStorage.getItem('caplearning_user') || 'null');
-            if (!user || !user.loggedIn) {
-                showToast('Connectez-vous pour finaliser votre achat');
-                setTimeout(function() { window.location.href = 'connexion.html'; }, 1500);
-                return;
-            }
-
-            openCheckoutModal();
+            requireLogin(function () { openCheckoutModal(); });
         });
     }
 
@@ -887,22 +886,28 @@
         document.getElementById('checkout-overlay').classList.remove('open');
     }
 
-    function processPayment() {
-        var method = PAY_METHODS[selectedMethod];
-
-        // Validate phone for mobile money
-        if (method.type === 'mobile') {
-            var phone = document.getElementById('checkout-phone').value.trim();
-            if (phone.length < 8) {
-                showToast('Veuillez entrer un numéro de téléphone valide');
-                return;
-            }
+    // Vérifie que l'utilisateur est connecté (Supabase / CapAuth), sinon redirige.
+    function requireLogin(onOk) {
+        var deny = function () {
+            showToast('Connectez-vous pour finaliser votre achat');
+            setTimeout(function () { window.location.href = 'connexion.html'; }, 1500);
+        };
+        if (typeof CapAuth !== 'undefined' && CapAuth.getProfile) {
+            CapAuth.getProfile().then(function (profile) {
+                if (profile && profile.email) onOk(profile);
+                else deny();
+            }).catch(deny);
+        } else {
+            // Fallback legacy si la stack Supabase n'est pas chargée
+            var user = JSON.parse(localStorage.getItem('caplearning_user') || 'null');
+            if (user && user.loggedIn) onOk(null);
+            else deny();
         }
+    }
 
-        // Step 2: Processing
+    function showProcessingStep() {
         document.getElementById('checkout-step-confirm').style.display = 'none';
         document.getElementById('checkout-step-processing').classList.add('show');
-
         var processingTexts = {
             wave: ['Connexion à Wave...', 'Envoi de la demande de paiement...', 'Confirmation en cours...'],
             orange: ['Connexion à Orange Money...', 'Veuillez valider sur votre téléphone...', 'Vérification du paiement...'],
@@ -910,16 +915,22 @@
             card: ['Vérification de la carte...', 'Autorisation bancaire en cours...', 'Finalisation du paiement...'],
             virement: ['Enregistrement de la commande...', 'Génération de la référence...', 'Commande confirmée...']
         };
-
         var texts = processingTexts[selectedMethod] || processingTexts.wave;
         var subEl = document.getElementById('processing-sub');
         subEl.textContent = texts[0];
+        setTimeout(function () { subEl.textContent = texts[1]; }, 1200);
+        setTimeout(function () { subEl.textContent = texts[2]; }, 2400);
+    }
 
-        setTimeout(function() { subEl.textContent = texts[1]; }, 1200);
-        setTimeout(function() { subEl.textContent = texts[2]; }, 2400);
+    function backToConfirmStep() {
+        document.getElementById('checkout-step-processing').classList.remove('show');
+        document.getElementById('checkout-step-confirm').style.display = 'block';
+    }
 
-        // Step 3: Success (after simulated delay)
-        setTimeout(function() {
+    // Affiche l'écran de succès + débloque les formations en local.
+    // Utilisé pour le virement (flux manuel) et le mode MOCK (démo sans paiement réel).
+    function showSuccessStep(method) {
+        setTimeout(function () {
             document.getElementById('checkout-step-processing').classList.remove('show');
             document.getElementById('checkout-step-success').classList.add('show');
 
@@ -936,14 +947,81 @@
 
             // Transfer cart to purchased
             var purchased = JSON.parse(localStorage.getItem('caplearning_purchased') || '[]');
-            Cart.items.forEach(function(item) {
-                if (!purchased.find(function(p) { return p.id === item.id; })) {
+            Cart.items.forEach(function (item) {
+                if (!purchased.find(function (p) { return p.id === item.id; })) {
                     purchased.push(item);
                 }
             });
             localStorage.setItem('caplearning_purchased', JSON.stringify(purchased));
             Cart.clear();
         }, 3500);
+    }
+
+    function processPayment() {
+        var method = PAY_METHODS[selectedMethod];
+
+        // Validate phone for mobile money
+        if (method.type === 'mobile') {
+            var phoneCheck = document.getElementById('checkout-phone').value.trim();
+            if (phoneCheck.length < 8) {
+                showToast('Veuillez entrer un numéro de téléphone valide');
+                return;
+            }
+        }
+
+        showProcessingStep();
+
+        // Virement bancaire (B2B) : commande enregistrée manuellement, pas de passerelle en ligne.
+        if (method.type === 'virement') {
+            showSuccessStep(method);
+            return;
+        }
+
+        // Paiement en ligne réel via CinetPay (checkout.js). En mode MOCK, start()
+        // résout { mock:true } sans encaisser → on rejoue le succès démo.
+        if (typeof Checkout === 'undefined') {
+            backToConfirmStep();
+            showToast('Service de paiement indisponible, réessayez.');
+            return;
+        }
+
+        requireLogin(function (profile) {
+            var subtotal = Cart.items.reduce(function (s, i) { return s + (i.price || 0); }, 0);
+            // Montant TTC en XOF, arrondi au multiple de 5 (contrainte CinetPay).
+            var total = Math.round((subtotal - Math.round(subtotal * promoDiscount / 100)) / 5) * 5;
+
+            var fullName = (profile && profile.full_name ? profile.full_name : '').trim();
+            var parts = fullName ? fullName.split(/\s+/) : [];
+            var phoneInput = (document.getElementById('checkout-phone').value || '').trim();
+            var phone = phoneInput || (profile && profile.phone) || '+221770000000';
+            if (phone.charAt(0) !== '+') phone = '+221' + phone.replace(/\D/g, '');
+
+            Checkout.start({
+                course_id: Cart.items[0].id,
+                course_label: Cart.items.length === 1
+                    ? Cart.items[0].title
+                    : Cart.items.length + ' formations Cap Learning',
+                amount: total,
+                currency: 'XOF',
+                user_id: profile ? profile.id : undefined,
+                customer: {
+                    email: profile ? profile.email : '',
+                    name: parts[0] || 'Apprenant',
+                    surname: parts.slice(1).join(' ') || 'Cap Learning',
+                    phone_number: phone,
+                    country: (profile && profile.country) || 'SN'
+                }
+            }).then(function (result) {
+                // Mode réel : le navigateur a déjà été redirigé vers CinetPay, ce
+                // callback ne s'exécute qu'en mode MOCK → on joue le succès démo.
+                if (result && result.mock) {
+                    showSuccessStep(method);
+                }
+            }).catch(function (err) {
+                backToConfirmStep();
+                showToast((err && err.message) || 'Paiement impossible, réessayez.');
+            });
+        });
     }
 
     // Close modal on overlay click
