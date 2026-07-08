@@ -5,10 +5,11 @@
     "bucket": "s3://caplearning-videos/cap-learning/videos/",
     "cdn": "cdn.cap-learning.com",
     "total_videos": 59,
-    "last_enriched_at": "2026-05-14T05:03:34+00:00",
+    "last_enriched_at": "2026-07-08T08:22:22+00:00",
     "mapping_source": "Matrice des formations Digi Atlas (Google Sheet)",
     "enriched_count": 58,
-    "unmatched_count": 1
+    "unmatched_count": 1,
+    "parts_note": "Vidéos > 13 min découpées en parties ~12 min (champ 'parts'). Les URLs principales pointent vers la partie 1."
   },
   "videos": [
     {
@@ -47,134 +48,398 @@
     {
       "filename": "configuration-paiements-expeditions-1-v1_720p_afrique.mp4",
       "slug": "configuration-paiements-expeditions-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-configuration-paiements-expeditions",
       "title": "Cours - Configuration des paiements et des expéditions",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "configuration-paiements-expeditions-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 657
+        },
+        {
+          "filename": "configuration-paiements-expeditions-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 654
+        },
+        {
+          "filename": "configuration-paiements-expeditions-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/configuration-paiements-expeditions-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 649
+        }
+      ],
+      "duration_seconds": 1961
     },
     {
       "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique.mp4",
       "slug": "creation-pages-principales-e-commerce-1-v2",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p1.mp4",
       "lesson_id": "cours-creation-pages-principales-e-commerce",
       "title": "Cours - Création des pages principales de son e-commerce - Partie 1",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p1.mp4",
+          "duration_seconds": 755
+        },
+        {
+          "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p2.mp4",
+          "duration_seconds": 759
+        },
+        {
+          "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p3.mp4",
+          "duration_seconds": 755
+        },
+        {
+          "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-1-v2_720p_afrique_p4.mp4",
+          "duration_seconds": 747
+        }
+      ],
+      "duration_seconds": 3016
     },
     {
       "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique.mp4",
       "slug": "creation-pages-principales-e-commerce-2-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-creation-pages-principales-e-commerce-2",
       "title": "Cours - Création des pages principales de son e-commerce - Partie 2",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 745
+        },
+        {
+          "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 741
+        },
+        {
+          "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/creation-pages-principales-e-commerce-2-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 733
+        }
+      ],
+      "duration_seconds": 2219
     },
     {
       "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique.mp4",
       "slug": "decouverte-et-configuration-shopify-1-v2",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p1.mp4",
       "lesson_id": "cours-configurer-nom-domaine-hebergement-avec-shopify",
       "title": "Cours - Configurer son nom de domaine et hébergement avec Shopify",
       "course": "ecommerce",
-      "confidence": "low"
+      "confidence": "low",
+      "parts": [
+        {
+          "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p1.mp4",
+          "duration_seconds": 637
+        },
+        {
+          "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p2.mp4",
+          "duration_seconds": 632
+        },
+        {
+          "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p3.mp4",
+          "duration_seconds": 635
+        },
+        {
+          "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/decouverte-et-configuration-shopify-1-v2_720p_afrique_p4.mp4",
+          "duration_seconds": 631
+        }
+      ],
+      "duration_seconds": 2535
     },
     {
       "filename": "extensions-applications-shopify-1-v1_720p_afrique.mp4",
       "slug": "extensions-applications-shopify-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-extensions-applications-shopify",
       "title": "Cours - Extensions et applications Shopify",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "extensions-applications-shopify-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 773
+        },
+        {
+          "filename": "extensions-applications-shopify-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 772
+        },
+        {
+          "filename": "extensions-applications-shopify-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/extensions-applications-shopify-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 764
+        }
+      ],
+      "duration_seconds": 2309
     },
     {
       "filename": "gestion-commandes-relation-client-1-v1_720p_afrique.mp4",
       "slug": "gestion-commandes-relation-client-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-gestion-commandes-relation-client",
       "title": "Cours - Gestion des commandes et de la relation client·e",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "gestion-commandes-relation-client-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 685
+        },
+        {
+          "filename": "gestion-commandes-relation-client-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 686
+        },
+        {
+          "filename": "gestion-commandes-relation-client-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-commandes-relation-client-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 681
+        }
+      ],
+      "duration_seconds": 2053
     },
     {
       "filename": "gestion-index-google-e-commerce-1-v1_720p_afrique.mp4",
       "slug": "gestion-index-google-e-commerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-gestion-index-google-ecommerce",
       "title": "Cours - Gestion de l’index Google - ecommerce",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "gestion-index-google-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 741
+        }
+      ],
+      "duration_seconds": 741
     },
     {
       "filename": "gestion-index-google-shopify-1-v1_720p_afrique.mp4",
       "slug": "gestion-index-google-shopify-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-gestion-index-google-shopify",
       "title": "Cours - Gestion de l’index google avec Shopify",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 696
+        },
+        {
+          "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 693
+        },
+        {
+          "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 701
+        },
+        {
+          "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/gestion-index-google-shopify-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 687
+        }
+      ],
+      "duration_seconds": 2777
     },
     {
       "filename": "integration-blog-shopify-1-v1_720p_afrique.mp4",
       "slug": "integration-blog-shopify-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-integration-blog-shopify",
       "title": "Cours - Intégration d’un blog à Shopify ",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "integration-blog-shopify-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 621
+        },
+        {
+          "filename": "integration-blog-shopify-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 607
+        },
+        {
+          "filename": "integration-blog-shopify-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 615
+        },
+        {
+          "filename": "integration-blog-shopify-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/integration-blog-shopify-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 613
+        }
+      ],
+      "duration_seconds": 2455
     },
     {
       "filename": "introduction-shopify-e-commerce-1-v1_720p_afrique.mp4",
       "slug": "introduction-shopify-e-commerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-introduction-shopify-e-commerce",
       "title": "Cours - Introduction à Shopify et au e-commerce",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "introduction-shopify-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 706
+        },
+        {
+          "filename": "introduction-shopify-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/introduction-shopify-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 699
+        }
+      ],
+      "duration_seconds": 1405
     },
     {
       "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique.mp4",
       "slug": "lancement-promotion-boutique-en-ligne-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-lancement-promotion-boutique-en-ligne",
       "title": "Cours - Lancement et promotion d’une boutique en ligne",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 770
+        },
+        {
+          "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 771
+        },
+        {
+          "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 766
+        },
+        {
+          "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 766
+        }
+      ],
+      "duration_seconds": 3073
     },
     {
       "filename": "m-Maitriser-Zapier-1-v1_720p_afrique.mp4",
       "slug": "m-Maitriser-Zapier-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "Cours - Maîtriser Zapier",
       "title": "cours-maitriser-zapier",
       "course": "no-code",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-Maitriser-Zapier-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 773
+        },
+        {
+          "filename": "m-Maitriser-Zapier-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 758
+        },
+        {
+          "filename": "m-Maitriser-Zapier-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-Maitriser-Zapier-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 761
+        }
+      ],
+      "duration_seconds": 2291
     },
     {
       "filename": "m-applicationsconnecteessurmake-1-v1_720p_afrique.mp4",
@@ -223,24 +488,78 @@
     {
       "filename": "m-communauteetventeinstagram-1-v1_720p_afrique.mp4",
       "slug": "m-communauteetventeinstagram-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-communaute-et-vente-instagram",
       "title": "Cours - Bâtir une communauté et vendre sur Instagram - partie 1",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 714
+        },
+        {
+          "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 710
+        },
+        {
+          "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 713
+        },
+        {
+          "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 709
+        }
+      ],
+      "duration_seconds": 2847
     },
     {
       "filename": "m-communauteetventeinstagram-2-v1_720p_afrique.mp4",
       "slug": "m-communauteetventeinstagram-2-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-communaute-et-vente-instagram-2",
       "title": "Cours - Bâtir une communauté et vendre sur Instagram - partie 2",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 607
+        },
+        {
+          "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 602
+        },
+        {
+          "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 604
+        },
+        {
+          "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-communauteetventeinstagram-2-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 604
+        }
+      ],
+      "duration_seconds": 2417
     },
     {
       "filename": "m-configurernomdomainehebergementshopify-1-v2_720p_afrique.mp4",
@@ -267,57 +586,186 @@
     {
       "filename": "m-connecteriaamake-1-v1_720p_afrique.mp4",
       "slug": "m-connecteriaamake-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-connecter-une-ia-a-make",
       "title": "Cours - Connecter une IA à Make",
       "course": "no-code",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-connecteriaamake-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 421
+        },
+        {
+          "filename": "m-connecteriaamake-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-connecteriaamake-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 414
+        }
+      ],
+      "duration_seconds": 834
     },
     {
       "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique.mp4",
       "slug": "m-creer-des-workflows-automatises-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-creer-des-workflows-automatises",
       "title": "Cours - Créer des workflows automatisés",
       "course": "ia-business",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 708
+        },
+        {
+          "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 715
+        },
+        {
+          "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 702
+        },
+        {
+          "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 707
+        },
+        {
+          "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 709
+        },
+        {
+          "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p6.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p6.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creer-des-workflows-automatises-1-v1_720p_afrique_p6.mp4",
+          "duration_seconds": 700
+        }
+      ],
+      "duration_seconds": 4241
     },
     {
       "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique.mp4",
       "slug": "m-creerplanningeditorialautomatise-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-creer-un-planning-editorial-automatise",
       "title": "Cours - Créer un planning éditorial automatisé",
       "course": "no-code",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 684
+        },
+        {
+          "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 680
+        },
+        {
+          "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 676
+        },
+        {
+          "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 679
+        },
+        {
+          "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 686
+        },
+        {
+          "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p6.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p6.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-creerplanningeditorialautomatise-1-v1_720p_afrique_p6.mp4",
+          "duration_seconds": 670
+        }
+      ],
+      "duration_seconds": 4076
     },
     {
       "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique.mp4",
       "slug": "m-decouvrircomptabiliteecommerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-decouvrir-la-comptabilite-d-un-ecommerce",
       "title": "Cours - Découvrir la comptabilité d’un e-commerce",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 606
+        },
+        {
+          "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 606
+        },
+        {
+          "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 605
+        }
+      ],
+      "duration_seconds": 1817
     },
     {
       "filename": "m-definirarborescencesiteecommerce-1-v1_720p_afrique.mp4",
       "slug": "m-definirarborescencesiteecommerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-definir-arborescence-site-ecommerce-structurer-efficacement-pages-menus-et-parcours",
       "title": "Cours - Définir l’arborescence de son site e-commerce : structurer efficacement les pages, menus et parcours utilisateur - partie 1",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-definirarborescencesiteecommerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 596
+        },
+        {
+          "filename": "m-definirarborescencesiteecommerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-definirarborescencesiteecommerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 579
+        }
+      ],
+      "duration_seconds": 1175
     },
     {
       "filename": "m-definirarborescencesiteecommerce-2-v1_720p_afrique.mp4",
@@ -344,79 +792,262 @@
     {
       "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique.mp4",
       "slug": "m-espionnerconcurenceventeenligne-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-etudier-concurence-vente-en-ligne",
       "title": "Cours - Etudier la concurrence de la vente en ligne",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 730
+        },
+        {
+          "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 723
+        },
+        {
+          "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 719
+        },
+        {
+          "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 719
+        }
+      ],
+      "duration_seconds": 2891
     },
     {
       "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique.mp4",
       "slug": "m-etablirstrategiecontenuecommerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-etablir-strategie-contenu-e-commerce",
       "title": "Cours - Etablir une stratégie de contenu adaptée au e-commerce",
       "course": "ecommerce",
-      "confidence": "medium"
+      "confidence": "medium",
+      "parts": [
+        {
+          "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 667
+        },
+        {
+          "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 664
+        },
+        {
+          "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 661
+        },
+        {
+          "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 656
+        },
+        {
+          "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 662
+        },
+        {
+          "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p6.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p6.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p6.mp4",
+          "duration_seconds": 659
+        }
+      ],
+      "duration_seconds": 3969
     },
     {
       "filename": "m-googleadscampagneshopping-1-v1_720p_afrique.mp4",
       "slug": "m-googleadscampagneshopping-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-google-ads-campagne-shopping",
       "title": "Cours - Google ads : campagne shopping",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 704
+        },
+        {
+          "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 692
+        },
+        {
+          "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 699
+        },
+        {
+          "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 698
+        },
+        {
+          "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-googleadscampagneshopping-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 690
+        }
+      ],
+      "duration_seconds": 3484
     },
     {
       "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique.mp4",
       "slug": "m-identifier-les-contenus-a-automatiser-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-identifier-les-contenus-a-automatiser",
       "title": "Cours - Identifier les contenus à automatiser",
       "course": "ia-business",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 673
+        },
+        {
+          "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 676
+        },
+        {
+          "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 660
+        }
+      ],
+      "duration_seconds": 2008
     },
     {
       "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique.mp4",
       "slug": "m-identifier-les-taches-automatisables-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "Cours - Identifier les tâches automatisables dans une activité",
       "title": "cours-identifier-les-taches-automatisables-dans-une-activite",
       "course": "no-code",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 705
+        },
+        {
+          "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 703
+        },
+        {
+          "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-identifier-les-taches-automatisables-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 693
+        }
+      ],
+      "duration_seconds": 2101
     },
     {
       "filename": "m-introductiondropshipping-1-v1_720p_afrique.mp4",
       "slug": "m-introductiondropshipping-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-introduction-dropshipping",
       "title": "Cours – Introduction au dropshipping",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-introductiondropshipping-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 500
+        },
+        {
+          "filename": "m-introductiondropshipping-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductiondropshipping-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 499
+        }
+      ],
+      "duration_seconds": 999
     },
     {
       "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique.mp4",
       "slug": "m-introductionspecificitesecommerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-introduction-specificites-e-commerce",
       "title": "Cours - Introduction aux spécificités du e-commerce",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 616
+        },
+        {
+          "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 618
+        },
+        {
+          "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 614
+        },
+        {
+          "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-introductionspecificitesecommerce-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 614
+        }
+      ],
+      "duration_seconds": 2463
     },
     {
       "filename": "m-lancement-site-vitrine-e-commerce-1-v1_720p_afrique.mp4",
@@ -432,79 +1063,262 @@
     {
       "filename": "m-legislationventeenligne-1-v1_720p_afrique.mp4",
       "slug": "m-legislationventeenligne-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-legislation-vente-en-ligne",
       "title": "Cours - Législation pour la vente en ligne",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-legislationventeenligne-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 749
+        },
+        {
+          "filename": "m-legislationventeenligne-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 742
+        },
+        {
+          "filename": "m-legislationventeenligne-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 741
+        },
+        {
+          "filename": "m-legislationventeenligne-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 747
+        },
+        {
+          "filename": "m-legislationventeenligne-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-legislationventeenligne-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 739
+        }
+      ],
+      "duration_seconds": 3718
     },
     {
       "filename": "m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique.mp4",
       "slug": "m-lexiqueetmotsclesdelautomatisation-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-lexique-et-mots-cles-de-l-automatisation",
       "title": "Cours - Lexique et mots-clés de l’automatisation",
       "course": "no-code",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 675
+        },
+        {
+          "filename": "m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 664
+        }
+      ],
+      "duration_seconds": 1339
     },
     {
       "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique.mp4",
       "slug": "m-marketinginfluenceaugmentersesventes-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-marketing-influence-augmenter-ses-ventes",
       "title": "Cours - Marketing d'influence pour augmenter ses ventes - Partie 1",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 695
+        },
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 694
+        },
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 691
+        },
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 694
+        },
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 691
+        }
+      ],
+      "duration_seconds": 3464
     },
     {
       "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique.mp4",
       "slug": "m-marketinginfluenceaugmentersesventes-2-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-marketing-influence-augmenter-ses-ventes-2",
       "title": "Cours - Marketing d'influence pour augmenter ses ventes - Partie 2",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 601
+        },
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 600
+        },
+        {
+          "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 598
+        }
+      ],
+      "duration_seconds": 1800
     },
     {
       "filename": "m-n8n-1-v1_720p_afrique.mp4",
       "slug": "m-n8n-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-n8n-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "Cours - Maîtriser N8N",
       "title": "cours-maitriser-n8n",
       "course": "no-code",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-n8n-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 667
+        },
+        {
+          "filename": "m-n8n-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 659
+        },
+        {
+          "filename": "m-n8n-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 655
+        },
+        {
+          "filename": "m-n8n-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 668
+        },
+        {
+          "filename": "m-n8n-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-n8n-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 651
+        }
+      ],
+      "duration_seconds": 3299
     },
     {
       "filename": "m-panoramadesoutilsdautomatisation-1-v1_720p_afrique.mp4",
       "slug": "m-panoramadesoutilsdautomatisation-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-panorama-des-outils-d-automatisation",
       "title": "Cours - Panorama des outils d’automatisation",
       "course": "no-code",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 432
+        },
+        {
+          "filename": "m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 428
+        }
+      ],
+      "duration_seconds": 860
     },
     {
       "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique.mp4",
       "slug": "m-preparation-conception-site-e-commerce-1-v3",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p1.mp4",
       "lesson_id": "cours-preparation-conception-site-e-commerce",
       "title": "Cours - Préparation et conception de son site",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p1.mp4",
+          "duration_seconds": 767
+        },
+        {
+          "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p2.mp4",
+          "duration_seconds": 756
+        },
+        {
+          "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p3.mp4",
+          "duration_seconds": 759
+        },
+        {
+          "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p4.mp4",
+          "duration_seconds": 759
+        },
+        {
+          "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p5.mp4",
+          "duration_seconds": 757
+        }
+      ],
+      "duration_seconds": 3798
     },
     {
       "filename": "m-preparationcertificationshopify-1-v1_720p_afrique.mp4",
@@ -531,134 +1345,446 @@
     {
       "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique.mp4",
       "slug": "m-referencementnaturelsiteetpagesproduits-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-referencement-naturel-site-et-pages-produits",
       "title": "Cours - SEO : référencement de votre site et vos pages produits",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 672
+        },
+        {
+          "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 663
+        },
+        {
+          "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 671
+        },
+        {
+          "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 666
+        },
+        {
+          "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 665
+        },
+        {
+          "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p6.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p6.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p6.mp4",
+          "duration_seconds": 662
+        }
+      ],
+      "duration_seconds": 3999
     },
     {
       "filename": "m-tiktocvendreproduits-1-v1_720p_afrique.mp4",
       "slug": "m-tiktocvendreproduits-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-tik-toc-vendre-produits",
       "title": "Cours - Percer sur tik tok pour vendre ses produits - partie 1",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 716
+        },
+        {
+          "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 713
+        },
+        {
+          "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 711
+        },
+        {
+          "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 713
+        }
+      ],
+      "duration_seconds": 2852
     },
     {
       "filename": "m-tiktocvendreproduits-2-v1_720p_afrique.mp4",
       "slug": "m-tiktocvendreproduits-2-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-tik-toc-vendre-produits-2",
       "title": "Cours - Percer sur tik tok pour vendre ses produits - partie 2",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 652
+        },
+        {
+          "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 651
+        },
+        {
+          "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 651
+        },
+        {
+          "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 649
+        },
+        {
+          "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-tiktocvendreproduits-2-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 649
+        }
+      ],
+      "duration_seconds": 3253
     },
     {
       "filename": "m-trouverdesproduits-1-v1_720p_afrique.mp4",
       "slug": "m-trouverdesproduits-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-trouver-produits",
       "title": "Cours - Trouver des produits",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-trouverdesproduits-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 540
+        },
+        {
+          "filename": "m-trouverdesproduits-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 535
+        },
+        {
+          "filename": "m-trouverdesproduits-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverdesproduits-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 532
+        }
+      ],
+      "duration_seconds": 1607
     },
     {
       "filename": "m-trouverfournisseursdropshipping-1-v1_720p_afrique.mp4",
       "slug": "m-trouverfournisseursdropshipping-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-trouver-ses-fournisseurs-dropshipping",
       "title": "Cours – Trouver ses fournisseurs en Dropshipping",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-trouverfournisseursdropshipping-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 586
+        },
+        {
+          "filename": "m-trouverfournisseursdropshipping-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverfournisseursdropshipping-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 581
+        }
+      ],
+      "duration_seconds": 1167
     },
     {
       "filename": "m-trouverproduitsdropshipping-1-v1_720p_afrique.mp4",
       "slug": "m-trouverproduitsdropshipping-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-trouver-des-produits-en-dropshipping",
       "title": "Cours - Trouver des produits en dropshipping",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "m-trouverproduitsdropshipping-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 505
+        },
+        {
+          "filename": "m-trouverproduitsdropshipping-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/m-trouverproduitsdropshipping-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 499
+        }
+      ],
+      "duration_seconds": 1004
     },
     {
       "filename": "maintenance-evolution-boutique-1-v1_720p_afrique.mp4",
       "slug": "maintenance-evolution-boutique-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-maintenance-evolution-boutique",
       "title": "Cours - Maintenance et évolution de la boutique",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 685
+        },
+        {
+          "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 680
+        },
+        {
+          "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 678
+        },
+        {
+          "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 677
+        },
+        {
+          "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/maintenance-evolution-boutique-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 675
+        }
+      ],
+      "duration_seconds": 3396
     },
     {
       "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique.mp4",
       "slug": "optimisation-referencement-naturel-e-commerce-1-v2",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p1.mp4",
       "lesson_id": "cours-optimisation-referencement-naturel-e-commerce",
       "title": "Cours - Optimisation et référencement naturel d’un e-commerce",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p1.mp4",
+          "duration_seconds": 625
+        },
+        {
+          "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p2.mp4",
+          "duration_seconds": 618
+        },
+        {
+          "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p3.mp4",
+          "duration_seconds": 621
+        }
+      ],
+      "duration_seconds": 1864
     },
     {
       "filename": "personnalisation-design-boutique-1-v2_720p_afrique.mp4",
       "slug": "personnalisation-design-boutique-1-v2",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p1.mp4",
       "lesson_id": "cours-personnalisation-design-boutique",
       "title": "Cours - Personnalisation du design de la boutique ",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p1.mp4",
+          "duration_seconds": 665
+        },
+        {
+          "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p2.mp4",
+          "duration_seconds": 668
+        },
+        {
+          "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p3.mp4",
+          "duration_seconds": 664
+        },
+        {
+          "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-boutique-1-v2_720p_afrique_p4.mp4",
+          "duration_seconds": 662
+        }
+      ],
+      "duration_seconds": 2659
     },
     {
       "filename": "personnalisation-design-e-commerce-1-v1_720p_afrique.mp4",
       "slug": "personnalisation-design-e-commerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-personnalisation-design-ecommerce",
       "title": "Cours - Personnalisation du design - ecommerce",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "personnalisation-design-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 452
+        },
+        {
+          "filename": "personnalisation-design-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/personnalisation-design-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 438
+        }
+      ],
+      "duration_seconds": 890
     },
     {
       "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique.mp4",
       "slug": "preparation-conception-site-e-commerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-preparation-conception-site-e-commerce",
       "title": "Cours - Préparation et conception de son site",
       "course": "ecommerce",
-      "confidence": "medium"
+      "confidence": "medium",
+      "parts": [
+        {
+          "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 762
+        },
+        {
+          "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 766
+        },
+        {
+          "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 759
+        },
+        {
+          "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 759
+        },
+        {
+          "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/preparation-conception-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 757
+        }
+      ],
+      "duration_seconds": 3803
     },
     {
       "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique.mp4",
       "slug": "travailler-tunnel-achat-site-e-commerce-1-v1",
-      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique.mp4",
-      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique.mp4",
-      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique.mp4",
+      "mp4_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+      "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p1.mp4",
       "lesson_id": "cours-travailler-tunnel-achat-site-e-commerce",
       "title": "Cours - Travailler le tunnel d’achat d’un site e-commerce",
       "course": "ecommerce",
-      "confidence": "high"
+      "confidence": "high",
+      "parts": [
+        {
+          "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+          "duration_seconds": 672
+        },
+        {
+          "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+          "duration_seconds": 667
+        },
+        {
+          "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+          "duration_seconds": 670
+        },
+        {
+          "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+          "duration_seconds": 668
+        },
+        {
+          "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+          "cdn_url": "https://cdn.cap-learning.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+          "s3_url": "https://caplearning-videos.s3.eu-west-1.amazonaws.com/cap-learning/videos/travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+          "duration_seconds": 665
+        }
+      ],
+      "duration_seconds": 3343
     }
   ]
 }

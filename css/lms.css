@@ -2014,6 +2014,57 @@
     color: rgba(255, 255, 255, 0.92);
 }
 
+/* Barre multi-parties : leçons longues découpées en segments ~12 min.
+   Surimpression fine en haut du lecteur, n'empiète pas sur les contrôles. */
+.cap-player-parts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px 18px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 2;
+    pointer-events: none; /* laisse passer les clics vers la vidéo… */
+}
+
+.cap-player-parts-label {
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 6px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
+}
+
+.cap-player-part-btn {
+    pointer-events: auto; /* …sauf sur les boutons eux-mêmes */
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.cap-player-part-btn:hover {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.18);
+}
+
+.cap-player-part-btn.active {
+    background: #fff;
+    border-color: #fff;
+    color: #0F172A;
+}
+
 /* Badge "Aperçu démo" en surimpression */
 .cap-player-demo-tag {
     position: absolute;

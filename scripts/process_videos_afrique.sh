@@ -24,7 +24,7 @@ set -u  # stoppe sur variable non définie
 
 INPUT_DIR="./videos_originales"          # Dossier source (fichiers Vimeo téléchargés)
 OUTPUT_DIR="./videos_afrique_720p"       # Dossier sortie (MP4 compressés)
-DUREE_MAX=720                            # 12 min en secondes — 0 = pas de limite
+DUREE_MAX="${DUREE_MAX:-720}"            # 12 min en secondes — 0 = pas de limite (surchargeable : DUREE_MAX=0 ./process_videos_afrique.sh)
 CRF=23                                   # Qualité vidéo (18=haute, 23=équilibre, 28=léger)
 AUDIO_BITRATE="96k"                      # Bitrate audio (96k suffit pour la voix)
 LOG_FILE="./traitement_log.txt"

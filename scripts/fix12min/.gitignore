@@ -1,0 +1,8 @@
+# Fichiers lourds (vidéos) — ne jamais committer
+parts/
+videos_originales/
+videos_afrique_720p/
+dl_chunks/
+upload/
+*.log
+cookies*.txt

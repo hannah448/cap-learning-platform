@@ -39,6 +39,18 @@
  *     "provider": "s3"|"hls"|"mp4",
  *     "s3":      { "master_url": "https://cdn.cap-learning.com/.../master.m3u8" },
  *     "mp4":     { "url": "https://cdn.cap-learning.com/.../video.mp4" },
+ *
+ * Leçons longues découpées en parties (~12 min chacune) :
+ *   "mp4": {
+ *     "url":   "https://cdn.cap-learning.com/.../video_p1.mp4",   // fallback anciens clients
+ *     "parts": [
+ *       { "url": "https://cdn.cap-learning.com/.../video_p1.mp4", "duration_seconds": 705 },
+ *       { "url": "https://cdn.cap-learning.com/.../video_p2.mp4", "duration_seconds": 698 }
+ *     ]
+ *   }
+ * → les parties s'enchaînent automatiquement ; la progression et le
+ *   marquage "leçon terminée" portent sur la durée totale.
+ *
  *     "poster":  "https://cdn.cap-learning.com/.../poster.jpg",
  *     "duration_seconds": 750,
  *     "subtitles": [ { "lang": "fr", "label": "Français",
@@ -166,6 +178,17 @@
             if (v.lesson_id === lessonId || v.slug === lessonId || aliases.indexOf(lessonId) !== -1) {
                 var url = v.cdn_url || v.mp4_url || v.s3_url;
                 if (!url) return null;
+                // Vidéo découpée en parties (~12 min) : propage la liste au lecteur
+                var parts = null;
+                if (Array.isArray(v.parts) && v.parts.length > 1) {
+                    parts = v.parts.map(function (p) {
+                        return {
+                            url: p.cdn_url || p.mp4_url || p.s3_url || p.url,
+                            duration_seconds: p.duration_seconds || 0
+                        };
+                    });
+                    url = parts[0].url;
+                }
                 return {
                     courseKey:   v.course || 'unknown',
                     courseTitle: v.course || '',
@@ -174,7 +197,8 @@
                         title:    v.title || lessonId,
                         status:   'live',
                         provider: 'mp4',
-                        mp4:      { url: url },
+                        mp4:      parts ? { url: url, parts: parts } : { url: url },
+                        duration_seconds: v.duration_seconds || 0,
                         _source:  { manifest: true, filename: v.filename }
                     }
                 };
@@ -291,6 +315,12 @@
     }
 
     function renderMp4(el, lesson, opts) {
+        // Leçon découpée en plusieurs parties → lecteur multi-parties
+        var parts = lesson.data.mp4 && lesson.data.mp4.parts;
+        if (Array.isArray(parts) && parts.length > 1) {
+            return renderMp4Parts(el, lesson, opts);
+        }
+
         clearContainer(el);
         el.classList.add('cap-player-ready');
 
@@ -301,6 +331,92 @@
         video.src = url;
         el.appendChild(video);
         attachVideoEvents(video, lesson, opts);
+    }
+
+    /**
+     * MP4 multi-parties : une leçon = plusieurs fichiers (~12 min chacun)
+     * lus à la suite. Les parties s'enchaînent automatiquement, une barre
+     * « Partie x/y » en haut du lecteur permet de naviguer.
+     *
+     * La progression (onProgress) et la complétion (onComplete) sont
+     * calculées sur la durée TOTALE de la leçon : onComplete ne se
+     * déclenche qu'à la fin de la dernière partie.
+     */
+    function renderMp4Parts(el, lesson, opts) {
+        clearContainer(el);
+        el.classList.add('cap-player-ready');
+        opts = opts || {};
+
+        var parts = lesson.data.mp4.parts;
+        var n = parts.length;
+
+        // Offsets cumulés (en secondes) pour la progression globale
+        var offsets = [];
+        var total = 0;
+        for (var i = 0; i < n; i++) {
+            offsets.push(total);
+            total += Number(parts[i].duration_seconds) || 0;
+        }
+        if (!total) total = Number(lesson.data.duration_seconds) || 0;
+
+        var video = buildVideoEl(lesson.data, opts);
+        el.appendChild(video);
+
+        // Barre de navigation entre parties (surimpression haut)
+        var bar = document.createElement('div');
+        bar.className = 'cap-player-parts';
+        var label = document.createElement('span');
+        label.className = 'cap-player-parts-label';
+        bar.appendChild(label);
+        var btns = parts.map(function (p, idx) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'cap-player-part-btn';
+            b.textContent = String(idx + 1);
+            b.setAttribute('aria-label', 'Partie ' + (idx + 1) + ' sur ' + n);
+            b.addEventListener('click', function () { playPart(idx, true); });
+            bar.appendChild(b);
+            return b;
+        });
+        el.appendChild(bar);
+
+        var current = 0;
+        function playPart(idx, autoplay) {
+            current = Math.max(0, Math.min(n - 1, idx));
+            label.textContent = 'Partie ' + (current + 1) + '/' + n;
+            btns.forEach(function (b, i2) {
+                b.classList.toggle('active', i2 === current);
+            });
+            video.src = parts[current].url;
+            if (autoplay) {
+                var p = video.play();
+                if (p && p.catch) p.catch(function () { /* lecture bloquée par le navigateur : l'utilisateur cliquera Play */ });
+            }
+        }
+
+        // Progression globale (même throttle ~1 % que attachVideoEvents)
+        var lastPct = 0;
+        video.addEventListener('timeupdate', function () {
+            if (!opts.onProgress || !total) return;
+            var g = offsets[current] + (video.currentTime || 0);
+            var pct = Math.max(0, Math.min(1, g / total));
+            if (pct - lastPct >= 0.01 || pct >= 0.99) {
+                lastPct = pct;
+                opts.onProgress(pct, g, total);
+            }
+        });
+        video.addEventListener('ended', function () {
+            if (current < n - 1) {
+                playPart(current + 1, true);
+            } else if (opts.onComplete) {
+                opts.onComplete();
+            }
+        });
+        if (opts.onPlay)  video.addEventListener('play',  function () { opts.onPlay(); });
+        if (opts.onPause) video.addEventListener('pause', function () { opts.onPause(); });
+        if (opts.onError) video.addEventListener('error', function () { opts.onError(video.error); });
+
+        playPart(0, false);
     }
 
     function buildVideoEl(data, opts) {
@@ -380,7 +496,7 @@
     // --------- Public API ---------
 
     var CapPlayer = {
-        version: '1.1.0',
+        version: '1.2.0',
 
         /**
          * Précharge le mapping (optionnel — mount le fera automatiquement).

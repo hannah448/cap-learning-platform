@@ -1,0 +1,887 @@
+{
+  "configuration-paiements-expeditions-1-v1": {
+    "full_duration_seconds": 1961,
+    "parts": [
+      {
+        "filename": "configuration-paiements-expeditions-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 657
+      },
+      {
+        "filename": "configuration-paiements-expeditions-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 654
+      },
+      {
+        "filename": "configuration-paiements-expeditions-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 649
+      }
+    ]
+  },
+  "creation-pages-principales-e-commerce-1-v2": {
+    "full_duration_seconds": 3016,
+    "parts": [
+      {
+        "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p1.mp4",
+        "duration_seconds": 755
+      },
+      {
+        "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p2.mp4",
+        "duration_seconds": 759
+      },
+      {
+        "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p3.mp4",
+        "duration_seconds": 755
+      },
+      {
+        "filename": "creation-pages-principales-e-commerce-1-v2_720p_afrique_p4.mp4",
+        "duration_seconds": 747
+      }
+    ]
+  },
+  "creation-pages-principales-e-commerce-2-v1": {
+    "full_duration_seconds": 2219,
+    "parts": [
+      {
+        "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 745
+      },
+      {
+        "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 741
+      },
+      {
+        "filename": "creation-pages-principales-e-commerce-2-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 733
+      }
+    ]
+  },
+  "decouverte-et-configuration-shopify-1-v2": {
+    "full_duration_seconds": 2535,
+    "parts": [
+      {
+        "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p1.mp4",
+        "duration_seconds": 637
+      },
+      {
+        "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p2.mp4",
+        "duration_seconds": 632
+      },
+      {
+        "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p3.mp4",
+        "duration_seconds": 635
+      },
+      {
+        "filename": "decouverte-et-configuration-shopify-1-v2_720p_afrique_p4.mp4",
+        "duration_seconds": 631
+      }
+    ]
+  },
+  "extensions-applications-shopify-1-v1": {
+    "full_duration_seconds": 2309,
+    "parts": [
+      {
+        "filename": "extensions-applications-shopify-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 773
+      },
+      {
+        "filename": "extensions-applications-shopify-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 772
+      },
+      {
+        "filename": "extensions-applications-shopify-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 764
+      }
+    ]
+  },
+  "gestion-commandes-relation-client-1-v1": {
+    "full_duration_seconds": 2053,
+    "parts": [
+      {
+        "filename": "gestion-commandes-relation-client-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 685
+      },
+      {
+        "filename": "gestion-commandes-relation-client-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 686
+      },
+      {
+        "filename": "gestion-commandes-relation-client-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 681
+      }
+    ]
+  },
+  "gestion-index-google-e-commerce-1-v1": {
+    "full_duration_seconds": 741,
+    "parts": [
+      {
+        "filename": "gestion-index-google-e-commerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 741
+      }
+    ]
+  },
+  "gestion-index-google-shopify-1-v1": {
+    "full_duration_seconds": 2777,
+    "parts": [
+      {
+        "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 696
+      },
+      {
+        "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 693
+      },
+      {
+        "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 701
+      },
+      {
+        "filename": "gestion-index-google-shopify-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 687
+      }
+    ]
+  },
+  "integration-blog-shopify-1-v1": {
+    "full_duration_seconds": 2455,
+    "parts": [
+      {
+        "filename": "integration-blog-shopify-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 621
+      },
+      {
+        "filename": "integration-blog-shopify-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 607
+      },
+      {
+        "filename": "integration-blog-shopify-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 615
+      },
+      {
+        "filename": "integration-blog-shopify-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 613
+      }
+    ]
+  },
+  "introduction-shopify-e-commerce-1-v1": {
+    "full_duration_seconds": 1405,
+    "parts": [
+      {
+        "filename": "introduction-shopify-e-commerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 706
+      },
+      {
+        "filename": "introduction-shopify-e-commerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 699
+      }
+    ]
+  },
+  "lancement-promotion-boutique-en-ligne-1-v1": {
+    "full_duration_seconds": 3073,
+    "parts": [
+      {
+        "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 770
+      },
+      {
+        "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 771
+      },
+      {
+        "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 766
+      },
+      {
+        "filename": "lancement-promotion-boutique-en-ligne-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 766
+      }
+    ]
+  },
+  "m-Maitriser-Zapier-1-v1": {
+    "full_duration_seconds": 2291,
+    "parts": [
+      {
+        "filename": "m-Maitriser-Zapier-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 773
+      },
+      {
+        "filename": "m-Maitriser-Zapier-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 758
+      },
+      {
+        "filename": "m-Maitriser-Zapier-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 761
+      }
+    ]
+  },
+  "m-communauteetventeinstagram-1-v1": {
+    "full_duration_seconds": 2847,
+    "parts": [
+      {
+        "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 714
+      },
+      {
+        "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 710
+      },
+      {
+        "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 713
+      },
+      {
+        "filename": "m-communauteetventeinstagram-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 709
+      }
+    ]
+  },
+  "m-communauteetventeinstagram-2-v1": {
+    "full_duration_seconds": 2417,
+    "parts": [
+      {
+        "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 607
+      },
+      {
+        "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 602
+      },
+      {
+        "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 604
+      },
+      {
+        "filename": "m-communauteetventeinstagram-2-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 604
+      }
+    ]
+  },
+  "m-connecteriaamake-1-v1": {
+    "full_duration_seconds": 834,
+    "parts": [
+      {
+        "filename": "m-connecteriaamake-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 421
+      },
+      {
+        "filename": "m-connecteriaamake-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 414
+      }
+    ]
+  },
+  "m-creer-des-workflows-automatises-1-v1": {
+    "full_duration_seconds": 4241,
+    "parts": [
+      {
+        "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 708
+      },
+      {
+        "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 715
+      },
+      {
+        "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 702
+      },
+      {
+        "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 707
+      },
+      {
+        "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 709
+      },
+      {
+        "filename": "m-creer-des-workflows-automatises-1-v1_720p_afrique_p6.mp4",
+        "duration_seconds": 700
+      }
+    ]
+  },
+  "m-creerplanningeditorialautomatise-1-v1": {
+    "full_duration_seconds": 4076,
+    "parts": [
+      {
+        "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 684
+      },
+      {
+        "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 680
+      },
+      {
+        "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 676
+      },
+      {
+        "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 679
+      },
+      {
+        "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 686
+      },
+      {
+        "filename": "m-creerplanningeditorialautomatise-1-v1_720p_afrique_p6.mp4",
+        "duration_seconds": 670
+      }
+    ]
+  },
+  "m-decouvrircomptabiliteecommerce-1-v1": {
+    "full_duration_seconds": 1817,
+    "parts": [
+      {
+        "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 606
+      },
+      {
+        "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 606
+      },
+      {
+        "filename": "m-decouvrircomptabiliteecommerce-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 605
+      }
+    ]
+  },
+  "m-definirarborescencesiteecommerce-1-v1": {
+    "full_duration_seconds": 1175,
+    "parts": [
+      {
+        "filename": "m-definirarborescencesiteecommerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 596
+      },
+      {
+        "filename": "m-definirarborescencesiteecommerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 579
+      }
+    ]
+  },
+  "m-espionnerconcurenceventeenligne-1-v1": {
+    "full_duration_seconds": 2891,
+    "parts": [
+      {
+        "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 730
+      },
+      {
+        "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 723
+      },
+      {
+        "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 719
+      },
+      {
+        "filename": "m-espionnerconcurenceventeenligne-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 719
+      }
+    ]
+  },
+  "m-etablirstrategiecontenuecommerce-1-v1": {
+    "full_duration_seconds": 3969,
+    "parts": [
+      {
+        "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 667
+      },
+      {
+        "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 664
+      },
+      {
+        "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 661
+      },
+      {
+        "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 656
+      },
+      {
+        "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 662
+      },
+      {
+        "filename": "m-etablirstrategiecontenuecommerce-1-v1_720p_afrique_p6.mp4",
+        "duration_seconds": 659
+      }
+    ]
+  },
+  "m-googleadscampagneshopping-1-v1": {
+    "full_duration_seconds": 3484,
+    "parts": [
+      {
+        "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 704
+      },
+      {
+        "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 692
+      },
+      {
+        "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 699
+      },
+      {
+        "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 698
+      },
+      {
+        "filename": "m-googleadscampagneshopping-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 690
+      }
+    ]
+  },
+  "m-identifier-les-contenus-a-automatiser-1-v1": {
+    "full_duration_seconds": 2008,
+    "parts": [
+      {
+        "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 673
+      },
+      {
+        "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 676
+      },
+      {
+        "filename": "m-identifier-les-contenus-a-automatiser-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 660
+      }
+    ]
+  },
+  "m-identifier-les-taches-automatisables-1-v1": {
+    "full_duration_seconds": 2101,
+    "parts": [
+      {
+        "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 705
+      },
+      {
+        "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 703
+      },
+      {
+        "filename": "m-identifier-les-taches-automatisables-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 693
+      }
+    ]
+  },
+  "m-introductiondropshipping-1-v1": {
+    "full_duration_seconds": 999,
+    "parts": [
+      {
+        "filename": "m-introductiondropshipping-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 500
+      },
+      {
+        "filename": "m-introductiondropshipping-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 499
+      }
+    ]
+  },
+  "m-introductionspecificitesecommerce-1-v1": {
+    "full_duration_seconds": 2463,
+    "parts": [
+      {
+        "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 616
+      },
+      {
+        "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 618
+      },
+      {
+        "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 614
+      },
+      {
+        "filename": "m-introductionspecificitesecommerce-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 614
+      }
+    ]
+  },
+  "m-legislationventeenligne-1-v1": {
+    "full_duration_seconds": 3718,
+    "parts": [
+      {
+        "filename": "m-legislationventeenligne-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 749
+      },
+      {
+        "filename": "m-legislationventeenligne-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 742
+      },
+      {
+        "filename": "m-legislationventeenligne-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 741
+      },
+      {
+        "filename": "m-legislationventeenligne-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 747
+      },
+      {
+        "filename": "m-legislationventeenligne-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 739
+      }
+    ]
+  },
+  "m-lexiqueetmotsclesdelautomatisation-1-v1": {
+    "full_duration_seconds": 1339,
+    "parts": [
+      {
+        "filename": "m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 675
+      },
+      {
+        "filename": "m-lexiqueetmotsclesdelautomatisation-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 664
+      }
+    ]
+  },
+  "m-marketinginfluenceaugmentersesventes-1-v1": {
+    "full_duration_seconds": 3464,
+    "parts": [
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 695
+      },
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 694
+      },
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 691
+      },
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 694
+      },
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 691
+      }
+    ]
+  },
+  "m-marketinginfluenceaugmentersesventes-2-v1": {
+    "full_duration_seconds": 1800,
+    "parts": [
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 601
+      },
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 600
+      },
+      {
+        "filename": "m-marketinginfluenceaugmentersesventes-2-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 598
+      }
+    ]
+  },
+  "m-n8n-1-v1": {
+    "full_duration_seconds": 3299,
+    "parts": [
+      {
+        "filename": "m-n8n-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 667
+      },
+      {
+        "filename": "m-n8n-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 659
+      },
+      {
+        "filename": "m-n8n-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 655
+      },
+      {
+        "filename": "m-n8n-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 668
+      },
+      {
+        "filename": "m-n8n-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 651
+      }
+    ]
+  },
+  "m-panoramadesoutilsdautomatisation-1-v1": {
+    "full_duration_seconds": 860,
+    "parts": [
+      {
+        "filename": "m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 432
+      },
+      {
+        "filename": "m-panoramadesoutilsdautomatisation-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 428
+      }
+    ]
+  },
+  "m-preparation-conception-site-e-commerce-1-v3": {
+    "full_duration_seconds": 3798,
+    "parts": [
+      {
+        "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p1.mp4",
+        "duration_seconds": 767
+      },
+      {
+        "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p2.mp4",
+        "duration_seconds": 756
+      },
+      {
+        "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p3.mp4",
+        "duration_seconds": 759
+      },
+      {
+        "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p4.mp4",
+        "duration_seconds": 759
+      },
+      {
+        "filename": "m-preparation-conception-site-e-commerce-1-v3_720p_afrique_p5.mp4",
+        "duration_seconds": 757
+      }
+    ]
+  },
+  "m-referencementnaturelsiteetpagesproduits-1-v1": {
+    "full_duration_seconds": 3999,
+    "parts": [
+      {
+        "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 672
+      },
+      {
+        "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 663
+      },
+      {
+        "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 671
+      },
+      {
+        "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 666
+      },
+      {
+        "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 665
+      },
+      {
+        "filename": "m-referencementnaturelsiteetpagesproduits-1-v1_720p_afrique_p6.mp4",
+        "duration_seconds": 662
+      }
+    ]
+  },
+  "m-tiktocvendreproduits-1-v1": {
+    "full_duration_seconds": 2852,
+    "parts": [
+      {
+        "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 716
+      },
+      {
+        "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 713
+      },
+      {
+        "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 711
+      },
+      {
+        "filename": "m-tiktocvendreproduits-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 713
+      }
+    ]
+  },
+  "m-tiktocvendreproduits-2-v1": {
+    "full_duration_seconds": 3253,
+    "parts": [
+      {
+        "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 652
+      },
+      {
+        "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 651
+      },
+      {
+        "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 651
+      },
+      {
+        "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 649
+      },
+      {
+        "filename": "m-tiktocvendreproduits-2-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 649
+      }
+    ]
+  },
+  "m-trouverdesproduits-1-v1": {
+    "full_duration_seconds": 1607,
+    "parts": [
+      {
+        "filename": "m-trouverdesproduits-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 540
+      },
+      {
+        "filename": "m-trouverdesproduits-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 535
+      },
+      {
+        "filename": "m-trouverdesproduits-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 532
+      }
+    ]
+  },
+  "m-trouverfournisseursdropshipping-1-v1": {
+    "full_duration_seconds": 1167,
+    "parts": [
+      {
+        "filename": "m-trouverfournisseursdropshipping-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 586
+      },
+      {
+        "filename": "m-trouverfournisseursdropshipping-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 581
+      }
+    ]
+  },
+  "m-trouverproduitsdropshipping-1-v1": {
+    "full_duration_seconds": 1004,
+    "parts": [
+      {
+        "filename": "m-trouverproduitsdropshipping-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 505
+      },
+      {
+        "filename": "m-trouverproduitsdropshipping-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 499
+      }
+    ]
+  },
+  "maintenance-evolution-boutique-1-v1": {
+    "full_duration_seconds": 3396,
+    "parts": [
+      {
+        "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 685
+      },
+      {
+        "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 680
+      },
+      {
+        "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 678
+      },
+      {
+        "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 677
+      },
+      {
+        "filename": "maintenance-evolution-boutique-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 675
+      }
+    ]
+  },
+  "optimisation-referencement-naturel-e-commerce-1-v2": {
+    "full_duration_seconds": 1864,
+    "parts": [
+      {
+        "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p1.mp4",
+        "duration_seconds": 625
+      },
+      {
+        "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p2.mp4",
+        "duration_seconds": 618
+      },
+      {
+        "filename": "optimisation-referencement-naturel-e-commerce-1-v2_720p_afrique_p3.mp4",
+        "duration_seconds": 621
+      }
+    ]
+  },
+  "personnalisation-design-boutique-1-v2": {
+    "full_duration_seconds": 2659,
+    "parts": [
+      {
+        "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p1.mp4",
+        "duration_seconds": 665
+      },
+      {
+        "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p2.mp4",
+        "duration_seconds": 668
+      },
+      {
+        "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p3.mp4",
+        "duration_seconds": 664
+      },
+      {
+        "filename": "personnalisation-design-boutique-1-v2_720p_afrique_p4.mp4",
+        "duration_seconds": 662
+      }
+    ]
+  },
+  "personnalisation-design-e-commerce-1-v1": {
+    "full_duration_seconds": 890,
+    "parts": [
+      {
+        "filename": "personnalisation-design-e-commerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 452
+      },
+      {
+        "filename": "personnalisation-design-e-commerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 438
+      }
+    ]
+  },
+  "preparation-conception-site-e-commerce-1-v1": {
+    "full_duration_seconds": 3803,
+    "parts": [
+      {
+        "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 762
+      },
+      {
+        "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 766
+      },
+      {
+        "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 759
+      },
+      {
+        "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 759
+      },
+      {
+        "filename": "preparation-conception-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 757
+      }
+    ]
+  },
+  "travailler-tunnel-achat-site-e-commerce-1-v1": {
+    "full_duration_seconds": 3343,
+    "parts": [
+      {
+        "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 672
+      },
+      {
+        "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 667
+      },
+      {
+        "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 670
+      },
+      {
+        "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 668
+      },
+      {
+        "filename": "travailler-tunnel-achat-site-e-commerce-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 665
+      }
+    ]
+  }
+}
