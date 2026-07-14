@@ -883,5 +883,55 @@
         "duration_seconds": 665
       }
     ]
+  },
+  "m-developperreseau-1-v3": {
+    "full_duration_seconds": 2416,
+    "parts": [
+      {
+        "filename": "m-developperreseau-1-v3_720p_afrique_p1.mp4",
+        "duration_seconds": 609
+      },
+      {
+        "filename": "m-developperreseau-1-v3_720p_afrique_p2.mp4",
+        "duration_seconds": 599
+      },
+      {
+        "filename": "m-developperreseau-1-v3_720p_afrique_p3.mp4",
+        "duration_seconds": 604
+      },
+      {
+        "filename": "m-developperreseau-1-v3_720p_afrique_p4.mp4",
+        "duration_seconds": 604
+      }
+    ]
+  },
+  "m-seocopywriting-1-v1": {
+    "full_duration_seconds": 4120,
+    "parts": [
+      {
+        "filename": "m-seocopywriting-1-v1_720p_afrique_p1.mp4",
+        "duration_seconds": 687
+      },
+      {
+        "filename": "m-seocopywriting-1-v1_720p_afrique_p2.mp4",
+        "duration_seconds": 690
+      },
+      {
+        "filename": "m-seocopywriting-1-v1_720p_afrique_p3.mp4",
+        "duration_seconds": 688
+      },
+      {
+        "filename": "m-seocopywriting-1-v1_720p_afrique_p4.mp4",
+        "duration_seconds": 690
+      },
+      {
+        "filename": "m-seocopywriting-1-v1_720p_afrique_p5.mp4",
+        "duration_seconds": 683
+      },
+      {
+        "filename": "m-seocopywriting-1-v1_720p_afrique_p6.mp4",
+        "duration_seconds": 682
+      }
+    ]
   }
 }
