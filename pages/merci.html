@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merci pour votre achat - Cap Learning</title>
+    <meta name="description" content="Merci pour votre confiance. Votre paiement est confirmé et vos formations Cap Learning sont débloquées.">
+    <meta name="robots" content="noindex">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .merci-main { padding: 64px 0 96px; min-height: 60vh; display: flex; align-items: center; }
+        .merci-card {
+            max-width: 620px; margin: 0 auto; background: var(--surface, #fff);
+            border: 1px solid var(--color-gray-200, #e5e7eb); border-radius: var(--radius-2xl, 24px);
+            padding: 48px 40px; text-align: center; box-shadow: 0 24px 64px rgba(30,27,58,0.10);
+        }
+        .merci-badge {
+            width: 84px; height: 84px; border-radius: 50%; margin: 0 auto 24px;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, #10B981, #059669); color: #fff; font-size: 44px; line-height: 1;
+            box-shadow: 0 10px 30px rgba(16,185,129,0.35);
+            animation: merciPop .5s cubic-bezier(0.175,0.885,0.32,1.275);
+        }
+        .merci-badge.pending { background: linear-gradient(135deg, #F59E0B, #D97706); box-shadow: 0 10px 30px rgba(245,158,11,0.32); }
+        .merci-badge.neutral { background: linear-gradient(135deg, #3A50F6, #6B7DF8); box-shadow: 0 10px 30px rgba(58,80,246,0.32); }
+        @keyframes merciPop { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        @media (prefers-reduced-motion: reduce) { .merci-badge { animation: none; } }
+        .merci-card h1 { font-family: var(--font-display, 'Satoshi', sans-serif); font-size: clamp(24px, 4vw, 32px); font-weight: 700; margin: 0 0 10px; color: var(--text-primary, #1E1B3A); }
+        .merci-sub { font-size: 16px; color: var(--text-secondary, #4A5262); margin: 0 0 24px; line-height: 1.55; }
+        .merci-ref { display: inline-block; font-family: ui-monospace, Menlo, monospace; font-size: 13px; color: var(--text-tertiary, #8A8F9C); background: var(--color-gray-50, #f8f9fb); border: 1px solid var(--color-gray-200, #e5e7eb); border-radius: 8px; padding: 6px 12px; margin-bottom: 24px; }
+        .merci-courses { list-style: none; padding: 0; margin: 0 0 24px; text-align: left; }
+        .merci-courses li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--color-primary-50, #EEF1FE); border-radius: 12px; margin-bottom: 8px; font-weight: 600; color: var(--text-primary, #1E1B3A); }
+        .merci-courses li::before { content: '🎓'; font-size: 20px; }
+        .merci-invoice { font-size: 13.5px; color: var(--text-secondary, #4A5262); background: var(--color-gray-50, #f8f9fb); border-radius: 12px; padding: 14px 16px; margin-bottom: 28px; line-height: 1.5; }
+        .merci-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+        .merci-help { font-size: 13.5px; color: var(--text-tertiary, #8A8F9C); margin: 0; }
+        .merci-help a { color: var(--color-primary, #3A50F6); font-weight: 600; }
+    </style>
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                            Formations <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="formation-ecommerce.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128722;</span>
+                                    <div>
+                                        <strong>E-commerce &amp; Paiements</strong>
+                                        <span>20h &middot; 47 modules &middot; Bestseller</span>
+                                    </div>
+                                </a>
+                                <a href="formation-ia-business.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#129302;</span>
+                                    <div>
+                                        <strong>IA &amp; Business</strong>
+                                        <span>15h &middot; 26 modules &middot; Tendance 2026</span>
+                                    </div>
+                                </a>
+                                <a href="formation-marketing-digital.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128200;</span>
+                                    <div>
+                                        <strong>Marketing Digital</strong>
+                                        <span>9h &middot; 16 modules &middot; Bestseller</span>
+                                    </div>
+                                </a>
+                                <a href="formation-reseaux-sociaux.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128241;</span>
+                                    <div>
+                                        <strong>R&eacute;seaux Sociaux &amp; CM</strong>
+                                        <span>7h &middot; 25 modules &middot; WhatsApp Business</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                                <a href="catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Voir les 4 parcours &rarr;
+                                </a>
+                                <a href="comparatif.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Comparer &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="plateforme.html" class="nav-link">Plateforme</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                            À propos <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="qui-sommes-nous.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#127757;</span>
+                                    <div><strong>Qui sommes-nous</strong><span>Notre mission panafricaine</span></div>
+                                </a>
+                                <a href="nos-experts.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128100;</span>
+                                    <div><strong>Nos experts</strong><span>Formateurs &amp; accompagnateurs</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier.html" class="cart-btn" aria-label="Panier">
+                    <span class="cart-icon">&#128722;</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+                <a href="connexion.html" class="btn btn-ghost btn-sm">Connexion</a>
+                <a href="connexion.html#inscription" class="btn btn-primary btn-sm">Créer un compte</a>
+                <button class="mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="merci-main">
+        <div class="container">
+            <div class="merci-card">
+                <div class="merci-badge" id="merci-badge">&#10003;</div>
+                <h1 id="merci-title">Merci pour votre confiance&nbsp;!</h1>
+                <p class="merci-sub" id="merci-sub">Votre paiement a bien été reçu. Vos formations sont maintenant débloquées dans votre espace apprenant.</p>
+                <div class="merci-ref" id="merci-ref" hidden></div>
+                <ul class="merci-courses" id="merci-courses"></ul>
+                <div class="merci-invoice" id="merci-invoice">
+                    &#129534; <strong>Votre facture</strong> vous est envoyée automatiquement par e-mail au nom de Cap Learning. Pensez à vérifier vos spams si vous ne la voyez pas.
+                </div>
+                <div class="merci-actions">
+                    <a href="dashboard.html" class="btn btn-primary btn-lg">Accéder à mes formations</a>
+                    <a href="apprendre.html" class="btn btn-ghost btn-lg">Commencer à apprendre</a>
+                </div>
+                <p class="merci-help">Un souci avec votre paiement&nbsp;? <a href="contact.html">Contactez-nous</a> — on répond en moins de 2h.</p>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                        <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+                    </a>
+                    <p>La plateforme de formation digitale conçue pour les entrepreneurs africains. Apprenez, grandissez, transformez.</p>
+                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-footer-badge">
+                        <span class="tp-footer-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="tp-footer-score">4.8/5</span>
+                        <span>sur Trustpilot</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <h4>Nos 4 parcours</h4>
+                    <ul>
+                        <li><a href="formation-ecommerce.html">E-commerce &amp; Paiements</a></li>
+                        <li><a href="formation-ia-business.html">IA &amp; Business</a></li>
+                        <li><a href="formation-marketing-digital.html">Marketing Digital</a></li>
+                        <li><a href="formation-reseaux-sociaux.html">Réseaux Sociaux &amp; CM</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="qui-sommes-nous.html">Qui sommes-nous</a></li>
+                        <li><a href="nos-experts.html">Nos experts</a></li>
+                        <li><a href="plateforme.html">La plateforme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html#faq">FAQ</a></li>
+                        <li><a href="contact.html">Contactez-nous</a></li>
+                        <li><a href="cgu.html">Conditions d'utilisation</a></li>
+                        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cap Learning. Tous droits réservés. Fait avec &#10084; depuis l'Afrique.<br>Cap Learning, plateforme de formation en ligne pour l’Afrique.</p>
+                <div class="payment-methods">
+                    <span>Paiements : </span>
+                    <span class="payment-icon">Wave</span>
+                    <span class="payment-icon">Orange Money</span>
+                    <span class="payment-icon">MTN MoMo</span>
+                    <span class="payment-icon">Carte bancaire</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script>
+    (function () {
+        // La page de retour après paiement CinetPay (return_url = /pages/merci.html?tx=...)
+        var params = new URLSearchParams(window.location.search);
+        var tx = (params.get('tx') || '').trim();
+        var status = (params.get('status') || '').trim().toLowerCase(); // certains flux ajoutent un statut
+
+        var pending = {};
+        try { pending = JSON.parse(localStorage.getItem('caplearning_pending_checkout') || '{}') || {}; } catch (e) {}
+
+        // Formations achetées : on lit le panier au retour, on les transfère en "achetées".
+        var cart = [];
+        try { cart = JSON.parse(localStorage.getItem('caplearning_cart') || '[]') || []; } catch (e) {}
+
+        var isFailure = status === 'refused' || status === 'failed' || status === 'cancelled' || status === 'canceled';
+        var hasContext = !!(tx || pending.transaction_id || cart.length);
+
+        var badge = document.getElementById('merci-badge');
+        var title = document.getElementById('merci-title');
+        var sub = document.getElementById('merci-sub');
+        var refEl = document.getElementById('merci-ref');
+        var coursesEl = document.getElementById('merci-courses');
+        var invoiceEl = document.getElementById('merci-invoice');
+
+        // Référence de transaction (utile au support)
+        var ref = tx || pending.transaction_id || '';
+        if (ref) {
+            refEl.hidden = false;
+            refEl.textContent = 'Référence : ' + ref;
+        }
+
+        if (isFailure) {
+            // Paiement refusé / annulé
+            badge.className = 'merci-badge pending';
+            badge.innerHTML = '&#33;'; // !
+            title.textContent = 'Paiement non abouti';
+            sub.textContent = "Votre paiement n'a pas pu être finalisé. Aucun montant n'a été débité. Vous pouvez réessayer depuis votre panier.";
+            invoiceEl.hidden = true;
+            coursesEl.innerHTML = '';
+            document.querySelector('.merci-actions').innerHTML =
+                '<a href="panier.html" class="btn btn-primary btn-lg">Réessayer le paiement</a>' +
+                '<a href="catalogue.html" class="btn btn-ghost btn-lg">Voir le catalogue</a>';
+            return;
+        }
+
+        if (!hasContext) {
+            // Accès direct à la page, sans contexte d'achat
+            badge.className = 'merci-badge neutral';
+            badge.innerHTML = '&#128075;'; // 👋
+            title.textContent = 'Bonjour !';
+            sub.textContent = "Cette page confirme vos achats après paiement. Envie de vous lancer ? Découvrez nos formations.";
+            invoiceEl.hidden = true;
+            document.querySelector('.merci-actions').innerHTML =
+                '<a href="catalogue.html" class="btn btn-primary btn-lg">Voir les formations</a>' +
+                '<a href="dashboard.html" class="btn btn-ghost btn-lg">Mon espace</a>';
+            return;
+        }
+
+        // Succès : transférer le panier vers les formations achetées (débloque l'accès local)
+        var purchased = [];
+        try { purchased = JSON.parse(localStorage.getItem('caplearning_purchased') || '[]') || []; } catch (e) {}
+        cart.forEach(function (item) {
+            if (item && !purchased.find(function (p) { return p.id === item.id; })) {
+                purchased.push(item);
+            }
+        });
+        try { localStorage.setItem('caplearning_purchased', JSON.stringify(purchased)); } catch (e) {}
+        // Vider le panier et le compteur
+        try {
+            localStorage.setItem('caplearning_cart', '[]');
+            if (window.Cart) { window.Cart.items = []; if (Cart.updateBadge) Cart.updateBadge(); }
+        } catch (e) {}
+        try { localStorage.removeItem('caplearning_pending_checkout'); } catch (e) {}
+
+        // Lister les formations achetées
+        var toShow = cart.length ? cart : purchased;
+        coursesEl.innerHTML = '';
+        toShow.forEach(function (item) {
+            var li = document.createElement('li');
+            li.textContent = item.title || item.name || 'Votre formation';
+            coursesEl.appendChild(li);
+        });
+    })();
+    </script>
+    <script src="../js/whatsapp-widget.js"></script>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>
