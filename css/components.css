@@ -890,6 +890,19 @@
     margin-bottom: var(--space-5);
 }
 
+.sales-purchase-lifetime {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    background: #ECFDF5;
+    color: var(--color-success);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-5);
+}
+
 .sales-purchase-cta {
     display: flex;
     flex-direction: column;

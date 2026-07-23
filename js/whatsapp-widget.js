@@ -10,11 +10,11 @@
         phoneNumber: '221781234567',       // Numéro WhatsApp (format international sans +)
         defaultMessage: 'Bonjour Cap Learning ! J\u2019ai une question concernant vos formations.',
         companyName: 'Cap Learning',
-        welcomeText: 'Bonjour ! \uD83D\uDC4B Comment pouvons-nous vous aider ?',
-        replyTime: 'R\u00e9pond g\u00e9n\u00e9ralement en quelques minutes',
-        scheduleText: 'Lun-Ven : 8h - 20h \u00b7 Sam : 9h - 17h',
+        welcomeText: 'Bonjour \uD83D\uDC4B Une question sur une formation, le paiement ou le certificat ? \u00c9crivez-nous, on r\u00e9pond en moins de 2 h.',
+        replyTime: 'R\u00e9ponse en moins de 2 h',
+        scheduleText: 'Lun\u2013Sam : 9 h \u2013 19 h GMT',
         ctaText: 'D\u00e9marrer le chat',
-        tooltipText: 'Besoin d\u2019aide ?'
+        tooltipText: 'WhatsApp \u00b7 r\u00e9ponse < 2 h'
     };
 
     // ---- Inject CSS ----

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politique de confidentialité - Cap Learning</title>
+    <meta name="description" content="Politique de confidentialité de Cap Learning : quelles données nous collectons, pourquoi, combien de temps, et vos droits RGPD (accès, rectification, effacement).">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        /* ------ Legal page ------ */
+        .legal-hero {
+            padding: 120px 0 50px;
+            background: linear-gradient(135deg, #F4EEFE 0%, #EDE7FC 50%, #FBF7F0 100%);
+        }
+        .legal-hero-inner { max-width: 820px; }
+        .legal-hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.15; margin: 16px 0 12px; }
+        .legal-hero .legal-updated { color: #666; font-size: .95rem; }
+
+        .legal-main { padding: 50px 0 80px; }
+        .legal-content {
+            max-width: 820px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+        @media (max-width: 640px) { .legal-content { padding: 24px 20px; } }
+        .legal-content h2 {
+            font-size: 1.25rem;
+            margin: 32px 0 12px;
+            padding-top: 8px;
+        }
+        .legal-content h2:first-child { margin-top: 0; }
+        .legal-content p, .legal-content li {
+            color: #555;
+            line-height: 1.7;
+            font-size: .97rem;
+        }
+        .legal-content p { margin: 0 0 14px; }
+        .legal-content ul { margin: 0 0 14px; padding-left: 22px; }
+        .legal-content li { margin-bottom: 6px; }
+        .legal-content a { color: #3A50F6; font-weight: 600; }
+        .legal-content strong { color: #1a1a1a; }
+        .legal-highlight {
+            background: #FBF7F0;
+            border-left: 4px solid #A78BFA;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 0 0 14px;
+        }
+        .legal-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .92rem;
+            margin: 0 0 14px;
+        }
+        .legal-table th, .legal-table td {
+            border: 1px solid #eee;
+            padding: 10px 12px;
+            text-align: left;
+            color: #555;
+            line-height: 1.5;
+            vertical-align: top;
+        }
+        .legal-table th { background: #FBF7F0; color: #1a1a1a; font-weight: 600; }
+        .legal-table-wrap { overflow-x: auto; margin: 0 0 14px; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="../index.html" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="../index.html" class="nav-link">Accueil</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                            Formations <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="formation-ecommerce.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128722;</span>
+                                    <div>
+                                        <strong>E-commerce &amp; Paiements</strong>
+                                        <span>79h &middot; 47 modules &middot; Bestseller</span>
+                                    </div>
+                                </a>
+                                <a href="formation-ia-business.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#129302;</span>
+                                    <div>
+                                        <strong>IA &amp; Business</strong>
+                                        <span>48h &middot; 26 modules &middot; Tendance 2026</span>
+                                    </div>
+                                </a>
+                                <a href="formation-marketing-digital.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128200;</span>
+                                    <div>
+                                        <strong>Marketing Digital</strong>
+                                        <span>57h &middot; 16 modules &middot; Bestseller</span>
+                                    </div>
+                                </a>
+                                <a href="formation-entrepreneuriat-digital.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128640;</span>
+                                    <div>
+                                        <strong>Entrepreneuriat Digital</strong>
+                                        <span>50h &middot; 20 modules &middot; Nouveau 2026</span>
+                                    </div>
+                                </a>
+                                <a href="formation-reseaux-sociaux.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128241;</span>
+                                    <div>
+                                        <strong>R&eacute;seaux Sociaux &amp; CM</strong>
+                                        <span>41h &middot; 25 modules &middot; WhatsApp Business</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                                <a href="catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Voir les 5 parcours &rarr;
+                                </a>
+                                <a href="comparatif.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Comparer &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="plateforme.html" class="nav-link">Plateforme</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                            À propos <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="qui-sommes-nous.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#127757;</span>
+                                    <div><strong>Qui sommes-nous</strong><span>Notre mission panafricaine</span></div>
+                                </a>
+                                <a href="nos-experts.html" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128100;</span>
+                                    <div><strong>Nos experts</strong><span>Formateurs &amp; accompagnateurs</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="../index.html#trustpilot-reviews" class="nav-link">Témoignages</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier.html" class="cart-btn" aria-label="Panier">
+                    <span class="cart-icon">&#128722;</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+                <a href="connexion.html" class="btn btn-ghost btn-sm">Connexion</a>
+                <a href="connexion.html#inscription" class="btn btn-primary btn-sm">Créer un compte</a>
+                <button class="mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="legal-hero">
+            <div class="container legal-hero-inner">
+                <span class="section-badge">Informations légales</span>
+                <h1>Politique de confidentialité</h1>
+                <p class="legal-updated">Dernière mise à jour : 7 juillet 2026</p>
+            </div>
+        </section>
+
+        <!-- BROUILLON : contenu juridique à faire relire et valider par Hannah avant publication définitive.
+             Identité Cap Learning renseignée depuis annuaire-entreprises (SARL, SIREN 921 377 347, siège 69480 Pommiers).
+             Reste à compléter : contact du responsable de traitement / DPO si désigné. -->
+        <section class="legal-main">
+            <div class="container">
+                <article class="legal-content">
+
+                    <h2>En bref</h2>
+                    <div class="legal-highlight">
+                        <p style="margin: 0;">
+                            Nous collectons uniquement les données nécessaires pour vous inscrire, vous faire suivre
+                            vos formations et encaisser vos paiements. <strong>Nous ne vendons jamais vos données.</strong>
+                            Vous pouvez à tout moment demander à les consulter, les corriger ou les supprimer en écrivant à
+                            <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>.
+                        </p>
+                    </div>
+
+                    <h2>1. Qui est responsable de vos données ?</h2>
+                    <p>
+                        Le responsable du traitement est <strong>Cap Learning</strong> (SARL), éditeur du Site,
+                        dont le siège social est situé 2260 route de Saint-Fonds, 69480 Pommiers (France),
+                        immatriculée au RCS sous le numéro 921 377 347.
+                        Pour toute question relative à vos données personnelles :
+                        <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>.
+                    </p>
+                    <p>
+                        Cette politique est conforme au <strong>Règlement général sur la protection des données (RGPD)</strong>
+                        et à la loi française « Informatique et Libertés ».
+                    </p>
+
+                    <h2>2. Quelles données collectons-nous, et pourquoi ?</h2>
+                    <div class="legal-table-wrap">
+                        <table class="legal-table">
+                            <tr>
+                                <th>Données</th>
+                                <th>Pourquoi (finalité)</th>
+                                <th>Base légale</th>
+                            </tr>
+                            <tr>
+                                <td>Nom, email, téléphone, pays</td>
+                                <td>Créer votre compte, vous répondre, assurer le suivi de votre formation</td>
+                                <td>Exécution du contrat</td>
+                            </tr>
+                            <tr>
+                                <td>Données de paiement (traitées par CinetPay / PayDunya)</td>
+                                <td>Encaisser vos achats et effectuer les remboursements de la garantie 14 jours</td>
+                                <td>Exécution du contrat / obligation légale (comptabilité)</td>
+                            </tr>
+                            <tr>
+                                <td>Progression dans les formations, quiz, certificats</td>
+                                <td>Suivre votre parcours et délivrer votre certificat</td>
+                                <td>Exécution du contrat</td>
+                            </tr>
+                            <tr>
+                                <td>Messages envoyés via le formulaire de contact ou WhatsApp</td>
+                                <td>Répondre à vos demandes</td>
+                                <td>Consentement / intérêt légitime</td>
+                            </tr>
+                            <tr>
+                                <td>Emails d'information et offres (newsletter)</td>
+                                <td>Vous informer de nos nouveautés — uniquement si vous l'acceptez</td>
+                                <td>Consentement (désinscription possible à tout moment)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p>
+                        <strong>Important :</strong> vos numéros de carte bancaire et identifiants mobile money
+                        (Wave, Orange Money, MTN MoMo) sont traités directement par nos prestataires de paiement
+                        sécurisés <strong>CinetPay</strong> et <strong>PayDunya</strong>. Cap Learning n'y a jamais accès
+                        et ne les stocke pas.
+                    </p>
+
+                    <h2>3. Combien de temps conservons-nous vos données ?</h2>
+                    <ul>
+                        <li><strong>Compte et données de formation</strong> : tant que votre compte est actif, puis 3 ans après votre dernière connexion ;</li>
+                        <li><strong>Factures et données de facturation</strong> : 10 ans (obligation comptable légale) ;</li>
+                        <li><strong>Messages de contact</strong> : 3 ans après le dernier échange ;</li>
+                        <li><strong>Newsletter</strong> : jusqu'à votre désinscription.</li>
+                    </ul>
+
+                    <h2>4. Qui a accès à vos données ?</h2>
+                    <p>
+                        Vos données sont accessibles uniquement à l'équipe Cap Learning et à nos prestataires techniques,
+                        dans la stricte mesure nécessaire à leur mission :
+                    </p>
+                    <ul>
+                        <li><strong>CinetPay et PayDunya</strong> — traitement des paiements et remboursements ;</li>
+                        <li><strong>Hébergement du site et des vidéos de formation</strong> — prestataires d'hébergement sécurisés ;</li>
+                        <li><strong>Outils d'emailing</strong> — envoi des emails de service et de la newsletter.</li>
+                    </ul>
+                    <p>
+                        Chaque prestataire est contractuellement tenu de protéger vos données.
+                        <strong>Nous ne vendons ni ne louons jamais vos données à des tiers.</strong>
+                        Lorsque des données sont traitées en dehors de l'Union européenne, nous veillons à ce que
+                        des garanties appropriées soient en place (clauses contractuelles types de la Commission européenne).
+                    </p>
+
+                    <h2>5. Cookies et stockage local</h2>
+                    <p>
+                        Le Site utilise le stockage local de votre navigateur pour des fonctions strictement nécessaires :
+                        mémoriser votre thème d'affichage (clair/sombre), votre panier et votre session de connexion.
+                        Ces informations restent sur votre appareil. Si des cookies de mesure d'audience ou de marketing
+                        venaient à être utilisés, votre consentement serait recueilli au préalable via un bandeau dédié.
+                    </p>
+
+                    <h2>6. Vos droits</h2>
+                    <p>Conformément au RGPD, vous disposez à tout moment des droits suivants :</p>
+                    <ul>
+                        <li><strong>Accès</strong> — obtenir une copie des données que nous détenons sur vous ;</li>
+                        <li><strong>Rectification</strong> — corriger une donnée inexacte ;</li>
+                        <li><strong>Effacement</strong> — demander la suppression de vos données (« droit à l'oubli ») ;</li>
+                        <li><strong>Portabilité</strong> — récupérer vos données dans un format lisible ;</li>
+                        <li><strong>Opposition et limitation</strong> — vous opposer à un traitement, notamment à la prospection ;</li>
+                        <li><strong>Retrait du consentement</strong> — par exemple vous désinscrire de la newsletter en un clic.</li>
+                    </ul>
+                    <p>
+                        Pour exercer un droit, écrivez-nous à <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>
+                        ou sur WhatsApp au +221 78 123 45 67. Nous répondons sous <strong>30 jours maximum</strong>.
+                        Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la
+                        <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a> (autorité française de
+                        protection des données) ou l'autorité de protection des données de votre pays.
+                    </p>
+
+                    <h2>7. Sécurité</h2>
+                    <p>
+                        Vos données sont protégées par des mesures techniques et organisationnelles adaptées :
+                        connexions chiffrées (HTTPS), mots de passe chiffrés, accès restreints à l'équipe,
+                        et prestataires de paiement certifiés. En cas de violation de données susceptible de vous
+                        affecter, vous en seriez informé conformément au RGPD.
+                    </p>
+
+                    <h2>8. Mineurs</h2>
+                    <p>
+                        Nos formations s'adressent aux adultes et aux mineurs d'au moins 15 ans. Si vous avez moins de
+                        15 ans, l'accord d'un parent ou tuteur est nécessaire pour créer un compte.
+                    </p>
+
+                    <h2>9. Mise à jour de cette politique</h2>
+                    <p>
+                        Cette politique peut évoluer avec nos services ou la réglementation. La version en vigueur est
+                        celle publiée sur cette page, avec sa date de mise à jour. En cas de changement important,
+                        nous vous en informerons par email ou via le Site.
+                    </p>
+
+                    <p>
+                        Voir aussi nos <a href="cgu.html">Conditions d'utilisation</a>.
+                    </p>
+
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="../index.html" class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                        <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+                    </a>
+                    <p>La plateforme de formation digitale conçue pour les entrepreneurs africains. Apprenez, grandissez, transformez.</p>
+                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-footer-badge">
+                        <span class="tp-footer-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="tp-footer-score">4.8/5</span>
+                        <span>sur Trustpilot</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <h4>Nos 5 parcours</h4>
+                    <ul>
+                        <li><a href="formation-ecommerce.html">E-commerce &amp; Paiements</a></li>
+                        <li><a href="formation-ia-business.html">IA &amp; Business</a></li>
+                        <li><a href="formation-marketing-digital.html">Marketing Digital</a></li>
+                        <li><a href="formation-entrepreneuriat-digital.html">Entrepreneuriat Digital</a></li>
+                        <li><a href="formation-reseaux-sociaux.html">Réseaux Sociaux &amp; CM</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="qui-sommes-nous.html">Qui sommes-nous</a></li>
+                        <li><a href="nos-experts.html">Nos experts</a></li>
+                        <li><a href="plateforme.html">La plateforme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact.html#faq">FAQ</a></li>
+                        <li><a href="contact.html">Contactez-nous</a></li>
+                        <li><a href="cgu.html">Conditions d'utilisation</a></li>
+                        <li><a href="confidentialite.html">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cap Learning. Tous droits réservés. Fait avec &#10084; depuis l'Afrique.<br>Cap Learning, plateforme de formation en ligne pour l’Afrique.</p>
+                <div class="payment-methods">
+                    <span>Paiements : </span>
+                    <span class="payment-icon">Wave</span>
+                    <span class="payment-icon">Orange Money</span>
+                    <span class="payment-icon">MTN MoMo</span>
+                    <span class="payment-icon">Carte bancaire</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/whatsapp-widget.js"></script>
+    <script src="../js/theme.js" defer></script>
+</body>
+</html>
