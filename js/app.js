@@ -321,17 +321,18 @@ function initCartPage() {
             finance: 'linear-gradient(135deg, #10B981, #34D399)'
         };
 
-        const icons = {
-            marketing: '&#128187;',
-            ecommerce: '&#128722;',
-            ia: '&#129302;',
-            finance: '&#128200;'
+        const thumbFor = (item) => {
+            const n = (item.name || '').toLowerCase();
+            if (n.includes('commerce') || item.category === 'ecommerce') return '/img/courses/ecommerce.svg';
+            if (n.includes('réseau') || n.includes('reseau') || n.includes('social')) return '/img/courses/reseaux.svg';
+            if (n.includes('ia') || n.includes('business') || item.category === 'ia') return '/img/courses/ia.svg';
+            return '/img/courses/marketing.svg';
         };
 
         cartItemsContainer.innerHTML = items.map(item => `
             <div class="cart-item" data-id="${item.id}">
                 <div class="cart-item-image" style="background: ${gradients[item.category] || gradients.marketing}">
-                    ${icons[item.category] || '&#128218;'}
+                    <img src="${thumbFor(item)}" alt="${item.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">
                 </div>
                 <div class="cart-item-info">
                     <h3>${item.name}</h3>
