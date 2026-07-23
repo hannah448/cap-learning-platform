@@ -4,7 +4,7 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js"></script>
+    <script src="../js/migrate-brand.js?v=20260723"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formation - Cap Learning LMS</title>
@@ -12,10 +12,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260723">
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/lms.css">
+    <link rel="stylesheet" href="../css/style.css?v=20260723">
+    <link rel="stylesheet" href="../css/lms.css?v=20260723">
     <style>
         /* --- Learn Page Specific --- */
         .learn-layout { display: flex; min-height: 100vh; }
@@ -1115,7 +1115,7 @@
 
     <!-- ===== Cap Learning Supabase stack (auth + progression) ===== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/config.js"></script>
+    <script src="../js/config.js?v=20260723"></script>
     <script src="../js/supabase-client.js?v=2"></script>
     <script src="../js/auth.js?v=2"></script>
     <script src="../js/db.js?v=2"></script>
@@ -1126,12 +1126,12 @@
         <!-- Sidebar: Course curriculum -->
         <aside class="learn-sidebar" id="learn-sidebar">
             <div class="learn-sidebar-header">
-                <a href="../index.html" class="logo" style="display:flex; align-items:center; gap:var(--space-2); text-decoration:none; margin-bottom:var(--space-4); padding-bottom:var(--space-3); border-bottom:1px solid var(--color-gray-200);">
+                <a href="/" class="logo" style="display:flex; align-items:center; gap:var(--space-2); text-decoration:none; margin-bottom:var(--space-4); padding-bottom:var(--space-3); border-bottom:1px solid var(--color-gray-200);">
                     <span class="logo-mark" style="width:32px; height:32px; font-size:1rem;">C</span>
                     <span class="logo-text" style="font-size:1rem;">Cap <span class="logo-accent">Learning</span></span>
                     <span class="logo-by" style="margin-left:auto; padding-left:8px; border-left:1px solid var(--color-gray-200); font-size:.7rem;">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas" style="height:28px; width:28px;"></span>
                 </a>
-                <a href="dashboard.html" class="learn-sidebar-back">&larr; Retour au tableau de bord</a>
+                <a href="dashboard" class="learn-sidebar-back">&larr; Retour au tableau de bord</a>
                 <h2 class="learn-sidebar-title" id="course-title">Chargement...</h2>
                 <div class="learn-sidebar-progress">
                     <div class="learn-progress-bar">
@@ -1180,7 +1180,7 @@
 
     <!-- Cap Player chargé SYNCHRONE avant l'IIFE pour que CapPlayer soit défini
          au moment où goToLesson() s'exécute pour la 1re leçon (cf. fin du <script>). -->
-    <script src="../js/video-player.js"></script>
+    <script src="../js/video-player.js?v=20260723"></script>
 
     <script>
     // ===== COURSE DATA =====
@@ -2923,7 +2923,7 @@
         goToLesson(firstUncompleted >= 0 ? firstUncompleted : 0);
     })();
     </script>
-    <script src="../js/gamification.js"></script>
+    <script src="../js/gamification.js?v=20260723"></script>
     <script>
     // ===== GAMIFICATION INTEGRATION =====
     (function() {
@@ -3053,8 +3053,8 @@
     <!-- Trustpilot TrustBox Bootstrap -->
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
-    <script src="../js/whatsapp-widget.js"></script>
+    <script src="../js/whatsapp-widget.js?v=20260723"></script>
     <!-- Cap Player : chargé plus haut, AVANT l'IIFE initialLesson (voir <script src=video-player.js> avant le bloc principal) -->
-    <script src="../js/theme.js" defer></script>
+    <script src="../js/theme.js?v=20260723" defer></script>
 </body>
 </html>

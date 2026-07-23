@@ -4,7 +4,7 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="js/migrate-brand.js"></script>
+    <script src="js/migrate-brand.js?v=20260723"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cap Learning - Formations Digitales pour Entrepreneurs Africains</title>
@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/tokens.css">
+    <link rel="stylesheet" href="css/tokens.css?v=20260723">
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/style.css?v=20260723">
+    <link rel="stylesheet" href="css/components.css?v=20260723">
 </head>
 <body>
     <!-- Skip Navigation -->
@@ -25,7 +25,7 @@
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container top-bar-inner">
-            <span class="top-bar-text">Nouveau : 4 parcours qualifiants pour entrepreneurs africains - <a href="pages/catalogue.html">Découvrir</a></span>
+            <span class="top-bar-text">Nouveau : 4 parcours qualifiants pour entrepreneurs africains - <a href="pages/catalogue">Découvrir</a></span>
             <div class="top-bar-actions">
                 <button class="lang-toggle" aria-label="Changer de langue">
                     <span class="lang-icon">&#127760;</span> FR
@@ -42,7 +42,7 @@
     <!-- Navigation -->
     <header class="header" id="header">
         <div class="container header-inner">
-            <a href="index.html" class="logo" aria-label="Cap Learning Accueil">
+            <a href="/" class="logo" aria-label="Cap Learning Accueil">
                 <span class="logo-mark">C</span>
                 <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
                 <span class="logo-by">by <img src="img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
@@ -50,35 +50,35 @@
 
             <nav class="nav-main" aria-label="Navigation principale">
                 <ul class="nav-list">
-                    <li><a href="index.html" class="nav-link active">Accueil</a></li>
+                    <li><a href="/" class="nav-link active">Accueil</a></li>
                     <li class="nav-dropdown">
                         <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
                             Formations <span class="nav-chevron">&#9662;</span>
                         </button>
                         <div class="nav-dropdown-menu">
                             <div class="nav-dropdown-grid">
-                                <a href="pages/formation-ecommerce.html" class="nav-dropdown-item">
+                                <a href="pages/formation-ecommerce" class="nav-dropdown-item">
                                     <span class="nav-dropdown-icon">&#128722;</span>
                                     <div>
                                         <strong>E-commerce &amp; Paiements</strong>
                                         <span>20h &middot; 47 modules &middot; Bestseller</span>
                                     </div>
                                 </a>
-                                <a href="pages/formation-ia-business.html" class="nav-dropdown-item">
+                                <a href="pages/formation-ia-business" class="nav-dropdown-item">
                                     <span class="nav-dropdown-icon">&#129302;</span>
                                     <div>
                                         <strong>IA &amp; Business</strong>
                                         <span>15h &middot; 26 modules &middot; Tendance 2026</span>
                                     </div>
                                 </a>
-                                <a href="pages/formation-marketing-digital.html" class="nav-dropdown-item">
+                                <a href="pages/formation-marketing-digital" class="nav-dropdown-item">
                                     <span class="nav-dropdown-icon">&#128200;</span>
                                     <div>
                                         <strong>Marketing Digital</strong>
                                         <span>9h &middot; 16 modules &middot; Bestseller</span>
                                     </div>
                                 </a>
-                                <a href="pages/formation-reseaux-sociaux.html" class="nav-dropdown-item">
+                                <a href="pages/formation-reseaux-sociaux" class="nav-dropdown-item">
                                     <span class="nav-dropdown-icon">&#128241;</span>
                                     <div>
                                         <strong>R&eacute;seaux Sociaux &amp; CM</strong>
@@ -87,44 +87,44 @@
                                 </a>
                             </div>
                             <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
-                                <a href="pages/catalogue.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                <a href="pages/catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
                                     Voir les 4 parcours &rarr;
                                 </a>
-                                <a href="pages/comparatif.html" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                <a href="pages/comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
                                     Comparer &rarr;
                                 </a>
                             </div>
                         </div>
                     </li>
-                    <li><a href="pages/plateforme.html" class="nav-link">Plateforme</a></li>
+                    <li><a href="pages/plateforme" class="nav-link">Plateforme</a></li>
                     <li class="nav-dropdown">
                         <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
                             À propos <span class="nav-chevron">&#9662;</span>
                         </button>
                         <div class="nav-dropdown-menu">
                             <div class="nav-dropdown-grid">
-                                <a href="pages/qui-sommes-nous.html" class="nav-dropdown-item">
+                                <a href="pages/qui-sommes-nous" class="nav-dropdown-item">
                                     <span class="nav-dropdown-icon">&#127757;</span>
                                     <div><strong>Qui sommes-nous</strong><span>Notre mission panafricaine</span></div>
                                 </a>
-                                <a href="pages/nos-experts.html" class="nav-dropdown-item">
+                                <a href="pages/nos-experts" class="nav-dropdown-item">
                                     <span class="nav-dropdown-icon">&#128100;</span>
                                     <div><strong>Nos experts</strong><span>Formateurs &amp; accompagnateurs</span></div>
                                 </a>
                             </div>
                         </div>
                     </li>
-                    <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
+                    <li><a href="pages/contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
 
             <div class="header-actions">
-                <a href="pages/panier.html" class="cart-btn" aria-label="Panier">
+                <a href="pages/panier" class="cart-btn" aria-label="Panier">
                     <span class="cart-icon">&#128722;</span>
                     <span class="cart-badge" id="cart-badge">0</span>
                 </a>
-                <a href="pages/connexion.html" class="btn btn-ghost btn-sm">Connexion</a>
-                <a href="pages/connexion.html#inscription" class="btn btn-primary btn-sm">Créer un compte</a>
+                <a href="pages/connexion" class="btn btn-ghost btn-sm">Connexion</a>
+                <a href="pages/connexion#inscription" class="btn btn-primary btn-sm">Créer un compte</a>
                 <button class="mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
                     <span class="hamburger"></span>
                 </button>
@@ -134,14 +134,14 @@
         <!-- Mobile Nav -->
         <nav class="mobile-nav" aria-label="Navigation mobile" hidden>
             <ul class="mobile-nav-list">
-                <li><a href="index.html" class="mobile-nav-link active">Accueil</a></li>
-                <li><a href="pages/catalogue.html" class="mobile-nav-link">Formations</a></li>
-                <li><a href="pages/plateforme.html" class="mobile-nav-link">Plateforme</a></li>
-                <li><a href="pages/qui-sommes-nous.html" class="mobile-nav-link">Qui sommes-nous</a></li>
-                <li><a href="pages/nos-experts.html" class="mobile-nav-link">Nos experts</a></li>
-                <li><a href="pages/contact.html" class="mobile-nav-link">Contact</a></li>
+                <li><a href="/" class="mobile-nav-link active">Accueil</a></li>
+                <li><a href="pages/catalogue" class="mobile-nav-link">Formations</a></li>
+                <li><a href="pages/plateforme" class="mobile-nav-link">Plateforme</a></li>
+                <li><a href="pages/qui-sommes-nous" class="mobile-nav-link">Qui sommes-nous</a></li>
+                <li><a href="pages/nos-experts" class="mobile-nav-link">Nos experts</a></li>
+                <li><a href="pages/contact" class="mobile-nav-link">Contact</a></li>
                 <li class="mobile-nav-divider"></li>
-                <li><a href="pages/connexion.html#inscription" class="btn btn-primary btn-block">Créer un compte</a></li>
+                <li><a href="pages/connexion#inscription" class="btn btn-primary btn-block">Créer un compte</a></li>
             </ul>
         </nav>
     </header>
@@ -164,7 +164,7 @@
                         Apprenez le marketing digital, l'e-commerce, l'IA et bien plus.
                     </p>
                     <div class="hero-actions">
-                        <a href="pages/catalogue.html" class="btn btn-primary btn-lg">
+                        <a href="pages/catalogue" class="btn btn-primary btn-lg">
                             Explorer les formations
                             <span class="btn-arrow">&rarr;</span>
                         </a>
@@ -379,7 +379,7 @@
                             </div>
                         </div>
                         <div class="certif-cta">
-                            <a href="pages/catalogue.html" class="btn btn-primary btn-lg">D&eacute;couvrir nos formations qualifiantes &rarr;</a>
+                            <a href="pages/catalogue" class="btn btn-primary btn-lg">D&eacute;couvrir nos formations qualifiantes &rarr;</a>
                         </div>
                     </div>
                 </div>
@@ -451,7 +451,7 @@
                                 <span class="tag tag-ecommerce">E-commerce</span>
                                 <span class="tag tag-level">Intermédiaire</span>
                             </div>
-                            <h3 class="course-card-title"><a href="pages/formation-ecommerce.html" style="color: inherit; text-decoration: none;">E-commerce &amp; Paiements Digitaux</a></h3>
+                            <h3 class="course-card-title"><a href="pages/formation-ecommerce" style="color: inherit; text-decoration: none;">E-commerce &amp; Paiements Digitaux</a></h3>
                             <p class="course-card-desc">Boutique en ligne + encaissement africain : Wave, Orange Money, MTN MoMo, cartes bancaires, logistique &amp; dropshipping.</p>
                             <div class="course-card-meta">
                                 <span>&#128338; 20 heures</span>
@@ -471,7 +471,7 @@
                                     <span>4.8/5</span>
                                 </div>
                             </div>
-                            <a href="pages/formation-ecommerce.html" class="btn btn-primary btn-block">Voir la formation</a>
+                            <a href="pages/formation-ecommerce" class="btn btn-primary btn-block">Voir la formation</a>
                         </div>
                     </article>
 
@@ -489,7 +489,7 @@
                                 <span class="tag tag-ia">IA &amp; Tech</span>
                                 <span class="tag tag-level">Tous niveaux</span>
                             </div>
-                            <h3 class="course-card-title"><a href="pages/formation-ia-business.html" style="color: inherit; text-decoration: none;">IA &amp; Business : Automatisation</a></h3>
+                            <h3 class="course-card-title"><a href="pages/formation-ia-business" style="color: inherit; text-decoration: none;">IA &amp; Business : Automatisation</a></h3>
                             <p class="course-card-desc">ChatGPT, Claude, Midjourney, Lovable &amp; N8N. Créez agents IA et automatisations pour votre business.</p>
                             <div class="course-card-meta">
                                 <span>&#128338; 15 heures</span>
@@ -509,7 +509,7 @@
                                     <span>4.8/5</span>
                                 </div>
                             </div>
-                            <a href="pages/formation-ia-business.html" class="btn btn-primary btn-block">Voir la formation</a>
+                            <a href="pages/formation-ia-business" class="btn btn-primary btn-block">Voir la formation</a>
                         </div>
                     </article>
 
@@ -527,7 +527,7 @@
                                 <span class="tag tag-marketing">Marketing Digital</span>
                                 <span class="tag tag-level">Débutant</span>
                             </div>
-                            <h3 class="course-card-title"><a href="pages/formation-marketing-digital.html" style="color: inherit; text-decoration: none;">Marketing Digital Complet</a></h3>
+                            <h3 class="course-card-title"><a href="pages/formation-marketing-digital" style="color: inherit; text-decoration: none;">Marketing Digital Complet</a></h3>
                             <p class="course-card-desc">Stratégie, SEO, Facebook/Instagram Ads, Google Ads, email, analytics &amp; funnels pour entrepreneurs africains.</p>
                             <div class="course-card-meta">
                                 <span>&#128338; 9 heures</span>
@@ -547,7 +547,7 @@
                                     <span>4.8/5</span>
                                 </div>
                             </div>
-                            <a href="pages/formation-marketing-digital.html" class="btn btn-primary btn-block">Voir la formation</a>
+                            <a href="pages/formation-marketing-digital" class="btn btn-primary btn-block">Voir la formation</a>
                         </div>
                     </article>
 
@@ -564,7 +564,7 @@
                                 <span class="tag tag-marketing">RS &amp; CM</span>
                                 <span class="tag tag-level">Débutant</span>
                             </div>
-                            <h3 class="course-card-title"><a href="pages/formation-reseaux-sociaux.html" style="color: inherit; text-decoration: none;">R&eacute;seaux Sociaux &amp; CM</a></h3>
+                            <h3 class="course-card-title"><a href="pages/formation-reseaux-sociaux" style="color: inherit; text-decoration: none;">R&eacute;seaux Sociaux &amp; CM</a></h3>
                             <p class="course-card-desc">TikTok, Instagram, WhatsApp Business, contenu viral, modération et conversion follower→client.</p>
                             <div class="course-card-meta">
                                 <span>&#128338; 7 heures</span>
@@ -584,14 +584,14 @@
                                     <span>4.8/5</span>
                                 </div>
                             </div>
-                            <a href="pages/formation-reseaux-sociaux.html" class="btn btn-primary btn-block">Voir la formation</a>
+                            <a href="pages/formation-reseaux-sociaux" class="btn btn-primary btn-block">Voir la formation</a>
                         </div>
                     </article>
 
                 </div>
 
                 <div class="section-cta">
-                    <a href="pages/catalogue.html" class="btn btn-outline btn-lg">Voir toutes les formations &rarr;</a>
+                    <a href="pages/catalogue" class="btn btn-outline btn-lg">Voir toutes les formations &rarr;</a>
                 </div>
             </div>
         </section>
@@ -663,7 +663,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="index.html" class="logo">
+                    <a href="/" class="logo">
                         <span class="logo-mark">C</span>
                         <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
                         <span class="logo-by">by <img src="img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
@@ -685,29 +685,29 @@
                 <div class="footer-links">
                     <h4>Nos 4 parcours</h4>
                     <ul>
-                        <li><a href="pages/formation-ecommerce.html">E-commerce &amp; Paiements</a></li>
-                        <li><a href="pages/formation-ia-business.html">IA &amp; Business</a></li>
-                        <li><a href="pages/formation-marketing-digital.html">Marketing Digital</a></li>
-                        <li><a href="pages/formation-reseaux-sociaux.html">R&eacute;seaux Sociaux &amp; CM</a></li>
-                        <li><a href="pages/catalogue.html"><strong>Voir le catalogue &rarr;</strong></a></li>
+                        <li><a href="pages/formation-ecommerce">E-commerce &amp; Paiements</a></li>
+                        <li><a href="pages/formation-ia-business">IA &amp; Business</a></li>
+                        <li><a href="pages/formation-marketing-digital">Marketing Digital</a></li>
+                        <li><a href="pages/formation-reseaux-sociaux">R&eacute;seaux Sociaux &amp; CM</a></li>
+                        <li><a href="pages/catalogue"><strong>Voir le catalogue &rarr;</strong></a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Entreprise</h4>
                     <ul>
-                        <li><a href="pages/qui-sommes-nous.html">Qui sommes-nous</a></li>
-                        <li><a href="pages/nos-experts.html">Nos experts</a></li>
-                        <li><a href="pages/plateforme.html">La plateforme</a></li>
+                        <li><a href="pages/qui-sommes-nous">Qui sommes-nous</a></li>
+                        <li><a href="pages/nos-experts">Nos experts</a></li>
+                        <li><a href="pages/plateforme">La plateforme</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Support</h4>
                     <ul>
                         <li><a href="#faq">FAQ</a></li>
-                        <li><a href="pages/contact.html">Contactez-nous</a></li>
-                        <li><a href="pages/certificat.html">Vérifier un certificat</a></li>
-                        <li><a href="pages/cgu.html">Conditions d'utilisation</a></li>
-                        <li><a href="pages/confidentialite.html">Politique de confidentialité</a></li>
+                        <li><a href="pages/contact">Contactez-nous</a></li>
+                        <li><a href="pages/certificat">Vérifier un certificat</a></li>
+                        <li><a href="pages/cgu">Conditions d'utilisation</a></li>
+                        <li><a href="pages/confidentialite">Politique de confidentialité</a></li>
                     </ul>
                 </div>
             </div>
@@ -733,11 +733,11 @@
         <button class="toast-close" onclick="hideToast()">&times;</button>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="js/app.js?v=20260723"></script>
     <!-- Trustpilot TrustBox Bootstrap -->
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
-    <script src="js/whatsapp-widget.js"></script>
-    <script src="js/theme.js" defer></script>
+    <script src="js/whatsapp-widget.js?v=20260723"></script>
+    <script src="js/theme.js?v=20260723" defer></script>
 </body>
 </html>

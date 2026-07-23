@@ -4,7 +4,7 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js"></script>
+    <script src="../js/migrate-brand.js?v=20260723"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Certificat Cap Learning</title>
@@ -387,12 +387,12 @@
             .cert-inner::before, .cert-inner::after { display: none; }
         }
     </style>
-    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260723">
 </head>
 <body>
     <!-- ===== Cap Learning Supabase stack (DB certificates + fallback AdminData) ===== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/config.js"></script>
+    <script src="../js/config.js?v=20260723"></script>
     <script src="../js/supabase-client.js?v=2"></script>
     <script src="../js/auth.js?v=2"></script>
     <script src="../js/db.js?v=2"></script>
@@ -401,7 +401,7 @@
     <div class="cert-toolbar" id="toolbar">
         <h1>Certificat officiel Cap Learning</h1>
         <div>
-            <a href="admin.html" class="cert-btn">&larr; Retour à l'admin</a>
+            <a href="admin" class="cert-btn">&larr; Retour à l'admin</a>
             <button type="button" class="cert-btn cert-btn-primary" onclick="window.print()">
                 &#128438; Imprimer / PDF
             </button>
@@ -432,7 +432,7 @@
                 <div class="cert-error">
                     <h2>${escapeHtml(title)}</h2>
                     <p>${msg}</p>
-                    <p><a href="dashboard.html">Retour au tableau de bord</a></p>
+                    <p><a href="dashboard">Retour au tableau de bord</a></p>
                 </div>`;
         }
 
@@ -627,6 +627,6 @@
         }
     })();
     </script>
-    <script src="../js/theme.js" defer></script>
+    <script src="../js/theme.js?v=20260723" defer></script>
 </body>
 </html>
