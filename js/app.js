@@ -321,29 +321,38 @@ function initCartPage() {
             finance: 'linear-gradient(135deg, #10B981, #34D399)'
         };
 
-        const thumbFor = (item) => {
+        const courseFor = (item) => {
             const n = (item.name || '').toLowerCase();
-            if (n.includes('commerce') || item.category === 'ecommerce') return '/img/courses/ecommerce.svg';
-            if (n.includes('réseau') || n.includes('reseau') || n.includes('social')) return '/img/courses/reseaux.svg';
-            if (n.includes('ia') || n.includes('business') || item.category === 'ia') return '/img/courses/ia.svg';
-            return '/img/courses/marketing.svg';
+            if (n.includes('commerce') || item.category === 'ecommerce') return { thumb: '/img/courses/ecommerce.svg', hours: '20 h', level: 'Débutant → Interm.' };
+            if (n.includes('réseau') || n.includes('reseau') || n.includes('social')) return { thumb: '/img/courses/reseaux.svg', hours: '7 h', level: 'Débutant' };
+            if (n.includes('ia') || n.includes('business') || item.category === 'ia') return { thumb: '/img/courses/ia.svg', hours: '15 h', level: 'Tous niveaux' };
+            return { thumb: '/img/courses/marketing.svg', hours: '9 h', level: 'Débutant' };
         };
 
-        cartItemsContainer.innerHTML = items.map(item => `
+        cartItemsContainer.innerHTML = items.map(item => {
+            const c = courseFor(item);
+            return `
             <div class="cart-item" data-id="${item.id}">
                 <div class="cart-item-image" style="background: ${gradients[item.category] || gradients.marketing}">
-                    <img src="${thumbFor(item)}" alt="${item.name}" loading="lazy" style="width:100%;height:100%;object-fit:cover;border-radius:inherit">
+                    <img src="${c.thumb}" alt="${item.name}" loading="lazy">
                 </div>
                 <div class="cart-item-info">
                     <h3>${item.name}</h3>
-                    <p>Formation complète avec certificat</p>
-                    <span class="cart-item-price">${item.price.toLocaleString('fr-FR')} FCFA</span>
+                    <div class="cart-item-meta">
+                        <span>&#128337; ${c.hours}</span>
+                        <span>${c.level}</span>
+                        <span class="is-cert">&#127891; Certificat inclus</span>
+                    </div>
+                    <p class="cart-item-access">Accès à vie &middot; Mises à jour incluses</p>
                 </div>
-                <button class="cart-item-remove" data-id="${item.id}" aria-label="Retirer du panier">
-                    &#10005; Retirer
-                </button>
-            </div>
-        `).join('');
+                <div class="cart-item-side">
+                    <span class="cart-item-price">${item.price.toLocaleString('fr-FR')} FCFA</span>
+                    <button class="cart-item-remove" data-id="${item.id}" aria-label="Retirer du panier">
+                        &#10005; Retirer
+                    </button>
+                </div>
+            </div>`;
+        }).join('');
 
         // Update summary
         const subtotal = Cart.getTotal();
