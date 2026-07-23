@@ -114,6 +114,173 @@
             }
             .lms-course-picker-meta { text-align: left; }
         }
+
+        /* ============================================================
+           Hero Progression — mise en avant pédagogique du % (en haut)
+           Reste 100% sur le design system : tokens, Satoshi, cartes.
+           ============================================================ */
+        .lms-hero-progress {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 28px;
+            align-items: center;
+            background: var(--color-surface, #fff);
+            border: 1px solid var(--color-border, #E7E5E4);
+            border-radius: 20px;
+            padding: 28px 32px;
+            margin-bottom: var(--space-6, 24px);
+            box-shadow: var(--shadow-md, 0 4px 12px rgba(28,25,23,.08));
+            position: relative;
+            overflow: hidden;
+        }
+        .lms-hero-progress::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(120% 120% at 100% 0%, rgba(52,96,229,.07), transparent 60%);
+            pointer-events: none;
+        }
+        .lms-hero-ring {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            flex-shrink: 0;
+        }
+        .lms-hero-ring svg { transform: rotate(-90deg); display: block; }
+        .lms-hero-ring-track { fill: none; stroke: var(--color-surface-2, #F5F5F4); stroke-width: 12; }
+        .lms-hero-ring-fill {
+            fill: none;
+            stroke: url(#heroGrad);
+            stroke-width: 12;
+            stroke-linecap: round;
+            stroke-dasharray: 339.29;
+            stroke-dashoffset: 339.29;
+            transition: stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1);
+        }
+        .lms-hero-ring-label {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .lms-hero-ring-pct {
+            font-family: Satoshi, sans-serif;
+            font-weight: 700;
+            font-size: 1.9rem;
+            color: var(--color-text, #1C1917);
+            line-height: 1;
+        }
+        .lms-hero-ring-sub {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: var(--color-text-mute, #A8A29E);
+            margin-top: 3px;
+        }
+        .lms-hero-body { min-width: 0; }
+        .lms-hero-eyebrow {
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: .07em;
+            font-weight: 700;
+            color: var(--accent-ia, #3460E5);
+        }
+        .lms-hero-title {
+            font-family: Satoshi, sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--color-text, #1C1917);
+            margin: 5px 0 6px;
+            line-height: 1.25;
+        }
+        .lms-hero-message {
+            font-size: .95rem;
+            color: var(--color-text-soft, #57534E);
+            margin: 0 0 14px;
+            line-height: 1.5;
+        }
+        .lms-hero-message strong { color: var(--color-text, #1C1917); font-weight: 700; }
+        .lms-hero-bar {
+            height: 10px;
+            border-radius: 999px;
+            background: var(--color-surface-2, #F5F5F4);
+            overflow: hidden;
+            margin-bottom: 14px;
+        }
+        .lms-hero-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #3460E5, #A855F7);
+            width: 0;
+            transition: width 1.1s cubic-bezier(.4,0,.2,1);
+        }
+        .lms-hero-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+        .lms-hero-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--color-text-soft, #57534E);
+            background: var(--color-surface-2, #F5F5F4);
+            border-radius: 999px;
+            padding: 6px 12px;
+        }
+        .lms-hero-chip strong { color: var(--color-text, #1C1917); font-weight: 700; }
+        .lms-hero-chip--goal {
+            background: var(--accent-ia-bg, #DDE6FF);
+            color: var(--accent-ia-text, #1E2F7A);
+        }
+        .lms-hero-chip--goal strong { color: var(--accent-ia-text, #1E2F7A); }
+        .lms-hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #3460E5, #A855F7);
+            color: #fff;
+            font-weight: 600;
+            font-size: .95rem;
+            padding: 11px 22px;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 14px rgba(52,96,229,.28);
+            transition: transform .15s, box-shadow .15s;
+        }
+        .lms-hero-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(52,96,229,.36); }
+        @media (max-width: 640px) {
+            .lms-hero-progress {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+                padding: 24px;
+            }
+            .lms-hero-chips { justify-content: center; }
+        }
+
+        /* Lien communauté WhatsApp dans la sidebar (accent vert WhatsApp) */
+        .lms-sidebar-item.lms-sidebar-whatsapp { color: #128C7E; }
+        .lms-sidebar-item.lms-sidebar-whatsapp:hover {
+            background: rgba(37,211,102,.12);
+            color: #075E54;
+        }
+        [data-theme="dark"] .lms-sidebar-item.lms-sidebar-whatsapp { color: #4AE08A; }
+        [data-theme="dark"] .lms-sidebar-item.lms-sidebar-whatsapp:hover {
+            background: rgba(37,211,102,.16);
+            color: #7DF0AE;
+        }
+        .lms-sidebar-whatsapp .lms-sidebar-badge {
+            margin-left: auto;
+            font-size: .62rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            background: #25D366;
+            color: #fff;
+            padding: 2px 7px;
+            border-radius: 999px;
+        }
     </style>
 </head>
 <body>
@@ -143,6 +310,13 @@
                         <a href="catalogue.html" class="lms-sidebar-item">
                             <span class="nav-icon">&#128218;</span>
                             Mes formations
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://wa.me/221781234567?text=Bonjour%20Cap%20Learning%20!%20Je%20souhaite%20rejoindre%20la%20communaut%C3%A9%20d%27entrepreneurs%20africains." target="_blank" rel="noopener" class="lms-sidebar-item lms-sidebar-whatsapp">
+                            <span class="nav-icon">&#128172;</span>
+                            Communaut&eacute; WhatsApp
+                            <span class="lms-sidebar-badge">Rejoindre</span>
                         </a>
                     </li>
                     <li>
@@ -191,6 +365,41 @@
 
             <!-- Content -->
             <div class="lms-content">
+
+                <!-- Hero Progression : le % mis en avant tout en haut (pédagogique + gamifié) -->
+                <section class="lms-hero-progress" id="heroProgress" hidden>
+                    <div class="lms-hero-ring">
+                        <svg viewBox="0 0 120 120" width="120" height="120" aria-hidden="true">
+                            <defs>
+                                <linearGradient id="heroGrad" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#3460E5"></stop>
+                                    <stop offset="1" stop-color="#A855F7"></stop>
+                                </linearGradient>
+                            </defs>
+                            <circle class="lms-hero-ring-track" cx="60" cy="60" r="54"></circle>
+                            <circle class="lms-hero-ring-fill" id="heroRingFill" cx="60" cy="60" r="54"></circle>
+                        </svg>
+                        <div class="lms-hero-ring-label">
+                            <span class="lms-hero-ring-pct" id="heroPct">0%</span>
+                            <span class="lms-hero-ring-sub">complété</span>
+                        </div>
+                    </div>
+                    <div class="lms-hero-body">
+                        <span class="lms-hero-eyebrow" id="heroEyebrow">Votre parcours en cours</span>
+                        <h2 class="lms-hero-title" id="heroTitle">&mdash;</h2>
+                        <p class="lms-hero-message" id="heroMessage">&mdash;</p>
+                        <div class="lms-hero-bar"><div class="lms-hero-bar-fill" id="heroBarFill" style="width:0%"></div></div>
+                        <div class="lms-hero-chips" id="heroChips">
+                            <span class="lms-hero-chip" id="heroChipStreak" hidden></span>
+                            <span class="lms-hero-chip" id="heroChipLevel" hidden></span>
+                            <span class="lms-hero-chip lms-hero-chip--goal" id="heroChipGoal">&#127919; &mdash;</span>
+                        </div>
+                        <a class="lms-hero-cta" id="heroCta" href="#">
+                            <span>Reprendre</span>
+                            <span aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+                </section>
 
                 <!-- Gamification Dashboard -->
                 <div id="gamif-dashboard-widget" style="margin-bottom: var(--space-6);"></div>
@@ -675,10 +884,70 @@
             quickLabel.textContent = 'Achetez une formation pour débloquer ces raccourcis';
         }
 
+        // --- Hero Progression : met le % en avant tout en haut ------
+        var heroActive = false;
+        (function populateHeroProgress() {
+            var hero = document.getElementById('heroProgress');
+            if (!hero || !focusCourse) return;
+
+            var p = progress[focusCourse.id] || {};
+            var completed = (p.completed || []).length;
+            var total = focusCourse.modules;
+            var pct = getProgress(focusCourse.id, focusCourse.modules);
+            var remaining = Math.max(0, total - completed);
+
+            hero.hidden = false;
+            heroActive = true;
+
+            // Anneau circulaire + barre (animés)
+            var CIRC = 339.29; // 2·π·54
+            document.getElementById('heroRingFill').style.strokeDashoffset = (CIRC * (1 - pct / 100)).toFixed(1);
+            document.getElementById('heroPct').textContent = pct + '%';
+            document.getElementById('heroBarFill').style.width = pct + '%';
+            document.getElementById('heroTitle').textContent = focusCourse.icon + ' ' + focusCourse.name;
+
+            var eyebrow = document.getElementById('heroEyebrow');
+            var message = document.getElementById('heroMessage');
+            var goalChip = document.getElementById('heroChipGoal');
+            var cta = document.getElementById('heroCta');
+            var ctaLabel = cta.querySelector('span');
+            cta.href = 'apprendre.html?id=' + focusCourse.id;
+
+            function plural(n) { return n > 1 ? 's' : ''; }
+
+            if (pct >= 100) {
+                eyebrow.textContent = 'Parcours terminé 🎉';
+                message.innerHTML = 'Bravo, vous avez complété ce parcours ! Votre <strong>certificat</strong> vous attend.';
+                goalChip.innerHTML = '🏆 <strong>Certificat débloqué</strong>';
+                if (ctaLabel) ctaLabel.textContent = 'Voir mon certificat';
+                cta.href = 'certificat.html';
+            } else if (pct === 0) {
+                eyebrow.textContent = 'Prêt à démarrer';
+                message.innerHTML = 'Lancez votre <strong>premier module</strong> pour démarrer le parcours. Chaque module vous rapproche du certificat 🎓';
+                goalChip.innerHTML = '🎯 <strong>' + total + ' modules</strong> vers le certificat';
+                if (ctaLabel) ctaLabel.textContent = 'Démarrer le parcours';
+            } else {
+                eyebrow.textContent = pct >= 75 ? 'Dernière ligne droite 💪' : 'Vous progressez bien';
+                var tiers = [25, 50, 75, 100];
+                var nextTier = tiers.find(function (t) { return t > pct; }) || 100;
+                var toTier = Math.max(1, Math.ceil(total * nextTier / 100) - completed);
+                if (nextTier === 100) {
+                    message.innerHTML = 'Plus que <strong>' + remaining + ' module' + plural(remaining) + '</strong> avant votre certificat 🎓 — vous y êtes presque !';
+                    goalChip.innerHTML = '🎯 <strong>' + remaining + ' module' + plural(remaining) + '</strong> vers 🎓 le certificat';
+                } else {
+                    message.innerHTML = 'Vous êtes à <strong>' + pct + '%</strong> du parcours. Encore <strong>' + toTier + ' module' + plural(toTier) + '</strong> pour atteindre ' + nextTier + '% !';
+                    goalChip.innerHTML = '🎯 Objectif <strong>' + nextTier + '%</strong> · ' + toTier + ' module' + plural(toTier);
+                }
+                if (ctaLabel) ctaLabel.textContent = 'Reprendre le parcours';
+            }
+        })();
+
         // --- "Reprendre" hero banner --------------------------------
         (function populateResumeBanner() {
             var banner = document.getElementById('resumeBanner');
             if (!banner || !focusCourse) return;
+            // Le hero en haut résume déjà le parcours actif → on évite le doublon.
+            if (heroActive) return;
 
             var p = progress[focusCourse.id] || {};
             var pct = getProgress(focusCourse.id, focusCourse.modules);
@@ -999,6 +1268,22 @@
         Gamification.updateStreak();
         // Render dashboard widget
         Gamification.renderDashboardWidget(document.getElementById('gamif-dashboard-widget'));
+
+        // Enrichit le hero de progression avec la série + le niveau (gamification)
+        try {
+            var streak = Gamification.getStreak();
+            var level = Gamification.getLevel();
+            var cs = document.getElementById('heroChipStreak');
+            var cl = document.getElementById('heroChipLevel');
+            if (cs && streak && streak.current > 0) {
+                cs.innerHTML = '🔥 <strong>' + streak.current + '</strong> jour' + (streak.current > 1 ? 's' : '') + ' de série';
+                cs.hidden = false;
+            }
+            if (cl && level) {
+                cl.innerHTML = level.icon + ' Niveau <strong>' + level.name + '</strong>';
+                cl.hidden = false;
+            }
+        } catch (e) { /* gamification optionnelle */ }
     })();
     </script>
     <!-- Trustpilot TrustBox Bootstrap -->
