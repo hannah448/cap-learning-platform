@@ -112,7 +112,7 @@ async function findProfileByEmail(email) {
  */
 async function upsertEnrollment({
     userId,
-    courseId,            // 'ecommerce' | 'marketing' | 'ia-business' | 'reseaux-sociaux' | 'entrepreneuriat'
+    courseId,            // 'ecommerce' | 'marketing' | 'ia-business' | 'reseaux-sociaux'
     cinetpayTransactionId,
     pennylaneInvoiceId,
     amountXof,

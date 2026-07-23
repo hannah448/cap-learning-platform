@@ -30,8 +30,7 @@
         { id: '1',  course_db_id: 'marketing',       name: 'Marketing Digital Complet',           hours: 57, modules: 16, page: 'formation-marketing-digital.html', priceXof: 89000 },
         { id: '2',  course_db_id: 'ecommerce',       name: 'E-commerce & Paiements Digitaux',     hours: 79, modules: 47, page: 'formation-ecommerce.html',        priceXof: 99000 },
         { id: '3',  course_db_id: 'ia-business',     name: 'IA & Business',                       hours: 48, modules: 26, page: 'formation-ia-business.html',      priceXof: 89000 },
-        { id: '5',  course_db_id: 'reseaux-sociaux', name: 'Réseaux Sociaux & CM',                hours: 41, modules: 25, page: 'formation-reseaux-sociaux.html',  priceXof: 79000 },
-        { id: '10', course_db_id: 'entrepreneuriat', name: 'Entrepreneuriat Digital',             hours: 50, modules: 20, page: 'formation-entrepreneuriat-digital.html', priceXof: 89000 }
+        { id: '5',  course_db_id: 'reseaux-sociaux', name: 'Réseaux Sociaux & CM',                hours: 41, modules: 25, page: 'formation-reseaux-sociaux.html',  priceXof: 79000 }
     ];
 
     var COURSES_BY_DB_ID = {};

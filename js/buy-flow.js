@@ -41,7 +41,7 @@
     /**
      * Entry point unique : "Acheter" depuis une page formation.
      * @param {object} opts
-     * @param {string} opts.courseDbId   ('ecommerce'|'marketing'|'ia-business'|'reseaux-sociaux'|'entrepreneuriat')
+     * @param {string} opts.courseDbId   ('ecommerce'|'marketing'|'ia-business'|'reseaux-sociaux')
      * @param {string} opts.courseLabel  ex: "Marketing Digital Complet"
      * @param {number} opts.priceXof     ex: 89000
      */

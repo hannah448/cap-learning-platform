@@ -3201,13 +3201,6 @@
           "subtitles": []
         }
       }
-    },
-    "entrepreneuriat-digital": {
-      "title": "Entrepreneuriat digital en Afrique",
-      "landing_page": "pages/formation-entrepreneuriat-digital.html",
-      "lessons": {
-        "_note": "Leçons à créer dans pages/apprendre.html avec le préfixe 'd1-*' ou 'ed1-*'. Ajouter ici dès que les IDs existent."
-      }
     }
   }
 }

@@ -36,8 +36,7 @@ const COURSE_CATALOG = {
     'marketing':       { label: 'Marketing Digital Complet',           priceXof: 25000 },
     'ecommerce':       { label: 'E-commerce & Paiements Digitaux',     priceXof: 30000 },
     'ia-business':     { label: 'IA & Business — Automatisation & Agents IA', priceXof: 30000 },
-    'reseaux-sociaux': { label: 'Réseaux Sociaux & Community Management', priceXof: 18000 },
-    'entrepreneuriat': { label: 'Entrepreneuriat Digital',             priceXof: 25000 }
+    'reseaux-sociaux': { label: 'Réseaux Sociaux & Community Management', priceXof: 18000 }
 };
 
 async function findProfileById(userId) {
