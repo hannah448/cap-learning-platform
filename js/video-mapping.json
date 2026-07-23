@@ -109,7 +109,7 @@
             "confidence": "proposed",
             "vimeo_url": "https://vimeo.com/1063490922",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "l1-3": {
@@ -142,7 +142,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1061206496",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "l2-1": {
@@ -267,7 +267,7 @@
             "confidence": "proposed",
             "vimeo_url": "https://vimeo.com/927976679",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "l3-1": {
@@ -350,7 +350,7 @@
             "confidence": "proposed",
             "vimeo_url": "https://vimeo.com/928796096",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "l3-3": {
@@ -1494,7 +1494,7 @@
             "confidence": "proposed",
             "vimeo_url": "https://vimeo.com/988383053",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "i1-2": {
@@ -1527,7 +1527,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1175511316",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "n1-1b": {
@@ -2248,7 +2248,7 @@
             "confidence": "proposed",
             "vimeo_url": "https://vimeo.com/1019485579",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s1-2": {
@@ -2285,7 +2285,7 @@
             "confidence": "proposed",
             "vimeo_url": "https://vimeo.com/928765208",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-1": {
@@ -2512,7 +2512,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1034144539",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-4b": {
@@ -2531,7 +2531,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1034140700",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-5": {
@@ -2550,7 +2550,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/927168625",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-5b": {
@@ -2569,7 +2569,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/927983329",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-6": {
@@ -2588,7 +2588,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/928789992",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-6b": {
@@ -2607,7 +2607,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/928789368",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-6c": {
@@ -2626,7 +2626,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/928789793",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-7": {
@@ -2645,7 +2645,7 @@
             "confidence": "proposed",
             "vimeo_url": "https://vimeo.com/927153288",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-7b": {
@@ -2664,7 +2664,7 @@
             "confidence": "to-review",
             "vimeo_url": "https://vimeo.com/1020181348",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "s2-7c": {
@@ -3020,7 +3020,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1168494528",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "n4-2": {
@@ -3039,7 +3039,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/988825037",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "n5-1": {
@@ -3058,7 +3058,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1168501806",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "n5-2": {
@@ -3077,7 +3077,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1168023093",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "n5-3": {
@@ -3110,7 +3110,7 @@
             "confidence": "anchor",
             "vimeo_url": "https://vimeo.com/1181868951",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "n6-1": {
@@ -3173,7 +3173,7 @@
             "confidence": "to-review",
             "vimeo_url": "https://vimeo.com/927170662",
             "batch": "batch2-2026-07-07",
-            "note": "Pré-câblé depuis le catalogue Vimeo Digi-Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
+            "note": "Pré-câblé depuis le catalogue Vimeo Digi Atlas. Passer status à \"live\" après download → encodage 720p → upload S3 (scripts/vimeo_urls.batch2.txt)."
           }
         },
         "em1-2": {
