@@ -94,8 +94,8 @@
                     country:   (metadata && metadata.country) || 'SN'
                 },
                 emailRedirectTo: (window.CapConfig && window.CapConfig.PUBLIC_BASE_URL)
-                    ? window.CapConfig.PUBLIC_BASE_URL + '/pages/dashboard.html'
-                    : window.location.origin + '/pages/dashboard.html'
+                    ? window.CapConfig.PUBLIC_BASE_URL + '/pages/dashboard'
+                    : window.location.origin + '/pages/dashboard'
             }
         });
         if (res.error) throw res.error;
@@ -126,8 +126,8 @@
             email: email.trim().toLowerCase(),
             options: {
                 emailRedirectTo: (window.CapConfig && window.CapConfig.PUBLIC_BASE_URL)
-                    ? window.CapConfig.PUBLIC_BASE_URL + '/pages/dashboard.html'
-                    : window.location.origin + '/pages/dashboard.html'
+                    ? window.CapConfig.PUBLIC_BASE_URL + '/pages/dashboard'
+                    : window.location.origin + '/pages/dashboard'
             }
         });
         if (res.error) throw res.error;
@@ -143,8 +143,8 @@
     async function signInWithGoogle(redirectTo) {
         var dest = redirectTo
             || (window.CapConfig && window.CapConfig.PUBLIC_BASE_URL
-                ? window.CapConfig.PUBLIC_BASE_URL + '/pages/dashboard.html'
-                : window.location.origin + '/pages/dashboard.html');
+                ? window.CapConfig.PUBLIC_BASE_URL + '/pages/dashboard'
+                : window.location.origin + '/pages/dashboard');
 
         var res = await db.auth.signInWithOAuth({
             provider: 'google',

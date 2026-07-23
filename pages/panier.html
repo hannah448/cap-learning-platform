@@ -727,7 +727,7 @@
                     Vos formations sont maintenant accessibles.<br>
                     Un reçu a été envoyé à votre email.
                 </div>
-                <button class="checkout-confirm-btn" onclick="window.location.href='dashboard.html'">
+                <button class="checkout-confirm-btn" onclick="window.location.href='dashboard'">
                     Accéder à mes formations →
                 </button>
             </div>
@@ -882,7 +882,7 @@
     function requireLogin(onOk) {
         var deny = function () {
             showToast('Connectez-vous pour finaliser votre achat');
-            setTimeout(function () { window.location.href = 'connexion.html'; }, 1500);
+            setTimeout(function () { window.location.href = 'connexion'; }, 1500);
         };
         if (typeof CapAuth !== 'undefined' && CapAuth.getProfile) {
             CapAuth.getProfile().then(function (profile) {

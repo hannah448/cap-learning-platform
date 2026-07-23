@@ -158,13 +158,13 @@
                 setMsg('Mot de passe enregistré. Redirection…', 'ok');
 
                 // Redirige vers l'espace adapté au rôle.
-                var dest = 'dashboard.html';
+                var dest = 'dashboard';
                 try {
                     var u = await window.CapDB.auth.getUser();
                     var uid = u && u.data && u.data.user ? u.data.user.id : null;
                     if (uid) {
                         var prof = await window.CapDB.from('profiles').select('role').eq('id', uid).single();
-                        if (prof && prof.data && prof.data.role === 'admin') dest = 'admin.html';
+                        if (prof && prof.data && prof.data.role === 'admin') dest = 'admin';
                     }
                 } catch (e2) { /* fallback dashboard */ }
 

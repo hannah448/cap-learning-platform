@@ -605,7 +605,7 @@
         }
         if (!window.CapAuth || !window.CapData) {
             console.error('[Dashboard] CapAuth/CapData indisponibles. Vérifie js/config.js.');
-            window.location.href = 'connexion.html';
+            window.location.href = 'connexion';
             return;
         }
 
@@ -614,7 +614,7 @@
         try { profile = await window.CapAuth.getProfile(); } catch (e) {}
         if (!profile) {
             sessionStorage.setItem('caplearning_redirect_after_login', window.location.pathname);
-            window.location.replace('connexion.html');
+            window.location.replace('connexion');
             return;
         }
 
@@ -622,10 +622,10 @@
         // course_db_id = identifiant texte stocké dans la table enrollments Supabase.
         // Refonte 2026 : 4 parcours certifiants.
         const ALL_COURSES = [
-            { id: '1',  course_db_id: 'marketing',       name: 'Marketing Digital Complet',           category: 'marketing',       gradient: 'linear-gradient(135deg, #FF6B35, #F7931E)', icon: '\uD83D\uDCC8', hours: 9,  modules: 16, page: 'formation-marketing-digital.html' },
-            { id: '2',  course_db_id: 'ecommerce',       name: 'E-commerce & Paiements Digitaux',     category: 'ecommerce',       gradient: 'linear-gradient(135deg, #2D9CDB, #56CCF2)', icon: '\uD83D\uDED2', hours: 20, modules: 47, page: 'formation-ecommerce.html' },
-            { id: '3',  course_db_id: 'ia-business',     name: 'IA & Business',                       category: 'ia',              gradient: 'linear-gradient(135deg, #A855F7, #6366F1)', icon: '\uD83E\uDD16', hours: 15, modules: 26, page: 'formation-ia-business.html' },
-            { id: '5',  course_db_id: 'reseaux-sociaux', name: 'R\u00e9seaux Sociaux & CM',           category: 'marketing',       gradient: 'linear-gradient(135deg, #F472B6, #EC4899)', icon: '\uD83D\uDCF1', hours: 7,  modules: 25, page: 'formation-reseaux-sociaux.html' }
+            { id: '1',  course_db_id: 'marketing',       name: 'Marketing Digital Complet',           category: 'marketing',       gradient: 'linear-gradient(135deg, #FF6B35, #F7931E)', icon: '\uD83D\uDCC8', hours: 9,  modules: 16, page: 'formation-marketing-digital' },
+            { id: '2',  course_db_id: 'ecommerce',       name: 'E-commerce & Paiements Digitaux',     category: 'ecommerce',       gradient: 'linear-gradient(135deg, #2D9CDB, #56CCF2)', icon: '\uD83D\uDED2', hours: 20, modules: 47, page: 'formation-ecommerce' },
+            { id: '3',  course_db_id: 'ia-business',     name: 'IA & Business',                       category: 'ia',              gradient: 'linear-gradient(135deg, #A855F7, #6366F1)', icon: '\uD83E\uDD16', hours: 15, modules: 26, page: 'formation-ia-business' },
+            { id: '5',  course_db_id: 'reseaux-sociaux', name: 'R\u00e9seaux Sociaux & CM',           category: 'marketing',       gradient: 'linear-gradient(135deg, #F472B6, #EC4899)', icon: '\uD83D\uDCF1', hours: 7,  modules: 25, page: 'formation-reseaux-sociaux' }
         ];
 
         const COURSES_BY_DB_ID = {};
@@ -911,7 +911,7 @@
             var goalChip = document.getElementById('heroChipGoal');
             var cta = document.getElementById('heroCta');
             var ctaLabel = cta.querySelector('span');
-            cta.href = 'apprendre.html?id=' + focusCourse.id;
+            cta.href = 'apprendre?id=' + focusCourse.id;
 
             function plural(n) { return n > 1 ? 's' : ''; }
 
@@ -920,7 +920,7 @@
                 message.innerHTML = 'Bravo, vous avez complété ce parcours ! Votre <strong>certificat</strong> vous attend.';
                 goalChip.innerHTML = '🏆 <strong>Certificat débloqué</strong>';
                 if (ctaLabel) ctaLabel.textContent = 'Voir mon certificat';
-                cta.href = 'certificat.html';
+                cta.href = 'certificat';
             } else if (pct === 0) {
                 eyebrow.textContent = 'Prêt à démarrer';
                 message.innerHTML = 'Lancez votre <strong>premier module</strong> pour démarrer le parcours. Chaque module vous rapproche du certificat 🎓';
@@ -996,7 +996,7 @@
             }
 
             var cta = document.getElementById('resumeCta');
-            cta.href = 'apprendre.html?id=' + focusCourse.id;
+            cta.href = 'apprendre?id=' + focusCourse.id;
             var ctaLabel = cta.querySelector('span');
             if (ctaLabel) ctaLabel.textContent = pct === 0 ? 'Démarrer la formation' : 'Reprendre la leçon';
         })();
@@ -1031,7 +1031,7 @@
             fill.style.background = focusCourse.gradient;
             text.textContent = pct + '%';
 
-            cta.href = 'apprendre.html?id=' + focusCourse.id;
+            cta.href = 'apprendre?id=' + focusCourse.id;
             cta.textContent = (pct > 0 ? 'Reprendre la vidéo' : 'Commencer la vidéo') + ' \u2192';
         })();
 
@@ -1074,7 +1074,7 @@
             document.getElementById('exScore').textContent = done ? avgScore + '%' : '—';
             document.getElementById('exLeft').textContent = leftCount;
 
-            cta.href = 'apprendre.html?id=' + focusCourse.id + '#exercices';
+            cta.href = 'apprendre?id=' + focusCourse.id + '#exercices';
             cta.textContent = (done ? 'Continuer les exercices' : 'Commencer l\'exercice') + ' \u2192';
         })();
 
@@ -1219,7 +1219,7 @@
                     btn.classList.add('is-loading');
                     setTimeout(function () {
                         if (kind === 'manuel') {
-                            triggerDownload('manuel-' + base + '.html', buildManuel(focusCourse), 'text/html;charset=utf-8');
+                            triggerDownload('manuel-' + base + '', buildManuel(focusCourse), 'text/html;charset=utf-8');
                         } else if (kind === 'recap') {
                             triggerDownload('recap-' + base + '.md', buildRecap(focusCourse), 'text/markdown;charset=utf-8');
                         } else if (kind === 'exercices') {
@@ -1238,7 +1238,7 @@
             try { await window.CapAuth.signOut(); } catch (e) { /* swallow */ }
             // Compat ancien : nettoie aussi les anciennes clés localStorage
             localStorage.removeItem('caplearning_user');
-            window.location.href = 'connexion.html';
+            window.location.href = 'connexion';
         });
 
         // ---- Mobile Sidebar Toggle ----

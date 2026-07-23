@@ -41,10 +41,10 @@
     // - Mobile Money (ex id '6') fusionné dans E-commerce (id '2')
     // - Ajout Entrepreneuriat Digital (id '10')
     const CATALOG = [
-        { id: '1',  name: 'Marketing Digital Complet pour Entrepreneurs',  price: 25000, category: 'marketing',     page: 'formation-marketing-digital.html',    duration: 57, modules: 16 },
-        { id: '2',  name: 'E-commerce & Paiements Digitaux',               price: 30000, category: 'ecommerce',     page: 'formation-ecommerce.html',            duration: 79, modules: 47 },
-        { id: '3',  name: 'IA & Business : Automatisation & Productivité', price: 30000, category: 'ia',            page: 'formation-ia-business.html',          duration: 48, modules: 26 },
-        { id: '5',  name: 'Réseaux Sociaux & Community Management',        price: 18000, category: 'marketing',     page: 'formation-reseaux-sociaux.html',      duration: 41, modules: 25 }
+        { id: '1',  name: 'Marketing Digital Complet pour Entrepreneurs',  price: 25000, category: 'marketing',     page: 'formation-marketing-digital',    duration: 57, modules: 16 },
+        { id: '2',  name: 'E-commerce & Paiements Digitaux',               price: 30000, category: 'ecommerce',     page: 'formation-ecommerce',            duration: 79, modules: 47 },
+        { id: '3',  name: 'IA & Business : Automatisation & Productivité', price: 30000, category: 'ia',            page: 'formation-ia-business',          duration: 48, modules: 26 },
+        { id: '5',  name: 'Réseaux Sociaux & Community Management',        price: 18000, category: 'marketing',     page: 'formation-reseaux-sociaux',      duration: 41, modules: 25 }
     ];
 
     const ADMIN_EMAILS = ['hannah@digi-atlas.com'];
@@ -520,7 +520,7 @@
         requireAdmin(redirect) {
             const s = this.getSession();
             if (!s || s.role !== 'admin') {
-                if (redirect !== false) location.href = 'connexion.html';
+                if (redirect !== false) location.href = 'connexion';
                 return false;
             }
             return s;

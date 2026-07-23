@@ -3,7 +3,7 @@
  * --------------------------------------------------------
  * Exposes `window.Checkout` with a single method: `Checkout.start({...})`
  *
- * Call it from panier.html's "Confirmer le paiement" handler. It:
+ * Call it from panier's "Confirmer le paiement" handler. It:
  *   1. POSTs the cart + customer info to /api/create-checkout
  *   2. Receives a CinetPay hosted payment URL
  *   3. Redirects the browser to that URL (Wave / Orange / MTN / carte UI)

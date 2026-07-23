@@ -77,7 +77,7 @@
                 courseDbId: opts.courseDbId,
                 ts: Date.now()
             }));
-            window.location.href = (window.location.pathname.indexOf('/pages/') !== -1 ? '' : 'pages/') + 'connexion.html';
+            window.location.href = (window.location.pathname.indexOf('/pages/') !== -1 ? '' : 'pages/') + 'connexion';
             return;
         }
 

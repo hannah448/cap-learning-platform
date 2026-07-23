@@ -294,7 +294,7 @@
                         </div>
                     </div>
                     <div class="admin-cert-actions">
-                        <a href="certificat.html?e=${enrollment.id}" target="_blank" class="btn btn-primary btn-sm">
+                        <a href="certificat?e=${enrollment.id}" target="_blank" class="btn btn-primary btn-sm">
                             &#128196; Voir / Télécharger le certificat
                         </a>
                         <button class="btn btn-ghost btn-sm admin-danger"
@@ -536,7 +536,7 @@
                         <div>Progression moy. <strong>${avgProgress}%</strong></div>
                         <div>CA : <strong>${fmtFCFA(revenue)}</strong></div>
                     </div>
-                    <a href="apprendre.html?id=${c.id}" class="btn btn-ghost btn-sm btn-block" target="_blank">Voir la formation (vue apprenant) &rarr;</a>
+                    <a href="apprendre?id=${c.id}" class="btn btn-ghost btn-sm btn-block" target="_blank">Voir la formation (vue apprenant) &rarr;</a>
                 </div>
             `;
         }).join('');
@@ -877,7 +877,7 @@
         // Logout
         el('logoutBtn').addEventListener('click', () => {
             D.clearSession();
-            location.href = 'connexion.html';
+            location.href = 'connexion';
         });
 
         // Reset demo

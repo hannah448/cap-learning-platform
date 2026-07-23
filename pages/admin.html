@@ -39,16 +39,16 @@
                 await new Promise(function (r) { setTimeout(r, 30); });
             }
             if (!window.CapAuth) {
-                location.href = 'connexion.html';
+                location.href = 'connexion';
                 return;
             }
             try {
                 var profile = await window.CapAuth.getProfile();
                 if (!profile || profile.role !== 'admin') {
-                    location.replace('connexion.html');
+                    location.replace('connexion');
                 }
             } catch (e) {
-                location.replace('connexion.html');
+                location.replace('connexion');
             }
         })();
     </script>

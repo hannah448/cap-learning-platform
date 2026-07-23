@@ -53,8 +53,8 @@
         if (path.indexOf('/pages/') !== -1 || path.indexOf('/docs/') !== -1) depth = 1;
         var prefix = '';
         for (var i = 0; i < depth; i++) prefix += '../';
-        if (target === 'login') return prefix + 'pages/connexion.html';
-        if (target === 'home')  return prefix + 'index.html';
+        if (target === 'login') return prefix + 'pages/connexion';
+        if (target === 'home')  return prefix + 'index';
         return prefix + target;
     }
 

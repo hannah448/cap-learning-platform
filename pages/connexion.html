@@ -661,7 +661,7 @@
                 'font-family: -apple-system, BlinkMacSystemFont, sans-serif',
                 'font-size: 14px'
             ].join(';');
-            var destUrl = profile.role === 'admin' ? 'admin.html' : 'dashboard.html';
+            var destUrl = profile.role === 'admin' ? 'admin' : 'dashboard';
             var destLabel = profile.role === 'admin' ? 'panneau admin' : 'tableau de bord';
 
             // Fonction globale exposée pour pouvoir être appelée via onclick (plus robuste
@@ -756,12 +756,12 @@
             var redirect = sessionStorage.getItem('caplearning_redirect_after_login');
             sessionStorage.removeItem('caplearning_redirect_after_login');
 
-            if (redirect && redirect.indexOf('connexion.html') === -1) {
+            if (redirect && redirect.indexOf('connexion') === -1) {
                 // Reconstruit l'URL relative (on est dans /pages/)
                 window.location.replace(redirect.replace(/^\/pages\//, '').replace(/^\//, '../'));
                 return;
             }
-            window.location.replace(profile && profile.role === 'admin' ? 'admin.html' : 'dashboard.html');
+            window.location.replace(profile && profile.role === 'admin' ? 'admin' : 'dashboard');
         }
 
         async function ensureCapAuth() {
@@ -881,12 +881,12 @@
                 // Mémorise la destination demandée pour après la redirection retour
                 var redirectAfterLogin = sessionStorage.getItem('caplearning_redirect_after_login');
                 var dest;
-                if (redirectAfterLogin && redirectAfterLogin.indexOf('connexion.html') === -1) {
+                if (redirectAfterLogin && redirectAfterLogin.indexOf('connexion') === -1) {
                     // Reconstruit l'URL absolue à partir de l'origin courant
                     dest = window.location.origin + redirectAfterLogin;
                 } else {
                     // Par défaut : dashboard (l'admin sera re-redirigé par le guard si role=admin)
-                    dest = window.location.origin + '/pages/dashboard.html';
+                    dest = window.location.origin + '/pages/dashboard';
                 }
                 await window.CapAuth.signInWithGoogle(dest);
                 // signInWithGoogle déclenche une redirection vers Google

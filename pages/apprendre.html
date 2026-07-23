@@ -1822,7 +1822,7 @@
     if (courseId === '6') { courseId = '2'; }
     const course = COURSES_DATA[courseId];
 
-    if (!course) { window.location.href = 'dashboard.html'; }
+    if (!course) { window.location.href = 'dashboard'; }
 
     // ===== AUTH CHECK (Supabase) =====
     // Check rapide via la session locale Supabase (évite un await bloquant ici).
@@ -1842,7 +1842,7 @@
     }
     if (!quickAuthCheck()) {
         sessionStorage.setItem('caplearning_redirect_after_login', window.location.pathname + window.location.search);
-        window.location.href = 'connexion.html';
+        window.location.href = 'connexion';
     }
 
     // Mapping courseId (UI legacy) → course_db_id (Supabase enrollments / lesson_progress)
@@ -1893,7 +1893,7 @@
             // Vérif réelle (la session locale peut être stale)
             var profile = await window.CapAuth.getProfile();
             if (!profile) {
-                window.location.href = 'connexion.html';
+                window.location.href = 'connexion';
                 return;
             }
 
