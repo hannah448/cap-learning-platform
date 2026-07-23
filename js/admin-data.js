@@ -229,6 +229,57 @@
         return true;
     }
 
+    // Niveaux d'accès reconnus (un rôle global par utilisateur).
+    var ROLES = ['admin', 'editor', 'apprenant'];
+
+    // Change le niveau d'accès d'un utilisateur (profiles.role).
+    async function updateUserRole(id, role) {
+        if (!window.CapDB) throw new Error('Supabase indisponible');
+        if (ROLES.indexOf(role) === -1) throw new Error('Niveau inconnu : ' + role);
+        var r = await window.CapDB
+            .from('profiles')
+            .update({ role: role })
+            .eq('id', id)
+            .select()
+            .single();
+        if (r.error) throw new Error(r.error.message);
+        await hydrate();
+        return profileToUser(r.data);
+    }
+
+    // Invite un nouvel utilisateur par email avec un niveau d'accès.
+    // Passe par l'endpoint serveur /api/invite-user (service_role côté serveur) :
+    // c'est lui qui vérifie que l'appelant est admin et envoie l'email d'invitation.
+    async function inviteUser(data) {
+        if (ROLES.indexOf(data.role) === -1) throw new Error('Niveau inconnu : ' + data.role);
+        // Jeton de la session admin en cours (pour que le serveur vérifie les droits).
+        var token = null;
+        try {
+            if (window.CapDB && window.CapDB.auth) {
+                var sess = await window.CapDB.auth.getSession();
+                token = sess && sess.data && sess.data.session ? sess.data.session.access_token : null;
+            }
+        } catch (e) { /* ignore */ }
+        if (!token) throw new Error('Session admin introuvable — reconnecte-toi.');
+
+        var res = await fetch('/api/invite-user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            },
+            body: JSON.stringify({
+                email: (data.email || '').trim().toLowerCase(),
+                name:  data.name || '',
+                role:  data.role
+            })
+        });
+        var body = await res.json().catch(function () { return {}; });
+        if (!res.ok) throw new Error(body.error || ('Invitation échouée (' + res.status + ')'));
+        await hydrate();
+        return body;
+    }
+
     // ---- Catalogue ----
     function getCatalog() { return COURSES.slice(); }
 
@@ -469,7 +520,10 @@
         getUser:         getUser,
         getUserByEmail:  getUserByEmail,
         createUser:      createUser,
+        updateUserRole:  updateUserRole,
+        inviteUser:      inviteUser,
         deleteUser:      deleteUser,
+        ROLES:           ROLES,
 
         // Catalogue
         getCatalog: getCatalog,

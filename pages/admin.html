@@ -117,6 +117,7 @@
                         <div class="admin-stat-content">
                             <div class="admin-stat-label">Revenu total <span class="admin-stat-hint">Voir &rarr;</span></div>
                             <div class="admin-stat-value" id="stat-revenue">0 FCFA</div>
+                            <div class="admin-stat-sub" id="stat-revenue-eur" style="color: var(--color-gray-500); font-size: 13px; margin-top: 2px;"></div>
                         </div>
                     </a>
                     <div class="admin-stat-card">
@@ -309,6 +310,50 @@
                         <dt>Rôle</dt><dd><span class="admin-role-badge">Administrateur</span></dd>
                         <dt>Créé le</dt><dd id="setting-created">—</dd>
                     </dl>
+                </div>
+                <div class="admin-card">
+                    <h3>Utilisateurs &amp; accès</h3>
+                    <p style="color: var(--color-gray-500); margin-top: 4px;">Invite une personne par email et choisis son niveau d'accès. Le niveau s'applique partout (vitrine + plateforme).</p>
+
+                    <form id="inviteUserForm" class="admin-invite-form" style="display: flex; flex-wrap: wrap; gap: 8px; align-items: flex-end; margin-top: 12px;">
+                        <div style="flex: 1 1 200px;">
+                            <label for="inviteEmail" style="display:block; font-size:12px; color:var(--color-gray-500); margin-bottom:4px;">Email</label>
+                            <input type="email" id="inviteEmail" required placeholder="prenom@exemple.com" style="width:100%; padding:8px 10px; border:1px solid var(--color-gray-300,#d1d5db); border-radius:8px;">
+                        </div>
+                        <div style="flex: 1 1 160px;">
+                            <label for="inviteName" style="display:block; font-size:12px; color:var(--color-gray-500); margin-bottom:4px;">Nom (optionnel)</label>
+                            <input type="text" id="inviteName" placeholder="Prénom Nom" style="width:100%; padding:8px 10px; border:1px solid var(--color-gray-300,#d1d5db); border-radius:8px;">
+                        </div>
+                        <div style="flex: 0 1 170px;">
+                            <label for="inviteRole" style="display:block; font-size:12px; color:var(--color-gray-500); margin-bottom:4px;">Niveau d'accès</label>
+                            <select id="inviteRole" style="width:100%; padding:8px 10px; border:1px solid var(--color-gray-300,#d1d5db); border-radius:8px;">
+                                <option value="editor">Éditeur</option>
+                                <option value="admin">Administrateur</option>
+                                <option value="apprenant">Apprenant</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-sm" id="inviteSubmitBtn">Inviter</button>
+                    </form>
+                    <p style="color: var(--color-gray-400,#9ca3af); font-size:12px; margin-top:8px;">
+                        <strong>Éditeur</strong> : gère formations, apprenants, ventes &middot;
+                        <strong>Administrateur</strong> : tout, y compris les utilisateurs &middot;
+                        <strong>Apprenant</strong> : suit ses formations uniquement.
+                    </p>
+
+                    <div class="admin-table-wrap" style="margin-top:16px; overflow-x:auto;">
+                        <table class="admin-table" style="width:100%; border-collapse:collapse;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:left; padding:8px; border-bottom:1px solid var(--color-gray-200,#e5e7eb);">Nom</th>
+                                    <th style="text-align:left; padding:8px; border-bottom:1px solid var(--color-gray-200,#e5e7eb);">Email</th>
+                                    <th style="text-align:left; padding:8px; border-bottom:1px solid var(--color-gray-200,#e5e7eb);">Niveau d'accès</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <tr><td colspan="3" style="padding:12px; color:var(--color-gray-400,#9ca3af);">Chargement…</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="admin-card">
                     <h3>Données de démonstration</h3>

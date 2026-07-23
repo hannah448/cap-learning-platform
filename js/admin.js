@@ -61,6 +61,11 @@
         el('stat-learners').textContent = s.totalLearners;
         el('stat-enrollments').textContent = s.activeEnrollments;
         el('stat-revenue').textContent = fmtFCFA(s.totalRevenue);
+        // Conversion € indicative (taux fixe officiel 1 € = 655,957 FCFA) — dashboard admin uniquement, le reste reste en FCFA.
+        if (el('stat-revenue-eur')) {
+            const eur = Math.round((s.totalRevenue || 0) / 655.957);
+            el('stat-revenue-eur').textContent = '≈ ' + eur.toLocaleString('fr-FR') + ' €';
+        }
         el('stat-progress').textContent = s.avgProgress + '%';
         if (el('stat-certified')) el('stat-certified').textContent = s.certified || 0;
 
@@ -531,7 +536,7 @@
                         <div>Progression moy. <strong>${avgProgress}%</strong></div>
                         <div>CA : <strong>${fmtFCFA(revenue)}</strong></div>
                     </div>
-                    <a href="${c.page}" class="btn btn-ghost btn-sm btn-block" target="_blank">Voir la page formation &rarr;</a>
+                    <a href="apprendre.html?id=${c.id}" class="btn btn-ghost btn-sm btn-block" target="_blank">Voir la formation (vue apprenant) &rarr;</a>
                 </div>
             `;
         }).join('');
@@ -777,6 +782,57 @@
         toast('Export CSV téléchargé');
     }
 
+    // ----- Utilisateurs & accès (Paramètres)
+    const ROLE_LABELS = { admin: 'Administrateur', editor: 'Éditeur', apprenant: 'Apprenant' };
+
+    function roleSelect(user) {
+        const roles = (D.ROLES || ['admin', 'editor', 'apprenant']);
+        const opts = roles.map(r =>
+            `<option value="${r}"${user.role === r ? ' selected' : ''}>${ROLE_LABELS[r] || r}</option>`
+        ).join('');
+        // On empêche l'admin de se rétrograder lui-même (sinon il perd l'accès).
+        const isSelf = session && user.email &&
+            user.email.toLowerCase() === (session.email || '').toLowerCase();
+        return `<select class="admin-role-picker" data-user-id="${user.id}"${isSelf ? ' disabled title="Vous ne pouvez pas changer votre propre niveau"' : ''}
+                    style="padding:6px 8px; border:1px solid var(--color-gray-300,#d1d5db); border-radius:8px;">${opts}</select>`;
+    }
+
+    function renderUsers() {
+        const body = el('usersTableBody');
+        if (!body) return;
+        const users = (D.getUsers() || []).slice().sort((a, b) => {
+            const order = { admin: 0, editor: 1, apprenant: 2 };
+            return (order[a.role] ?? 3) - (order[b.role] ?? 3) || (a.name || '').localeCompare(b.name || '');
+        });
+        if (!users.length) {
+            body.innerHTML = '<tr><td colspan="3" style="padding:12px; color:var(--color-gray-400,#9ca3af);">Aucun utilisateur.</td></tr>';
+            return;
+        }
+        body.innerHTML = users.map(u => `
+            <tr>
+                <td style="padding:8px; border-bottom:1px solid var(--color-gray-100,#f3f4f6);">${escapeHtml(u.name || '—')}</td>
+                <td style="padding:8px; border-bottom:1px solid var(--color-gray-100,#f3f4f6);">${escapeHtml(u.email || '—')}</td>
+                <td style="padding:8px; border-bottom:1px solid var(--color-gray-100,#f3f4f6);">${roleSelect(u)}</td>
+            </tr>
+        `).join('');
+
+        $$('.admin-role-picker', body).forEach(sel => {
+            sel.addEventListener('change', async () => {
+                const id = sel.dataset.userId;
+                const role = sel.value;
+                sel.disabled = true;
+                try {
+                    await D.updateUserRole(id, role);
+                    toast('Niveau mis à jour : ' + (ROLE_LABELS[role] || role));
+                    renderUsers();
+                } catch (err) {
+                    toast(err.message, true);
+                    sel.disabled = false;
+                }
+            });
+        });
+    }
+
     // ----- Navigation sections
     function showSection(name) {
         $$('.admin-nav-item').forEach(a => a.classList.toggle('active', a.dataset.section === name));
@@ -792,6 +848,7 @@
         if (name === 'learners') renderLearners(el('learnerSearch').value);
         if (name === 'formations') renderFormations();
         if (name === 'sales') renderSales();
+        if (name === 'settings') renderUsers();
 
         // Close mobile sidebar
         document.getElementById('adminSidebar').classList.remove('open');
@@ -833,6 +890,34 @@
             toast('Données de démo réinitialisées');
         };
         el('resetDemoBtn').addEventListener('click', resetHandler);
+
+        // Invitation d'un utilisateur (Paramètres → Utilisateurs & accès)
+        if (el('inviteUserForm')) {
+            el('inviteUserForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = (el('inviteEmail').value || '').trim();
+                const name  = (el('inviteName').value || '').trim();
+                const role  = el('inviteRole').value;
+                if (!email) { toast('Email requis', true); return; }
+                const btn = el('inviteSubmitBtn');
+                btn.disabled = true;
+                const prev = btn.textContent;
+                btn.textContent = 'Envoi…';
+                try {
+                    const r = await D.inviteUser({ email, name, role });
+                    toast(r.updated_existing
+                        ? 'Niveau mis à jour pour ' + email
+                        : 'Invitation envoyée à ' + email);
+                    el('inviteUserForm').reset();
+                    renderUsers();
+                } catch (err) {
+                    toast(err.message, true);
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = prev;
+                }
+            });
+        }
         if (el('resetDemoBtn2')) el('resetDemoBtn2').addEventListener('click', resetHandler);
 
         // Search

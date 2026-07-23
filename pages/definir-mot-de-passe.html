@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+    <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Définir mon mot de passe | Cap Learning</title>
+
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/lms.css">
+
+    <style>
+        .setpwd-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+        .setpwd-card {
+            width: 100%; max-width: 420px;
+            background: var(--color-surface, #fff);
+            border: 1px solid var(--color-border, #e5e7eb);
+            border-radius: 16px; padding: 32px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+        .setpwd-card h1 { font-size: 22px; margin: 0 0 6px; }
+        .setpwd-card p.sub { color: var(--color-gray-500, #6b7280); margin: 0 0 20px; font-size: 14px; }
+        .setpwd-field { margin-bottom: 14px; }
+        .setpwd-field label { display: block; font-size: 13px; color: var(--color-gray-600, #4b5563); margin-bottom: 6px; }
+        .setpwd-field input {
+            width: 100%; padding: 11px 12px; font-size: 15px;
+            border: 1px solid var(--color-gray-300, #d1d5db); border-radius: 10px;
+            background: var(--color-bg, #fff); color: var(--color-text, #111);
+        }
+        .setpwd-msg { font-size: 13px; margin-top: 10px; min-height: 18px; }
+        .setpwd-msg.error { color: #dc2626; }
+        .setpwd-msg.ok { color: #16a34a; }
+        .setpwd-btn { width: 100%; margin-top: 8px; }
+        .setpwd-hint { font-size: 12px; color: var(--color-gray-400, #9ca3af); margin-top: 4px; }
+        #setpwdLoading, #setpwdInvalid { text-align: center; color: var(--color-gray-500, #6b7280); }
+        #setpwdInvalid a { color: var(--color-primary, #3460E5); font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="setpwd-wrap">
+        <div class="setpwd-card">
+            <div id="setpwdLoading">Vérification du lien…</div>
+
+            <div id="setpwdInvalid" hidden>
+                <h1>Lien invalide ou expiré</h1>
+                <p class="sub">Ce lien d'invitation n'est plus valide. Demande à un administrateur de te renvoyer une invitation.</p>
+                <p><a href="connexion.html">← Retour à la connexion</a></p>
+            </div>
+
+            <form id="setpwdForm" hidden>
+                <h1>Définis ton mot de passe</h1>
+                <p class="sub">Choisis un mot de passe pour accéder à ton espace Cap Learning.</p>
+
+                <div class="setpwd-field">
+                    <label for="pwd">Nouveau mot de passe</label>
+                    <input type="password" id="pwd" autocomplete="new-password" required minlength="8" placeholder="Au moins 8 caractères">
+                    <div class="setpwd-hint">8 caractères minimum.</div>
+                </div>
+                <div class="setpwd-field">
+                    <label for="pwd2">Confirme le mot de passe</label>
+                    <input type="password" id="pwd2" autocomplete="new-password" required minlength="8" placeholder="Retape le même mot de passe">
+                </div>
+
+                <div class="setpwd-msg" id="setpwdMsg"></div>
+
+                <button type="submit" class="btn btn-primary setpwd-btn" id="setpwdBtn">Valider mon mot de passe</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js"></script>
+    <script src="../js/supabase-client.js?v=2"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var loadingEl = document.getElementById('setpwdLoading');
+        var invalidEl = document.getElementById('setpwdInvalid');
+        var formEl    = document.getElementById('setpwdForm');
+        var msgEl     = document.getElementById('setpwdMsg');
+        var btnEl     = document.getElementById('setpwdBtn');
+
+        function show(el) {
+            loadingEl.hidden = el !== loadingEl;
+            invalidEl.hidden = el !== invalidEl;
+            formEl.hidden    = el !== formEl;
+        }
+        function setMsg(text, kind) {
+            msgEl.textContent = text || '';
+            msgEl.className = 'setpwd-msg' + (kind ? ' ' + kind : '');
+        }
+
+        // Le lien d'invitation contient une erreur explicite ? (ex : lien déjà utilisé)
+        function hashHasError() {
+            var h = window.location.hash || '';
+            return /error|error_description/i.test(h);
+        }
+
+        // detectSessionInUrl:true (supabase-client.js) capte automatiquement le
+        // token de l'URL (#access_token…&type=invite) et ouvre la session.
+        // On attend juste qu'elle soit disponible.
+        async function waitForSession() {
+            if (!window.CapDB || !window.CapDB.auth) return null;
+            for (var i = 0; i < 25; i++) {
+                try {
+                    var r = await window.CapDB.auth.getSession();
+                    if (r && r.data && r.data.session) return r.data.session;
+                } catch (e) { /* retry */ }
+                await new Promise(function (res) { setTimeout(res, 120); });
+            }
+            return null;
+        }
+
+        (async function init() {
+            if (!window.CapDB) {
+                show(invalidEl);
+                return;
+            }
+            if (hashHasError()) {
+                show(invalidEl);
+                return;
+            }
+            var session = await waitForSession();
+            if (!session) {
+                show(invalidEl);
+                return;
+            }
+            show(formEl);
+            document.getElementById('pwd').focus();
+        })();
+
+        formEl.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            var p1 = document.getElementById('pwd').value;
+            var p2 = document.getElementById('pwd2').value;
+
+            if (p1.length < 8) { setMsg('Le mot de passe doit faire au moins 8 caractères.', 'error'); return; }
+            if (p1 !== p2)     { setMsg('Les deux mots de passe ne correspondent pas.', 'error'); return; }
+
+            btnEl.disabled = true;
+            var prev = btnEl.textContent;
+            btnEl.textContent = 'Enregistrement…';
+            setMsg('');
+
+            try {
+                var upd = await window.CapDB.auth.updateUser({ password: p1 });
+                if (upd.error) throw new Error(upd.error.message);
+
+                setMsg('Mot de passe enregistré. Redirection…', 'ok');
+
+                // Redirige vers l'espace adapté au rôle.
+                var dest = 'dashboard.html';
+                try {
+                    var u = await window.CapDB.auth.getUser();
+                    var uid = u && u.data && u.data.user ? u.data.user.id : null;
+                    if (uid) {
+                        var prof = await window.CapDB.from('profiles').select('role').eq('id', uid).single();
+                        if (prof && prof.data && prof.data.role === 'admin') dest = 'admin.html';
+                    }
+                } catch (e2) { /* fallback dashboard */ }
+
+                setTimeout(function () { window.location.href = dest; }, 900);
+            } catch (err) {
+                setMsg(err.message || 'Erreur lors de l\'enregistrement.', 'error');
+                btnEl.disabled = false;
+                btnEl.textContent = prev;
+            }
+        });
+    })();
+    </script>
+</body>
+</html>
