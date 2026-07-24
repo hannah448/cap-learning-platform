@@ -5,7 +5,20 @@
 
 // --- Cart State ---
 const Cart = {
-    items: JSON.parse(localStorage.getItem('caplearning_cart') || '[]'),
+    // Charge + normalise le panier (répare les anciens formats : title->name, priceXof->price)
+    items: (function () {
+        try {
+            const raw = JSON.parse(localStorage.getItem('caplearning_cart') || '[]');
+            return (Array.isArray(raw) ? raw : [])
+                .map(it => ({
+                    id: it && it.id != null ? String(it.id) : '',
+                    name: (it && (it.name || it.title)) || 'Formation',
+                    price: Number(it && (it.price != null ? it.price : it.priceXof)) || 0,
+                    category: (it && it.category) || ''
+                }))
+                .filter(it => it.id);
+        } catch (e) { return []; }
+    })(),
 
     save() {
         localStorage.setItem('caplearning_cart', JSON.stringify(this.items));
@@ -27,7 +40,7 @@ const Cart = {
     },
 
     getTotal() {
-        return this.items.reduce((sum, item) => sum + item.price, 0);
+        return this.items.reduce((sum, item) => sum + (Number(item.price) || 0), 0);
     },
 
     getCount() {
@@ -346,7 +359,7 @@ function initCartPage() {
                     <p class="cart-item-access">Accès à vie &middot; Mises à jour incluses</p>
                 </div>
                 <div class="cart-item-side">
-                    <span class="cart-item-price">${item.price.toLocaleString('fr-FR')} FCFA</span>
+                    <span class="cart-item-price">${(Number(item.price) || 0).toLocaleString('fr-FR')} FCFA</span>
                     <button class="cart-item-remove" data-id="${item.id}" aria-label="Retirer du panier">
                         &#10005; Retirer
                     </button>
