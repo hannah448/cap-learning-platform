@@ -4,21 +4,21 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js?v=20260725c"></script>
+    <script src="../js/migrate-brand.js?v=20260725d"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725c">
-    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725c">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
     <title>La plateforme d'apprentissage Cap Learning — Dashboard, fiche de suivi, communauté</title>
     <meta name="description" content="Découvrez la plateforme Cap Learning : tableau de bord personnalisé, fiche de suivi, bibliothèque de cours, messagerie formateur et communauté d'entrepreneurs africains.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=20260725c">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
 
-    <link rel="stylesheet" href="../css/style.css?v=20260725c">
-    <link rel="stylesheet" href="../css/components.css?v=20260725c">
+    <link rel="stylesheet" href="../css/style.css?v=20260725d">
+    <link rel="stylesheet" href="../css/components.css?v=20260725d">
     <style>
         .pf-hero {
             padding: 120px 0 60px;
@@ -185,16 +185,6 @@
         .com-role { font-size: .65rem; color: #888; }
 
         /* Messaging mock */
-        .msg-mock { padding: 0; display: flex; height: 100%; min-height: 360px; }
-        .msg-list { width: 38%; border-right: 1px solid #eee; padding: 16px 12px; }
-        .msg-item { padding: 10px; border-radius: 8px; display: flex; gap: 10px; margin-bottom: 6px; font-size: .8rem; }
-        .msg-item.active { background: rgba(58,80,246,0.08); }
-        .msg-ava-sm { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, #3A50F6, #A78BFA); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; flex-shrink: 0; }
-        .msg-chat { flex: 1; padding: 16px; background: #fafafa; display: flex; flex-direction: column; gap: 10px; }
-        .msg-bubble { max-width: 80%; padding: 10px 14px; border-radius: 14px; font-size: .82rem; line-height: 1.4; }
-        .msg-bubble.them { background: #fff; border: 1px solid #eee; }
-        .msg-bubble.me { background: linear-gradient(135deg, #3A50F6, #A78BFA); color: #fff; align-self: flex-end; }
-
         /* Community CTA */
         .com-cta {
             background: linear-gradient(135deg, #3A50F6 0%, #6366F1 60%, #A78BFA 100%);
@@ -669,64 +659,6 @@
                     </div>
                 </div>
 
-                <!-- Messagerie -->
-                <div class="pf-feature">
-                    <div class="pf-feature-content">
-                        <span class="section-badge">Messagerie directe</span>
-                        <h2>Une réponse en <span class="text-gradient">moins de 24h</span>, chaque fois que vous bloquez.</h2>
-                        <p>
-                            Posez vos questions en direct à votre formateur ou à notre Customer Success Manager
-                            Awa. Chaque promotion bénéficie également d'un groupe WhatsApp dédié pour
-                            échanger avec les autres apprenants et rester motivé·e.
-                        </p>
-                        <ul class="pf-feature-list">
-                            <li>Messages privés avec vos formateurs &amp; mentors</li>
-                            <li>Groupe WhatsApp par promotion</li>
-                            <li>Réponse garantie sous 24h (souvent bien moins)</li>
-                            <li>Prise de rendez-vous visio en 1 clic</li>
-                            <li>Archivage 12 mois de vos échanges</li>
-                        </ul>
-                    </div>
-                    <div class="pf-feature-visual">
-                        <div class="browser-chrome">
-                            <span class="browser-dot red"></span>
-                            <span class="browser-dot yellow"></span>
-                            <span class="browser-dot green"></span>
-                            <span class="browser-url">app.caplearning.com/messages</span>
-                        </div>
-                        <div class="msg-mock">
-                            <div class="msg-list">
-                                <div class="msg-item active">
-                                    <div class="msg-ava-sm">OD</div>
-                                    <div>
-                                        <strong style="display:block; font-size:.78rem;">Ousmane Diallo</strong>
-                                        <span style="font-size:.7rem; color:#888;">Formateur E-commerce</span>
-                                    </div>
-                                </div>
-                                <div class="msg-item">
-                                    <div class="msg-ava-sm" style="background: linear-gradient(135deg, #F2994A, #F2C94C);">AK</div>
-                                    <div>
-                                        <strong style="display:block; font-size:.78rem;">Awa</strong>
-                                        <span style="font-size:.7rem; color:#888;">CSM Cap Learning</span>
-                                    </div>
-                                </div>
-                                <div class="msg-item">
-                                    <div class="msg-ava-sm" style="background: linear-gradient(135deg, #27AE60, #6FCF97);">#1</div>
-                                    <div>
-                                        <strong style="display:block; font-size:.78rem;">Promo Dakar 2026</strong>
-                                        <span style="font-size:.7rem; color:#888;">42 membres</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="msg-chat">
-                                <div class="msg-bubble them">Bonjour Ousmane, je bloque sur l'intégration Wave côté Shopify 🙏</div>
-                                <div class="msg-bubble me">Pas de souci ! Tu peux utiliser le plugin PayDunya qui fait le pont. Je t'envoie un tuto vidéo dans 5 min 🎥</div>
-                                <div class="msg-bubble them">Parfait, merci 🙌</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Facturation automatique -->
                 <div class="pf-feature reversed">
                     <div class="pf-feature-content">
@@ -841,7 +773,6 @@
                             <li>Profils détaillés avec projet en cours</li>
                             <li>Messagerie directe entre membres</li>
                             <li>Groupes thématiques (e-commerce, IA, marketing digital…)</li>
-                            <li>Événements &amp; meetups physiques à Dakar, Cotonou, Abidjan</li>
                         </ul>
                         <a href="catalogue" class="btn btn-primary" style="margin-top: 20px;">Rejoindre la communauté &rarr;</a>
                     </div>
@@ -938,11 +869,6 @@
                         <p>Tous les modules en vidéo HD, mises à jour gratuites, accessibles depuis mobile ou ordinateur.</p>
                     </div>
                     <div class="benefit-card">
-                        <span class="benefit-icon">&#128172;</span>
-                        <h3>Messagerie formateurs</h3>
-                        <p>Échangez en direct avec votre formateur et la CSM Awa. Réponse garantie sous 24h.</p>
-                    </div>
-                    <div class="benefit-card">
                         <span class="benefit-icon">&#128101;</span>
                         <h3>Communauté panafricaine</h3>
                         <p>+3 000 entrepreneurs au Sénégal, Bénin, Côte d'Ivoire. Annuaire, groupes WhatsApp, événements.</p>
@@ -1037,7 +963,7 @@
         </div>
     </footer>
 
-    <script src="../js/app.js?v=20260725c"></script>
-    <script src="../js/theme.js?v=20260725c" defer></script>
+    <script src="../js/app.js?v=20260725d"></script>
+    <script src="../js/theme.js?v=20260725d" defer></script>
 </body>
 </html>
