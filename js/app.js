@@ -280,12 +280,13 @@ function initNewsletter() {
     const form = document.getElementById('newsletter-form');
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+    // Le formulaire est envoyé nativement à Brevo (action + target="brevo-iframe"),
+    // donc PAS de preventDefault. On confirme juste à l'utilisateur puis on vide le champ.
+    form.addEventListener('submit', () => {
         const email = form.querySelector('input[type="email"]');
         if (email && email.value) {
-            showToast('Merci ! Vérifiez votre boîte email pour votre mini-formation gratuite.');
-            email.value = '';
+            showToast('Merci ! Vérifiez votre boîte email pour confirmer votre inscription.');
+            setTimeout(() => { email.value = ''; }, 500);
         }
     });
 }

@@ -4,7 +4,7 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="js/migrate-brand.js?v=20260724"></script>
+    <script src="js/migrate-brand.js?v=20260724b"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cap Learning - Formations Digitales pour Entrepreneurs Africains</title>
@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/tokens.css?v=20260724">
+    <link rel="stylesheet" href="css/tokens.css?v=20260724b">
 
-    <link rel="stylesheet" href="css/style.css?v=20260724">
-    <link rel="stylesheet" href="css/components.css?v=20260724">
+    <link rel="stylesheet" href="css/style.css?v=20260724b">
+    <link rel="stylesheet" href="css/components.css?v=20260724b">
 </head>
 <body>
     <!-- Skip Navigation -->
@@ -645,13 +645,17 @@
                     <div class="cta-content">
                         <h2>Prêt à transformer votre business ?</h2>
                         <p>Rejoignez +3 000 entrepreneurs (S&eacute;n&eacute;gal, B&eacute;nin, C&ocirc;te d&rsquo;Ivoire) qui développent leurs compétences digitales avec Cap Learning.</p>
-                        <form class="newsletter-form" id="newsletter-form">
+                        <form class="newsletter-form" id="newsletter-form" action="https://44c00c68.sibforms.com/serve/MUIFAIVRO0T0-YZLDSBZMK2NAqsUYYlgkbE0INdEJE60ZDBQvjjQmx9CDwFZ3bUEI8uLvTMSwyex_of3Tz-94Wwn4rlGmi72w6teZQhO1UaU5kM4kX6QSgfU_TVx1hbJRHCRI6pv8RKWdjunHhqznEk5bgTt5Y5WtSOwW5YGCVrk_RsvgafGBaZ7y8Y8s3WNhbDw8ab1JxHSvDWO3w==" method="POST" target="brevo-iframe">
                             <div class="input-group">
-                                <input type="email" placeholder="Votre adresse email" required aria-label="Adresse email">
+                                <input type="email" name="EMAIL" placeholder="Votre adresse email" required aria-label="Adresse email" autocomplete="email">
                                 <button type="submit" class="btn btn-primary">S'inscrire gratuitement</button>
                             </div>
+                            <!-- Anti-spam Brevo : doit rester vide -->
+                            <input type="text" name="email_address_check" value="" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            <input type="hidden" name="locale" value="fr">
                             <p class="form-hint">Recevez une mini-formation gratuite par email. Pas de spam.</p>
                         </form>
+                        <iframe name="brevo-iframe" title="Inscription newsletter" style="display:none" aria-hidden="true"></iframe>
                     </div>
                 </div>
             </div>
@@ -733,11 +737,11 @@
         <button class="toast-close" onclick="hideToast()">&times;</button>
     </div>
 
-    <script src="js/app.js?v=20260724"></script>
+    <script src="js/app.js?v=20260724b"></script>
     <!-- Trustpilot TrustBox Bootstrap -->
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
-    <script src="js/whatsapp-widget.js?v=20260724"></script>
-    <script src="js/theme.js?v=20260724" defer></script>
+    <script src="js/whatsapp-widget.js?v=20260724b"></script>
+    <script src="js/theme.js?v=20260724b" defer></script>
 </body>
 </html>
