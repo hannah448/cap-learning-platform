@@ -230,7 +230,7 @@
         var cart = [];
         try { cart = JSON.parse(localStorage.getItem('caplearning_cart') || '[]') || []; } catch (e) {}
 
-        var isFailure = status === 'refused' || status === 'failed' || status === 'cancelled' || status === 'canceled';
+        var isFailure = ['refused', 'failed', 'cancelled', 'canceled', 'declined'].indexOf(status) !== -1;
         var hasContext = !!(tx || pending.transaction_id || cart.length);
 
         var badge = document.getElementById('merci-badge');

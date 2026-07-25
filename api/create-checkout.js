@@ -28,7 +28,7 @@
  */
 
 const { randomUUID } = require('crypto');
-const { initCheckout } = require('./lib/cinetpay');
+const { initCheckout } = require('./lib/fedapay'); // paiement : FedaPay (ex-CinetPay, conservé en réf.)
 const { findProfileByEmail, select } = require('./lib/supabase-admin');
 
 // Catalogue serveur-source-de-vérité pour les prix (évite tout tampering client)
@@ -110,6 +110,9 @@ module.exports = async function handler(req, res) {
                     course_db_id: course,
                     course_label: meta.label,
                     customer_email: profile.email,
+                    customer_name: fullName,
+                    customer_phone: phone,
+                    country: country,
                     user_id: profile.id          // 🔑 utilisé par le webhook pour créer l'enrollment
                 }
             });
@@ -193,6 +196,9 @@ module.exports = async function handler(req, res) {
                 course_db_id: course_id,
                 course_label,
                 customer_email: customer.email,
+                customer_name: [customer.name, customer.surname].filter(Boolean).join(' ').trim() || customer.email.split('@')[0],
+                customer_phone: customer.phone_number || null,
+                country: customer.country || 'SN',
                 user_id: resolvedUserId   // peut être null si email pas connu
             }
         });
