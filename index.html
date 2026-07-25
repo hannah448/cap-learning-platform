@@ -4,21 +4,21 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="js/migrate-brand.js?v=20260724b"></script>
+    <script src="js/migrate-brand.js?v=20260724c"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260724b">
-    <link rel="apple-touch-icon" href="/favicon.svg?v=20260724b">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260724c">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260724c">
     <title>Cap Learning - Formations Digitales pour Entrepreneurs Africains</title>
     <meta name="description" content="Plateforme de formation en ligne dédiée aux entrepreneurs africains. Compétences digitales, marketing, e-commerce et plus.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/tokens.css?v=20260724b">
+    <link rel="stylesheet" href="css/tokens.css?v=20260724c">
 
-    <link rel="stylesheet" href="css/style.css?v=20260724b">
-    <link rel="stylesheet" href="css/components.css?v=20260724b">
+    <link rel="stylesheet" href="css/style.css?v=20260724c">
+    <link rel="stylesheet" href="css/components.css?v=20260724c">
 </head>
 <body>
     <!-- Skip Navigation -->
@@ -193,60 +193,47 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <div class="hero-faces" aria-hidden="true">
-                        <div class="hero-face hero-face-1"><img src="img/hero-faces/face-1.jpg" alt="" loading="lazy" width="150" height="190"></div>
-                        <div class="hero-face hero-face-2"><img src="img/hero-faces/face-2.jpg" alt="" loading="lazy" width="160" height="200"></div>
-                        <div class="hero-face hero-face-3"><img src="img/hero-faces/face-3.jpg" alt="" loading="lazy" width="140" height="175"></div>
-                    </div>
-                    <div class="hero-card hero-card-main">
-                        <div class="hero-card-header">
-                            <span class="hero-card-badge">Populaire</span>
-                            <span class="hero-card-price">25 000 FCFA</span>
+                    <div class="hero-courses">
+                        <div class="hero-courses-head">
+                            <span class="hero-courses-eyebrow">Formations les plus suivies</span>
+                            <a href="pages/catalogue" class="hero-courses-all">Tout voir &rarr;</a>
                         </div>
-                        <h3>Marketing Digital Complet</h3>
-                        <p>Stratégie, SEO, Ads, email, analytics &mdash; 16 modules complets</p>
-                        <div class="hero-card-meta">
-                            <span>&#128338; 9h de contenu</span>
-                            <span>&#127891; Certificat</span>
-                        </div>
-                        <div class="hero-card-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 67%;"></div>
+                        <a href="pages/formation-marketing-digital" class="hero-course-card" style="--cat:#FF6B35">
+                            <div class="hero-course-photo">
+                                <img src="img/hero-faces/face-1.jpg" alt="" loading="lazy">
+                                <span class="hero-course-rating">&#9733; 4.8</span>
                             </div>
-                            <span>67% complété</span>
-                        </div>
-                    </div>
-                    <div class="hero-card hero-card-main hero-card-main-alt">
-                        <div class="hero-card-header">
-                            <span class="hero-card-badge hero-card-badge-ai">Tendance 2026</span>
-                            <span class="hero-card-price">30 000 FCFA</span>
-                        </div>
-                        <h3>IA &amp; R&eacute;seaux Sociaux</h3>
-                        <p>Contenu viral avec ChatGPT &amp; Midjourney, automatisez votre community management</p>
-                        <div class="hero-card-meta">
-                            <span>&#128338; 89h combin&eacute;es</span>
-                            <span>&#127891; 2 Certificats</span>
-                        </div>
-                        <div class="hero-card-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill progress-fill-ai" style="width: 42%;"></div>
+                            <div class="hero-course-body">
+                                <span class="hero-course-cat">Marketing digital</span>
+                                <h3 class="hero-course-title">Marketing Digital Complet</h3>
+                                <p class="hero-course-meta">9&nbsp;h &middot; Certificat</p>
+                                <span class="hero-course-price">25&nbsp;000 FCFA</span>
                             </div>
-                            <span>42% complété</span>
-                        </div>
-                    </div>
-                    <div class="hero-card hero-card-float hero-card-float-1">
-                        <span class="hero-float-icon">&#127941;</span>
-                        <div>
-                            <strong>Certificat obtenu !</strong>
-                            <span>E-commerce Avancé</span>
-                        </div>
-                    </div>
-                    <div class="hero-card hero-card-float hero-card-float-2">
-                        <span class="hero-float-icon">&#128200;</span>
-                        <div>
-                            <strong>+340%</strong>
-                            <span>de ventes en ligne</span>
-                        </div>
+                        </a>
+                        <a href="pages/formation-ia-business" class="hero-course-card" style="--cat:#A855F7">
+                            <div class="hero-course-photo">
+                                <img src="img/hero-faces/face-2.jpg" alt="" loading="lazy">
+                                <span class="hero-course-rating">&#9733; 4.9</span>
+                            </div>
+                            <div class="hero-course-body">
+                                <span class="hero-course-cat">Intelligence artificielle <em>&middot; Tendance 2026</em></span>
+                                <h3 class="hero-course-title">IA &amp; Business</h3>
+                                <p class="hero-course-meta">15&nbsp;h &middot; Certificat</p>
+                                <span class="hero-course-price">30&nbsp;000 FCFA</span>
+                            </div>
+                        </a>
+                        <a href="pages/formation-ecommerce" class="hero-course-card" style="--cat:#2D9CDB">
+                            <div class="hero-course-photo">
+                                <img src="img/hero-faces/face-3.jpg" alt="" loading="lazy">
+                                <span class="hero-course-rating">&#9733; 4.8</span>
+                            </div>
+                            <div class="hero-course-body">
+                                <span class="hero-course-cat">E-commerce</span>
+                                <h3 class="hero-course-title">E-commerce &amp; Paiements</h3>
+                                <p class="hero-course-meta">20&nbsp;h &middot; Certificat</p>
+                                <span class="hero-course-price">30&nbsp;000 FCFA</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -739,11 +726,11 @@
         <button class="toast-close" onclick="hideToast()">&times;</button>
     </div>
 
-    <script src="js/app.js?v=20260724b"></script>
+    <script src="js/app.js?v=20260724c"></script>
     <!-- Trustpilot TrustBox Bootstrap -->
     <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
     <!-- WhatsApp Chat Widget -->
-    <script src="js/whatsapp-widget.js?v=20260724b"></script>
-    <script src="js/theme.js?v=20260724b" defer></script>
+    <script src="js/whatsapp-widget.js?v=20260724c"></script>
+    <script src="js/theme.js?v=20260724c" defer></script>
 </body>
 </html>

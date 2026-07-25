@@ -2739,3 +2739,37 @@
     .compare-col-title { font-size: .95rem; }
     .compare-final { padding: 48px 16px 56px; }
 }
+
+/* ============================================
+   Hero — pile "Formations les plus suivies" (colonne droite)
+   ============================================ */
+.hero-visual { position: relative; }
+.hero-courses { display: flex; flex-direction: column; gap: 16px; }
+.hero-courses-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 2px; }
+.hero-courses-eyebrow { font-size: .76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-secondary, #78716C); }
+.hero-courses-all { font-size: .85rem; font-weight: 600; color: var(--color-primary, #3A50F6); text-decoration: none; white-space: nowrap; }
+.hero-courses-all:hover { text-decoration: underline; }
+.hero-course-card {
+    display: flex; gap: 16px; align-items: center;
+    background: #fff;
+    border: 1px solid var(--color-gray-200, #E7E5E4);
+    border-left: 4px solid var(--cat, #3A50F6);
+    border-radius: 18px; padding: 14px;
+    text-decoration: none; color: inherit;
+    box-shadow: 0 12px 32px -20px rgba(30,27,58,.28);
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.hero-course-card:hover { transform: translateY(-3px); box-shadow: 0 22px 42px -22px rgba(58,80,246,.32); }
+.hero-course-photo { position: relative; width: 104px; height: 104px; flex-shrink: 0; border-radius: 14px; overflow: hidden; }
+.hero-course-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-course-rating { position: absolute; left: 8px; bottom: 8px; background: rgba(28,25,23,.82); color: #fff; font-size: .72rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; }
+.hero-course-body { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.hero-course-cat { font-size: .68rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--cat, #3A50F6); }
+.hero-course-cat em { color: var(--text-secondary, #78716C); font-style: normal; font-weight: 600; }
+.hero-course-title { font-family: var(--font-display, sans-serif); font-size: 1.05rem; font-weight: 700; color: var(--color-secondary, #1E1B3A); margin: 0; line-height: 1.2; }
+.hero-course-meta { font-size: .8rem; color: var(--text-secondary, #78716C); margin: 0; }
+.hero-course-price { font-family: var(--font-display, sans-serif); font-weight: 700; font-size: 1.15rem; color: var(--color-primary, #3A50F6); margin-top: 2px; }
+@media (max-width: 600px) {
+    .hero-course-photo { width: 84px; height: 84px; }
+    .hero-course-title { font-size: 1rem; }
+}
