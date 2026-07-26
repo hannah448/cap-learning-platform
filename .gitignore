@@ -51,6 +51,10 @@ scripts/**/*.webm
 # Logs runtime
 scripts/download_vimeo_log.txt
 scripts/traitement_log.txt
+scripts/*.log
+# Idem dans les sous-dossiers de traitement (fix12min, etc.)
+scripts/**/traitement_log.txt
+scripts/**/urls_a_purger_cloudflare.txt
 # Note : scripts/upload_s3_log.txt est volontairement versionné — il sert
 # de source-of-truth pour reproduire/auditer l'upload S3.
 
