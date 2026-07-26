@@ -36,7 +36,10 @@ Dashboard → **Settings → API** :
 2. Colle tout le contenu de **`schema.sql`** → **Run** (Ctrl/Cmd+Enter)
    - Tu dois voir "Success. No rows returned." en bas.
 3. **New query** à nouveau, colle **`rls.sql`** → **Run**
-4. Vérifie : Dashboard → **Authentication → Policies** → tu vois 10+ policies listées sur les 4 tables.
+4. **New query** à nouveau, colle **`fiche-suivi.sql`** → **Run**
+   - Crée les 3 tables de la fiche de suivi + leurs policies.
+   - Ré-exécutable sans danger si tu as un doute : il ne détruit aucune donnée.
+5. Vérifie : Dashboard → **Authentication → Policies** → tu vois 20+ policies listées sur les 7 tables.
 
 ---
 
@@ -126,12 +129,13 @@ auth.users (Supabase) ────┐
                           ▼
                        profiles
                           │ 1-N
-              ┌───────────┴────────────┐
-              ▼                        ▼
-         enrollments          lesson_progress
-              │ 1-N
-              ▼
-         certificates
+              ┌───────────┼────────────┬──────────────────┐
+              ▼           │            ▼                  ▼ 1-1
+         enrollments      │    lesson_progress     project_trackers
+              │ 1-N       │                               │ 1-N
+              ▼           │                    ┌──────────┴──────────┐
+         certificates     │                    ▼                     ▼
+                          │           tracker_milestones  tracker_journal_entries
 ```
 
 ---
@@ -144,6 +148,14 @@ auth.users (Supabase) ────┐
 | `enrollments` | N (1 par achat) | Créé par webhook CinetPay après paiement réussi |
 | `lesson_progress` | N (1 par user × leçon vue) | Mis à jour côté client à chaque play/95% |
 | `certificates` | 1 par formation terminée | Généré quand tous les modules sont à 100% |
+| `project_trackers` | 1 par apprenante | Fiche de suivi : projet + objectif. Créée à la 1re visite du dashboard |
+| `tracker_milestones` | N (jalons de la fiche) | Ordonnés par `position`, statut `todo` / `current` / `done` |
+| `tracker_journal_entries` | N (journal de bord) | Une entrée datée par note |
+
+> **Fiche de suivi et confidentialité** — l'apprenante seule écrit dans sa fiche.
+> Les comptes `role = 'admin'` la lisent en **lecture seule** (c'est la promesse
+> « partageable avec votre formateur ou la CSM » de la page plateforme). Aucune
+> policy ne permet à l'équipe de modifier la fiche d'une apprenante.
 
 ## Quotas Free Tier (Supabase)
 

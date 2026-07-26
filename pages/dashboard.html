@@ -283,6 +283,239 @@
             padding: 2px 7px;
             border-radius: 999px;
         }
+
+        /* ============ Fiche de suivi ============ */
+        .lms-fiche {
+            background: #fff;
+            border: 1px solid var(--border, #e5e7eb);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: var(--space-6, 24px);
+        }
+        .lms-fiche-block + .lms-fiche-block {
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .lms-fiche-block h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 4px;
+            color: #222;
+        }
+        .lms-fiche-hint {
+            font-size: .82rem;
+            color: #888;
+            margin: 0 0 12px;
+        }
+        .lms-fiche-field {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font: inherit;
+            font-size: .92rem;
+            color: #222;
+            background: #fff;
+            resize: vertical;
+            transition: border-color .15s;
+        }
+        .lms-fiche-field:focus {
+            outline: none;
+            border-color: #FF6B35;
+            box-shadow: 0 0 0 3px rgba(255,107,53,.12);
+        }
+        .lms-fiche-field::placeholder { color: #b0b0b0; }
+        .lms-fiche-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        .lms-fiche-btn {
+            border: 0;
+            border-radius: 999px;
+            padding: 9px 18px;
+            font: inherit;
+            font-size: .85rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #FF6B35, #e85d2a);
+            color: #fff;
+            transition: opacity .15s, transform .1s;
+        }
+        .lms-fiche-btn:hover:not(:disabled) { opacity: .9; }
+        .lms-fiche-btn:active:not(:disabled) { transform: translateY(1px); }
+        .lms-fiche-btn:disabled { opacity: .5; cursor: default; }
+        .lms-fiche-btn-ghost {
+            background: #fff;
+            color: #555;
+            border: 1px solid #e5e7eb;
+        }
+        .lms-fiche-btn-ghost:hover:not(:disabled) { border-color: #FF6B35; color: #FF6B35; opacity: 1; }
+        .lms-fiche-status {
+            font-size: .82rem;
+            color: #16a34a;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity .2s;
+        }
+        .lms-fiche-status.visible { opacity: 1; }
+        .lms-fiche-status.is-error { color: #dc2626; }
+
+        /* Jalons */
+        .lms-fiche-progress {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .lms-fiche-progress-bar {
+            flex: 1;
+            height: 8px;
+            border-radius: 999px;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+        .lms-fiche-progress-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #FF6B35, #F7931E);
+            width: 0;
+            transition: width .3s;
+        }
+        .lms-fiche-progress-label {
+            font-size: .82rem;
+            color: #666;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .lms-jalons { list-style: none; margin: 0; padding: 0; }
+        .lms-jalon {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        .lms-jalon:last-child { border-bottom: 0; }
+        .lms-jalon-check {
+            width: 22px;
+            height: 22px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .7rem;
+            color: transparent;
+            transition: all .15s;
+        }
+        .lms-jalon-check:hover { border-color: #FF6B35; }
+        .lms-jalon.is-done .lms-jalon-check {
+            background: linear-gradient(135deg, #FF6B35, #e85d2a);
+            border-color: transparent;
+            color: #fff;
+        }
+        .lms-jalon.is-current .lms-jalon-check {
+            border-color: #FF6B35;
+            color: #FF6B35;
+        }
+        .lms-jalon-title { flex: 1; font-size: .9rem; color: #222; }
+        .lms-jalon.is-done .lms-jalon-title { text-decoration: line-through; color: #999; }
+        .lms-jalon-time {
+            font-size: .74rem;
+            color: #999;
+            white-space: nowrap;
+        }
+        .lms-jalon-del {
+            border: 0;
+            background: none;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 1.1rem;
+            line-height: 1;
+            padding: 2px 4px;
+            border-radius: 6px;
+            transition: color .15s;
+        }
+        .lms-jalon-del:hover { color: #dc2626; }
+        .lms-fiche-add {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+        .lms-fiche-add .lms-fiche-field { flex: 1; min-width: 180px; }
+        .lms-fiche-add .lms-fiche-field-sm { flex: 0 0 130px; min-width: 110px; }
+
+        /* Journal de bord */
+        .lms-journal { margin-top: 14px; }
+        .lms-journal-entry {
+            border-left: 3px solid #FF6B35;
+            padding: 2px 0 2px 14px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .lms-journal-date {
+            font-size: .74rem;
+            color: #999;
+            font-weight: 600;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .lms-journal-body {
+            font-size: .89rem;
+            color: #333;
+            line-height: 1.55;
+            white-space: pre-wrap;
+        }
+        .lms-fiche-empty {
+            font-size: .87rem;
+            color: #999;
+            font-style: italic;
+            padding: 10px 0;
+        }
+
+        /* Dark mode */
+        [data-theme="dark"] .lms-fiche {
+            background: #1b1b1f;
+            border-color: rgba(255,255,255,.08);
+        }
+        [data-theme="dark"] .lms-fiche-block + .lms-fiche-block { border-top-color: rgba(255,255,255,.07); }
+        [data-theme="dark"] .lms-fiche-block h3 { color: #f0f0f0; }
+        [data-theme="dark"] .lms-fiche-hint,
+        [data-theme="dark"] .lms-fiche-empty { color: #8a8a8a; }
+        [data-theme="dark"] .lms-fiche-field {
+            background: #232328;
+            border-color: rgba(255,255,255,.1);
+            color: #eee;
+        }
+        [data-theme="dark"] .lms-fiche-field::placeholder { color: #666; }
+        [data-theme="dark"] .lms-fiche-btn-ghost {
+            background: transparent;
+            border-color: rgba(255,255,255,.14);
+            color: #ccc;
+        }
+        [data-theme="dark"] .lms-fiche-progress-bar { background: rgba(255,255,255,.1); }
+        [data-theme="dark"] .lms-fiche-progress-label { color: #aaa; }
+        [data-theme="dark"] .lms-jalon { border-bottom-color: rgba(255,255,255,.07); }
+        [data-theme="dark"] .lms-jalon-check { background: transparent; border-color: rgba(255,255,255,.2); }
+        [data-theme="dark"] .lms-jalon-title { color: #e8e8e8; }
+        [data-theme="dark"] .lms-jalon.is-done .lms-jalon-title { color: #777; }
+        [data-theme="dark"] .lms-journal-body { color: #ddd; }
+
+        @media (max-width: 640px) {
+            .lms-fiche { padding: 18px; }
+            .lms-fiche-add .lms-fiche-field-sm { flex: 1 1 100%; }
+        }
     </style>
 </head>
 <body>
@@ -312,6 +545,12 @@
                         <a href="catalogue" class="lms-sidebar-item">
                             <span class="nav-icon">&#128218;</span>
                             Mes formations
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#fiche-suivi" class="lms-sidebar-item">
+                            <span class="nav-icon">&#128221;</span>
+                            Ma fiche de suivi
                         </a>
                     </li>
                     <li>
@@ -570,6 +809,75 @@
                     </article>
                 </div>
 
+                <!-- Fiche de suivi -->
+                <div class="lms-section-header" id="fiche-suivi">
+                    <h2>Ma fiche de suivi</h2>
+                </div>
+
+                <section class="lms-fiche" id="ficheSuivi">
+                    <p class="lms-fiche-empty" id="ficheLoading">Chargement de votre fiche&hellip;</p>
+
+                    <div class="lms-fiche-body" id="ficheBody" hidden>
+
+                        <!-- Projet -->
+                        <div class="lms-fiche-block">
+                            <h3>Mon projet</h3>
+                            <p class="lms-fiche-hint">D&eacute;crivez en quelques lignes ce que vous voulez lancer.</p>
+                            <textarea id="ficheProject" class="lms-fiche-field" rows="3"
+                                placeholder="Ex : Lancer une marque de cosm&eacute;tique naturelle &agrave; Dakar, vendue via WhatsApp et Instagram."></textarea>
+                        </div>
+
+                        <!-- Objectif -->
+                        <div class="lms-fiche-block">
+                            <h3>Mon objectif</h3>
+                            <p class="lms-fiche-hint">Un objectif concret et mesurable, avec une &eacute;ch&eacute;ance si vous en avez une.</p>
+                            <textarea id="ficheObjective" class="lms-fiche-field" rows="2"
+                                placeholder="Ex : Atteindre 50 commandes par mois avec un panier moyen de 15 000 FCFA."></textarea>
+                            <div class="lms-fiche-actions">
+                                <label for="ficheDueOn" class="lms-fiche-hint" style="margin: 0;">&Eacute;ch&eacute;ance</label>
+                                <input type="date" id="ficheDueOn" class="lms-fiche-field lms-fiche-field-sm" style="width: auto;">
+                                <button type="button" class="lms-fiche-btn" id="ficheSave">Enregistrer</button>
+                                <span class="lms-fiche-status" id="ficheStatus" role="status" aria-live="polite"></span>
+                            </div>
+                        </div>
+
+                        <!-- Jalons -->
+                        <div class="lms-fiche-block">
+                            <h3>Mes jalons</h3>
+                            <p class="lms-fiche-hint">D&eacute;coupez votre projet en &eacute;tapes atteignables. Cliquez sur le rond pour passer un jalon &laquo;&nbsp;en cours&nbsp;&raquo;, puis &laquo;&nbsp;termin&eacute;&nbsp;&raquo;.</p>
+                            <div class="lms-fiche-progress">
+                                <div class="lms-fiche-progress-bar">
+                                    <div class="lms-fiche-progress-fill" id="ficheJalonsFill"></div>
+                                </div>
+                                <span class="lms-fiche-progress-label" id="ficheJalonsLabel">0 sur 0</span>
+                            </div>
+                            <ul class="lms-jalons" id="ficheJalons"></ul>
+                            <form class="lms-fiche-add" id="ficheJalonForm">
+                                <input type="text" id="ficheJalonTitle" class="lms-fiche-field"
+                                    placeholder="Nouveau jalon (ex : cr&eacute;er la boutique en ligne)" maxlength="200">
+                                <input type="text" id="ficheJalonTime" class="lms-fiche-field lms-fiche-field-sm"
+                                    placeholder="Semaine 3" maxlength="40">
+                                <button type="submit" class="lms-fiche-btn lms-fiche-btn-ghost">Ajouter</button>
+                            </form>
+                        </div>
+
+                        <!-- Journal de bord -->
+                        <div class="lms-fiche-block">
+                            <h3>Journal de bord</h3>
+                            <p class="lms-fiche-hint">Vos d&eacute;cisions, vos blocages, vos petites victoires. Le fil de votre parcours.</p>
+                            <form id="ficheJournalForm">
+                                <textarea id="ficheJournalBody" class="lms-fiche-field" rows="2"
+                                    placeholder="Qu'est-ce qui a avanc&eacute; aujourd'hui ?" maxlength="2000"></textarea>
+                                <div class="lms-fiche-actions">
+                                    <button type="submit" class="lms-fiche-btn lms-fiche-btn-ghost">Ajouter au journal</button>
+                                </div>
+                            </form>
+                            <div class="lms-journal" id="ficheJournal"></div>
+                        </div>
+
+                    </div>
+                </section>
+
                 <!-- Courses Section -->
                 <div class="lms-section-header">
                     <h2>Mes formations</h2>
@@ -594,7 +902,7 @@
     <script src="../js/config.js?v=20260725d"></script>
     <script src="../js/supabase-client.js?v=2"></script>
     <script src="../js/auth.js?v=2"></script>
-    <script src="../js/db.js?v=2"></script>
+    <script src="../js/db.js?v=3"></script>
 
     <script>
     (async function () {
@@ -1233,6 +1541,286 @@
                     }, 250);
                 });
             });
+        })();
+
+        // ---- Fiche de suivi (project_trackers + jalons + journal) ----
+        (function initFicheSuivi() {
+            var el = {
+                loading:      document.getElementById('ficheLoading'),
+                body:         document.getElementById('ficheBody'),
+                project:      document.getElementById('ficheProject'),
+                objective:    document.getElementById('ficheObjective'),
+                dueOn:        document.getElementById('ficheDueOn'),
+                save:         document.getElementById('ficheSave'),
+                status:       document.getElementById('ficheStatus'),
+                jalons:       document.getElementById('ficheJalons'),
+                jalonsFill:   document.getElementById('ficheJalonsFill'),
+                jalonsLabel:  document.getElementById('ficheJalonsLabel'),
+                jalonForm:    document.getElementById('ficheJalonForm'),
+                jalonTitle:   document.getElementById('ficheJalonTitle'),
+                jalonTime:    document.getElementById('ficheJalonTime'),
+                journalForm:  document.getElementById('ficheJournalForm'),
+                journalBody:  document.getElementById('ficheJournalBody'),
+                journal:      document.getElementById('ficheJournal')
+            };
+            if (!el.body) return;
+
+            var tracker = null;
+            var statusTimer = null;
+
+            function showStatus(msg, isError) {
+                el.status.textContent = msg;
+                el.status.classList.toggle('is-error', !!isError);
+                el.status.classList.add('visible');
+                clearTimeout(statusTimer);
+                statusTimer = setTimeout(function () {
+                    el.status.classList.remove('visible');
+                }, isError ? 6000 : 2500);
+            }
+
+            /** 'YYYY-MM-DD' → « lundi 20 avril ». Construit en local pour éviter le décalage UTC. */
+            function formatEntryDate(ymd) {
+                if (!ymd) return '';
+                var p = String(ymd).split('-');
+                var d = new Date(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+                if (isNaN(d.getTime())) return ymd;
+                return d.toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long' });
+            }
+
+            // ---- Jalons ----
+
+            var NEXT_STATUS = { todo: 'current', current: 'done', done: 'todo' };
+            var CHECK_GLYPH = { todo: '', current: '●', done: '✓' };
+
+            function renderJalons() {
+                var rows = tracker.tracker_milestones || [];
+                el.jalons.textContent = '';
+
+                if (!rows.length) {
+                    var empty = document.createElement('li');
+                    empty.className = 'lms-fiche-empty';
+                    empty.textContent = 'Aucun jalon pour l’instant. Ajoutez votre première étape ci-dessous.';
+                    el.jalons.appendChild(empty);
+                } else {
+                    rows.forEach(function (m) {
+                        var li = document.createElement('li');
+                        li.className = 'lms-jalon' + (m.status === 'done' ? ' is-done' : m.status === 'current' ? ' is-current' : '');
+
+                        var check = document.createElement('button');
+                        check.type = 'button';
+                        check.className = 'lms-jalon-check';
+                        check.textContent = CHECK_GLYPH[m.status] || '';
+                        check.setAttribute('aria-label', 'Changer le statut de : ' + m.title);
+                        check.addEventListener('click', function () { cycleStatus(m, check); });
+
+                        var title = document.createElement('span');
+                        title.className = 'lms-jalon-title';
+                        title.textContent = m.title;
+
+                        li.appendChild(check);
+                        li.appendChild(title);
+
+                        if (m.timeframe) {
+                            var time = document.createElement('span');
+                            time.className = 'lms-jalon-time';
+                            time.textContent = m.timeframe;
+                            li.appendChild(time);
+                        }
+
+                        var del = document.createElement('button');
+                        del.type = 'button';
+                        del.className = 'lms-jalon-del';
+                        del.innerHTML = '&times;';
+                        del.title = 'Supprimer ce jalon';
+                        del.setAttribute('aria-label', 'Supprimer le jalon : ' + m.title);
+                        del.addEventListener('click', function () { removeJalon(m); });
+                        li.appendChild(del);
+
+                        el.jalons.appendChild(li);
+                    });
+                }
+
+                var sum = window.CapData.getMilestoneSummary(tracker);
+                el.jalonsFill.style.width = Math.round(sum.percent * 100) + '%';
+                el.jalonsLabel.textContent = sum.done + ' sur ' + sum.total;
+            }
+
+            async function cycleStatus(m, btn) {
+                var next = NEXT_STATUS[m.status] || 'done';
+                btn.disabled = true;
+                try {
+                    var updated = await window.CapData.setMilestoneStatus(m.id, next);
+                    m.status = updated.status;
+                    m.completed_at = updated.completed_at;
+                    renderJalons();
+                } catch (e) {
+                    console.warn('[Fiche] setMilestoneStatus', e);
+                    showStatus('Le jalon n’a pas pu être mis à jour.', true);
+                    btn.disabled = false;
+                }
+            }
+
+            async function removeJalon(m) {
+                if (!window.confirm('Supprimer le jalon « ' + m.title + ' » ?')) return;
+                try {
+                    await window.CapData.deleteMilestone(m.id);
+                    tracker.tracker_milestones = tracker.tracker_milestones.filter(function (x) {
+                        return x.id !== m.id;
+                    });
+                    renderJalons();
+                } catch (e) {
+                    console.warn('[Fiche] deleteMilestone', e);
+                    showStatus('Le jalon n’a pas pu être supprimé.', true);
+                }
+            }
+
+            // ---- Journal ----
+
+            function renderJournal() {
+                var rows = tracker.tracker_journal_entries || [];
+                el.journal.textContent = '';
+
+                if (!rows.length) {
+                    var empty = document.createElement('p');
+                    empty.className = 'lms-fiche-empty';
+                    empty.textContent = 'Votre journal est vide. La première entrée est souvent la plus difficile à écrire.';
+                    el.journal.appendChild(empty);
+                    return;
+                }
+
+                rows.forEach(function (entry) {
+                    var wrap = document.createElement('div');
+                    wrap.className = 'lms-journal-entry';
+
+                    var date = document.createElement('div');
+                    date.className = 'lms-journal-date';
+                    date.textContent = formatEntryDate(entry.entry_date);
+
+                    var del = document.createElement('button');
+                    del.type = 'button';
+                    del.className = 'lms-jalon-del';
+                    del.innerHTML = '&times;';
+                    del.title = 'Supprimer cette entrée';
+                    del.setAttribute('aria-label', 'Supprimer l’entrée du ' + formatEntryDate(entry.entry_date));
+                    del.addEventListener('click', function () { removeEntry(entry); });
+                    date.appendChild(del);
+
+                    var body = document.createElement('div');
+                    body.className = 'lms-journal-body';
+                    body.textContent = entry.body;
+
+                    wrap.appendChild(date);
+                    wrap.appendChild(body);
+                    el.journal.appendChild(wrap);
+                });
+            }
+
+            async function removeEntry(entry) {
+                if (!window.confirm('Supprimer cette entrée du journal ?')) return;
+                try {
+                    await window.CapData.deleteJournalEntry(entry.id);
+                    tracker.tracker_journal_entries = tracker.tracker_journal_entries.filter(function (x) {
+                        return x.id !== entry.id;
+                    });
+                    renderJournal();
+                } catch (e) {
+                    console.warn('[Fiche] deleteJournalEntry', e);
+                    showStatus('L’entrée n’a pas pu être supprimée.', true);
+                }
+            }
+
+            // ---- Projet / objectif ----
+
+            function isDirty() {
+                return (el.project.value !== (tracker.project || ''))
+                    || (el.objective.value !== (tracker.objective || ''))
+                    || (el.dueOn.value !== (tracker.objective_due_on || ''));
+            }
+
+            async function saveFields(silent) {
+                if (!isDirty()) {
+                    if (!silent) showStatus('Déjà à jour');
+                    return;
+                }
+                el.save.disabled = true;
+                try {
+                    var updated = await window.CapData.saveTracker({
+                        project: el.project.value.trim(),
+                        objective: el.objective.value.trim(),
+                        objective_due_on: el.dueOn.value || null
+                    });
+                    tracker.project = updated.project;
+                    tracker.objective = updated.objective;
+                    tracker.objective_due_on = updated.objective_due_on;
+                    showStatus('Enregistré');
+                } catch (e) {
+                    console.warn('[Fiche] saveTracker', e);
+                    showStatus('Enregistrement impossible. Réessayez.', true);
+                } finally {
+                    el.save.disabled = false;
+                }
+            }
+
+            // ---- Chargement initial ----
+
+            (async function load() {
+                try {
+                    tracker = await window.CapData.ensureMyTracker();
+                } catch (e) {
+                    console.warn('[Fiche] chargement impossible', e);
+                    el.loading.textContent = 'Votre fiche de suivi n’a pas pu être chargée. '
+                        + 'Rechargez la page, ou écrivez-nous si le problème persiste.';
+                    return;
+                }
+
+                el.project.value = tracker.project || '';
+                el.objective.value = tracker.objective || '';
+                el.dueOn.value = tracker.objective_due_on || '';
+                renderJalons();
+                renderJournal();
+
+                el.loading.hidden = true;
+                el.body.hidden = false;
+
+                el.save.addEventListener('click', function () { saveFields(false); });
+                // Filet de sécurité : on enregistre aussi quand l'apprenante quitte le champ,
+                // pour ne pas perdre ce qu'elle vient d'écrire si elle oublie le bouton.
+                el.project.addEventListener('blur', function () { saveFields(true); });
+                el.objective.addEventListener('blur', function () { saveFields(true); });
+                el.dueOn.addEventListener('change', function () { saveFields(true); });
+
+                el.jalonForm.addEventListener('submit', async function (ev) {
+                    ev.preventDefault();
+                    var title = el.jalonTitle.value.trim();
+                    if (!title) return;
+                    try {
+                        var created = await window.CapData.addMilestone(title, el.jalonTime.value);
+                        tracker.tracker_milestones.push(created);
+                        el.jalonTitle.value = '';
+                        el.jalonTime.value = '';
+                        renderJalons();
+                        el.jalonTitle.focus();
+                    } catch (e) {
+                        console.warn('[Fiche] addMilestone', e);
+                        showStatus('Le jalon n’a pas pu être ajouté.', true);
+                    }
+                });
+
+                el.journalForm.addEventListener('submit', async function (ev) {
+                    ev.preventDefault();
+                    var body = el.journalBody.value.trim();
+                    if (!body) return;
+                    try {
+                        var created = await window.CapData.addJournalEntry(body);
+                        tracker.tracker_journal_entries.unshift(created);
+                        el.journalBody.value = '';
+                        renderJournal();
+                    } catch (e) {
+                        console.warn('[Fiche] addJournalEntry', e);
+                        showStatus('L’entrée n’a pas pu être ajoutée.', true);
+                    }
+                });
+            })();
         })();
 
         // ---- Logout (Supabase signOut + redirection) ----
