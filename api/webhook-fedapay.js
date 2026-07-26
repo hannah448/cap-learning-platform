@@ -13,10 +13,10 @@
  * Le secret de cet endpoint va dans FEDAPAY_WEBHOOK_SECRET.
  */
 
-const { verifyFedaPayWebhook } = require('./lib/signature-fedapay');
-const { verifyTransaction, labelForPaymentMethod } = require('./lib/fedapay');
-const { createAndPayInvoice } = require('./lib/pennylane');
-const { findProfileByEmail, upsertEnrollment, select } = require('./lib/supabase-admin');
+const { verifyFedaPayWebhook } = require('../lib/signature-fedapay');
+const { verifyTransaction, labelForPaymentMethod } = require('../lib/fedapay');
+const { createAndPayInvoice } = require('../lib/pennylane');
+const { findProfileByEmail, upsertEnrollment, select } = require('../lib/supabase-admin');
 
 async function findProfileById(userId) {
     if (!userId) return null;

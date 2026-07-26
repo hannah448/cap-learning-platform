@@ -22,8 +22,8 @@
  * 404 si profil inexistant
  */
 
-const { requireUser } = require('../../lib/user-auth');
-const { rateLimit } = require('../../lib/rate-limit');
+const { requireUser } = require('../../../lib/user-auth');
+const { rateLimit } = require('../../../lib/rate-limit');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;

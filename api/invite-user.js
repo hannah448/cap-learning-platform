@@ -22,7 +22,7 @@
  *   (si un CHECK limite à 'admin'/'apprenant', l'étendre à 'editor').
  */
 
-const { upsert, findProfileByEmail } = require('./lib/supabase-admin');
+const { upsert, findProfileByEmail } = require('../lib/supabase-admin');
 
 const ROLES = ['admin', 'editor', 'apprenant'];
 

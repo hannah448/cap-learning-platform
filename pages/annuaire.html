@@ -143,15 +143,38 @@
 
         /* Empty & loading */
         .an-empty, .an-loading, .an-error {
-            padding: 60px 20px;
+            padding: 48px 24px;
             text-align: center;
             color: var(--color-text-soft);
             background: var(--color-surface);
             border-radius: 12px;
             border: 1px dashed var(--color-border);
         }
-        .an-empty-title { font-weight: 600; font-size: 1rem; margin-bottom: 6px; color: var(--color-text); }
+        .an-empty-icon {
+            font-size: 2.4rem;
+            display: block;
+            margin: 0 auto 12px;
+            opacity: .55;
+        }
+        .an-empty-title { font-weight: 600; font-size: 1.05rem; margin-bottom: 6px; color: var(--color-text); }
+        .an-empty-body { font-size: .9rem; line-height: 1.5; max-width: 380px; margin: 0 auto 16px; }
+        .an-empty-suggestions {
+            display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+            margin-top: 12px;
+        }
+        .an-empty-suggestion {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            padding: 4px 12px;
+            font-size: .8rem;
+            color: var(--color-text-soft);
+            font-family: inherit;
+            cursor: pointer;
+        }
+        .an-empty-suggestion:hover { background: var(--color-surface-2); color: var(--color-text); }
         .an-error { color: #C0392B; border-style: solid; border-color: #FCC; background: #FEF7F6; }
+        [data-theme="dark"] .an-error { background: rgba(192, 57, 43, .12); border-color: rgba(192, 57, 43, .35); }
 
         /* Pagination */
         .an-pagination {
@@ -185,6 +208,18 @@
             animation: skel 1.4s infinite;
         }
         @keyframes skel { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        /* A11y : focus ring visible partout où c'est natif absent */
+        .an-card-btn:focus-visible,
+        .an-reset-btn:focus-visible,
+        .an-page-btn:focus-visible,
+        .an-empty-suggestion:focus-visible,
+        .an-modal-close:focus-visible,
+        .an-modal-btn:focus-visible,
+        .an-report-actions button:focus-visible {
+            outline: 2px solid var(--accent-ia, #3460E5);
+            outline-offset: 2px;
+        }
 
         /* Modale profil détaillé */
         .an-modal-backdrop {
@@ -708,7 +743,8 @@
             var area = $('resultsArea');
             if (results.length === 0) {
                 $('resultsCount').textContent = '0 membre';
-                area.innerHTML = '<div class="an-empty"><div class="an-empty-title">Aucun membre ne correspond à ces filtres</div>Essaie d\'élargir ta recherche ou de retirer un filtre.</div>';
+                area.innerHTML = renderEmptyState();
+                wireEmptyStateSuggestions();
                 return;
             }
             var from = (state.page - 1) * state.limit + 1;
@@ -720,6 +756,69 @@
             results.forEach(function (m) { grid.appendChild(renderCard(m)); });
             area.innerHTML = '';
             area.appendChild(grid);
+        }
+
+        function renderEmptyState() {
+            var country = $('countryFilter').value;
+            var sector = $('sectorFilter').value;
+            var city = $('cityInput').value.trim();
+            var q = $('qInput').value.trim();
+            var courseRadio = document.querySelector('input[name="course"]:checked');
+            var course = courseRadio ? courseRadio.value : '';
+            var filtersActive = !!(country || sector || city || q || course);
+
+            var suggestions = [];
+            if (city)    suggestions.push({ label: 'Retirer la ville', action: 'clear-city' });
+            if (sector)  suggestions.push({ label: 'Retirer le secteur', action: 'clear-sector' });
+            if (course)  suggestions.push({ label: 'Retirer la formation', action: 'clear-course' });
+            if (q)       suggestions.push({ label: 'Effacer la recherche', action: 'clear-q' });
+            if (country && suggestions.length === 0) {
+                suggestions.push({ label: 'Voir tous les pays', action: 'clear-country' });
+            }
+            if (filtersActive) suggestions.push({ label: 'Tout réinitialiser', action: 'reset-all' });
+
+            var chips = suggestions.map(function (s) {
+                return '<button type="button" class="an-empty-suggestion" data-empty-action="' + s.action + '">' + escapeHtml(s.label) + '</button>';
+            }).join('');
+
+            var title, body;
+            if (filtersActive) {
+                title = 'Aucun membre ne correspond à ces filtres';
+                body = 'Essaie d\'élargir ta recherche : retire un filtre ou modifie un critère.';
+            } else {
+                title = 'L\'annuaire est encore vide';
+                body = 'Sois parmi les premiers à activer ton profil : rends-toi sur <a href="mon-profil" style="color: var(--color-text); text-decoration: underline;">Mon profil</a> et coche « Rendre mon profil visible ».';
+            }
+
+            return '<div class="an-empty">' +
+                '<span class="an-empty-icon" aria-hidden="true">🌍</span>' +
+                '<div class="an-empty-title">' + title + '</div>' +
+                '<div class="an-empty-body">' + body + '</div>' +
+                (chips ? '<div class="an-empty-suggestions">' + chips + '</div>' : '') +
+            '</div>';
+        }
+
+        function wireEmptyStateSuggestions() {
+            document.querySelectorAll('[data-empty-action]').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    switch (btn.dataset.emptyAction) {
+                        case 'clear-city':    $('cityInput').value = ''; break;
+                        case 'clear-sector':  $('sectorFilter').value = ''; break;
+                        case 'clear-course':  var r = document.querySelector('input[name="course"][value=""]'); if (r) r.checked = true; break;
+                        case 'clear-q':       $('qInput').value = ''; break;
+                        case 'clear-country': $('countryFilter').value = ''; refreshCitySuggestions(); break;
+                        case 'reset-all':
+                            $('qInput').value = ''; $('cityInput').value = '';
+                            $('countryFilter').value = ''; $('sectorFilter').value = '';
+                            var first = document.querySelector('input[name="course"][value=""]');
+                            if (first) first.checked = true;
+                            refreshCitySuggestions();
+                            break;
+                    }
+                    state.page = 1;
+                    fetchResults();
+                });
+            });
         }
 
         function renderCard(m) {
@@ -785,14 +884,36 @@
         // ---------- Modale profil détaillé ----------
         var modal = $('profileModal');
         var currentProfileId = null;
+        var lastFocusedElement = null;   // à qui rendre le focus à la fermeture
 
         $('modalClose').addEventListener('click', closeProfile);
         modal.addEventListener('click', function (e) {
             if (e.target === modal) closeProfile();
         });
+        // ESC = ferme ; TAB = piégé dans la modale (accessibilité clavier)
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape' && modal.getAttribute('data-open') === 'true') closeProfile();
+            if (modal.getAttribute('data-open') !== 'true') return;
+            if (e.key === 'Escape') { closeProfile(); return; }
+            if (e.key === 'Tab') trapFocus(e);
         });
+
+        function focusableElements() {
+            return Array.prototype.slice.call(
+                modal.querySelectorAll('button:not([disabled]), a[href], input:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')
+            ).filter(function (el) { return el.offsetParent !== null; });
+        }
+
+        function trapFocus(e) {
+            var focusables = focusableElements();
+            if (focusables.length === 0) return;
+            var first = focusables[0];
+            var last = focusables[focusables.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault(); last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault(); first.focus();
+            }
+        }
         $('modalReportLink').addEventListener('click', function (e) {
             e.preventDefault();
             openReportPanel();
@@ -863,11 +984,14 @@
 
         async function openProfile(id) {
             currentProfileId = id;
+            lastFocusedElement = document.activeElement;
             modal.setAttribute('data-open', 'true');
             document.body.style.overflow = 'hidden';
             $('modalLoading').hidden = false;
             $('modalError').hidden = true;
             $('modalBody').hidden = true;
+            // A11y : donne le focus au bouton "Fermer" par défaut (première action évidente)
+            setTimeout(function () { $('modalClose').focus(); }, 50);
 
             var token = await getAccessToken();
             if (!token) return showModalError('Session expirée — reconnecte-toi.');
@@ -892,6 +1016,11 @@
             document.body.style.overflow = '';
             currentProfileId = null;
             closeReportPanel();
+            // A11y : redonne le focus au bouton qui avait ouvert la modale
+            if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                lastFocusedElement.focus();
+                lastFocusedElement = null;
+            }
         }
 
         function showModalError(msg) {

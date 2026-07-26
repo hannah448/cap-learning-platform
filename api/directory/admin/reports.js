@@ -13,8 +13,8 @@
  * Auth : role='admin' obligatoire (401/403 sinon).
  */
 
-const { update, select } = require('../../lib/supabase-admin');
-const { requireAdmin } = require('../../lib/user-auth');
+const { update, select } = require('../../../lib/supabase-admin');
+const { requireAdmin } = require('../../../lib/user-auth');
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 

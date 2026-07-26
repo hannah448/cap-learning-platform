@@ -18,7 +18,7 @@
  * Pas de secret exposé : on retourne juste la PRÉSENCE des env vars (true/false).
  */
 
-const { select } = require('./lib/supabase-admin');
+const { select } = require('../lib/supabase-admin');
 
 // Required pour que la plateforme tourne (auth + DB)
 const REQUIRED_VARS = [

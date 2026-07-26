@@ -28,8 +28,8 @@
  */
 
 const { randomUUID } = require('crypto');
-const { initCheckout } = require('./lib/fedapay'); // paiement : FedaPay (ex-CinetPay, conservé en réf.)
-const { findProfileByEmail, select } = require('./lib/supabase-admin');
+const { initCheckout } = require('../lib/fedapay'); // paiement : FedaPay (ex-CinetPay, conservé en réf.)
+const { findProfileByEmail, select } = require('../lib/supabase-admin');
 
 // Catalogue serveur-source-de-vérité pour les prix (évite tout tampering client)
 const COURSE_CATALOG = {

@@ -13,10 +13,10 @@
  * Vercel parses it into req.body automatically when content-type is form-urlencoded.
  */
 
-const { verifyCinetPayWebhook } = require('./lib/signature');
-const { verifyTransaction, labelForPaymentMethod } = require('./lib/cinetpay');
-const { createAndPayInvoice } = require('./lib/pennylane');
-const { findProfileByEmail, upsertEnrollment, select } = require('./lib/supabase-admin');
+const { verifyCinetPayWebhook } = require('../lib/signature');
+const { verifyTransaction, labelForPaymentMethod } = require('../lib/cinetpay');
+const { createAndPayInvoice } = require('../lib/pennylane');
+const { findProfileByEmail, upsertEnrollment, select } = require('../lib/supabase-admin');
 
 // Lookup profile par user_id (UUID Supabase) — préféré au lookup par email
 async function findProfileById(userId) {

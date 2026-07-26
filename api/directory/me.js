@@ -24,15 +24,15 @@
  *   405 / 500
  */
 
-const { update } = require('../lib/supabase-admin');
-const { requireUser } = require('../lib/user-auth');
+const { update } = require('../../lib/supabase-admin');
+const { requireUser } = require('../../lib/user-auth');
 const {
     SECTOR_KEYS,
     COUNTRY_ISO,
     WHATSAPP_REGEX,
     LINKEDIN_REGEX,
     LIMITS
-} = require('../lib/directory-constants');
+} = require('../../lib/directory-constants');
 
 // Whitelist des champs éditables (tout le reste est ignoré silencieusement)
 const EDITABLE = [

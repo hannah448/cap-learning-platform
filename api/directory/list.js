@@ -20,9 +20,9 @@
  * (ces champs sortent uniquement via GET /api/directory/profile/:id).
  */
 
-const { requireUser } = require('../lib/user-auth');
-const { rateLimit } = require('../lib/rate-limit');
-const { SECTOR_KEYS, COUNTRY_ISO } = require('../lib/directory-constants');
+const { requireUser } = require('../../lib/user-auth');
+const { rateLimit } = require('../../lib/rate-limit');
+const { SECTOR_KEYS, COUNTRY_ISO } = require('../../lib/directory-constants');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;

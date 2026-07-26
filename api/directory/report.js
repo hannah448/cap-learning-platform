@@ -16,10 +16,10 @@
  *   400 / 401 / 403 / 429 / 500
  */
 
-const { upsert } = require('../lib/supabase-admin');
-const { requireUser } = require('../lib/user-auth');
-const { rateLimit } = require('../lib/rate-limit');
-const { sendEmail } = require('../lib/brevo');
+const { upsert } = require('../../lib/supabase-admin');
+const { requireUser } = require('../../lib/user-auth');
+const { rateLimit } = require('../../lib/rate-limit');
+const { sendEmail } = require('../../lib/brevo');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
