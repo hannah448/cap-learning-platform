@@ -189,6 +189,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
+    margin-top: auto;
     margin-bottom: var(--space-4);
     margin-top: auto;
 }
@@ -213,6 +214,27 @@
 
 .course-rating {
     text-align: right;
+}
+
+/* Moyens de paiement visibles dès la carte : signal de confiance, pas mention
+   légale. Volontairement en texte et non en logos — zéro requête image en plus
+   sur des connexions comptées. */
+.course-card-pay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin: calc(var(--space-2) * -1) 0 var(--space-3);
+}
+
+.pay-chip {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--surface-secondary);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-sm);
+    padding: 2px var(--space-2);
+    white-space: nowrap;
 }
 
 .stars-small {
@@ -1701,7 +1723,7 @@
 /* Responsive */
 @media (max-width: 900px) {
     .certif-layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         text-align: center;
     }
     .certif-content .section-title {
@@ -2783,3 +2805,589 @@
     transition: transform .3s ease;
 }
 .course-card:hover .course-card-photo { transform: scale(1.05); }
+
+/* ==========================================================================
+   MODE SOMBRE
+   --------------------------------------------------------------------------
+   Beaucoup de composants de ce fichier peignent un fond blanc (ou une teinte
+   très pâle) écrit en dur, sans passer par une variable : ils ne peuvent donc
+   pas basculer via tokens.css. On les reprend ici, regroupés par rôle.
+
+   Tout est portée sous :root[data-theme="dark"], donc le mode clair n'est
+   jamais touché. Repères de tokens.css :
+     --color-bg #1C1917 · --color-surface #292524 · --color-surface-2 #44403C
+     --color-border #44403C · --color-text #FAFAF9
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Palette par formation (--formation-*)
+   --------------------------------------------------------------------------
+   Le motif dans tout le fichier est une PAIRE :
+       background: var(--formation-light);  (teinte pâle)
+       color:      var(--formation-dark);   (texte foncé)
+   Il suffit donc d'inverser les deux rôles : -light/-lighter deviennent des
+   teintes sombres, -dark devient une teinte claire. Les valeurs sont dérivées
+   de --formation-color (inchangée), donc les 5 catégories sont couvertes par
+   une seule règle au lieu de 5 × 4 couleurs à la main.
+
+   Exception : quelques dégradés et états :hover ont besoin d'une extrémité
+   RÉELLEMENT foncée (fond de bouton sous texte blanc). Ils utilisent
+   --formation-deep, défini ici, et sont repris au point 2.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] [data-formation] {
+    --formation-light:   color-mix(in srgb, var(--formation-color) 22%, var(--color-bg));
+    --formation-lighter: color-mix(in srgb, var(--formation-color) 12%, var(--color-bg));
+    --formation-dark:    color-mix(in srgb, var(--formation-color) 45%, var(--color-text));
+    --formation-deep:    color-mix(in srgb, var(--formation-color) 55%, #0B0A09);
+}
+
+/* 2. Les seuls endroits où --formation-dark servait de FOND sous texte blanc :
+      sans cela le bouton deviendrait clair avec du texte blanc dessus. */
+:root[data-theme="dark"] .sales-page .sales-purchase-preview {
+    background: linear-gradient(135deg, var(--formation-color), var(--formation-deep)) !important;
+}
+:root[data-theme="dark"] .sales-page .sales-purchase .btn-primary:hover,
+:root[data-theme="dark"] .sales-page .sales-final-cta .btn-primary:hover {
+    background: var(--formation-deep);
+    border-color: var(--formation-deep);
+}
+:root[data-theme="dark"] .course-card[data-formation] .course-card-img-placeholder {
+    background: linear-gradient(135deg, var(--formation-color) 0%, var(--formation-deep) 100%) !important;
+}
+:root[data-theme="dark"] .course-card[data-formation] .btn-primary,
+:root[data-theme="dark"] .sales-related-thumb,
+:root[data-theme="dark"] .compare-col-emoji,
+:root[data-theme="dark"] .compare-cta {
+    background: linear-gradient(135deg, var(--formation-color, var(--color-primary)) 0%, var(--formation-deep, var(--color-primary-dark)) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   3. Cartes et panneaux : fond blanc en dur → surface sombre
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .purchase-card,
+:root[data-theme="dark"] .sales-purchase,
+:root[data-theme="dark"] .sales-outcome-item,
+:root[data-theme="dark"] .sales-testimonial,
+:root[data-theme="dark"] .sales-for-who-item,
+:root[data-theme="dark"] .sales-instructor-card,
+:root[data-theme="dark"] .sales-faq-item,
+:root[data-theme="dark"] .sales-related-card,
+:root[data-theme="dark"] .hero-course-card,
+:root[data-theme="dark"] .certif-badge-main,
+:root[data-theme="dark"] .certif-mini-badge,
+:root[data-theme="dark"] .compare-helpers,
+:root[data-theme="dark"] .compare-table-wrap,
+:root[data-theme="dark"] .compare-table-scroll,
+:root[data-theme="dark"] .compare-table,
+:root[data-theme="dark"] .compare-table td,
+:root[data-theme="dark"] .compare-table thead th,
+:root[data-theme="dark"] .sales-page .sales-outcomes,
+:root[data-theme="dark"] .sales-page .curriculum-section,
+:root[data-theme="dark"] .sales-page .module-item,
+:root[data-theme="dark"] .sales-page .sales-instructor,
+:root[data-theme="dark"] .sales-page .sales-instructor-stats span,
+:root[data-theme="dark"] .sales-page .sales-faq {
+    background: var(--color-surface);
+}
+
+/* Colonne d'en-tête du tableau comparatif : un cran plus clair pour rester
+   distincte des cellules. */
+:root[data-theme="dark"] .compare-table tbody th {
+    background: var(--color-surface-2);
+}
+
+/* Les tags du hero d'une page formation forcent `background: white !important`,
+   il faut donc le même !important pour repasser devant. */
+:root[data-theme="dark"] .sales-page .sales-hero-tags .tag {
+    background: var(--color-surface-2) !important;
+}
+
+/* .certif-advantage est semi-transparent (rgba blanc .7) sur un fond dégradé */
+:root[data-theme="dark"] .certif-advantage {
+    background: rgba(41, 37, 36, 0.7);
+}
+:root[data-theme="dark"] .certif-advantage:hover {
+    background: var(--color-surface);
+}
+
+/* Bouton favori posé sur la photo de la carte */
+:root[data-theme="dark"] .course-wishlist {
+    background: rgba(28, 25, 23, 0.75);
+}
+
+/* Sommaire flottant d'une page formation */
+:root[data-theme="dark"] .sales-toc {
+    background: rgba(41, 37, 36, 0.92);
+}
+
+/* --------------------------------------------------------------------------
+   4. Sections à dégradé clair
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .sales-final-cta {
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-surface) 100%);
+}
+:root[data-theme="dark"] .certification-section,
+:root[data-theme="dark"] .compare-hero {
+    background: linear-gradient(135deg, #1E1B2E 0%, #241F33 50%, #2A1F26 100%);
+}
+:root[data-theme="dark"] .sales-related,
+:root[data-theme="dark"] .compare-helper {
+    background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-bg) 100%);
+}
+:root[data-theme="dark"] .sales-page .sales-instructor-card,
+:root[data-theme="dark"] .sales-page .sales-final-cta {
+    background: linear-gradient(180deg, var(--color-surface) 0%, var(--formation-lighter) 100%);
+}
+/* Le hero d'une page formation superpose deux dégradés radiaux teintés sur un
+   aplat #FAFAFF codé en dur : seul cet aplat doit changer. */
+:root[data-theme="dark"] .sales-page .sales-hero {
+    background:
+        radial-gradient(900px 400px at 110% -10%, var(--formation-light) 0%, transparent 60%),
+        linear-gradient(170deg, var(--color-bg) 0%, var(--formation-lighter) 100%);
+}
+
+/* --------------------------------------------------------------------------
+   5. Champs de saisie
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .search-input-wrapper input,
+:root[data-theme="dark"] .sort-select,
+:root[data-theme="dark"] .promo-input input:focus {
+    background: var(--color-surface);
+    color: var(--color-text);
+}
+
+/* --------------------------------------------------------------------------
+   6. Pastilles teintées : fond pâle + texte foncé → fond foncé + texte clair
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .tag-marketing  { background: #3D2418; color: #FFAB7A; }
+:root[data-theme="dark"] .tag-ecommerce  { background: #16244A; color: #93B4FF; }
+:root[data-theme="dark"] .tag-ia         { background: #2E1A4A; color: #C4A0FF; }
+:root[data-theme="dark"] .tag-finance    { background: #10322A; color: #6EE7B7; }
+
+:root[data-theme="dark"] .cart-item-meta span.is-cert,
+:root[data-theme="dark"] .sales-purchase-lifetime {
+    background: #10322A;
+    color: #6EE7B7;
+    border-color: #1E5C48;
+}
+:root[data-theme="dark"] .sales-purchase-discount {
+    background: #3D1A1A;
+    color: #FCA5A5;
+}
+
+/* --------------------------------------------------------------------------
+   7. Couleurs de marque utilisées comme TEXTE
+   --------------------------------------------------------------------------
+   Même problème que dans style.css : --color-secondary (#1E1B3A) et
+   --color-primary (#3A50F6) servent aussi de couleur de texte foncé. Sur fond
+   sombre, le premier devient invisible (1,1:1) et le second illisible (2,6:1).
+   Voir --color-primary-text, défini dans style.css.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .hero-course-title,
+:root[data-theme="dark"] .cart-item-info h3,
+:root[data-theme="dark"] .cart-summary-row span:last-child,
+:root[data-theme="dark"] .cart-summary-total,
+:root[data-theme="dark"] .tp-stat-value,
+:root[data-theme="dark"] .certif-advantage strong {
+    color: var(--color-text);
+}
+
+/* .compare-final .btn-primary est volontairement exclu : c'est un bouton au
+   fond blanc, son texte bleu foncé y reste parfaitement lisible. */
+:root[data-theme="dark"] .price-current,
+:root[data-theme="dark"] .hero-course-price,
+:root[data-theme="dark"] .cart-item-price,
+:root[data-theme="dark"] .cart-summary-total .total-amount,
+:root[data-theme="dark"] .sales-outcome-icon,
+:root[data-theme="dark"] .sales-stat-value,
+:root[data-theme="dark"] .sales-instructor-title,
+:root[data-theme="dark"] .sales-faq-item summary::after,
+:root[data-theme="dark"] .tp-link,
+:root[data-theme="dark"] .tp-link:hover,
+:root[data-theme="dark"] .seal-text,
+:root[data-theme="dark"] .compare-hero .section-badge,
+:root[data-theme="dark"] .compare-helper a {
+    color: var(--color-primary-text);
+}
+
+/* ==========================================================================
+   8. Pages dont le CSS vit dans un <style> interne
+   --------------------------------------------------------------------------
+   qui-sommes-nous, plateforme, contact, nos-experts, cgu, confidentialite,
+   merci : chacune écrit ses couleurs en dur dans sa propre balise <style>.
+   Les mêmes motifs y reviennent (héros pastel, carte blanche, fond crème,
+   texte #555, bleu #3A50F6), on les regroupe donc ici plutôt que de répéter
+   un bloc sombre dans chaque page. components.css est chargé sur les sept.
+
+   NB : la spécificité de :root[data-theme="dark"] .x (0,3,0) l'emporte sur
+   celle des règles de page (.x = 0,1,0), quel que soit l'ordre de chargement.
+   ========================================================================== */
+
+/* Héros pastel partagé par cinq pages */
+:root[data-theme="dark"] .about-hero,
+:root[data-theme="dark"] .pf-hero,
+:root[data-theme="dark"] .contact-hero,
+:root[data-theme="dark"] .experts-hero,
+:root[data-theme="dark"] .legal-hero {
+    background: linear-gradient(135deg, #241C3A 0%, #1F1932 50%, #241F1B 100%);
+}
+
+/* Cartes et panneaux blancs */
+:root[data-theme="dark"] .about-stat,
+:root[data-theme="dark"] .pillar-card,
+:root[data-theme="dark"] .country-badge,
+:root[data-theme="dark"] .pf-screenshot,
+:root[data-theme="dark"] .browser-url,
+:root[data-theme="dark"] .mock-sidebar,
+:root[data-theme="dark"] .mock-stat,
+:root[data-theme="dark"] .mock-course-row,
+:root[data-theme="dark"] .pf-feature-visual,
+:root[data-theme="dark"] .bill-badge,
+:root[data-theme="dark"] .bill-toggle-card,
+:root[data-theme="dark"] .bill-table,
+:root[data-theme="dark"] .benefit-card,
+:root[data-theme="dark"] .contact-card,
+:root[data-theme="dark"] .channel-card,
+:root[data-theme="dark"] .faq-item,
+:root[data-theme="dark"] .faq-cta,
+:root[data-theme="dark"] .expert-filter,
+:root[data-theme="dark"] .expert-card,
+:root[data-theme="dark"] .legal-content,
+:root[data-theme="dark"] .merci-card {
+    background: var(--color-surface);
+}
+
+/* Fonds crème (#FBF7F0) et gris très clairs (#fafafa, #f5f5f5, #f7f7f7) */
+:root[data-theme="dark"] .about-section.alt,
+:root[data-theme="dark"] .dashboard-mock,
+:root[data-theme="dark"] .pf-section.alt,
+:root[data-theme="dark"] .browser-chrome,
+:root[data-theme="dark"] .lib-module,
+:root[data-theme="dark"] .com-filter,
+:root[data-theme="dark"] .com-member,
+:root[data-theme="dark"] .bill-mock,
+:root[data-theme="dark"] .bill-table-head,
+:root[data-theme="dark"] .mock-progress-bar,
+:root[data-theme="dark"] .info-block,
+:root[data-theme="dark"] .faq-section,
+:root[data-theme="dark"] .expert-location,
+:root[data-theme="dark"] .experts-cta,
+:root[data-theme="dark"] .legal-highlight,
+:root[data-theme="dark"] .legal-table th {
+    background: var(--color-surface-2);
+}
+
+/* Bordures claires (#eee, #e5e7eb, #EAE4DA, #ddd, #F3EEE4) */
+:root[data-theme="dark"] .about-stat,
+:root[data-theme="dark"] .pillar-card,
+:root[data-theme="dark"] .country-badge,
+:root[data-theme="dark"] .pf-screenshot,
+:root[data-theme="dark"] .browser-chrome,
+:root[data-theme="dark"] .browser-url,
+:root[data-theme="dark"] .mock-sidebar,
+:root[data-theme="dark"] .mock-stat,
+:root[data-theme="dark"] .mock-course-row,
+:root[data-theme="dark"] .pf-feature-visual,
+:root[data-theme="dark"] .fiche-field,
+:root[data-theme="dark"] .fiche-milestone,
+:root[data-theme="dark"] .fiche-check,
+:root[data-theme="dark"] .bill-badge,
+:root[data-theme="dark"] .bill-toggle-card,
+:root[data-theme="dark"] .bill-table,
+:root[data-theme="dark"] .bill-table-head,
+:root[data-theme="dark"] .bill-row,
+:root[data-theme="dark"] .benefit-card,
+:root[data-theme="dark"] .contact-card,
+:root[data-theme="dark"] .channel-card,
+:root[data-theme="dark"] .faq-item,
+:root[data-theme="dark"] .faq-cta,
+:root[data-theme="dark"] .expert-filter,
+:root[data-theme="dark"] .expert-card,
+:root[data-theme="dark"] .legal-content,
+:root[data-theme="dark"] .legal-table th,
+:root[data-theme="dark"] .legal-table td,
+:root[data-theme="dark"] .merci-card {
+    border-color: var(--color-border);
+}
+
+/* Textes secondaires écrits en dur (#555, #666, #444, #888, #6B6A7C) */
+:root[data-theme="dark"] .about-hero .lead,
+:root[data-theme="dark"] .about-stat-label,
+:root[data-theme="dark"] .pillar-card p,
+:root[data-theme="dark"] .timeline-item p,
+:root[data-theme="dark"] .pf-hero .lead,
+:root[data-theme="dark"] .browser-url,
+:root[data-theme="dark"] .mock-nav-item,
+:root[data-theme="dark"] .mock-greet-sub,
+:root[data-theme="dark"] .mock-stat-label,
+:root[data-theme="dark"] .mock-course-pct,
+:root[data-theme="dark"] .pf-feature-content p,
+:root[data-theme="dark"] .pf-feature-list li,
+:root[data-theme="dark"] .fiche-field-label,
+:root[data-theme="dark"] .lib-module-meta,
+:root[data-theme="dark"] .com-filter,
+:root[data-theme="dark"] .com-role,
+:root[data-theme="dark"] .benefit-card p,
+:root[data-theme="dark"] .bill-subtitle,
+:root[data-theme="dark"] .bill-toggle-card .hint,
+:root[data-theme="dark"] .bill-table-head,
+:root[data-theme="dark"] .bill-client .date,
+:root[data-theme="dark"] .contact-hero .lead,
+:root[data-theme="dark"] .contact-card p.sub,
+:root[data-theme="dark"] .contact-consent,
+:root[data-theme="dark"] .channel-card p,
+:root[data-theme="dark"] .info-block li,
+:root[data-theme="dark"] .faq-intro p,
+:root[data-theme="dark"] .faq-item .faq-answer,
+:root[data-theme="dark"] .faq-cta p,
+:root[data-theme="dark"] .experts-hero p.lead,
+:root[data-theme="dark"] .expert-filter,
+:root[data-theme="dark"] .expert-location,
+:root[data-theme="dark"] .expert-bio,
+:root[data-theme="dark"] .experts-cta p,
+:root[data-theme="dark"] .legal-hero .legal-updated,
+:root[data-theme="dark"] .legal-content p,
+:root[data-theme="dark"] .legal-content li,
+:root[data-theme="dark"] .legal-table td,
+:root[data-theme="dark"] .quote-block {
+    color: var(--color-text-soft);
+}
+
+/* Textes principaux écrits en dur (#1E1B3A, #222, #1a1a1a, #333) */
+:root[data-theme="dark"] .quote-author,
+:root[data-theme="dark"] .mock-sidebar,
+:root[data-theme="dark"] .mock-sidebar .mock-logo strong,
+:root[data-theme="dark"] .mock-greet,
+:root[data-theme="dark"] .mock-stat-val,
+:root[data-theme="dark"] .mock-course-title,
+:root[data-theme="dark"] .fiche-field-val,
+:root[data-theme="dark"] .bill-title,
+:root[data-theme="dark"] .bill-badge,
+:root[data-theme="dark"] .bill-toggle-card .label,
+:root[data-theme="dark"] .bill-row,
+:root[data-theme="dark"] .bill-course,
+:root[data-theme="dark"] .contact-field label,
+:root[data-theme="dark"] .info-block li strong,
+:root[data-theme="dark"] .faq-item summary,
+:root[data-theme="dark"] .faq-cta strong,
+:root[data-theme="dark"] .legal-content strong,
+:root[data-theme="dark"] .legal-table th,
+:root[data-theme="dark"] .merci-card h1 {
+    color: var(--color-text);
+}
+
+/* Bleu de marque (#3A50F6) utilisé en texte */
+:root[data-theme="dark"] .pillar-icon,
+:root[data-theme="dark"] .timeline-year,
+:root[data-theme="dark"] .mock-nav-item.active,
+:root[data-theme="dark"] .pf-feature-list li::before,
+:root[data-theme="dark"] .lib-module-num,
+:root[data-theme="dark"] .benefit-icon,
+:root[data-theme="dark"] .bill-ext,
+:root[data-theme="dark"] .contact-field label .req,
+:root[data-theme="dark"] .channel-card.phone .chan-icon,
+:root[data-theme="dark"] .faq-item summary::after,
+:root[data-theme="dark"] .faq-item .faq-answer a,
+:root[data-theme="dark"] .expert-filter:hover,
+:root[data-theme="dark"] .expert-title,
+:root[data-theme="dark"] .csm-avatar,
+:root[data-theme="dark"] .legal-content a,
+:root[data-theme="dark"] .merci-help a {
+    color: var(--color-primary-text);
+}
+
+/* Champs de formulaire de la page contact */
+:root[data-theme="dark"] .contact-field input,
+:root[data-theme="dark"] .contact-field select,
+:root[data-theme="dark"] .contact-field textarea {
+    background: var(--color-surface-2);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+:root[data-theme="dark"] .contact-field input:focus,
+:root[data-theme="dark"] .contact-field select:focus,
+:root[data-theme="dark"] .contact-field textarea:focus {
+    background: var(--color-surface);
+}
+
+/* Pastilles et encarts teintés */
+:root[data-theme="dark"] .contact-success {
+    background: #10322A;
+    border-color: #1E5C48;
+    color: #6EE7B7;
+}
+:root[data-theme="dark"] .channel-card.email .chan-icon {
+    background: #16244A;
+    color: #93B4FF;
+}
+:root[data-theme="dark"] .fiche-tag,
+:root[data-theme="dark"] .expert-tag {
+    color: #C4A0FF;
+}
+:root[data-theme="dark"] .bill-status.paid    { color: #6EE7B7; }
+:root[data-theme="dark"] .bill-status.pending { color: #FCC74A; }
+:root[data-theme="dark"] .csm-avatar {
+    background: linear-gradient(135deg, #2E2445, var(--color-surface-2));
+}
+
+/* .merci-card lit var(--surface, #fff) — une variable qui n'existe nulle part,
+   donc c'est toujours le repli blanc qui s'applique. */
+:root[data-theme="dark"] .merci-card { background: var(--color-surface); }
+
+/* ==========================================================================
+   9. pages/dashboard-v2.html — maquette du tableau de bord
+   --------------------------------------------------------------------------
+   Seule page de l'espace connecté à charger components.css. Son CSS vit dans
+   un <style> interne de 665 lignes, avec sa propre palette lavande/ivoire
+   écrite en dur. Aucun de ses sélecteurs (.dash-*, .f-card-*) n'apparaît dans
+   les sections 1 à 8 : rien à dédupliquer.
+   ========================================================================== */
+
+/* Le fond de page passe par une variable interne à la page, utilisée à la
+   fois par body et par .dash-main : un seul override suffit. */
+:root[data-theme="dark"] {
+    --apprenant-bg: var(--color-bg);
+}
+
+/* --------------------------------------------------------------------------
+   9.1 Cartes et panneaux
+   --------------------------------------------------------------------------
+   Y compris celles qui passaient par --surface-primary : en sombre ce token
+   vaut --color-bg, soit exactement la couleur du body — la carte ne devenait
+   pas claire, elle DISPARAISSAIT. On rétablit la hiérarchie des sections 3
+   et 8 (carte #292524 sur fond #1C1917).
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .dash-resume,
+:root[data-theme="dark"] .dash-objective,
+:root[data-theme="dark"] .dash-sidebar,
+:root[data-theme="dark"] .dash-fiche,
+:root[data-theme="dark"] .dash-cert,
+:root[data-theme="dark"] .dash-stats,
+:root[data-theme="dark"] .f-card,
+:root[data-theme="dark"] .dash-community {
+    background: var(--color-surface);
+}
+
+:root[data-theme="dark"] .dash-resume-label,
+:root[data-theme="dark"] .dash-nav:hover,
+:root[data-theme="dark"] .dash-jalon-check,
+:root[data-theme="dark"] .dash-journal-entry,
+:root[data-theme="dark"] .dash-whatsapp-btn,
+:root[data-theme="dark"] .dash-post:hover,
+:root[data-theme="dark"] .f-card-bar {
+    background: var(--color-surface-2);
+}
+
+:root[data-theme="dark"] .dash-fiche-objective,
+:root[data-theme="dark"] .dash-community-compose {
+    background: linear-gradient(135deg, var(--color-surface-2), var(--color-surface));
+}
+
+/* --------------------------------------------------------------------------
+   9.2 Bordures et séparateurs
+   --------------------------------------------------------------------------
+   Les filets lavande (#EEE8FB, #F0ECFB, #D7CDF5, #F2E6C8) et ceux qui
+   passaient par --color-gray-100, devenu la couleur même de la carte.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .dash-resume,
+:root[data-theme="dark"] .dash-resume-label,
+:root[data-theme="dark"] .dash-objective,
+:root[data-theme="dark"] .dash-sidebar,
+:root[data-theme="dark"] .dash-sidebar-user,
+:root[data-theme="dark"] .dash-sidebar-divider,
+:root[data-theme="dark"] .dash-fiche,
+:root[data-theme="dark"] .dash-fiche-objective,
+:root[data-theme="dark"] .dash-jalon,
+:root[data-theme="dark"] .dash-jalon-check,
+:root[data-theme="dark"] .dash-fiche-journal,
+:root[data-theme="dark"] .dash-cert,
+:root[data-theme="dark"] .dash-community-compose,
+:root[data-theme="dark"] .dash-post,
+:root[data-theme="dark"] .dash-reco {
+    border-color: var(--color-border);
+}
+/* .dash-sidebar-divider est un aplat, pas une bordure. */
+:root[data-theme="dark"] .dash-sidebar-divider {
+    background: var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   9.3 Bloc WhatsApp — le seul aplat vert pâle sous texte foncé
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .dash-whatsapp {
+    background: #1E3A2C;
+    border-color: #2E5643;
+    color: #C9E6D5;
+}
+:root[data-theme="dark"] .dash-whatsapp::after {
+    background: rgba(255, 255, 255, 0.05);
+}
+:root[data-theme="dark"] .dash-whatsapp-icon {
+    background: rgba(255, 255, 255, 0.10);
+}
+:root[data-theme="dark"] .dash-whatsapp h3 {
+    color: var(--color-text);
+}
+:root[data-theme="dark"] .dash-whatsapp-btn,
+:root[data-theme="dark"] .dash-nav-whatsapp:hover {
+    color: #A9D4BA;
+}
+:root[data-theme="dark"] .dash-nav-whatsapp {
+    color: #8EBFA3;
+}
+:root[data-theme="dark"] .dash-nav-whatsapp:hover {
+    background: #23302A;
+}
+
+/* --------------------------------------------------------------------------
+   9.4 Textes
+   --------------------------------------------------------------------------
+   --color-secondary (#1E1B3A) en couleur de texte tombe à 1,1:1 : invisible.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .dash-resume h2,
+:root[data-theme="dark"] .dash-objective h3,
+:root[data-theme="dark"] .dash-fiche-objective-txt {
+    color: var(--color-text);
+}
+:root[data-theme="dark"] .dash-cert.obtained .dash-cert-meta {
+    color: #8FCBA6;
+}
+
+/* .dash-resume-label est une pastille posée sur --color-surface-2 : sur ce
+   fond plus clair, --color-primary-text ne donne que 4,3:1. On monte d'un cran
+   (même bleu que .auth-form-footer a:hover dans lms.css) → 5,7:1. */
+:root[data-theme="dark"] .dash-resume-label {
+    color: #B7C4FF;
+}
+
+/* Bleu de marque en TEXTE */
+:root[data-theme="dark"] .dash-hello h1 .hl,
+:root[data-theme="dark"] .dash-section-head a,
+:root[data-theme="dark"] .f-card-icon,
+:root[data-theme="dark"] .f-card.discover .plus,
+:root[data-theme="dark"] .dash-reco-tag,
+:root[data-theme="dark"] .dash-nav:hover,
+:root[data-theme="dark"] .dash-nav.active,
+:root[data-theme="dark"] .dash-sidebar-footer a {
+    color: var(--color-primary-text);
+}
+
+/* Icône de catégorie « accent » : fond pêche pâle + texte orange foncé. */
+:root[data-theme="dark"] .f-card-icon.accent {
+    background: #3D2A18;
+    color: #F2B26A;
+}
+
+/* --------------------------------------------------------------------------
+   9.5 Le bouton du bloc « objectif » porte un style INLINE
+   --------------------------------------------------------------------------
+   `style="background:#fff; color:var(--color-secondary); border-color:#fff"`
+   (dashboard-v2.html l. 1095). Un attribut style bat toute règle non
+   !important, quelle que soit la spécificité : c'est le seul endroit de cette
+   section où !important est justifié.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .dash-objective .btn {
+    background: var(--color-surface-2) !important;
+    border-color: var(--color-border) !important;
+    color: var(--color-text) !important;
+}

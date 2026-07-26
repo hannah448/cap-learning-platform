@@ -4,21 +4,21 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js?v=20260725d"></script>
+    <script src="../js/migrate-brand.js?v=20260726a"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
-    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726a">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260726a">
     <title>Qui sommes-nous - Cap Learning, école digitale panafricaine</title>
     <meta name="description" content="Cap Learning est l'école en ligne qui forme les entrepreneurs du Sénégal, du Bénin et de Côte d'Ivoire au digital. Une pédagogie pensée pour le marché africain, portée par des formateurs basés à Dakar, Cotonou et Abidjan.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260726a">
 
-    <link rel="stylesheet" href="../css/style.css?v=20260725d">
-    <link rel="stylesheet" href="../css/components.css?v=20260725d">
+    <link rel="stylesheet" href="../css/style.css?v=20260726a">
+    <link rel="stylesheet" href="../css/components.css?v=20260726a">
     <style>
         .about-hero {
             padding: 120px 0 80px;
@@ -65,7 +65,7 @@
             background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .about-stat-label { color: #555; margin-top: 8px; font-size: .95rem; }
+        .about-stat-label { color: var(--color-text-soft); margin-top: 8px; font-size: .95rem; }
         .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; margin-top: 40px; }
         .pillar-card {
             background: #fff;
@@ -77,14 +77,14 @@
         .pillar-card:hover { border-color: #A78BFA; transform: translateY(-4px); box-shadow: 0 20px 40px -18px rgba(58,80,246,0.22); }
         .pillar-icon { font-size: 2rem; display: inline-flex; width: 56px; height: 56px; align-items: center; justify-content: center; border-radius: 14px; background: linear-gradient(135deg, rgba(58,80,246,0.10), rgba(167,139,250,0.15)); color: #3A50F6; margin-bottom: 16px; }
         .pillar-card h3 { font-size: 1.2rem; margin-bottom: 10px; }
-        .pillar-card p { color: #555; line-height: 1.6; font-size: .97rem; }
+        .pillar-card p { color: var(--color-text-soft); line-height: 1.6; font-size: .97rem; }
         .timeline { position: relative; padding-left: 36px; margin-top: 40px; }
         .timeline::before { content: ''; position: absolute; left: 10px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, #3A50F6, #A78BFA); }
         .timeline-item { position: relative; padding-bottom: 36px; }
         .timeline-item::before { content: ''; position: absolute; left: -30px; top: 4px; width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg, #3A50F6, #A78BFA); box-shadow: 0 0 0 4px #EDE7FC; }
         .timeline-year { font-weight: 700; color: #3A50F6; font-size: .9rem; letter-spacing: .06em; text-transform: uppercase; }
         .timeline-item h4 { margin: 6px 0 8px; font-size: 1.15rem; }
-        .timeline-item p { color: #555; line-height: 1.6; font-size: .97rem; }
+        .timeline-item p { color: var(--color-text-soft); line-height: 1.6; font-size: .97rem; }
         .quote-block {
             border-left: 4px solid #A78BFA;
             padding: 8px 0 8px 24px;
@@ -180,10 +180,10 @@
                                 </a>
                             </div>
                             <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
-                                <a href="catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                <a href="catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary-text, #3A50F6); font-weight:600;">
                                     Voir les 4 parcours &rarr;
                                 </a>
-                                <a href="comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                <a href="comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary-text, #3A50F6); font-weight:600;">
                                     Comparer &rarr;
                                 </a>
                             </div>
@@ -251,13 +251,13 @@
                         <h2 class="section-title" style="font-size: 2rem;">Rendre le digital <span class="text-gradient">accessible, concret et rentable</span> pour chaque entrepreneur africain.</h2>
                     </div>
                     <div>
-                        <p style="font-size: 1.05rem; color: #444; line-height: 1.75;">
+                        <p style="font-size: 1.05rem; color: var(--color-text-soft); line-height: 1.75;">
                             En Afrique francophone, des milliers de porteurs de projet ont l'énergie, l'idée et le
                             marché — il leur manque souvent une formation <strong>adaptée à leur terrain</strong> :
                             des études de cas locales, des outils compatibles Mobile Money, une pédagogie qui tient
                             compte du contexte OHADA et des connexions parfois intermittentes.
                         </p>
-                        <p style="font-size: 1.05rem; color: #444; line-height: 1.75; margin-top: 16px;">
+                        <p style="font-size: 1.05rem; color: var(--color-text-soft); line-height: 1.75; margin-top: 16px;">
                             Notre mission est simple : <strong>transformer cette énergie en business qui génèrent du
                             chiffre d'affaires</strong>, en donnant à chaque apprenant les compétences digitales qui
                             font la différence — marketing, e-commerce, IA, réseaux sociaux, gestion d'entreprise.
@@ -313,7 +313,7 @@
                     <div>
                         <span class="section-badge">Notre histoire</span>
                         <h2 class="section-title" style="font-size: 2rem;">Née du terrain, <span class="text-gradient">construite pour durer</span></h2>
-                        <p style="color: #555; line-height: 1.7; margin-top: 16px;">
+                        <p style="color: var(--color-text-soft); line-height: 1.7; margin-top: 16px;">
                             Cap Learning n'est pas un projet lancé depuis un bureau parisien. L'école est née d'une
                             conviction simple partagée avec les entrepreneurs africains :
                             il manquait une plateforme <em>véritablement</em> pensée pour l'Afrique francophone.
@@ -390,7 +390,7 @@
                         <h2 class="section-title" style="font-size: 2rem;">L'exigence pédagogique, l'ancrage africain.</h2>
                     </div>
                     <div>
-                        <p style="color: #444; line-height: 1.75; font-size: 1.02rem;">
+                        <p style="color: var(--color-text-soft); line-height: 1.75; font-size: 1.02rem;">
                             Ce que nous apportons, aucune équipe parisienne ne peut l'apporter : des
                             <strong>formateurs qui vivent et entreprennent en Afrique</strong>, des contenus
                             réécrits pour le marché local, et une connaissance fine de ce qui fonctionne (et ce
@@ -471,7 +471,7 @@
         </div>
     </footer>
 
-    <script src="../js/app.js?v=20260725d"></script>
-    <script src="../js/theme.js?v=20260725d" defer></script>
+    <script src="../js/app.js?v=20260726a"></script>
+    <script src="../js/theme.js?v=20260726a" defer></script>
 </body>
 </html>

@@ -28,6 +28,18 @@
     --color-warning: #F59E0B;
     --color-info: #3B82F6;
 
+    /* Encarts d'état (« fond pâle + texte foncé »). Ce motif était recopié en
+       dur un peu partout, y compris dans des styles INLINE posés par JS
+       (pages/apprendre.html, retour d'exercice) — que le CSS ne peut pas
+       reprendre, même avec !important. En passant par des variables, la
+       bascule sombre se fait toute seule. Variantes sombres plus bas. */
+    --state-ok-bg:    #ECFDF5;
+    --state-ok-text:  #065F46;
+    --state-warn-bg:  #FFFBEB;
+    --state-warn-text:#92400E;
+    --state-err-bg:   #FEF2F2;
+    --state-err-text: #991B1B;
+
     /* Neutrals - Cool undertone */
     --color-gray-50: #F8FAFC;
     --color-gray-100: #F1F5F9;
@@ -50,9 +62,17 @@
     /* Text */
     --text-primary: var(--color-gray-900);
     --text-secondary: var(--color-gray-600);
-    --text-tertiary: var(--color-gray-400);
+    /* gray-400 (#94A3B8) donnait 2,45:1 sur fond clair — sous le minimum AA.
+       gray-600 = 7,27:1, lisible sur écran bas de gamme et en plein soleil.
+       Le mode dark garde gray-400 (6,86:1), voir override plus bas. */
+    --text-tertiary: var(--color-gray-600);
     --text-inverse: #FFFFFF;
     --text-link: var(--color-primary);
+    /* Bleu de marque quand il sert de TEXTE. Identique à --color-primary en
+       clair ; en sombre il est éclairci (voir le bloc dark plus bas), car
+       #3A50F6 n'y donne que 2,6:1. Séparer les deux permet de garder les
+       boutons (fond bleu, texte blanc) inchangés. */
+    --color-primary-text: var(--color-primary);
 
     /* Typography - Space Grotesk (headings) + DM Sans (body) */
     --font-display: 'Satoshi', system-ui, -apple-system, sans-serif;
@@ -129,6 +149,178 @@
     --container-max: 1280px;
     --container-narrow: 800px;
     --container-padding: var(--space-6);
+}
+
+/* ==========================================================================
+   MODE SOMBRE — palette de style.css
+   --------------------------------------------------------------------------
+   tokens.css bascule sa propre palette ([data-theme="dark"], --color-bg /
+   --color-surface / --color-text). Mais style.css définit une SECONDE palette,
+   indépendante et codée en dur sur des valeurs claires. Sans les overrides
+   ci-dessous, body garde background-color: var(--surface-primary) = #FFFFFF
+   en mode sombre — fond blanc alors que les composants basculent.
+
+   Valeurs alignées sur tokens.css (palette « stone ») :
+     --color-bg #1C1917 · --color-surface #292524 · --color-surface-2 #44403C
+     --color-text #FAFAF9 · --color-text-soft #D6D3D1 · --color-text-mute #A8A29E
+   ========================================================================== */
+:root[data-theme="dark"] {
+    /* Échelle de gris inversée : 50 devient le plus sombre, 900 le plus clair.
+       Indispensable, et pas seulement cosmétique : --surface-* et --text-* en
+       dérivent, ~90 bordures utilisent gray-200 (sinon traits blancs sur fond
+       sombre) et gray-50/100 servent de fonds de sections et de cartes. */
+    --color-gray-50:  #1C1917;
+    --color-gray-100: #292524;
+    --color-gray-200: #44403C;
+    --color-gray-300: #57534E;
+    --color-gray-400: #A8A29E;
+    --color-gray-500: #BDB7B2;
+    --color-gray-600: #D6D3D1;
+    --color-gray-700: #E7E5E4;
+    --color-gray-800: #F5F5F4;
+    --color-gray-900: #FAFAF9;
+
+    /* Surfaces — les valeurs light sont des #FFFFFF en dur, sans variante. */
+    --surface-primary:   var(--color-bg);        /* fond de page      #1C1917 */
+    --surface-secondary: var(--color-surface);   /* sections alternées #292524 */
+    --surface-card:      var(--color-surface);   /* cartes             #292524 */
+    --surface-elevated:  var(--color-surface-2); /* éléments surélevés #44403C */
+
+    /* Textes — primary (gray-900) et secondary (gray-600) suivent l'échelle
+       inversée ci-dessus. text-tertiary vaut gray-600 en light : sur fond
+       sombre cela le rendrait identique à text-secondary, donc on repasse à
+       gray-400 (#A8A29E), qui garde la hiérarchie tout en restant lisible
+       (7,0:1 sur #1C1917, au-dessus du minimum AA). */
+    --text-tertiary: var(--color-gray-400);
+
+    /* Bleu très pâle, utilisé uniquement en `background` (badges, dégradé du
+       hero) : on prend le bleu sombre de tokens.css. --color-primary-100 n'est
+       délibérément PAS touché — il ne sert que de couleur de texte
+       (.step-number) et doit donc rester clair. */
+    --color-primary-50: var(--accent-ia-bg); /* #1A2654 */
+
+    /* Bleu de marque pour le TEXTE. --color-primary (#3A50F6) ne donne que
+       2,6:1 sur fond sombre — illisible. On ne peut pas éclaircir
+       --color-primary lui-même : il sert aussi de fond aux boutons, sous du
+       texte blanc, où il doit rester foncé. D'où cette variable dédiée,
+       appliquée plus bas aux règles qui l'utilisent en couleur de texte.
+       #8FA2FF = 7,2:1 sur le fond de page, 6,0:1 sur une carte. */
+    --color-primary-text: #8FA2FF;
+
+    /* Couleur de tous les liens du site (`a { color: var(--text-link) }`).
+       Elle valait --color-primary : chaque lien de texte courant tombait donc
+       à 2,6:1. On la fait pointer sur la variante lisible. */
+    --text-link: var(--color-primary-text);
+
+    /* Encarts d'état, versions sombres. Mêmes triplets que components.css
+       (§6) pour rester cohérent avec le site public. */
+    --state-ok-bg:    #10322A;
+    --state-ok-text:  #6EE7B7;
+    --state-warn-bg:  var(--accent-mkt-bg);
+    --state-warn-text:var(--accent-mkt-text);
+    --state-err-bg:   #3D1A1A;
+    --state-err-text: #FCA5A5;
+
+    /* Violet très pâle (#F5F3FF), pendant de --color-primary-50. Utilisé en
+       `background` (moitié droite du dégradé de .dash-reco) : sans override la
+       carte reste mi-sombre mi-blanche. */
+    --color-secondary-50: #2A2145;
+
+    /* --border n'est défini nulle part dans le projet, mais deux pages
+       l'appellent avec un repli clair — `var(--border, #e5e7eb)` dans
+       pages/dashboard.html et pages/dashboard-v2.html. Le repli s'appliquait
+       donc toujours, y compris en sombre. Lui donner une valeur ici suffit à
+       corriger les deux, sans toucher au HTML ni recourir à !important. */
+    --border: var(--color-border);
+
+    /* Indique au navigateur que l'UI native est sombre : contrôles de
+       formulaire (dont les <select> et le fond par défaut des <textarea>),
+       barres de défilement, curseur de saisie et autofill. Sans cela un
+       champ sans `background` explicite reste blanc — cf. .exercise-textarea,
+       qui pose `color: var(--text-primary)` et devenait blanc sur blanc. */
+    color-scheme: dark;
+}
+
+/* --------------------------------------------------------------------------
+   --color-secondary (#1E1B3A) a deux rôles : fond très foncé (.section-dark,
+   .top-bar) ET couleur de texte foncé. Le premier reste valable en sombre,
+   le second devient invisible. On ne reprend donc que les usages « texte ».
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .footer-brand .logo-text,
+:root[data-theme="dark"] .footer-links h4 {
+    color: var(--color-text);
+}
+
+/* Mêmes règles pour le bleu de marque utilisé en texte. */
+:root[data-theme="dark"] .logo-accent,
+:root[data-theme="dark"] .nav-link.active,
+:root[data-theme="dark"] .mobile-nav-link.active,
+:root[data-theme="dark"] .btn-outline:hover,
+:root[data-theme="dark"] .hero-card-badge,
+:root[data-theme="dark"] .hero-card-price,
+:root[data-theme="dark"] .stat-number,
+:root[data-theme="dark"] .stat-suffix,
+:root[data-theme="dark"] .section-badge,
+:root[data-theme="dark"] .filter-btn:hover,
+:root[data-theme="dark"] .faq-question::after,
+:root[data-theme="dark"] .faq-question:hover,
+:root[data-theme="dark"] .footer-links a:hover {
+    color: var(--color-primary-text);
+}
+
+/* --------------------------------------------------------------------------
+   Règles de style.css qui peignent un fond clair EN DUR (sans passer par une
+   variable) : elles ne peuvent pas basculer via les tokens, on les reprend
+   une à une ici.
+   -------------------------------------------------------------------------- */
+
+/* Header translucide : rgba(255,255,255,0.92) */
+:root[data-theme="dark"] .header {
+    background: rgba(28, 25, 23, 0.92);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+/* 2e carte du hero : dégradé lavande → blanc */
+:root[data-theme="dark"] .hero-card-main-alt {
+    background: linear-gradient(155deg, #302A45 0%, var(--color-surface) 62%);
+}
+
+/* Cadre blanc autour des portraits du hero */
+:root[data-theme="dark"] .hero-face {
+    border-color: var(--color-surface);
+    background: var(--color-surface);
+}
+
+/* Anneau blanc de 3 px autour des avatars (leur fond, lui, vient d'un style
+   inline dans le HTML et reste identique dans les deux thèmes). */
+:root[data-theme="dark"] .avatar {
+    border-color: var(--color-surface);
+}
+
+/* Footer crème (#FBF6EA) et ses filets (#F2E6C8) */
+:root[data-theme="dark"] .footer {
+    background: var(--color-surface);
+    border-top-color: var(--color-border);
+}
+
+:root[data-theme="dark"] .footer-bottom,
+:root[data-theme="dark"] .footer-brand .logo-by {
+    border-color: var(--color-border);
+}
+
+:root[data-theme="dark"] .social-link {
+    background: var(--color-surface-2);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+/* .toast s'appuie sur `background: var(--color-gray-900); color: white`, soit
+   le gris le PLUS foncé de l'échelle. Avec l'échelle inversée ci-dessus,
+   gray-900 devient presque blanc → texte blanc sur fond blanc. On lui redonne
+   donc explicitement un fond sombre et un texte clair. */
+:root[data-theme="dark"] .toast {
+    background: var(--color-surface-2);
+    color: var(--color-text);
 }
 
 /* --- Reset & Base --- */
@@ -390,6 +582,12 @@ h1, h2, h3, h4, h5, h6 {
         height: 28px;
         width: 28px;
     }
+
+    /* Le logo est en flex-shrink: 0 : avec le lockup « by Digi Atlas » il fait
+       238 px et pousse le burger hors de l'écran. L'attribution reste présente
+       dans le footer et dans le texte de la section certification. */
+    .header .logo-by { display: none; }
+    .header-inner { gap: var(--space-3); }
 }
 
 /* Nav */
@@ -757,7 +955,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-inner {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* minmax(0, 1fr) et non 1fr : sans cela le plancher min-content de la
+       colonne déborde le conteneur sur petit écran. */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: var(--space-16);
     align-items: center;
     position: relative;
@@ -818,6 +1018,9 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     align-items: center;
     gap: var(--space-4);
+    /* Sans wrap, la ligne de confiance impose 500 px de min-content au hero
+       et fait déborder toute la page sous 500 px. */
+    flex-wrap: wrap;
 }
 
 .avatar-stack {
@@ -1273,8 +1476,9 @@ h1, h2, h3, h4, h5, h6 {
 /* --- Courses Grid --- */
 .courses-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-6);
+    align-items: stretch;
 }
 
 .section-cta {
@@ -1683,6 +1887,9 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center;
     gap: var(--space-3);
     font-size: var(--text-sm);
+    /* Même piège que .hero-trust : sans wrap la rangée de moyens de paiement
+       impose 456 px et fait déborder le footer sur mobile. */
+    flex-wrap: wrap;
 }
 
 .payment-icon {
@@ -1742,7 +1949,7 @@ h1, h2, h3, h4, h5, h6 {
 /* --- Responsive --- */
 @media (max-width: 1024px) {
     .hero-inner {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         text-align: center;
     }
 

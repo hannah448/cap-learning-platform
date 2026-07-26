@@ -398,7 +398,8 @@
 
                         <div class="an-filter">
                             <label for="cityInput">Ville</label>
-                            <input type="text" id="cityInput" placeholder="ex. Dakar" />
+                            <input type="text" id="cityInput" placeholder="ex. Dakar" list="citySuggestions" autocomplete="off" />
+                            <datalist id="citySuggestions"></datalist>
                         </div>
 
                         <div class="an-filter">
@@ -521,28 +522,106 @@
             $('userAvatar').textContent = initials(name);
         } catch (e) {}
 
-        // ---------- Peuple selects ----------
+        // ---------- Peuple selects (sans compteurs pour l'instant) ----------
+        // Les compteurs sont ajoutés dès que /api/directory/facets répond (voir loadFacets).
         var countrySel = $('countryFilter');
         config.COUNTRIES.forEach(function (c) {
             var opt = document.createElement('option');
             opt.value = c.iso;
-            opt.textContent = c.flag + '  ' + c.label;
+            opt.dataset.baseLabel = c.flag + '  ' + c.label;
+            opt.textContent = opt.dataset.baseLabel;
             countrySel.appendChild(opt);
         });
         var sectorSel = $('sectorFilter');
         config.SECTORS.forEach(function (s) {
             var opt = document.createElement('option');
             opt.value = s.key;
+            opt.dataset.baseLabel = s.label;
             opt.textContent = s.label;
             sectorSel.appendChild(opt);
         });
+
+        // Cache des facets pour T14 (villes par pays)
+        var facetsData = null;
+
+        async function loadFacets() {
+            var token = await getAccessToken();
+            if (!token) return;
+            try {
+                var res = await fetch('/api/directory/facets', {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (!res.ok) return;
+                facetsData = await res.json();
+                applyCountsToSelects(facetsData);
+                refreshCitySuggestions();
+            } catch (e) { /* silencieux — les selects restent sans compteurs */ }
+        }
+
+        function refreshCitySuggestions() {
+            var dl = $('citySuggestions');
+            if (!dl || !facetsData) return;
+            var iso = countrySel.value;
+            var cities;
+            if (iso && facetsData.cities_by_country[iso]) {
+                cities = facetsData.cities_by_country[iso];
+            } else {
+                // Pas de pays sélectionné → union de toutes les villes (dédoublonnées, triées)
+                var set = new Set();
+                Object.values(facetsData.cities_by_country || {}).forEach(function (arr) {
+                    arr.forEach(function (c) { set.add(c); });
+                });
+                cities = [...set].sort(function (a, b) { return a.localeCompare(b, 'fr'); });
+            }
+            dl.innerHTML = '';
+            cities.forEach(function (c) {
+                var opt = document.createElement('option');
+                opt.value = c;
+                dl.appendChild(opt);
+            });
+        }
+
+        function applyCountsToSelects(facets) {
+            var countryMap = {};
+            (facets.countries || []).forEach(function (c) { countryMap[c.iso] = c.count; });
+            var sectorMap = {};
+            (facets.sectors || []).forEach(function (s) { sectorMap[s.key] = s.count; });
+
+            // Réordonne les pays par nombre de membres (les plus peuplés en tête)
+            var current = countrySel.value;
+            var options = Array.prototype.slice.call(countrySel.querySelectorAll('option[value]:not([value=""])'));
+            options.sort(function (a, b) {
+                return (countryMap[b.value] || 0) - (countryMap[a.value] || 0);
+            });
+            options.forEach(function (opt) {
+                var count = countryMap[opt.value] || 0;
+                opt.textContent = opt.dataset.baseLabel + (count > 0 ? '  (' + count + ')' : '');
+                opt.disabled = count === 0;
+                countrySel.appendChild(opt);
+            });
+            countrySel.value = current;
+
+            // Pareil pour les secteurs
+            current = sectorSel.value;
+            options = Array.prototype.slice.call(sectorSel.querySelectorAll('option[value]:not([value=""])'));
+            options.sort(function (a, b) {
+                return (sectorMap[b.value] || 0) - (sectorMap[a.value] || 0);
+            });
+            options.forEach(function (opt) {
+                var count = sectorMap[opt.value] || 0;
+                opt.textContent = opt.dataset.baseLabel + (count > 0 ? '  (' + count + ')' : '');
+                opt.disabled = count === 0;
+                sectorSel.appendChild(opt);
+            });
+            sectorSel.value = current;
+        }
 
         // ---------- State ----------
         var state = { page: 1, limit: 24, total: 0 };
         var searchTimer = null;
 
         // ---------- Handlers ----------
-        $('countryFilter').addEventListener('change', function () { state.page = 1; fetchResults(); });
+        $('countryFilter').addEventListener('change', function () { state.page = 1; refreshCitySuggestions(); fetchResults(); });
         $('sectorFilter').addEventListener('change', function () { state.page = 1; fetchResults(); });
         $('cityInput').addEventListener('input', function () { state.page = 1; debouncedFetch(); });
         $('qInput').addEventListener('input', function () { state.page = 1; debouncedFetch(); });
@@ -923,6 +1002,7 @@
 
         // Kick-off
         fetchResults();
+        loadFacets();
     })();
     </script>
     <script src="../js/theme.js?v=20260726a" defer></script>

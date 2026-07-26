@@ -4,11 +4,11 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js?v=20260725d"></script>
+    <script src="../js/migrate-brand.js?v=20260726a"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
-    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726a">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260726a">
     <title>Certificat Cap Learning</title>
     <meta name="description" content="Certificat officiel Cap Learning by Digi Atlas attestant la réussite d'une formation.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
@@ -388,13 +388,37 @@
             .cert-stamp { margin: 0 auto; }
             .cert-inner::before, .cert-inner::after { display: none; }
         }
+
+        /* ── Mode sombre ──────────────────────────────────────────────
+           On assombrit uniquement l'habillage de la page (fond, barre
+           d'outils, boutons, message d'erreur). Le certificat lui-même
+           (.cert-page / .cert-inner) reste blanc : c'est un document
+           destiné à être imprimé ou partagé en PDF, il doit garder son
+           apparence papier dans les deux thèmes. */
+        :root[data-theme="dark"] body {
+            background: var(--color-bg);
+            color: var(--color-text);
+        }
+        :root[data-theme="dark"] .cert-toolbar h1 { color: var(--color-text-soft); }
+        :root[data-theme="dark"] .cert-btn {
+            background: var(--color-surface);
+            border-color: var(--color-border);
+            color: var(--color-text);
+        }
+        :root[data-theme="dark"] .cert-btn:hover { color: #A5B4FC; }
+        :root[data-theme="dark"] .cert-error {
+            background: var(--color-surface);
+            color: var(--color-text);
+        }
+        :root[data-theme="dark"] .cert-error h2 { color: #FCA5A5; }
+        :root[data-theme="dark"] .cert-error a  { color: #A5B4FC; }
     </style>
-    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260726a">
 </head>
 <body>
     <!-- ===== Cap Learning Supabase stack (DB certificates + fallback AdminData) ===== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/config.js?v=20260725d"></script>
+    <script src="../js/config.js?v=20260726a"></script>
     <script src="../js/supabase-client.js?v=2"></script>
     <script src="../js/auth.js?v=2"></script>
     <script src="../js/db.js?v=2"></script>
@@ -629,6 +653,6 @@
         }
     })();
     </script>
-    <script src="../js/theme.js?v=20260725d" defer></script>
+    <script src="../js/theme.js?v=20260726a" defer></script>
 </body>
 </html>
