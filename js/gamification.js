@@ -633,6 +633,43 @@ const Gamification = (function() {
                 color: #64748B;
                 line-height: 1.3;
             }
+
+            /* ============================================================
+               MODE SOMBRE
+               Cette feuille est injectée dans <head> à l'exécution, donc
+               APRÈS lms.css. Peu importe : :root[data-theme="dark"] .x
+               vaut (0,3,0) et l'emporte sur .x (0,1,0) quel que soit
+               l'ordre. On garde les règles ici pour que le widget reste
+               autonome. Palette alignée sur tokens.css.
+               ============================================================ */
+            :root[data-theme="dark"] .levelup-modal,
+            :root[data-theme="dark"] .badge-toast,
+            :root[data-theme="dark"] .gamif-stat-card:not(.gamif-level-card),
+            :root[data-theme="dark"] .gamif-badge-item {
+                background: var(--color-surface, #292524);
+                border-color: var(--color-border, #44403C);
+            }
+            /* .gamif-level-card garde son dégradé bleu sous texte blanc :
+               il est valable dans les deux thèmes, d'où le :not() ci-dessus. */
+            /* Le badge débloqué garde son ambre, en version sombre. */
+            :root[data-theme="dark"] .gamif-badge-item.unlocked {
+                background: var(--accent-mkt-bg, #4A2F0A);
+                border-color: #6B4A10;
+            }
+            /* Textes écrits en dur (#1a1a2e, #64748B, #1E1B3A). Le contenu de
+               .gamif-level-card est exclu : son blanc est posé sur le dégradé. */
+            :root[data-theme="dark"] .gamif-stat-card:not(.gamif-level-card) .gamif-stat-value,
+            :root[data-theme="dark"] .gamif-badge-name,
+            :root[data-theme="dark"] .levelup-modal h2,
+            :root[data-theme="dark"] .badge-toast-name {
+                color: var(--color-text, #FAFAF9);
+            }
+            :root[data-theme="dark"] .gamif-stat-card:not(.gamif-level-card) .gamif-stat-label,
+            :root[data-theme="dark"] .gamif-badge-desc,
+            :root[data-theme="dark"] .levelup-modal p,
+            :root[data-theme="dark"] .badge-toast-label {
+                color: var(--color-text-soft, #D6D3D1);
+            }
         `;
         document.head.appendChild(style);
     }

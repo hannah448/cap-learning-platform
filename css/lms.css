@@ -2098,3 +2098,449 @@
     .cap-player-video,
     .cap-player-iframe { transition: none !important; }
 }
+
+/* ==========================================================================
+   MODE SOMBRE
+   --------------------------------------------------------------------------
+   lms.css est chargé par les six pages de l'espace apprenant : dashboard,
+   apprendre, connexion, mon-profil, annuaire, definir-mot-de-passe. Aucune
+   d'elles ne charge components.css, donc les correctifs sombres de leurs
+   <style> internes vivent ici, regroupés par rôle comme dans components.css.
+
+   Repères de tokens.css :
+     --color-bg #1C1917 · --color-surface #292524 · --color-surface-2 #44403C
+     --color-border #44403C · --color-text #FAFAF9 · --color-text-soft #D6D3D1
+   Et de style.css : l'échelle --color-gray-* est INVERSÉE (50 = le plus
+   sombre), --color-primary-text #8FA2FF sert au bleu de marque en TEXTE.
+
+   NB : :root[data-theme="dark"] .x vaut (0,3,0) et l'emporte donc sur .x
+   (0,1,0) quel que soit l'ordre de chargement — mais PAS sur un !important.
+   Le bloc « UX REFRESH » de pages/apprendre.html (l. 772-1113) en compte une
+   soixantaine : les règles qui le visent portent donc elles aussi !important,
+   signalé au cas par cas.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Palette --afri-* de pages/apprendre.html
+   --------------------------------------------------------------------------
+   Le lecteur de cours redéfinit sa propre palette crème dans un :root interne
+   (apprendre.html l. 778-788). Neuf variables y pilotent une quarantaine de
+   déclarations : les réinverser ici corrige l'essentiel de la page en un seul
+   bloc. Notre sélecteur (0,2,0) l'emporte sur son :root (0,1,0).
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] {
+    --afri-primary-soft: var(--accent-rs-bg);   /* #4A1F0E — pêche pâle → brun */
+    --afri-ink:          var(--color-text);     /* #1a1a1a → #FAFAF9 */
+    --afri-text:         var(--color-text-soft);/* #2d2d2d → #D6D3D1 */
+    --afri-border:       var(--color-border);   /* #e9e6e1 → #44403C */
+    --afri-surface:      var(--color-bg);       /* crème #faf8f5 → #1C1917 */
+    --afri-surface-2:    var(--color-surface);  /* #ffffff → #292524 */
+
+    /* #6b7280 ne donne que 3,2:1 sur --color-surface. Même arbitrage que
+       --text-tertiary dans style.css : on prend #A8A29E (7,0:1 sur le fond
+       de page), qui garde la hiérarchie tout en passant AA. */
+    --afri-muted:        #A8A29E;
+
+    /* --afri-primary (#FF6B35) et --afri-primary-dark (#e85d2a) ne sont PAS
+       touchés : orange saturé lisible sur fond sombre pour le premier,
+       extrémité foncée de dégradés sous texte blanc pour le second. */
+}
+
+/* --afri-surface a deux rôles : fond de page ET teinte « surélevée » posée
+   sur du blanc. Le premier veut --color-bg (ci-dessus), le second une surface
+   plus claire que la carte qui la porte — on reprend donc ces quatre cas. */
+:root[data-theme="dark"] .learn-nav-prev:hover,
+:root[data-theme="dark"] .learn-nav-next:hover {
+    background: var(--color-surface) !important;
+    border-color: var(--color-text-mute) !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Surfaces : les cartes doivent être plus CLAIRES que le fond
+   --------------------------------------------------------------------------
+   En sombre --surface-primary vaut --color-bg (#1C1917), soit exactement la
+   couleur du body : toute carte qui l'utilise ne devient pas claire, elle
+   DISPARAÎT, seule sa bordure la trahit. On rétablit la hiérarchie du site
+   public (carte #292524 sur fond #1C1917) en reprenant les sélecteurs un à
+   un — remapper le token lui-même repeindrait aussi le body.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .lms-topbar,
+:root[data-theme="dark"] .lms-notif-btn,
+:root[data-theme="dark"] .lms-stat-card,
+:root[data-theme="dark"] .lms-course-card,
+:root[data-theme="dark"] .lms-player-sidebar,
+:root[data-theme="dark"] .lms-sidebar-header,
+:root[data-theme="dark"] .exercise-container,
+:root[data-theme="dark"] .quiz-container,
+:root[data-theme="dark"] .lms-lesson-nav,
+:root[data-theme="dark"] .lms-access-card,
+:root[data-theme="dark"] .lms-download-btn {
+    background: var(--color-surface);
+}
+
+/* La pastille d'état d'une leçon est posée SUR la sidebar : il lui faut donc
+   un cran de plus, sinon elle se confond avec elle. */
+:root[data-theme="dark"] .lesson-status-icon {
+    background: var(--color-surface-2);
+}
+
+/* --------------------------------------------------------------------------
+   3. Survols devenus invisibles
+   --------------------------------------------------------------------------
+   --color-gray-50 vaut #1C1917 en sombre, soit le fond de page, et
+   --color-gray-100 vaut #292524, soit la surface des cartes. Les éléments qui
+   s'en servaient pour se détacher fusionnent avec leur support.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .lms-notif-btn:hover,
+:root[data-theme="dark"] .lms-module summary:hover,
+:root[data-theme="dark"] .lms-lesson-item:hover,
+:root[data-theme="dark"] .lms-btn-buy,
+:root[data-theme="dark"] .lms-nav-btn.prev,
+:root[data-theme="dark"] .ordering-number,
+:root[data-theme="dark"] .ordering-arrow-btn {
+    background: var(--color-surface-2);
+}
+
+/* --------------------------------------------------------------------------
+   4. Champs de saisie
+   --------------------------------------------------------------------------
+   .exercise-textarea et .keyword-answer-input ne déclarent AUCUN background :
+   ils prenaient donc le blanc par défaut du navigateur, sous un
+   `color: var(--text-primary)` devenu #FAFAF9 — saisie invisible. Le
+   `color-scheme: dark` ajouté dans style.css corrige déjà le fond natif ;
+   on fixe ici des valeurs explicites pour ne pas en dépendre.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .exercise-textarea,
+:root[data-theme="dark"] .keyword-answer-input,
+:root[data-theme="dark"] .matching-select {
+    background: var(--color-surface-2);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+:root[data-theme="dark"] .exercise-textarea:focus,
+:root[data-theme="dark"] .keyword-answer-input:focus {
+    background: var(--color-surface);
+}
+
+/* .fill-blank-input est repris par le bloc UX REFRESH (!important requis) et
+   ne déclare aucune couleur de texte. */
+:root[data-theme="dark"] .fill-blank-input {
+    background: var(--color-surface-2) !important;
+    color: var(--color-text) !important;
+}
+:root[data-theme="dark"] .fill-blank-input:focus {
+    background: var(--color-surface) !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. pages/apprendre.html — fonds clairs écrits en dur
+   --------------------------------------------------------------------------
+   La sidebar est le plus gros aplat clair de la page : le bloc UX REFRESH la
+   repeint en #ffffff !important par-dessus le --color-secondary du bloc de
+   base. Les autres règles ci-dessous appartiennent au bloc de base et ne sont
+   PAS reprises par le UX REFRESH, d'où l'absence de !important pour elles.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .learn-sidebar,
+:root[data-theme="dark"] .learn-nav-buttons {
+    background: var(--color-surface) !important;
+}
+:root[data-theme="dark"] .learn-progress-bar,
+:root[data-theme="dark"] .lesson-check,
+:root[data-theme="dark"] .learn-nav-prev,
+:root[data-theme="dark"] .learn-nav-next {
+    background: var(--color-surface-2) !important;
+}
+:root[data-theme="dark"] .lesson-check {
+    border-color: var(--color-border) !important;
+}
+:root[data-theme="dark"] .quiz-results {
+    background: linear-gradient(135deg, var(--color-surface), var(--color-bg)) !important;
+}
+
+/* Cartes du bloc de base, jamais reprises par le UX REFRESH */
+:root[data-theme="dark"] .tf-question,
+:root[data-theme="dark"] .tf-btn,
+:root[data-theme="dark"] .ordering-item {
+    background: var(--color-surface-2);
+}
+
+/* Séparateurs qui tombaient sur la couleur de leur propre carte */
+:root[data-theme="dark"] .quiz-question {
+    border-bottom-color: var(--color-border);
+}
+
+/* .matching-term : --color-primary-100 (#D6DFFF) n'est délibérément pas
+   inversé (il ne sert que de texte ailleurs), il donnait donc ici un filet
+   quasi blanc ; et son texte --color-primary-dark tombait à 1,4:1 sur le
+   fond --color-primary-50 devenu #1A2654. */
+:root[data-theme="dark"] .matching-term {
+    border-color: var(--accent-ia);
+    color: var(--color-primary-text);
+}
+
+/* --------------------------------------------------------------------------
+   6. Pastilles teintées et états de correction
+   --------------------------------------------------------------------------
+   Motif « fond pâle + texte foncé » à inverser. On réutilise exactement les
+   quatre triplets de components.css (l. 2961-2975) pour rester cohérent avec
+   le site public : vert #10322A/#6EE7B7, rouge #3D1A1A/#FCA5A5,
+   ambre --accent-mkt-*, orange --accent-rs-*.
+   -------------------------------------------------------------------------- */
+
+/* Vert — bonne réponse, succès, complété */
+:root[data-theme="dark"] .quiz-option.correct,
+:root[data-theme="dark"] .quiz-option.correct-answer,
+:root[data-theme="dark"] .quiz-explanation.correct,
+:root[data-theme="dark"] .fill-blank-input.correct,
+:root[data-theme="dark"] .tf-question.answered-correct,
+:root[data-theme="dark"] .tf-explanation.correct,
+:root[data-theme="dark"] .matching-select.correct,
+:root[data-theme="dark"] .ordering-item.correct,
+:root[data-theme="dark"] .keyword-chip.found,
+:root[data-theme="dark"] .exercise-score-banner.excellent,
+:root[data-theme="dark"] .exercise-success,
+:root[data-theme="dark"] .quiz-result.pass,
+:root[data-theme="dark"] .lms-access-stats,
+:root[data-theme="dark"] .lms-stat-card .stat-icon.icon-progress {
+    background: #10322A;
+    border-color: #1E5C48;
+    color: #6EE7B7;
+}
+:root[data-theme="dark"] .quiz-option.correct,
+:root[data-theme="dark"] .lms-access-stat-val,
+:root[data-theme="dark"] .lms-access-stat-lbl {
+    color: #6EE7B7;
+}
+
+/* Rouge — mauvaise réponse, échec */
+:root[data-theme="dark"] .quiz-option.wrong,
+:root[data-theme="dark"] .quiz-option.incorrect,
+:root[data-theme="dark"] .quiz-explanation.wrong,
+:root[data-theme="dark"] .fill-blank-input.wrong,
+:root[data-theme="dark"] .tf-question.answered-wrong,
+:root[data-theme="dark"] .tf-explanation.wrong,
+:root[data-theme="dark"] .matching-select.wrong,
+:root[data-theme="dark"] .ordering-item.wrong,
+:root[data-theme="dark"] .keyword-chip.missing,
+:root[data-theme="dark"] .exercise-score-banner.poor,
+:root[data-theme="dark"] .quiz-result.fail,
+:root[data-theme="dark"] .an-error {
+    background: #3D1A1A;
+    border-color: #7F2A2A;
+    color: #FCA5A5;
+}
+
+/* Ambre — score moyen */
+:root[data-theme="dark"] .exercise-score-banner.average {
+    background: var(--accent-mkt-bg);
+    color: var(--accent-mkt-text);
+}
+
+/* Badges de type de leçon (sommaire du lecteur) — UX REFRESH, !important */
+:root[data-theme="dark"] .lesson-type-video {
+    background: var(--accent-rs-bg) !important;
+    color: var(--accent-rs-text) !important;
+}
+:root[data-theme="dark"] .lesson-type-exercise {
+    background: #10322A !important;
+    color: #6EE7B7 !important;
+}
+:root[data-theme="dark"] .lesson-type-quiz {
+    background: var(--accent-mkt-bg) !important;
+    color: var(--accent-mkt-text) !important;
+}
+:root[data-theme="dark"] .learn-complete-btn.done {
+    background: #10322A !important;
+    color: #6EE7B7 !important;
+}
+:root[data-theme="dark"] .exercise-icon-practice {
+    background: #10322A !important;
+}
+:root[data-theme="dark"] .exercise-icon-quiz {
+    background: var(--accent-rs-bg) !important;
+}
+
+/* Badges de lms.css (dashboard) */
+:root[data-theme="dark"] .lms-lesson-type-badge.exercise {
+    background: var(--accent-rs-bg);
+    color: var(--accent-rs-text);
+}
+:root[data-theme="dark"] .lms-lesson-type-badge.quiz {
+    background: #10322A;
+    color: #6EE7B7;
+}
+:root[data-theme="dark"] .lms-stat-card .stat-icon.icon-certs {
+    background: var(--accent-mkt-bg);
+    color: var(--accent-mkt-text);
+}
+:root[data-theme="dark"] .exercise-prompt {
+    background: var(--accent-rs-bg);
+}
+:root[data-theme="dark"] .lms-download-btn.is-done {
+    background: #10322A;
+    border-color: #1E5C48;
+}
+
+/* --------------------------------------------------------------------------
+   7. Bleu de marque utilisé comme TEXTE
+   --------------------------------------------------------------------------
+   --color-primary (#3A50F6) ne donne que 2,6:1 sur fond sombre. Les usages
+   `background` sous texte blanc restent intacts : .lms-resume-play et
+   .lms-resume-cta sont volontairement exclus, leur bleu est posé sur un fond
+   blanc conservé dans les deux thèmes.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .lms-stat-card .stat-icon.icon-courses,
+:root[data-theme="dark"] .lms-section-header .lms-filter-btn,
+:root[data-theme="dark"] .lms-btn-buy:hover,
+:root[data-theme="dark"] .lms-sidebar-header .back-link:hover,
+:root[data-theme="dark"] .lms-lesson-item.active .lms-lesson-title,
+:root[data-theme="dark"] .lms-lesson-type-badge.video,
+:root[data-theme="dark"] .quiz-question-number,
+:root[data-theme="dark"] .lms-download-arrow,
+:root[data-theme="dark"] .auth-tab.active,
+:root[data-theme="dark"] .auth-form-footer a,
+:root[data-theme="dark"] .auth-toggle a {
+    color: var(--color-primary-text);
+}
+
+/* --------------------------------------------------------------------------
+   8. pages/connexion.html
+   --------------------------------------------------------------------------
+   Le panneau latéral illustré (.auth-aside) repose sur un dégradé DÉJÀ sombre
+   dans les deux thèmes : tous ses blancs sont légitimes et ne sont pas repris.
+   Ne restent que le rail d'onglets, le logo et les états de survol/erreur.
+   -------------------------------------------------------------------------- */
+
+/* Le rail d'onglets valait --color-gray-100, soit exactement la couleur de la
+   carte qui le porte : les onglets disparaissaient. On le remonte d'un cran,
+   ce qui redonne du relief à l'onglet actif (lui en --surface-card). */
+:root[data-theme="dark"] .auth-tabs {
+    background: var(--color-surface-2);
+}
+
+/* Le logo « Cap Learning » est en --color-secondary : 1,1:1 sur la carte. */
+:root[data-theme="dark"] .auth-logo {
+    color: var(--color-text);
+}
+
+:root[data-theme="dark"] .auth-social-btn:hover {
+    background: var(--color-surface-2);
+}
+
+:root[data-theme="dark"] .auth-form-footer a:hover {
+    color: #B7C4FF;
+}
+
+/* Halos de focus calibrés pour un fond clair : 10-12 % d'opacité ne se voit
+   pas sur #292524. On monte l'alpha et on prend le bleu clair des tokens. */
+:root[data-theme="dark"] .auth-input:focus {
+    border-color: var(--accent-ia);
+    box-shadow: 0 0 0 3px rgba(90, 130, 238, 0.28);
+}
+:root[data-theme="dark"] .auth-input.error {
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.22);
+}
+:root[data-theme="dark"] .auth-error {
+    background: rgba(239, 68, 68, 0.16);
+    color: #FCA5A5;
+}
+
+/* --------------------------------------------------------------------------
+   9. pages/mon-profil.html et pages/annuaire.html
+   --------------------------------------------------------------------------
+   Ces deux pages sont presque entièrement tokenisées (accents --accent-*,
+   surfaces, bordures) et basculent donc quasiment seules. Ne restent que les
+   champs fondus dans leur carte, un séparateur invisible et les couleurs
+   d'état écrites en dur.
+   -------------------------------------------------------------------------- */
+
+/* Champs et carte partagent --color-surface : seule la bordure les
+   distinguait. Même traitement que .contact-field dans components.css. */
+:root[data-theme="dark"] .mp-form input,
+:root[data-theme="dark"] .mp-form select,
+:root[data-theme="dark"] .mp-form textarea,
+:root[data-theme="dark"] .an-filter input,
+:root[data-theme="dark"] .an-filter select {
+    background: var(--color-surface-2);
+}
+:root[data-theme="dark"] .mp-form input:focus,
+:root[data-theme="dark"] .mp-form select:focus,
+:root[data-theme="dark"] .mp-form textarea:focus {
+    background: var(--color-surface);
+}
+
+/* --color-border-soft vaut #292524 en sombre, soit la couleur de .mp-form :
+   le filet de séparation des actions disparaissait. */
+:root[data-theme="dark"] .mp-actions {
+    border-top-color: var(--color-border);
+}
+
+/* --color-text-mute (#78716C) tombe à 3,4:1 sur une carte — sous AA pour du
+   petit texte. Ces libellés-là passent sur la variante lisible. */
+:root[data-theme="dark"] .mp-field-hint,
+:root[data-theme="dark"] .mp-field-count,
+:root[data-theme="dark"] .mp-preview-title,
+:root[data-theme="dark"] .mp-preview-hidden,
+:root[data-theme="dark"] .an-filter label {
+    color: var(--color-text-soft);
+}
+
+/* Couleurs d'état écrites en dur */
+:root[data-theme="dark"] .mp-field-error,
+:root[data-theme="dark"] .mp-btn-danger,
+:root[data-theme="dark"] .mp-status.err {
+    color: #FCA5A5;
+}
+:root[data-theme="dark"] .mp-field.has-error input,
+:root[data-theme="dark"] .mp-field.has-error textarea {
+    border-color: #EF4444;
+}
+:root[data-theme="dark"] .mp-status.ok {
+    color: #4ADE80;
+}
+
+/* Le voile de chargement des cartes de l'annuaire balayait du blanc à 40 % :
+   flash lumineux sur fond sombre. */
+:root[data-theme="dark"] .an-skel::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+}
+
+/* --------------------------------------------------------------------------
+   10. pages/dashboard.html — sélecteur de formation
+   --------------------------------------------------------------------------
+   Seul bloc de la page écrit entièrement en dur (l. 24-118). Le reste
+   (.lms-hero-progress) est tokenisé et bascule seul.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .lms-course-picker {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+}
+:root[data-theme="dark"] .lms-course-chip {
+    background: var(--color-surface-2);
+    border-color: var(--color-border);
+    color: var(--color-text-soft);
+}
+:root[data-theme="dark"] .lms-course-picker-title {
+    color: var(--color-text);
+}
+/* --color-text-mute (#78716C) ne donne que 3,2:1 sur une carte — sous AA pour
+   du petit texte. Ces libellés prennent donc la variante lisible, comme dans
+   la section 9 pour mon-profil et annuaire. */
+:root[data-theme="dark"] .lms-course-picker-eyebrow,
+:root[data-theme="dark"] .lms-course-picker-meta,
+:root[data-theme="dark"] .lms-hero-ring-sub {
+    color: var(--color-text-soft);
+}
+
+/* L'eyebrow du hero utilise --accent-ia (#5A82EE) : 4,2:1 sur une carte,
+   juste sous le seuil. On prend le bleu de texte déjà calibré pour ça. */
+:root[data-theme="dark"] .lms-hero-eyebrow {
+    color: var(--color-primary-text);
+}
+:root[data-theme="dark"] .lms-course-picker-empty {
+    color: var(--color-text-soft);
+}
+/* Pastille de pourcentage : noir à 8 % est invisible sur fond sombre. */
+:root[data-theme="dark"] .lms-course-chip-badge {
+    background: rgba(255, 255, 255, 0.12);
+}

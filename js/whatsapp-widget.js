@@ -75,7 +75,27 @@
         '.wa-cta svg { width: 20px; height: 20px; fill: #fff; flex-shrink: 0; }',
 
         /* Responsive */
-        '@media (max-width: 480px) { .wa-widget { bottom: 16px; right: 16px; } .wa-popup { width: calc(100vw - 32px); right: 0; } .wa-btn { width: 54px; height: 54px; } .wa-btn svg { width: 28px; height: 28px; } .wa-tooltip { display: none; } }'
+        '@media (max-width: 480px) { .wa-widget { bottom: 16px; right: 16px; } .wa-popup { width: calc(100vw - 32px); right: 0; } .wa-btn { width: 54px; height: 54px; } .wa-btn svg { width: 28px; height: 28px; } .wa-tooltip { display: none; } }',
+
+        /* ------------------------------------------------------------------
+           MODE SOMBRE
+           Ce widget est présent sur les pages publiques ET connectées ; sa
+           feuille est injectée à l'exécution, mais :root[data-theme="dark"] .x
+           (0,3,0) l'emporte sur .x (0,1,0) quel que soit l'ordre de chargement.
+           Le vert WhatsApp (#25D366) et les éléments posés dessus ne bougent
+           pas : c'est l'identité de la marque, lisible dans les deux thèmes.
+           ------------------------------------------------------------------ */
+        ':root[data-theme="dark"] .wa-popup { background: var(--color-surface, #292524); }',
+        ':root[data-theme="dark"] .wa-tooltip { background: var(--color-surface-2, #44403C); color: var(--color-text, #FAFAF9); }',
+        ':root[data-theme="dark"] .wa-tooltip::after { border-left-color: var(--color-surface-2, #44403C); }',
+        /* Le fond « papier peint » de la conversation : on garde le motif
+           quadrillé mais sur une base sombre. */
+        ':root[data-theme="dark"] .wa-popup-body { background: var(--color-bg, #1C1917); }',
+        ':root[data-theme="dark"] .wa-bubble { background: var(--color-surface-2, #44403C); color: var(--color-text, #FAFAF9); }',
+        ':root[data-theme="dark"] .wa-bubble::before { border-top-color: var(--color-surface-2, #44403C); border-right-color: var(--color-surface-2, #44403C); }',
+        ':root[data-theme="dark"] .wa-schedule { color: var(--color-text-soft, #D6D3D1); }',
+        /* Anneau du badge de notification : il détourait sur du blanc. */
+        ':root[data-theme="dark"] .wa-badge { border-color: var(--color-surface, #292524); }'
     ].join('\n');
     document.head.appendChild(style);
 

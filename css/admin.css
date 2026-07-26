@@ -1696,3 +1696,390 @@
         align-items: flex-start;
     }
 }
+
+/* ==========================================================================
+   MODE SOMBRE
+   --------------------------------------------------------------------------
+   admin.css a sa PROPRE palette (slate Tailwind : #F8FAFC, #E2E8F0, #F1F5F9,
+   #111827, #6B7280…) écrite entièrement en dur : presque rien ne bascule via
+   les tokens. On la reprend ici, regroupée par rôle, comme dans components.css.
+
+   Les pages admin n'ont pas de bouton de bascule, mais le script anti-flash
+   de leur <head> pose data-theme d'après prefers-color-scheme : un
+   utilisateur en macOS sombre arrive donc bien en mode sombre.
+
+   Repères de tokens.css :
+     --color-bg #1C1917 · --color-surface #292524 · --color-surface-2 #44403C
+     --color-border #44403C · --color-text #FAFAF9 · --color-text-soft #D6D3D1
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Coque : fond de page et barre supérieure
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-body {
+    background: var(--color-bg);
+}
+:root[data-theme="dark"] .admin-topbar {
+    background: var(--color-surface);
+    border-bottom-color: var(--color-border);
+}
+
+/* La sidebar est DÉJÀ sombre en mode clair (#0F172A) : elle n'est pas cassée.
+   Mais c'est un bleu-ardoise collé à un contenu brun-neutre — deux noirs
+   différents côte à côte. On l'aligne sur la famille « stone », un cran sous
+   --color-bg pour garder la hiérarchie sidebar-plus-sombre-que-le-contenu.
+   Tous ses rgba(255,255,255,…) restent valides tels quels. */
+:root[data-theme="dark"] .admin-sidebar {
+    background: #14100E;
+}
+
+/* --------------------------------------------------------------------------
+   2. Cartes et panneaux blancs
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-stat-card,
+:root[data-theme="dark"] .admin-card,
+:root[data-theme="dark"] .admin-table-wrapper,
+:root[data-theme="dark"] .admin-modal-content,
+:root[data-theme="dark"] .admin-formation-card,
+:root[data-theme="dark"] .admin-enroll-card[open],
+:root[data-theme="dark"] .admin-exercise-row,
+:root[data-theme="dark"] .admin-sales-kpi,
+:root[data-theme="dark"] .admin-sales-range-btn.active,
+:root[data-theme="dark"] .admin-sales-method-icon,
+:root[data-theme="dark"] .ap-hero,
+:root[data-theme="dark"] .ap-icon-btn,
+:root[data-theme="dark"] .ap-kpi,
+:root[data-theme="dark"] .ap-heatmap,
+:root[data-theme="dark"] .ap-formation,
+:root[data-theme="dark"] .ap-table,
+:root[data-theme="dark"] .ap-notes,
+:root[data-theme="dark"] .ap-danger {
+    background: var(--color-surface);
+}
+
+/* --------------------------------------------------------------------------
+   3. Fonds secondaires (gris très clairs) → un cran au-dessus de la carte
+   --------------------------------------------------------------------------
+   Y compris les éléments qui passaient par --color-gray-50/100 : en sombre
+   ces deux-là valent #1C1917 et #292524, soit le fond de page et la surface
+   des cartes — ils fusionnaient avec leur support au lieu de s'en détacher.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-recent-item,
+:root[data-theme="dark"] .admin-popular-bar-wrap,
+:root[data-theme="dark"] .admin-table thead,
+:root[data-theme="dark"] .admin-course-pill-more,
+:root[data-theme="dark"] .admin-progress-bar,
+:root[data-theme="dark"] .admin-enroll-row,
+:root[data-theme="dark"] .admin-formation-learners,
+:root[data-theme="dark"] .admin-cert-badge-muted,
+:root[data-theme="dark"] .admin-enroll-card,
+:root[data-theme="dark"] .admin-cert-block,
+:root[data-theme="dark"] .admin-sales-range,
+:root[data-theme="dark"] .admin-sales-course-bar-wrap,
+:root[data-theme="dark"] .admin-sales-method,
+:root[data-theme="dark"] .admin-order-id,
+:root[data-theme="dark"] .ap-heatmap-cell,
+:root[data-theme="dark"] .ap-formation-bar {
+    background: var(--color-surface-2);
+}
+
+/* Survols : ils visaient un gris devenu identique au fond de la carte. La
+   règle du tableau doit être en (0,3,2) pour repasser devant `td`. */
+:root[data-theme="dark"] .admin-table tr:hover td,
+:root[data-theme="dark"] .ap-row:hover,
+:root[data-theme="dark"] .ap-danger summary:hover {
+    background: var(--color-surface-2);
+}
+
+/* Survol indigo à 3 % : invisible sur #292524. */
+:root[data-theme="dark"] .admin-enroll-summary:hover {
+    background: rgba(99, 102, 241, 0.10);
+}
+
+/* --------------------------------------------------------------------------
+   4. Bordures claires
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-stat-card,
+:root[data-theme="dark"] .admin-card,
+:root[data-theme="dark"] .admin-popular-item + .admin-popular-item,
+:root[data-theme="dark"] .admin-search input,
+:root[data-theme="dark"] .admin-table-wrapper,
+:root[data-theme="dark"] .admin-table th,
+:root[data-theme="dark"] .admin-table td,
+:root[data-theme="dark"] .admin-modal-header,
+:root[data-theme="dark"] .admin-learner-profile,
+:root[data-theme="dark"] .admin-enroll-row,
+:root[data-theme="dark"] .admin-field-input,
+:root[data-theme="dark"] .admin-field input,
+:root[data-theme="dark"] .admin-field select,
+:root[data-theme="dark"] .admin-formation-card,
+:root[data-theme="dark"] .admin-formation-learners-total,
+:root[data-theme="dark"] .admin-formation-stats,
+:root[data-theme="dark"] .admin-enroll-card,
+:root[data-theme="dark"] .admin-enroll-details,
+:root[data-theme="dark"] .admin-cert-block,
+:root[data-theme="dark"] .admin-cert-grade input,
+:root[data-theme="dark"] .admin-exercise-row,
+:root[data-theme="dark"] .admin-sales-kpi,
+:root[data-theme="dark"] .admin-select,
+:root[data-theme="dark"] .admin-sales-footer,
+:root[data-theme="dark"] .ap-row,
+:root[data-theme="dark"] .ap-danger-body,
+:root[data-theme="dark"] .ap-icon-btn:hover {
+    border-color: var(--color-border);
+}
+
+/* --------------------------------------------------------------------------
+   5. Champs de saisie, selects et anneaux de focus
+   --------------------------------------------------------------------------
+   Même motif que .contact-field dans components.css. La couleur de texte du
+   <select> compte double : elle s'applique aussi aux <option> du menu natif.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-search input,
+:root[data-theme="dark"] .admin-field-input,
+:root[data-theme="dark"] .admin-field input,
+:root[data-theme="dark"] .admin-field select,
+:root[data-theme="dark"] .admin-cert-grade input,
+:root[data-theme="dark"] .admin-select {
+    background: var(--color-surface-2);
+    color: var(--color-text);
+}
+:root[data-theme="dark"] .admin-search input:focus,
+:root[data-theme="dark"] .admin-field-input:focus,
+:root[data-theme="dark"] .admin-field input:focus,
+:root[data-theme="dark"] .admin-field select:focus,
+:root[data-theme="dark"] .admin-cert-grade input:focus,
+:root[data-theme="dark"] .admin-select:focus {
+    background: var(--color-surface);
+    border-color: var(--accent-ia);
+    box-shadow: 0 0 0 3px rgba(90, 130, 238, 0.28);
+}
+:root[data-theme="dark"] ::placeholder {
+    color: var(--color-text-mute);
+}
+
+/* --------------------------------------------------------------------------
+   6. Modale : voile et profondeur
+   --------------------------------------------------------------------------
+   Un voile sombre à 55 % n'assombrit presque rien au-dessus d'un fond déjà
+   à #1C1917 : la modale ne se détachait plus. On renforce le voile ET
+   l'ombre ensemble — les modifier séparément déséquilibre la profondeur.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-modal-backdrop {
+    background: rgba(0, 0, 0, 0.72);
+}
+:root[data-theme="dark"] .admin-modal-content {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* --------------------------------------------------------------------------
+   7. Pastilles et badges de statut
+   --------------------------------------------------------------------------
+   Motif « fond pâle + texte foncé » à inverser. Les quatre triplets sont
+   ceux de components.css (l. 2961-2975) : cohérence avec le site public.
+   Les badges PLEINS (rôle, certificat doré, opérateurs de paiement) sont
+   volontairement absents : leur texte blanc sur fond saturé reste valable.
+   -------------------------------------------------------------------------- */
+
+/* Vert — succès, actif, payé */
+:root[data-theme="dark"] .admin-tag-success,
+:root[data-theme="dark"] .admin-score-great,
+:root[data-theme="dark"] .admin-status-success,
+:root[data-theme="dark"] .ap-pill.active,
+:root[data-theme="dark"] .ap-tag-paid {
+    background: #10322A;
+    color: #6EE7B7;
+}
+
+/* Bleu — information, pastilles de cours */
+:root[data-theme="dark"] .admin-popular-tag-active,
+:root[data-theme="dark"] .admin-tag-info,
+:root[data-theme="dark"] .admin-course-pill,
+:root[data-theme="dark"] .admin-count-badge,
+:root[data-theme="dark"] .admin-exercise-summary {
+    background: #16244A;
+    color: #93B4FF;
+}
+
+/* Ambre — avertissement, en attente, certificat */
+:root[data-theme="dark"] .admin-popular-tag-cert,
+:root[data-theme="dark"] .admin-tag-warn,
+:root[data-theme="dark"] .admin-score-ok,
+:root[data-theme="dark"] .admin-status-warning,
+:root[data-theme="dark"] .ap-pill.premium,
+:root[data-theme="dark"] .ap-tag-pending {
+    background: var(--accent-mkt-bg);
+    color: var(--accent-mkt-text);
+}
+
+/* Rouge — danger, échec */
+:root[data-theme="dark"] .admin-score-low,
+:root[data-theme="dark"] .admin-status-danger,
+:root[data-theme="dark"] .admin-form-error {
+    background: #3D1A1A;
+    color: #FCA5A5;
+}
+
+/* Orange — alerte douce */
+:root[data-theme="dark"] .ap-pill.warn {
+    background: var(--accent-rs-bg);
+    color: var(--accent-rs-text);
+}
+
+/* Neutres */
+:root[data-theme="dark"] .admin-popular-tag-archived,
+:root[data-theme="dark"] .admin-status-neutral {
+    background: var(--color-surface-2);
+    color: var(--color-text-soft);
+}
+
+/* Blocs certification : dégradés jaune pâle sous texte brun */
+:root[data-theme="dark"] .admin-cert-chip {
+    background: linear-gradient(135deg, #4A2F0A, #5C3B0D);
+    color: var(--accent-mkt-text);
+}
+:root[data-theme="dark"] .admin-cert-block-active {
+    background: linear-gradient(135deg, #3A2A08, #4A2F0A);
+    border-color: #6B4A10;
+}
+:root[data-theme="dark"] .ap-cert {
+    background: linear-gradient(135deg, #3A2A08 0%, #4A3610 100%);
+    border-color: #6B4E12;
+}
+:root[data-theme="dark"] .ap-cert-name,
+:root[data-theme="dark"] .ap-cert-score {
+    color: var(--accent-mkt-text);
+}
+:root[data-theme="dark"] .ap-cert-score small,
+:root[data-theme="dark"] .ap-cert-id,
+:root[data-theme="dark"] .admin-cert-id {
+    color: var(--accent-mkt);
+}
+
+/* Zone danger */
+:root[data-theme="dark"] .admin-danger {
+    color: #F87171 !important;
+    border-color: #7F2A2A !important;
+}
+:root[data-theme="dark"] .admin-danger:hover,
+:root[data-theme="dark"] .ap-danger-body button:hover {
+    background: #3D1A1A !important;
+}
+:root[data-theme="dark"] .admin-danger-zone {
+    background: #2E1616;
+    border-color: #7F2A2A;
+}
+:root[data-theme="dark"] .admin-danger-zone h3 {
+    color: #FCA5A5;
+}
+
+/* --------------------------------------------------------------------------
+   8. PIÈGE de spécificité — .toast.toast-error
+   --------------------------------------------------------------------------
+   Ce n'est pas une régression à venir : le toast d'erreur est DÉJÀ cassé
+   aujourd'hui en mode sombre. style.css corrige .toast avec
+   `:root[data-theme="dark"] .toast` (0,3,0), ce qui écrase le
+   `.toast.toast-error` (0,2,0) d'admin.css : le toast perdait son fond rouge
+   ET sa couleur de texte, devenant identique à un toast de succès (seul le
+   liseré #DC2626 subsistait). Il faut donc au moins (0,3,0) ici.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .toast.toast-error {
+    background: #3D1A1A;
+    color: #FCA5A5;
+}
+
+/* --------------------------------------------------------------------------
+   9. Textes écrits en dur
+   -------------------------------------------------------------------------- */
+
+/* Texte principal (#111827, #1F2937) */
+:root[data-theme="dark"] .admin-popular-name,
+:root[data-theme="dark"] .admin-formation-breakdown-row strong,
+:root[data-theme="dark"] .admin-cert-info,
+:root[data-theme="dark"] .admin-sales-kpi-value,
+:root[data-theme="dark"] .admin-sales-range-btn.active,
+:root[data-theme="dark"] .admin-sales-range-btn:hover:not(.active),
+:root[data-theme="dark"] .admin-sales-course-name,
+:root[data-theme="dark"] .admin-sales-method-label,
+:root[data-theme="dark"] .admin-sales-footer strong {
+    color: var(--color-text);
+}
+
+/* Texte secondaire — #6B7280 ne donne que 3,0:1 sur une carte, sous AA pour
+   du petit texte. C'est le motif le plus répété du fichier. */
+:root[data-theme="dark"] .admin-formation-learners-lbl,
+:root[data-theme="dark"] .admin-formation-breakdown-row,
+:root[data-theme="dark"] .admin-formation-breakdown-label,
+:root[data-theme="dark"] .admin-cert-badge-muted,
+:root[data-theme="dark"] .admin-exercise-group-title,
+:root[data-theme="dark"] .admin-card-hint,
+:root[data-theme="dark"] .admin-sales-kpi-label,
+:root[data-theme="dark"] .admin-sales-kpi-sub,
+:root[data-theme="dark"] .admin-sales-trend-flat,
+:root[data-theme="dark"] .admin-sales-range-btn,
+:root[data-theme="dark"] .admin-sales-course-meta,
+:root[data-theme="dark"] .admin-sales-method-meta,
+:root[data-theme="dark"] .admin-order-id,
+:root[data-theme="dark"] .admin-sales-user-email,
+:root[data-theme="dark"] .admin-sales-footer {
+    color: var(--color-text-soft);
+}
+
+/* Le bloc « résumé d'exercice » garde sa nuance indigo sur son nouveau fond. */
+:root[data-theme="dark"] .admin-exercise-summary strong {
+    color: #C7D2FE;
+}
+
+/* Tendances de vente : #059669 et #DC2626 tombent à ~3,2:1 sur une carte. */
+:root[data-theme="dark"] .admin-sales-trend-up,
+:root[data-theme="dark"] .ap-kpi-trend {
+    color: #34D399;
+}
+:root[data-theme="dark"] .admin-sales-trend-down {
+    color: #F87171;
+}
+
+/* --------------------------------------------------------------------------
+   10. Bleu de marque utilisé comme TEXTE
+   --------------------------------------------------------------------------
+   Les usages `background` (dégradés indigo sous texte blanc, barres de
+   progression, avatars) et `border-color` de focus ne sont pas repris.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-card-header a,
+:root[data-theme="dark"] .admin-popular-count,
+:root[data-theme="dark"] .admin-formation-price,
+:root[data-theme="dark"] .admin-formation-stats strong,
+:root[data-theme="dark"] .admin-formation-learners-num,
+:root[data-theme="dark"] .admin-sales-course-amount,
+:root[data-theme="dark"] .admin-sales-method-share,
+:root[data-theme="dark"] .ap-breadcrumb a:hover,
+:root[data-theme="dark"] .ap-meta a:hover,
+:root[data-theme="dark"] .ap-icon-btn:hover,
+:root[data-theme="dark"] .ap-ring-label,
+:root[data-theme="dark"] .ap-formation-icon {
+    color: var(--color-primary-text);
+}
+:root[data-theme="dark"] .admin-enroll-toggle {
+    color: #A5B4FC;
+}
+
+/* Icônes de catégorie « accent » : fond pêche pâle + texte orange foncé. */
+:root[data-theme="dark"] .ap-formation-icon.accent {
+    background: #3D2A18;
+    color: #F2B26A;
+}
+
+/* --------------------------------------------------------------------------
+   11. Ombres
+   --------------------------------------------------------------------------
+   Calibrées pour un fond clair (alpha .04 à .1), elles sont invisibles sur
+   fond sombre et toute la hiérarchie de profondeur s'aplatit. Même ratio que
+   tokens.css, qui monte --shadow-sm/md à .3 et .4 en sombre.
+   -------------------------------------------------------------------------- */
+:root[data-theme="dark"] .admin-stat-card,
+:root[data-theme="dark"] .admin-card,
+:root[data-theme="dark"] .admin-table-wrapper,
+:root[data-theme="dark"] .admin-formation-card,
+:root[data-theme="dark"] .admin-sales-kpi {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
