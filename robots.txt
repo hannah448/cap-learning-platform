@@ -1,0 +1,26 @@
+# Cap Learning — robots.txt
+# Autorise l'indexation des pages marketing et légales.
+# Bloque les pages authentifiées et de checkout.
+
+User-agent: *
+Allow: /
+
+# Pages authentifiées (aucun intérêt pour Google, contenu privé)
+Disallow: /pages/dashboard
+Disallow: /pages/dashboard-v2
+Disallow: /pages/admin
+Disallow: /pages/admin-apprenant
+Disallow: /pages/mon-profil
+Disallow: /pages/annuaire
+Disallow: /pages/apprendre
+Disallow: /pages/panier
+Disallow: /pages/merci
+Disallow: /pages/connexion
+Disallow: /pages/definir-mot-de-passe
+Disallow: /pages/test-supabase
+
+# API (uniquement du JSON, à ne pas indexer)
+Disallow: /api/
+
+# Sitemap
+Sitemap: https://cap-learning.com/sitemap.xml

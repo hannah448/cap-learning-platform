@@ -534,6 +534,7 @@
     <script src="../js/supabase-client.js?v=20260726b"></script>
     <script src="../js/auth.js?v=20260726b"></script>
     <script src="../js/directory-config.js?v=20260726b"></script>
+    <script src="../js/analytics.js?v=20260726b"></script>
     <script>
     (async function () {
         'use strict';
@@ -708,6 +709,14 @@
             if (course) params.set('course', course);
             params.set('page', state.page);
             params.set('limit', state.limit);
+
+            // Track uniquement les recherches "significatives" (au moins 1 filtre / mot)
+            if (q || country || city || sector || course) {
+                track('annuaire_search', {
+                    has_q: !!q, has_country: !!country, has_city: !!city,
+                    has_sector: !!sector, has_course: !!course, page: state.page
+                });
+            }
 
             try {
                 var res = await fetch('/api/directory/list?' + params.toString(), {
@@ -974,6 +983,7 @@
                 }
                 status.textContent = '✓ Signalement envoyé. L\'équipe Cap Learning va le vérifier.';
                 status.className = 'an-report-status ok';
+                track('annuaire_report_sent');
                 setTimeout(closeReportPanel, 2000);
             } catch (e) {
                 status.textContent = 'Erreur réseau. Réessaie.';
@@ -983,6 +993,7 @@
         }
 
         async function openProfile(id) {
+            track('annuaire_profile_open');
             currentProfileId = id;
             lastFocusedElement = document.activeElement;
             modal.setAttribute('data-open', 'true');
@@ -1103,6 +1114,9 @@
             a.rel = 'noopener noreferrer';
             a.className = 'an-modal-btn ' + cls;
             a.textContent = label;
+            a.addEventListener('click', function () {
+                track('annuaire_contact_click', { channel: label.toLowerCase() });
+            });
             return a;
         }
 
@@ -1129,7 +1143,13 @@
             var d = document.createElement('div'); d.textContent = String(str || ''); return d.innerHTML;
         }
 
+        // ---------- Analytics (Vercel Web Analytics) ----------
+        function track(name, props) {
+            if (typeof window.capTrack === 'function') window.capTrack(name, props);
+        }
+
         // Kick-off
+        track('annuaire_view');
         fetchResults();
         loadFacets();
     })();

@@ -345,9 +345,14 @@
     <script src="../js/supabase-client.js?v=20260726b"></script>
     <script src="../js/auth.js?v=20260726b"></script>
     <script src="../js/directory-config.js?v=20260726b"></script>
+    <script src="../js/analytics.js?v=20260726b"></script>
     <script>
     (async function () {
         'use strict';
+        function track(name, props) {
+            if (typeof window.capTrack === 'function') window.capTrack(name, props);
+        }
+        track('mon_profil_view');
 
         // ---------- Auth gate ----------
         var profile;
@@ -490,9 +495,14 @@
                     return;
                 }
                 // Sync profil local
+                var wasVisible = profile.is_directory_visible;
                 Object.assign(profile, data.profile || {});
                 status.className = 'mp-status ok';
                 status.textContent = '✓ Enregistré.';
+                track('mon_profil_save', {
+                    visible: profile.is_directory_visible,
+                    first_opt_in: !wasVisible && profile.is_directory_visible
+                });
                 refreshOptinBlock();
                 renderPreview();
                 btn.disabled = false;
