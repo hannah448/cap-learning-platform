@@ -344,7 +344,10 @@
 
         // Bind events
         modalEl.querySelector('[data-cap-am-close]').addEventListener('click', close);
-        modalEl.querySelector('[data-cap-am-backdrop]').addEventListener('click', function (e) {
+        // modalEl EST l'overlay porteur de data-cap-am-backdrop : querySelector ne
+        // cherche que les descendants et renvoyait null, ce qui interrompait tout
+        // le câblage qui suit (onglets, soumission des formulaires, Échap, focus).
+        modalEl.addEventListener('click', function (e) {
             if (e.target === e.currentTarget) close();
         });
 
