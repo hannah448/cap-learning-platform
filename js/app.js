@@ -135,25 +135,42 @@ function initMobileMenu() {
     const mobileNav = document.querySelector('.mobile-nav');
     if (!toggle || !mobileNav) return;
 
-    toggle.addEventListener('click', () => {
-        const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-        toggle.setAttribute('aria-expanded', !isOpen);
-        mobileNav.hidden = isOpen;
+    const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
 
-        if (!isOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+    function close() {
+        toggle.setAttribute('aria-expanded', 'false');
+        mobileNav.hidden = true;
+        document.body.style.overflow = '';
+    }
+
+    function open() {
+        toggle.setAttribute('aria-expanded', 'true');
+        mobileNav.hidden = false;
+        document.body.style.overflow = 'hidden';
+    }
+
+    toggle.addEventListener('click', () => {
+        isOpen() ? close() : open();
     });
 
     // Close on link click
     mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            toggle.setAttribute('aria-expanded', 'false');
-            mobileNav.hidden = true;
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', close);
+    });
+
+    // Escape closes and returns focus to the toggle
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isOpen()) {
+            close();
+            toggle.focus();
+        }
+    });
+
+    // Tap outside the panel closes it
+    document.addEventListener('click', (e) => {
+        if (!isOpen()) return;
+        if (mobileNav.contains(e.target) || toggle.contains(e.target)) return;
+        close();
     });
 }
 
