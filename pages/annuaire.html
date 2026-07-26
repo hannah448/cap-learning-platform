@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+    <script src="../js/migrate-brand.js?v=20260725d"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
+    <title>Annuaire des membres — Cap Learning</title>
+    <meta name="description" content="Découvre les autres entrepreneurs formés à Cap Learning et échange avec eux.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
+    <link rel="stylesheet" href="../css/style.css?v=20260725d">
+    <link rel="stylesheet" href="../css/lms.css?v=20260725d">
+
+    <style>
+        .an-layout { display: grid; grid-template-columns: 260px 1fr; gap: 24px; align-items: start; }
+        @media (max-width: 900px) {
+            .an-layout { grid-template-columns: 1fr; }
+            .an-filters { position: static; }
+        }
+
+        /* Filtres */
+        .an-filters {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 18px;
+            position: sticky;
+            top: 24px;
+        }
+        .an-filter { margin-bottom: 14px; }
+        .an-filter label {
+            display: block;
+            font-size: .75rem;
+            color: var(--color-text-mute);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .an-filter input, .an-filter select {
+            width: 100%; box-sizing: border-box;
+            padding: 8px 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: .9rem;
+        }
+        .an-course-list { display: flex; flex-direction: column; gap: 4px; font-size: .9rem; }
+        .an-course-list label { display: flex; align-items: center; gap: 6px; cursor: pointer; text-transform: none; letter-spacing: 0; color: var(--color-text); font-weight: 400; margin: 0; }
+        .an-course-list input { width: auto; }
+        .an-reset-btn {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--color-text-soft);
+            font-family: inherit;
+            font-size: .85rem;
+            cursor: pointer;
+            margin-top: 4px;
+        }
+        .an-reset-btn:hover { background: var(--color-surface-2); }
+
+        /* Résultats */
+        .an-results-head {
+            display: flex; justify-content: space-between; align-items: baseline;
+            margin-bottom: 12px;
+        }
+        .an-results-count {
+            font-size: .9rem;
+            color: var(--color-text-soft);
+        }
+
+        .an-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+        @media (max-width: 1100px) { .an-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 640px)  { .an-grid { grid-template-columns: 1fr; } }
+
+        .an-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex; flex-direction: column;
+            transition: transform .1s, box-shadow .1s;
+        }
+        .an-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+        .an-card-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .an-card-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--accent-ia-bg); color: var(--accent-ia-text);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: .95rem; flex-shrink: 0;
+        }
+        .an-card-name { font-weight: 600; font-size: .95rem; margin: 0; line-height: 1.2; }
+        .an-card-meta { font-size: .8rem; color: var(--color-text-soft); margin: 2px 0 0; }
+        .an-card-sector {
+            font-size: .75rem;
+            color: var(--accent-ecom-text);
+            background: var(--accent-ecom-bg);
+            padding: 2px 8px;
+            border-radius: 999px;
+            display: inline-block;
+            margin-bottom: 6px;
+            width: fit-content;
+        }
+        .an-card-project {
+            font-size: .9rem; color: var(--color-text); margin: 0 0 12px;
+            display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+            overflow: hidden; text-overflow: ellipsis;
+            min-height: 2.4em;
+        }
+        .an-card-courses { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 12px; }
+        .an-card-course-chip {
+            font-size: .7rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--accent-ia-bg);
+            color: var(--accent-ia-text);
+        }
+        .an-card-btn {
+            margin-top: auto;
+            padding: 8px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: .85rem;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .an-card-btn:hover { background: var(--color-surface-2); }
+
+        /* Empty & loading */
+        .an-empty, .an-loading, .an-error {
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--color-text-soft);
+            background: var(--color-surface);
+            border-radius: 12px;
+            border: 1px dashed var(--color-border);
+        }
+        .an-empty-title { font-weight: 600; font-size: 1rem; margin-bottom: 6px; color: var(--color-text); }
+        .an-error { color: #C0392B; border-style: solid; border-color: #FCC; background: #FEF7F6; }
+
+        /* Pagination */
+        .an-pagination {
+            display: flex; justify-content: center; align-items: center; gap: 12px;
+            margin-top: 24px;
+            font-size: .9rem;
+        }
+        .an-page-btn {
+            padding: 6px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .an-page-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+        /* Skeletons */
+        .an-skel {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 16px; height: 220px;
+            position: relative; overflow: hidden;
+        }
+        .an-skel::after {
+            content: "";
+            position: absolute; inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+            animation: skel 1.4s infinite;
+        }
+        @keyframes skel { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+    </style>
+</head>
+<body>
+
+    <div class="lms-layout">
+        <div class="lms-sidebar-overlay" id="sidebarOverlay"></div>
+
+        <aside class="lms-sidebar" id="sidebar">
+            <a href="/" class="lms-sidebar-logo">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav>
+                <ul class="lms-sidebar-nav">
+                    <li><a href="dashboard" class="lms-sidebar-item"><span class="nav-icon">&#127968;</span>Tableau de bord</a></li>
+                    <li><a href="catalogue" class="lms-sidebar-item"><span class="nav-icon">&#128218;</span>Mes formations</a></li>
+                    <li><a href="annuaire" class="lms-sidebar-item active"><span class="nav-icon">&#128101;</span>Annuaire des membres</a></li>
+                    <li><a href="mon-profil" class="lms-sidebar-item"><span class="nav-icon">&#128100;</span>Mon profil</a></li>
+                    <li><a href="#" class="lms-sidebar-item"><span class="nav-icon">&#127942;</span>Certificats</a></li>
+                </ul>
+            </nav>
+            <div class="lms-sidebar-user" id="sidebarUser">
+                <div class="user-avatar" id="userAvatar">--</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Utilisateur</div>
+                    <div class="user-email" id="userEmail">email@exemple.com</div>
+                </div>
+            </div>
+            <div style="padding: 0 var(--space-6);">
+                <button class="lms-logout-btn" id="logoutBtn">Déconnexion</button>
+            </div>
+        </aside>
+
+        <main class="lms-main">
+            <div class="lms-topbar">
+                <div class="lms-welcome">
+                    <h1>Annuaire des membres</h1>
+                    <p>Découvre les autres entrepreneurs formés à Cap Learning et prends contact avec eux.</p>
+                </div>
+            </div>
+
+            <div class="lms-content">
+                <div class="an-layout">
+
+                    <!-- Filtres -->
+                    <aside class="an-filters">
+                        <div class="an-filter">
+                            <label for="qInput">Recherche</label>
+                            <input type="search" id="qInput" placeholder="Nom, projet…" />
+                        </div>
+
+                        <div class="an-filter">
+                            <label for="countryFilter">Pays</label>
+                            <select id="countryFilter"><option value="">Tous les pays</option></select>
+                        </div>
+
+                        <div class="an-filter">
+                            <label for="cityInput">Ville</label>
+                            <input type="text" id="cityInput" placeholder="ex. Dakar" />
+                        </div>
+
+                        <div class="an-filter">
+                            <label for="sectorFilter">Secteur</label>
+                            <select id="sectorFilter"><option value="">Tous les secteurs</option></select>
+                        </div>
+
+                        <div class="an-filter">
+                            <label>Formation suivie</label>
+                            <div class="an-course-list" id="courseList">
+                                <label><input type="radio" name="course" value="" checked> Toutes</label>
+                                <label><input type="radio" name="course" value="marketing"> Marketing</label>
+                                <label><input type="radio" name="course" value="ia-business"> IA business</label>
+                                <label><input type="radio" name="course" value="ecommerce"> E-commerce</label>
+                                <label><input type="radio" name="course" value="reseaux-sociaux"> Réseaux sociaux</label>
+                                <label><input type="radio" name="course" value="entrepreneuriat"> Entrepreneuriat</label>
+                            </div>
+                        </div>
+
+                        <button type="button" class="an-reset-btn" id="resetBtn">Réinitialiser les filtres</button>
+                    </aside>
+
+                    <!-- Résultats -->
+                    <div>
+                        <div class="an-results-head">
+                            <div class="an-results-count" id="resultsCount">Chargement…</div>
+                        </div>
+
+                        <div id="resultsArea">
+                            <div class="an-grid" id="skelGrid">
+                                <div class="an-skel"></div>
+                                <div class="an-skel"></div>
+                                <div class="an-skel"></div>
+                                <div class="an-skel"></div>
+                                <div class="an-skel"></div>
+                                <div class="an-skel"></div>
+                            </div>
+                        </div>
+
+                        <div class="an-pagination" id="pagination" hidden>
+                            <button type="button" class="an-page-btn" id="prevBtn">← Précédent</button>
+                            <span id="pageInfo">Page 1</span>
+                            <button type="button" class="an-page-btn" id="nextBtn">Suivant →</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js?v=20260725d"></script>
+    <script src="../js/supabase-client.js?v=20260725d"></script>
+    <script src="../js/auth.js?v=20260725d"></script>
+    <script src="../js/directory-config.js?v=20260725d"></script>
+    <script>
+    (async function () {
+        'use strict';
+
+        // Auth gate
+        var profile;
+        try { profile = await window.CapAuth.requireAuth(); }
+        catch (e) {
+            window.location.href = 'connexion?redirect=' + encodeURIComponent('/pages/annuaire');
+            return;
+        }
+
+        var $ = function (id) { return document.getElementById(id); };
+        var config = window.CapDirectory;
+
+        // ---------- Sidebar user ----------
+        try {
+            var name = profile.display_name || profile.full_name || (profile.email || '').split('@')[0];
+            $('userName').textContent = name;
+            $('userEmail').textContent = profile.email || '';
+            $('userAvatar').textContent = initials(name);
+        } catch (e) {}
+
+        // ---------- Peuple selects ----------
+        var countrySel = $('countryFilter');
+        config.COUNTRIES.forEach(function (c) {
+            var opt = document.createElement('option');
+            opt.value = c.iso;
+            opt.textContent = c.flag + '  ' + c.label;
+            countrySel.appendChild(opt);
+        });
+        var sectorSel = $('sectorFilter');
+        config.SECTORS.forEach(function (s) {
+            var opt = document.createElement('option');
+            opt.value = s.key;
+            opt.textContent = s.label;
+            sectorSel.appendChild(opt);
+        });
+
+        // ---------- State ----------
+        var state = { page: 1, limit: 24, total: 0 };
+        var searchTimer = null;
+
+        // ---------- Handlers ----------
+        $('countryFilter').addEventListener('change', function () { state.page = 1; fetchResults(); });
+        $('sectorFilter').addEventListener('change', function () { state.page = 1; fetchResults(); });
+        $('cityInput').addEventListener('input', function () { state.page = 1; debouncedFetch(); });
+        $('qInput').addEventListener('input', function () { state.page = 1; debouncedFetch(); });
+        document.querySelectorAll('input[name="course"]').forEach(function (r) {
+            r.addEventListener('change', function () { state.page = 1; fetchResults(); });
+        });
+        $('resetBtn').addEventListener('click', function () {
+            $('qInput').value = ''; $('cityInput').value = '';
+            $('countryFilter').value = ''; $('sectorFilter').value = '';
+            var first = document.querySelector('input[name="course"][value=""]');
+            if (first) first.checked = true;
+            state.page = 1; fetchResults();
+        });
+        $('prevBtn').addEventListener('click', function () {
+            if (state.page > 1) { state.page--; fetchResults(); }
+        });
+        $('nextBtn').addEventListener('click', function () {
+            if (state.page * state.limit < state.total) { state.page++; fetchResults(); }
+        });
+        $('logoutBtn').addEventListener('click', async function () {
+            try { await window.CapAuth.signOut(); } catch (e) {}
+            window.location.href = '/';
+        });
+
+        function debouncedFetch() {
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(fetchResults, 400);
+        }
+
+        // ---------- Fetch ----------
+        async function fetchResults() {
+            var area = $('resultsArea');
+            $('resultsCount').textContent = 'Chargement…';
+            $('pagination').hidden = true;
+
+            var token = await getAccessToken();
+            if (!token) {
+                showError('Session expirée — reconnecte-toi.');
+                return;
+            }
+
+            var params = new URLSearchParams();
+            var q = $('qInput').value.trim();     if (q) params.set('q', q);
+            var country = $('countryFilter').value; if (country) params.set('country', country);
+            var city = $('cityInput').value.trim(); if (city) params.set('city', city);
+            var sector = $('sectorFilter').value;   if (sector) params.set('sector', sector);
+            var courseRadio = document.querySelector('input[name="course"]:checked');
+            var course = courseRadio ? courseRadio.value : '';
+            if (course) params.set('course', course);
+            params.set('page', state.page);
+            params.set('limit', state.limit);
+
+            try {
+                var res = await fetch('/api/directory/list?' + params.toString(), {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (res.status === 403) {
+                    showError("L'annuaire est réservé aux apprenants Cap Learning. Inscris-toi à une formation pour y accéder.");
+                    return;
+                }
+                if (!res.ok) {
+                    var err = await res.json().catch(function () { return {}; });
+                    showError(err.error || 'Erreur pendant la recherche.');
+                    return;
+                }
+                var data = await res.json();
+                state.total = data.total || 0;
+                render(data.results || []);
+                updatePagination();
+            } catch (e) {
+                showError('Erreur réseau. Réessaie.');
+            }
+        }
+
+        async function getAccessToken() {
+            try {
+                var sess = await window.CapDB.auth.getSession();
+                return sess && sess.data && sess.data.session ? sess.data.session.access_token : null;
+            } catch (e) { return null; }
+        }
+
+        // ---------- Render ----------
+        function render(results) {
+            var area = $('resultsArea');
+            if (results.length === 0) {
+                $('resultsCount').textContent = '0 membre';
+                area.innerHTML = '<div class="an-empty"><div class="an-empty-title">Aucun membre ne correspond à ces filtres</div>Essaie d\'élargir ta recherche ou de retirer un filtre.</div>';
+                return;
+            }
+            var from = (state.page - 1) * state.limit + 1;
+            var to   = from + results.length - 1;
+            $('resultsCount').textContent = state.total + ' membre' + (state.total > 1 ? 's' : '') + ' · affichage ' + from + '–' + to;
+
+            var grid = document.createElement('div');
+            grid.className = 'an-grid';
+            results.forEach(function (m) { grid.appendChild(renderCard(m)); });
+            area.innerHTML = '';
+            area.appendChild(grid);
+        }
+
+        function renderCard(m) {
+            var card = document.createElement('div');
+            card.className = 'an-card';
+
+            var head = document.createElement('div'); head.className = 'an-card-head';
+            var av = document.createElement('div'); av.className = 'an-card-avatar'; av.textContent = initials(m.display_name);
+            head.appendChild(av);
+            var meta = document.createElement('div');
+            var name = document.createElement('p'); name.className = 'an-card-name'; name.textContent = m.display_name || 'Membre Cap Learning';
+            var loc = document.createElement('p'); loc.className = 'an-card-meta';
+            loc.textContent = [m.country ? config.getCountryLabel(m.country) : '', m.city].filter(Boolean).join(' · ') || ' ';
+            meta.appendChild(name); meta.appendChild(loc);
+            head.appendChild(meta);
+            card.appendChild(head);
+
+            if (m.sector) {
+                var sec = document.createElement('div'); sec.className = 'an-card-sector';
+                sec.textContent = config.getSectorLabel(m.sector);
+                card.appendChild(sec);
+            }
+
+            var proj = document.createElement('p'); proj.className = 'an-card-project';
+            proj.textContent = m.project_title || 'Projet non renseigné';
+            card.appendChild(proj);
+
+            if (m.courses && m.courses.length) {
+                var chips = document.createElement('div'); chips.className = 'an-card-courses';
+                m.courses.forEach(function (c) {
+                    var chip = document.createElement('span');
+                    chip.className = 'an-card-course-chip';
+                    chip.textContent = courseLabel(c);
+                    chips.appendChild(chip);
+                });
+                card.appendChild(chips);
+            }
+
+            var btn = document.createElement('button');
+            btn.type = 'button'; btn.className = 'an-card-btn';
+            btn.textContent = 'Voir le profil';
+            btn.addEventListener('click', function () { openProfile(m.id); });
+            card.appendChild(btn);
+
+            return card;
+        }
+
+        function showError(msg) {
+            $('resultsCount').textContent = '';
+            $('resultsArea').innerHTML = '<div class="an-error">' + escapeHtml(msg) + '</div>';
+            $('pagination').hidden = true;
+        }
+
+        function updatePagination() {
+            var totalPages = Math.max(1, Math.ceil(state.total / state.limit));
+            if (totalPages <= 1) { $('pagination').hidden = true; return; }
+            $('pagination').hidden = false;
+            $('pageInfo').textContent = 'Page ' + state.page + ' / ' + totalPages;
+            $('prevBtn').disabled = state.page <= 1;
+            $('nextBtn').disabled = state.page >= totalPages;
+        }
+
+        function openProfile(id) {
+            // V1 : redirige vers une future page annuaire-profil ; en attendant, on log
+            // (la modale sortira en P2 selon la spec)
+            console.log('[annuaire] TODO ouvrir profil', id);
+            alert('La fiche détaillée arrivera en phase 2 (modale + boutons contact).');
+        }
+
+        function courseLabel(courseId) {
+            var map = {
+                'marketing': 'Marketing',
+                'ia-business': 'IA business',
+                'ecommerce': 'E-commerce',
+                'reseaux-sociaux': 'Réseaux sociaux',
+                'entrepreneuriat': 'Entrepreneuriat'
+            };
+            return map[courseId] || courseId;
+        }
+
+        function initials(str) {
+            if (!str) return '??';
+            var parts = String(str).trim().split(/\s+/);
+            var a = parts[0] ? parts[0][0] : '';
+            var b = parts.length > 1 ? parts[parts.length - 1][0] : '';
+            return (a + b).toUpperCase() || '??';
+        }
+
+        function escapeHtml(str) {
+            var d = document.createElement('div'); d.textContent = String(str || ''); return d.innerHTML;
+        }
+
+        // Kick-off
+        fetchResults();
+    })();
+    </script>
+    <script src="../js/theme.js?v=20260725d" defer></script>
+</body>
+</html>

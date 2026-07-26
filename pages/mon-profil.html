@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+    <script src="../js/migrate-brand.js?v=20260725d"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
+    <title>Mon profil public — Cap Learning</title>
+    <meta name="description" content="Édite ton profil visible dans l'annuaire des apprenants Cap Learning.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
+    <link rel="stylesheet" href="../css/style.css?v=20260725d">
+    <link rel="stylesheet" href="../css/lms.css?v=20260725d">
+
+    <style>
+        /* -------- Layout deux colonnes formulaire + preview -------- */
+        .mp-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 24px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .mp-grid { grid-template-columns: 1fr; }
+            .mp-preview-col { order: -1; }
+        }
+
+        /* -------- Bloc opt-in (toggle géant) -------- */
+        .mp-optin {
+            background: var(--accent-mkt-bg);
+            border: 1px solid var(--accent-mkt);
+            color: var(--accent-mkt-text);
+            border-radius: 12px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .mp-optin-body { flex: 1; line-height: 1.4; }
+        .mp-optin-title { font-weight: 700; font-size: 1rem; margin: 0 0 4px; }
+        .mp-optin-hint { font-size: .85rem; opacity: .85; margin: 0; }
+        .mp-optin[data-on="true"] {
+            background: var(--accent-ent-bg);
+            border-color: var(--accent-ent);
+            color: var(--accent-ent-text);
+        }
+
+        /* -------- Toggle switch -------- */
+        .mp-switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+            flex-shrink: 0;
+        }
+        .mp-switch input { opacity: 0; width: 0; height: 0; }
+        .mp-switch-slider {
+            position: absolute; inset: 0;
+            background: var(--color-border);
+            border-radius: 999px;
+            transition: .2s;
+            cursor: pointer;
+        }
+        .mp-switch-slider::before {
+            content: "";
+            position: absolute;
+            width: 22px; height: 22px;
+            left: 3px; top: 3px;
+            background: #fff;
+            border-radius: 50%;
+            transition: .2s;
+            box-shadow: 0 1px 3px rgba(0,0,0,.2);
+        }
+        .mp-switch input:checked + .mp-switch-slider { background: var(--accent-ent); }
+        .mp-switch input:checked + .mp-switch-slider::before { transform: translateX(24px); }
+
+        /* -------- Form -------- */
+        .mp-form { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; }
+        .mp-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 16px; }
+        .mp-field-full { grid-column: 1 / -1; }
+        .mp-field { display: flex; flex-direction: column; gap: 4px; font-size: .9rem; }
+        .mp-field label { font-size: .8rem; color: var(--color-text-soft); font-weight: 500; }
+        .mp-field input, .mp-field select, .mp-field textarea {
+            width: 100%; padding: 10px 12px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-surface);
+            color: var(--color-text);
+            font-family: inherit;
+            font-size: .95rem;
+            box-sizing: border-box;
+        }
+        .mp-field textarea { resize: vertical; min-height: 80px; }
+        .mp-field-hint { font-size: .75rem; color: var(--color-text-mute); }
+        .mp-field-count { font-size: .75rem; color: var(--color-text-mute); text-align: right; }
+        .mp-field-error { font-size: .8rem; color: #C0392B; margin-top: 2px; display: none; }
+        .mp-field.has-error input,
+        .mp-field.has-error select,
+        .mp-field.has-error textarea { border-color: #C0392B; }
+        .mp-field.has-error .mp-field-error { display: block; }
+        @media (max-width: 640px) { .mp-form-grid { grid-template-columns: 1fr; } }
+
+        /* -------- Actions bar -------- */
+        .mp-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--color-border-soft);
+        }
+        .mp-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: .95rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-family: inherit;
+        }
+        .mp-btn-primary { background: var(--color-text); color: var(--color-bg); }
+        .mp-btn-primary:hover { opacity: .9; }
+        .mp-btn-primary:disabled { opacity: .5; cursor: not-allowed; }
+        .mp-btn-danger { background: transparent; color: #C0392B; border-color: transparent; font-size: .85rem; }
+        .mp-btn-danger:hover { text-decoration: underline; }
+
+        .mp-status { font-size: .85rem; color: var(--color-text-soft); }
+        .mp-status.ok { color: #16A34A; }
+        .mp-status.err { color: #C0392B; }
+
+        /* -------- Preview card (droite) -------- */
+        .mp-preview-col { position: sticky; top: 24px; }
+        .mp-preview-title { font-size: .8rem; color: var(--color-text-mute); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 10px; font-weight: 600; }
+        .mp-preview-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 18px;
+        }
+        .mp-preview-avatar {
+            width: 56px; height: 56px;
+            border-radius: 50%;
+            background: var(--accent-ia-bg);
+            color: var(--accent-ia-text);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.2rem;
+            margin-bottom: 12px;
+        }
+        .mp-preview-name { font-weight: 700; font-size: 1.1rem; margin: 0 0 4px; }
+        .mp-preview-meta { font-size: .85rem; color: var(--color-text-soft); margin: 0 0 12px; }
+        .mp-preview-project-title { font-size: .95rem; font-weight: 600; margin: 0 0 4px; }
+        .mp-preview-project-pitch { font-size: .85rem; color: var(--color-text-soft); line-height: 1.5; margin: 0; }
+        .mp-preview-sector-chip {
+            display: inline-block;
+            font-size: .75rem;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: var(--accent-ecom-bg);
+            color: var(--accent-ecom-text);
+            margin-bottom: 12px;
+        }
+        .mp-preview-hidden {
+            padding: 20px;
+            text-align: center;
+            color: var(--color-text-mute);
+            font-size: .85rem;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="lms-layout">
+        <div class="lms-sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- Sidebar (copie de dashboard.html, "Mon profil" actif) -->
+        <aside class="lms-sidebar" id="sidebar">
+            <a href="/" class="lms-sidebar-logo">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav>
+                <ul class="lms-sidebar-nav">
+                    <li><a href="dashboard" class="lms-sidebar-item"><span class="nav-icon">&#127968;</span>Tableau de bord</a></li>
+                    <li><a href="catalogue" class="lms-sidebar-item"><span class="nav-icon">&#128218;</span>Mes formations</a></li>
+                    <li><a href="annuaire" class="lms-sidebar-item"><span class="nav-icon">&#128101;</span>Annuaire des membres</a></li>
+                    <li><a href="mon-profil" class="lms-sidebar-item active"><span class="nav-icon">&#128100;</span>Mon profil</a></li>
+                    <li><a href="#" class="lms-sidebar-item"><span class="nav-icon">&#127942;</span>Certificats</a></li>
+                </ul>
+            </nav>
+            <div class="lms-sidebar-user" id="sidebarUser">
+                <div class="user-avatar" id="userAvatar">--</div>
+                <div class="user-info">
+                    <div class="user-name" id="userName">Utilisateur</div>
+                    <div class="user-email" id="userEmail">email@exemple.com</div>
+                </div>
+            </div>
+            <div style="padding: 0 var(--space-6);">
+                <button class="lms-logout-btn" id="logoutBtn">Déconnexion</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="lms-main">
+            <div class="lms-topbar">
+                <div class="lms-welcome">
+                    <h1>Mon profil public</h1>
+                    <p>Ce que les autres apprenants Cap Learning verront de toi dans l'annuaire.</p>
+                </div>
+            </div>
+
+            <div class="lms-content">
+
+                <!-- Toggle opt-in RGPD -->
+                <div class="mp-optin" id="optinBlock" data-on="false">
+                    <div class="mp-optin-body">
+                        <p class="mp-optin-title">Rendre mon profil visible dans l'annuaire</p>
+                        <p class="mp-optin-hint" id="optinHint">Tant que ce toggle est désactivé, personne ne peut voir ton profil. Tu peux le désactiver à tout moment.</p>
+                    </div>
+                    <label class="mp-switch">
+                        <input type="checkbox" id="isVisible">
+                        <span class="mp-switch-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <div class="mp-grid">
+
+                    <!-- Formulaire -->
+                    <form class="mp-form" id="profileForm" novalidate>
+                        <div class="mp-form-grid">
+
+                            <div class="mp-field">
+                                <label for="displayName">Nom d'affichage</label>
+                                <input type="text" id="displayName" maxlength="60" placeholder="ex. Fatou N." />
+                                <div class="mp-field-error" data-error-for="display_name"></div>
+                            </div>
+
+                            <div class="mp-field">
+                                <label for="city">Ville</label>
+                                <input type="text" id="city" maxlength="60" placeholder="ex. Dakar" />
+                                <div class="mp-field-error" data-error-for="city"></div>
+                            </div>
+
+                            <div class="mp-field">
+                                <label for="country">Pays</label>
+                                <select id="country">
+                                    <option value="">—</option>
+                                </select>
+                                <div class="mp-field-error" data-error-for="country"></div>
+                            </div>
+
+                            <div class="mp-field">
+                                <label for="sector">Secteur d'activité</label>
+                                <select id="sector">
+                                    <option value="">—</option>
+                                </select>
+                                <div class="mp-field-error" data-error-for="sector"></div>
+                            </div>
+
+                            <div class="mp-field mp-field-full">
+                                <label for="projectTitle">Titre du projet <span class="mp-field-hint">(80 caractères max)</span></label>
+                                <input type="text" id="projectTitle" maxlength="80" placeholder="ex. Boutique WhatsApp de tissus wax" />
+                                <div class="mp-field-count"><span id="titleCount">0</span> / 80</div>
+                                <div class="mp-field-error" data-error-for="project_title"></div>
+                            </div>
+
+                            <div class="mp-field mp-field-full">
+                                <label for="projectPitch">Pitch du projet <span class="mp-field-hint">(300 caractères max)</span></label>
+                                <textarea id="projectPitch" maxlength="300" placeholder="Décris ton projet en quelques phrases : ce que tu vends, à qui, ce que tu cherches à améliorer."></textarea>
+                                <div class="mp-field-count"><span id="pitchCount">0</span> / 300</div>
+                                <div class="mp-field-error" data-error-for="project_pitch"></div>
+                            </div>
+
+                            <div class="mp-field">
+                                <label for="whatsapp">Numéro WhatsApp</label>
+                                <input type="tel" id="whatsapp" placeholder="+221771234567" />
+                                <div class="mp-field-hint">Format international, ex. +221771234567</div>
+                                <div class="mp-field-error" data-error-for="whatsapp_e164"></div>
+                            </div>
+
+                            <div class="mp-field">
+                                <label for="linkedin">LinkedIn</label>
+                                <input type="url" id="linkedin" placeholder="https://linkedin.com/in/…" />
+                                <div class="mp-field-error" data-error-for="linkedin_url"></div>
+                            </div>
+
+                            <div class="mp-field">
+                                <label for="instagram">Instagram</label>
+                                <input type="text" id="instagram" maxlength="30" placeholder="ton_pseudo" />
+                                <div class="mp-field-hint">Sans le @</div>
+                                <div class="mp-field-error" data-error-for="instagram_handle"></div>
+                            </div>
+
+                            <div class="mp-field">
+                                <label>
+                                    <input type="checkbox" id="contactViaWhatsapp" checked style="width: auto; margin-right: 6px; vertical-align: middle;" />
+                                    Autoriser le contact via WhatsApp
+                                </label>
+                                <div class="mp-field-hint">Ton numéro ne sera jamais affiché en clair.</div>
+                            </div>
+
+                        </div>
+
+                        <div class="mp-actions">
+                            <span class="mp-status" id="status"></span>
+                            <div style="display: flex; gap: 8px;">
+                                <button type="button" class="mp-btn mp-btn-danger" id="hideBtn" hidden>Retirer mon profil de l'annuaire</button>
+                                <button type="submit" class="mp-btn mp-btn-primary" id="saveBtn">Enregistrer</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Preview -->
+                    <div class="mp-preview-col">
+                        <p class="mp-preview-title">Aperçu de ta carte</p>
+                        <div class="mp-preview-card" id="previewCard">
+                            <div class="mp-preview-hidden" id="previewEmpty">
+                                Remplis les champs à gauche pour voir un aperçu.
+                            </div>
+                            <div id="previewFilled" hidden>
+                                <div class="mp-preview-avatar" id="previewAvatar">?</div>
+                                <p class="mp-preview-name" id="previewName">—</p>
+                                <p class="mp-preview-meta" id="previewMeta">—</p>
+                                <span class="mp-preview-sector-chip" id="previewSector" hidden></span>
+                                <p class="mp-preview-project-title" id="previewProjectTitle" hidden></p>
+                                <p class="mp-preview-project-pitch" id="previewProjectPitch" hidden></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js?v=20260725d"></script>
+    <script src="../js/supabase-client.js?v=20260725d"></script>
+    <script src="../js/auth.js?v=20260725d"></script>
+    <script src="../js/directory-config.js?v=20260725d"></script>
+    <script>
+    (async function () {
+        'use strict';
+
+        // ---------- Auth gate ----------
+        var profile;
+        try {
+            profile = await window.CapAuth.requireAuth();
+        } catch (e) {
+            window.location.href = 'connexion?redirect=' + encodeURIComponent('/pages/mon-profil');
+            return;
+        }
+
+        // Petits raccourcis DOM
+        var $ = function (id) { return document.getElementById(id); };
+        var config = window.CapDirectory;
+
+        // ---------- Peuple les selects (pays, secteurs) ----------
+        var countrySel = $('country');
+        config.COUNTRIES.forEach(function (c) {
+            var opt = document.createElement('option');
+            opt.value = c.iso;
+            opt.textContent = c.flag + '  ' + c.label;
+            countrySel.appendChild(opt);
+        });
+
+        var sectorSel = $('sector');
+        config.SECTORS.forEach(function (s) {
+            var opt = document.createElement('option');
+            opt.value = s.key;
+            opt.textContent = s.label;
+            sectorSel.appendChild(opt);
+        });
+
+        // ---------- Sidebar user ----------
+        try {
+            var email = profile.email || '';
+            $('userEmail').textContent = email;
+            var name = profile.display_name || profile.full_name || email.split('@')[0];
+            $('userName').textContent = name;
+            $('userAvatar').textContent = initials(name);
+        } catch (e) {}
+
+        // ---------- Pré-remplit depuis le profil ----------
+        $('displayName').value      = profile.display_name || '';
+        $('city').value             = profile.city || '';
+        $('country').value          = profile.country || '';
+        $('sector').value           = profile.sector || '';
+        $('projectTitle').value     = profile.project_title || '';
+        $('projectPitch').value     = profile.project_pitch || '';
+        $('whatsapp').value         = profile.whatsapp_e164 || '';
+        $('linkedin').value         = profile.linkedin_url || '';
+        $('instagram').value        = profile.instagram_handle || '';
+        $('contactViaWhatsapp').checked = profile.contact_via_whatsapp !== false;
+        $('isVisible').checked      = profile.is_directory_visible === true;
+
+        refreshOptinBlock();
+        renderPreview();
+        updateCounts();
+
+        // ---------- Handlers ----------
+        $('isVisible').addEventListener('change', refreshOptinBlock);
+        $('projectTitle').addEventListener('input', function () { updateCounts(); renderPreview(); });
+        $('projectPitch').addEventListener('input', function () { updateCounts(); renderPreview(); });
+        ['displayName', 'city', 'country', 'sector'].forEach(function (id) {
+            $(id).addEventListener('input', renderPreview);
+            $(id).addEventListener('change', renderPreview);
+        });
+
+        $('profileForm').addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            save({ visibility: undefined });
+        });
+
+        $('hideBtn').addEventListener('click', function () {
+            if (!confirm('Retirer ton profil de l\'annuaire ? Tu pourras le réactiver plus tard.')) return;
+            $('isVisible').checked = false;
+            refreshOptinBlock();
+            save({ visibility: false, isHideAction: true });
+        });
+
+        $('logoutBtn').addEventListener('click', async function () {
+            try { await window.CapAuth.signOut(); } catch (e) {}
+            window.location.href = '/';
+        });
+
+        // ---------- Save ----------
+        async function save() {
+            clearFieldErrors();
+            var btn = $('saveBtn');
+            var status = $('status');
+            btn.disabled = true;
+            status.className = 'mp-status';
+            status.textContent = 'Enregistrement…';
+
+            var body = {
+                is_directory_visible: $('isVisible').checked,
+                display_name:         $('displayName').value.trim() || null,
+                city:                 $('city').value.trim() || null,
+                country:              $('country').value || null,
+                sector:               $('sector').value || null,
+                project_title:        $('projectTitle').value.trim() || null,
+                project_pitch:        $('projectPitch').value.trim() || null,
+                whatsapp_e164:        $('whatsapp').value.trim() || null,
+                linkedin_url:         $('linkedin').value.trim() || null,
+                instagram_handle:     $('instagram').value.trim() || null,
+                contact_via_whatsapp: $('contactViaWhatsapp').checked
+            };
+
+            // Petite validation front pour éviter les allers-retours
+            if (body.is_directory_visible) {
+                if (!body.display_name || !body.country || !body.sector) {
+                    status.className = 'mp-status err';
+                    status.textContent = 'Pour être visible, indique au moins un nom, un pays et un secteur.';
+                    btn.disabled = false;
+                    return;
+                }
+            }
+
+            var token = await getAccessToken();
+            if (!token) {
+                status.className = 'mp-status err';
+                status.textContent = 'Session expirée — reconnecte-toi.';
+                btn.disabled = false;
+                return;
+            }
+
+            try {
+                var res = await fetch('/api/directory/me', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(body)
+                });
+                var data = await res.json();
+                if (!res.ok) {
+                    if (data.field) markFieldError(data.field, data.error + (data.hint ? ' — ' + data.hint : ''));
+                    status.className = 'mp-status err';
+                    status.textContent = data.error || 'Erreur inconnue.';
+                    btn.disabled = false;
+                    return;
+                }
+                // Sync profil local
+                Object.assign(profile, data.profile || {});
+                status.className = 'mp-status ok';
+                status.textContent = '✓ Enregistré.';
+                refreshOptinBlock();
+                renderPreview();
+                btn.disabled = false;
+            } catch (err) {
+                status.className = 'mp-status err';
+                status.textContent = 'Erreur réseau. Réessaie.';
+                btn.disabled = false;
+            }
+        }
+
+        async function getAccessToken() {
+            try {
+                var sess = await window.CapDB.auth.getSession();
+                return sess && sess.data && sess.data.session ? sess.data.session.access_token : null;
+            } catch (e) { return null; }
+        }
+
+        function clearFieldErrors() {
+            document.querySelectorAll('.mp-field.has-error').forEach(function (el) {
+                el.classList.remove('has-error');
+            });
+        }
+
+        function markFieldError(field, msg) {
+            var errNode = document.querySelector('[data-error-for="' + field + '"]');
+            if (!errNode) return;
+            errNode.textContent = msg;
+            errNode.parentElement.classList.add('has-error');
+        }
+
+        // ---------- Live preview + compteurs ----------
+        function updateCounts() {
+            $('titleCount').textContent = $('projectTitle').value.length;
+            $('pitchCount').textContent = $('projectPitch').value.length;
+        }
+
+        function renderPreview() {
+            var name    = $('displayName').value.trim();
+            var city    = $('city').value.trim();
+            var country = $('country').value;
+            var sector  = $('sector').value;
+            var title   = $('projectTitle').value.trim();
+            var pitch   = $('projectPitch').value.trim();
+
+            var hasAny = name || city || country || sector || title || pitch;
+            $('previewEmpty').hidden = !!hasAny;
+            $('previewFilled').hidden = !hasAny;
+            if (!hasAny) return;
+
+            $('previewName').textContent = name || 'Membre Cap Learning';
+            $('previewAvatar').textContent = initials(name || 'M');
+
+            var metaParts = [];
+            if (country) metaParts.push(config.getCountryLabel(country));
+            if (city) metaParts.push(city);
+            $('previewMeta').textContent = metaParts.join(' · ') || ' ';
+
+            var sChip = $('previewSector');
+            if (sector) {
+                sChip.textContent = config.getSectorLabel(sector);
+                sChip.hidden = false;
+            } else { sChip.hidden = true; }
+
+            var tEl = $('previewProjectTitle');
+            if (title) { tEl.textContent = title; tEl.hidden = false; } else { tEl.hidden = true; }
+            var pEl = $('previewProjectPitch');
+            if (pitch) { pEl.textContent = pitch; pEl.hidden = false; } else { pEl.hidden = true; }
+        }
+
+        function refreshOptinBlock() {
+            var isOn = $('isVisible').checked;
+            $('optinBlock').setAttribute('data-on', isOn ? 'true' : 'false');
+            $('optinHint').textContent = isOn
+                ? 'Ton profil est visible par les autres apprenants Cap Learning. Tu peux le désactiver à tout moment.'
+                : 'Tant que ce toggle est désactivé, personne ne peut voir ton profil. Tu peux l\'activer quand tu veux.';
+            $('hideBtn').hidden = !isOn;
+        }
+
+        function initials(str) {
+            if (!str) return '??';
+            var parts = String(str).trim().split(/\s+/);
+            var a = parts[0] ? parts[0][0] : '';
+            var b = parts.length > 1 ? parts[parts.length - 1][0] : '';
+            return (a + b).toUpperCase() || '??';
+        }
+    })();
+    </script>
+    <script src="../js/theme.js?v=20260725d" defer></script>
+</body>
+</html>
