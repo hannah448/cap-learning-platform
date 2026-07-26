@@ -4,21 +4,21 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js?v=20260726b"></script>
+    <script src="../js/migrate-brand.js?v=20260725d"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726b">
-    <link rel="apple-touch-icon" href="/favicon.svg?v=20260726b">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
     <title>Conditions d'utilisation - Cap Learning</title>
-    <meta name="description" content="Conditions générales d'utilisation et de vente de Cap Learning : accès aux formations, paiements en FCFA, garantie satisfait ou remboursé 14 jours.">
+    <meta name="description" content="Conditions d'utilisation du site et de la plateforme Cap Learning : compte apprenant, règles d'usage, disponibilité du service et propriété intellectuelle.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=20260726b">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
 
-    <link rel="stylesheet" href="../css/style.css?v=20260726b">
-    <link rel="stylesheet" href="../css/components.css?v=20260726b">
+    <link rel="stylesheet" href="../css/style.css?v=20260725d">
+    <link rel="stylesheet" href="../css/components.css?v=20260725d">
     <style>
         /* ------ Legal page ------ */
         .legal-hero {
@@ -61,6 +61,33 @@
             border-radius: 12px;
             padding: 16px 20px;
             margin: 0 0 14px;
+        }
+
+        .legal-todo {
+            background: #FFF3CD;
+            color: #7A5C10;
+            border: 1px dashed #E0B400;
+            padding: 1px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: .92em;
+            white-space: normal;
+        }
+        .legal-id-table { width: 100%; border-collapse: collapse; margin: 0 0 18px; }
+        .legal-id-table th, .legal-id-table td {
+            text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee;
+            font-size: .95rem; color: #555; vertical-align: top;
+        }
+        .legal-id-table th { width: 38%; color: #1a1a1a; font-weight: 600; }
+        @media (max-width: 640px) {
+            .legal-id-table th, .legal-id-table td { display: block; width: auto; padding: 6px 0; border: 0; }
+            .legal-id-table tr { display: block; padding: 10px 0; border-bottom: 1px solid #eee; }
+        }
+        .legal-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+        .legal-nav a {
+            display: inline-block; padding: 7px 14px; border-radius: 999px;
+            background: rgba(255,255,255,.75); border: 1px solid #E4DAFB;
+            color: #3A50F6; font-weight: 600; font-size: .88rem; text-decoration: none;
         }
     </style>
 </head>
@@ -114,10 +141,10 @@
                                 </a>
                             </div>
                             <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
-                                <a href="catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary-text, #3A50F6); font-weight:600;">
+                                <a href="catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
                                     Voir les 4 parcours &rarr;
                                 </a>
-                                <a href="comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary-text, #3A50F6); font-weight:600;">
+                                <a href="comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
                                     Comparer &rarr;
                                 </a>
                             </div>
@@ -164,133 +191,143 @@
             <div class="container legal-hero-inner">
                 <span class="section-badge">Informations légales</span>
                 <h1>Conditions d'utilisation</h1>
-                <p class="legal-updated">Dernière mise à jour : 7 juillet 2026</p>
+                <p class="legal-updated">Dernière mise à jour : 26 juillet 2026</p>
+                <div class="legal-nav">
+                    <a href="mentions-legales">Mentions légales</a>
+                    <a href="cgv">Conditions générales de vente</a>
+                    <a href="cgu">Conditions d'utilisation</a>
+                    <a href="confidentialite">Politique de confidentialité</a>
+                </div>
             </div>
         </section>
 
-        <!-- BROUILLON : contenu juridique à faire relire et valider par Hannah avant publication définitive.
-             Identité Cap Learning renseignée depuis annuaire-entreprises (SARL, SIREN 921 377 347, siège 69480 Pommiers).
-             Reste à compléter : montant du capital social.
-             NB : Cap Learning n'est PAS un organisme de formation déclaré (pas de NDA) ; l'organisme déclaré est Digi Atlas. Ne pas réintroduire cette mention pour Cap Learning. -->
+        <!-- BROUILLON : à faire relire et valider par Hannah avant publication définitive.
+         Page ALLÉGÉE le 26/07/2026 : tout ce qui relevait de la vente (prix, paiement, garantie 14 jours,
+         rétractation, droit applicable aux ventes) a été déplacé dans pages/cgv.html ; l'identité de l'éditeur
+         a été déplacée dans pages/mentions-legales.html. Ne pas réintroduire ces éléments ici : la duplication
+         créerait des contradictions entre les deux pages.
+         NB : Cap Learning n'est PAS un organisme de formation déclaré (pas de NDA) ; l'organisme déclaré est Digi Atlas.
+         RESTE À COMPLÉTER : email et téléphone de contact. -->
         <section class="legal-main">
             <div class="container">
                 <article class="legal-content">
 
-                    <h2>1. Qui sommes-nous ?</h2>
-                    <p>
-                        Le site (ci-après « le Site ») est édité par <strong>Cap Learning</strong>,
-                        société à responsabilité limitée (SARL) au capital de [montant du capital à compléter] €,
-                        dont le siège social est situé 2260 route de Saint-Fonds, 69480 Pommiers (France),
-                        immatriculée au Registre du commerce et des sociétés sous le numéro 921 377 347
-                        (SIRET du siège : 921 377 347 00023). Cap Learning édite une plateforme de formation
-                        en ligne à destination des entrepreneurs africains.
+                <div class="legal-highlight">
+                    <p style="margin:0">
+                        Cette page encadre l'<strong>utilisation du site et de votre compte apprenant</strong>.
+                        Les conditions d'<strong>achat</strong> des formations (prix, paiement, garantie 14 jours,
+                        rétractation) figurent dans nos <a href="cgv">Conditions générales de vente</a>, et
+                        l'identité de l'éditeur dans nos <a href="mentions-legales">Mentions légales</a>.
                     </p>
-                    <p>
-                        Contact : <a href="mailto:hello@caplearning.com">hello@caplearning.com</a> ou via
-                        WhatsApp au +221 78 123 45 67 (lundi&ndash;samedi, 9 h&ndash;19 h GMT).
-                    </p>
+                </div>
 
-                    <h2>2. Objet</h2>
-                    <p>
-                        Les présentes conditions encadrent l'utilisation du Site et l'achat des formations en ligne
-                        proposées par Cap Learning. En créant un compte ou en achetant une formation, vous acceptez
-                        ces conditions dans leur intégralité.
-                    </p>
+                <h2>1. Objet</h2>
+                <p>
+                    Les présentes conditions d'utilisation définissent les modalités d'accès et d'usage du site
+                    cap-learning.com et de la plateforme de formation Cap Learning (ensemble, « le Site »).
+                    Toute navigation sur le Site ou toute création de compte emporte acceptation des présentes
+                    conditions.
+                </p>
+                <p>
+                    Le Site est édité par la société Cap Learning, dont les coordonnées complètes figurent dans les
+                    <a href="mentions-legales">Mentions légales</a>.
+                </p>
 
-                    <h2>3. Les formations</h2>
-                    <p>
-                        Cap Learning propose des parcours de formation 100 % en ligne (vidéos, ressources téléchargeables,
-                        quiz, communauté d'apprenants), conçus pour les entrepreneurs et professionnels africains.
-                        L'accès aux formations achetées est <strong>illimité dans le temps</strong> : vous avancez à votre rythme
-                        et bénéficiez gratuitement des mises à jour du contenu.
-                    </p>
-                    <p>
-                        Un certificat Cap Learning, vérifiable par QR code, est délivré à l'issue
-                        de chaque parcours complété.
-                    </p>
+                <h2>2. Accès au Site</h2>
+                <p>
+                    La consultation des pages publiques du Site est libre et gratuite. L'accès aux contenus
+                    pédagogiques est réservé aux titulaires d'un compte ayant acheté le parcours correspondant, dans les
+                    conditions prévues par les <a href="cgv">Conditions générales de vente</a>.
+                </p>
+                <p>
+                    Les frais d'accès à Internet et d'équipement nécessaires à l'utilisation du Site restent à la charge
+                    de l'utilisateur.
+                </p>
 
-                    <h2>4. Prix et paiement</h2>
-                    <p>
-                        Les prix sont affichés en <strong>francs CFA (FCFA)</strong>, toutes taxes comprises.
-                        Le paiement s'effectue au choix par :
-                    </p>
-                    <ul>
-                        <li><strong>Mobile money</strong> : Wave, Orange Money, MTN Mobile Money ;</li>
-                        <li><strong>Carte bancaire</strong> : Visa, Mastercard ;</li>
-                        <li><strong>Virement bancaire</strong> (sur demande, notamment pour les entreprises).</li>
-                    </ul>
-                    <p>
-                        Les paiements en ligne sont traités de manière sécurisée par nos prestataires
-                        <strong>CinetPay</strong> et <strong>PayDunya</strong>. Cap Learning ne stocke aucune donnée
-                        bancaire ni identifiant mobile money.
-                    </p>
-                    <p>
-                        L'accès à la formation est ouvert dès la confirmation du paiement. Une facture est
-                        disponible sur simple demande (en FCFA ou en euros pour les entreprises).
-                    </p>
+                <h2>3. Compte apprenant</h2>
+                <p>
+                    La création d'un compte suppose de fournir des informations exactes et à jour. Le compte est
+                    strictement <strong>personnel</strong> : le partage d'identifiants, la revente d'un accès ou
+                    l'utilisation simultanée d'un même compte par plusieurs personnes sont interdits.
+                </p>
+                <p>
+                    L'utilisateur est responsable de la confidentialité de son mot de passe et de toute activité réalisée
+                    depuis son compte. Il informe Cap Learning sans délai, à l'adresse
+                    <a href="mailto:hello@caplearning.com">hello@caplearning.com</a> <mark class="legal-todo">[À COMPLÉTER : vérifier l'adresse : le site est sur cap-learning.com mais l'email annoncé est sur caplearning.com]</mark>,
+                    de toute utilisation non autorisée dont il aurait connaissance.
+                </p>
+                <p>
+                    L'utilisateur peut demander la suppression de son compte à tout moment. La suppression du compte
+                    entraîne la perte de l'accès aux parcours achetés et n'ouvre pas droit à remboursement en dehors des
+                    cas prévus par les <a href="cgv">Conditions générales de vente</a>.
+                </p>
 
-                    <h2>5. Garantie satisfait ou remboursé — 14 jours</h2>
-                    <div class="legal-highlight">
-                        <p style="margin: 0;">
-                            Chaque formation individuelle bénéficie d'une <strong>garantie satisfait ou remboursé de 14 jours</strong>
-                            à compter de la date d'achat. Un simple message par WhatsApp ou par email à
-                            <a href="mailto:hello@caplearning.com">hello@caplearning.com</a> suffit — sans justificatif à fournir.
-                            Le remboursement est effectué sur votre compte mobile money <strong>sous 72 heures</strong>
-                            (ou sur votre carte bancaire selon le moyen de paiement utilisé, dans les délais propres à votre banque).
-                        </p>
-                    </div>
-                    <p>
-                        Le remboursement porte sur le montant intégral payé. Après remboursement, l'accès à la
-                        formation concernée est clôturé.
-                    </p>
+                <h2>4. Règles d'usage</h2>
+                <p>Dans le cadre de l'utilisation du Site, l'utilisateur s'interdit :</p>
+                <ul>
+                    <li>de perturber le fonctionnement du Site ou d'en compromettre la sécurité, notamment par
+                        l'introduction de code malveillant, l'extraction automatisée de contenus ou toute tentative
+                        d'accès non autorisé ;</li>
+                    <li>de contourner les mesures techniques de protection des contenus ;</li>
+                    <li>de publier, dans les espaces communautaires ou les formulaires, des contenus illicites,
+                        diffamatoires, haineux, ou portant atteinte aux droits de tiers ;</li>
+                    <li>d'utiliser le Site à des fins de prospection commerciale non sollicitée.</li>
+                </ul>
+                <p>
+                    En cas de manquement, Cap Learning peut suspendre l'accès au compte, après information de
+                    l'utilisateur sauf urgence ou infraction manifeste, sans préjudice des suites judiciaires
+                    éventuelles.
+                </p>
 
-                    <h2>6. Votre compte</h2>
-                    <p>
-                        L'accès aux formations nécessite la création d'un compte personnel. Vous êtes responsable
-                        de la confidentialité de vos identifiants. Le compte et les accès aux formations sont
-                        <strong>strictement personnels</strong> : le partage d'identifiants ou la revente d'accès sont interdits
-                        et peuvent entraîner la suspension du compte.
-                    </p>
+                <h2>5. Contenus publiés par les utilisateurs</h2>
+                <p>
+                    L'utilisateur demeure responsable des contenus qu'il publie dans les espaces communautaires. Il
+                    concède à Cap Learning, à titre gratuit et pour la durée de leur mise en ligne, le droit d'héberger
+                    et d'afficher ces contenus aux seules fins du fonctionnement du service. Cap Learning peut retirer
+                    tout contenu manifestement illicite qui lui serait signalé.
+                </p>
 
-                    <h2>7. Propriété intellectuelle</h2>
-                    <p>
-                        L'ensemble des contenus du Site et des formations (vidéos, textes, supports, quiz, logos, marques)
-                        est protégé par le droit de la propriété intellectuelle et reste la propriété de Cap Learning ou de
-                        ses partenaires. Toute reproduction, diffusion ou revente sans autorisation écrite est interdite.
-                        Les ressources téléchargeables sont réservées à votre usage personnel ou à celui de votre entreprise.
-                    </p>
+                <h2>6. Disponibilité et évolutions</h2>
+                <p>
+                    Cap Learning met en œuvre les moyens raisonnables pour assurer l'accessibilité du Site, sans pouvoir
+                    garantir une disponibilité ininterrompue : des interruptions peuvent survenir pour maintenance,
+                    mise à jour, incident technique ou défaillance d'un prestataire ou d'un réseau.
+                </p>
+                <p>
+                    Cap Learning peut faire évoluer les fonctionnalités du Site à tout moment. Les conditions de durée
+                    d'accès aux parcours achetés sont précisées à l'article 8 des
+                    <a href="cgv">Conditions générales de vente</a>.
+                </p>
 
-                    <h2>8. Responsabilités</h2>
-                    <p>
-                        Cap Learning met tout en œuvre pour assurer la disponibilité du Site et la qualité pédagogique
-                        des formations, sans pouvoir garantir une disponibilité ininterrompue (maintenance, incidents
-                        techniques, réseau). Les formations transmettent des compétences et des méthodes ; les résultats
-                        commerciaux ou professionnels obtenus dépendent de leur mise en pratique par chaque apprenant
-                        et ne sont pas garantis.
-                    </p>
+                <h2>7. Propriété intellectuelle</h2>
+                <p>
+                    Les contenus du Site et des parcours sont protégés par le droit de la propriété intellectuelle et
+                    demeurent la propriété de Cap Learning ou de ses partenaires. Les droits concédés à l'acheteur d'un
+                    parcours sont définis à l'article 7 des <a href="cgv">Conditions générales de vente</a>.
+                    Toute reproduction ou diffusion non autorisée est interdite, dans les conditions rappelées aux
+                    <a href="mentions-legales">Mentions légales</a>.
+                </p>
 
-                    <h2>9. Données personnelles</h2>
-                    <p>
-                        Le traitement de vos données personnelles est décrit dans notre
-                        <a href="confidentialite">Politique de confidentialité</a>, conforme au Règlement général
-                        sur la protection des données (RGPD).
-                    </p>
+                <h2>8. Données personnelles et cookies</h2>
+                <p>
+                    Le traitement des données personnelles des utilisateurs est décrit dans notre
+                    <a href="confidentialite">Politique de confidentialité</a>, conforme au Règlement général sur la
+                    protection des données (RGPD).
+                </p>
 
-                    <h2>10. Modification des conditions</h2>
-                    <p>
-                        Ces conditions peuvent être mises à jour pour refléter l'évolution de nos services ou de la
-                        réglementation. La version en vigueur est celle publiée sur cette page, avec sa date de mise à jour.
-                    </p>
+                <h2>9. Modification des présentes conditions</h2>
+                <p>
+                    Les présentes conditions peuvent être mises à jour pour refléter l'évolution du service ou de la
+                    réglementation. La version applicable est celle publiée sur cette page, accompagnée de sa date de
+                    mise à jour.
+                </p>
 
-                    <h2>11. Droit applicable et litiges</h2>
-                    <p>
-                        Les présentes conditions sont soumises au <strong>droit français</strong>. En cas de difficulté,
-                        contactez-nous d'abord à <a href="mailto:hello@caplearning.com">hello@caplearning.com</a> :
-                        nous privilégions toujours une solution amiable. À défaut d'accord, le litige pourra être porté
-                        devant les juridictions compétentes. Conformément au droit de la consommation français, vous pouvez
-                        également recourir gratuitement à un médiateur de la consommation.
-                    </p>
-
+                <h2>10. Droit applicable</h2>
+                <p>
+                    Les présentes conditions d'utilisation sont soumises au <strong>droit français</strong>.
+                    Les modalités de réclamation, de médiation et de règlement des litiges relatifs à un achat sont
+                    précisées à l'article 18 des <a href="cgv">Conditions générales de vente</a>.
+                </p>
                 </article>
             </div>
         </section>
@@ -335,7 +372,9 @@
                     <ul>
                         <li><a href="contact#faq">FAQ</a></li>
                         <li><a href="contact">Contactez-nous</a></li>
+                        <li><a href="cgv">Conditions générales de vente</a></li>
                         <li><a href="cgu">Conditions d'utilisation</a></li>
+                        <li><a href="mentions-legales">Mentions légales</a></li>
                         <li><a href="confidentialite">Politique de confidentialité</a></li>
                     </ul>
                 </div>
@@ -353,8 +392,8 @@
         </div>
     </footer>
 
-    <script src="../js/app.js?v=20260726b"></script>
-    <script src="../js/whatsapp-widget.js?v=20260726b"></script>
-    <script src="../js/theme.js?v=20260726b" defer></script>
+    <script src="../js/app.js?v=20260725d"></script>
+    <script src="../js/whatsapp-widget.js?v=20260725d"></script>
+    <script src="../js/theme.js?v=20260725d" defer></script>
 </body>
 </html>

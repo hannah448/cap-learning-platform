@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+        <!-- cap-learning:migrate-brand -->
+    <script src="../js/migrate-brand.js?v=20260725d"></script>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
+    <title>Conditions générales de vente - Cap Learning</title>
+    <!-- Version des CGV en vigueur. Doit rester synchronisée avec CGV_VERSION
+         dans lib/cgv-consent.js et VERSION dans js/consent.js : c'est cette
+         valeur qui est enregistrée dans order_consents comme preuve. -->
+    <meta name="cgv-version" content="2026-07-26">
+    <meta name="description" content="Conditions générales de vente de Cap Learning : entité vendeuse, prix en FCFA, moyens de paiement, droits et durée d'accès aux formations, garantie 14 jours, droit de rétractation et droit applicable.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
+
+    <link rel="stylesheet" href="../css/style.css?v=20260725d">
+    <link rel="stylesheet" href="../css/components.css?v=20260725d">
+    <style>
+        /* ------ Legal page ------ */
+        .legal-hero {
+            padding: 120px 0 50px;
+            background: linear-gradient(135deg, #F4EEFE 0%, #EDE7FC 50%, #FBF7F0 100%);
+        }
+        .legal-hero-inner { max-width: 820px; }
+        .legal-hero h1 { font-size: clamp(1.9rem, 4.5vw, 2.7rem); line-height: 1.15; margin: 16px 0 12px; }
+        .legal-hero .legal-updated { color: #666; font-size: .95rem; }
+
+        .legal-main { padding: 50px 0 80px; }
+        .legal-content {
+            max-width: 820px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+        @media (max-width: 640px) { .legal-content { padding: 24px 20px; } }
+        .legal-content h2 {
+            font-size: 1.25rem;
+            margin: 32px 0 12px;
+            padding-top: 8px;
+        }
+        .legal-content h2:first-child { margin-top: 0; }
+        .legal-content p, .legal-content li {
+            color: #555;
+            line-height: 1.7;
+            font-size: .97rem;
+        }
+        .legal-content p { margin: 0 0 14px; }
+        .legal-content ul { margin: 0 0 14px; padding-left: 22px; }
+        .legal-content li { margin-bottom: 6px; }
+        .legal-content a { color: #3A50F6; font-weight: 600; }
+        .legal-content strong { color: #1a1a1a; }
+        .legal-highlight {
+            background: #FBF7F0;
+            border-left: 4px solid #A78BFA;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 0 0 14px;
+        }
+
+        .legal-todo {
+            background: #FFF3CD;
+            color: #7A5C10;
+            border: 1px dashed #E0B400;
+            padding: 1px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: .92em;
+            white-space: normal;
+        }
+        .legal-id-table { width: 100%; border-collapse: collapse; margin: 0 0 18px; }
+        .legal-id-table th, .legal-id-table td {
+            text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee;
+            font-size: .95rem; color: #555; vertical-align: top;
+        }
+        .legal-id-table th { width: 38%; color: #1a1a1a; font-weight: 600; }
+        @media (max-width: 640px) {
+            .legal-id-table th, .legal-id-table td { display: block; width: auto; padding: 6px 0; border: 0; }
+            .legal-id-table tr { display: block; padding: 10px 0; border-bottom: 1px solid #eee; }
+        }
+        .legal-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+        .legal-nav a {
+            display: inline-block; padding: 7px 14px; border-radius: 999px;
+            background: rgba(255,255,255,.75); border: 1px solid #E4DAFB;
+            color: #3A50F6; font-weight: 600; font-size: .88rem; text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="/" class="logo" aria-label="Cap Learning Accueil">
+                <span class="logo-mark">C</span>
+                <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+            </a>
+            <nav class="nav-main" aria-label="Navigation principale">
+                <ul class="nav-list">
+                    <li><a href="/" class="nav-link">Accueil</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                            Formations <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="formation-ecommerce" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128722;</span>
+                                    <div>
+                                        <strong>E-commerce &amp; Paiements</strong>
+                                        <span>20h &middot; 47 modules &middot; Bestseller</span>
+                                    </div>
+                                </a>
+                                <a href="formation-ia-business" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#129302;</span>
+                                    <div>
+                                        <strong>IA &amp; Business</strong>
+                                        <span>15h &middot; 26 modules &middot; Tendance 2026</span>
+                                    </div>
+                                </a>
+                                <a href="formation-marketing-digital" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128200;</span>
+                                    <div>
+                                        <strong>Marketing Digital</strong>
+                                        <span>9h &middot; 16 modules &middot; Bestseller</span>
+                                    </div>
+                                </a>
+                                <a href="formation-reseaux-sociaux" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128241;</span>
+                                    <div>
+                                        <strong>R&eacute;seaux Sociaux &amp; CM</strong>
+                                        <span>7h &middot; 25 modules &middot; WhatsApp Business</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+                                <a href="catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Voir les 4 parcours &rarr;
+                                </a>
+                                <a href="comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
+                                    Comparer &rarr;
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="plateforme" class="nav-link">Plateforme</a></li>
+                    <li class="nav-dropdown">
+                        <button class="nav-link nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true">
+                            À propos <span class="nav-chevron">&#9662;</span>
+                        </button>
+                        <div class="nav-dropdown-menu">
+                            <div class="nav-dropdown-grid">
+                                <a href="qui-sommes-nous" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#127757;</span>
+                                    <div><strong>Qui sommes-nous</strong><span>Notre mission panafricaine</span></div>
+                                </a>
+                                <a href="nos-experts" class="nav-dropdown-item">
+                                    <span class="nav-dropdown-icon">&#128100;</span>
+                                    <div><strong>Nos experts</strong><span>Formateurs &amp; accompagnateurs</span></div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a href="contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="panier" class="cart-btn" aria-label="Panier">
+                    <span class="cart-icon">&#128722;</span>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </a>
+                <a href="connexion" class="btn btn-ghost btn-sm">Connexion</a>
+                <a href="connexion#inscription" class="btn btn-primary btn-sm">Créer un compte</a>
+                <button class="mobile-menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Hero -->
+        <section class="legal-hero">
+            <div class="container legal-hero-inner">
+                <span class="section-badge">Informations légales</span>
+                <h1>Conditions générales de vente</h1>
+                <p class="legal-updated">Dernière mise à jour : 26 juillet 2026</p>
+                <div class="legal-nav">
+                    <a href="mentions-legales">Mentions légales</a>
+                    <a href="cgv">Conditions générales de vente</a>
+                    <a href="cgu">Conditions d'utilisation</a>
+                    <a href="confidentialite">Politique de confidentialité</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- BROUILLON : à faire relire et valider par Hannah (et idéalement par un avocat) avant publication définitive.
+         Identité Cap Learning vérifiée le 26/07/2026 sur l'API Recherche d'entreprises (annuaire-entreprises.data.gouv.fr).
+         NB : Cap Learning n'est PAS un organisme de formation déclaré (pas de NDA) ; l'organisme déclaré est Digi Atlas.
+         Ne pas réintroduire cette mention pour Cap Learning, et ne pas employer le vocabulaire du Code du travail
+         (action de formation, convention de formation, OPCO, CPF).
+         RESTE À COMPLÉTER : capital social, email et téléphone de contact, durée minimale garantie d'accès,
+         régime de TVA à confirmer avec l'expert-comptable, médiateur de la consommation (obligatoire en B2C, art. L616-1),
+         montant et modalités exactes du paiement en 3 fois. -->
+        <section class="legal-main">
+            <div class="container">
+                <article class="legal-content">
+
+                <div class="legal-highlight">
+                    <p style="margin:0 0 8px"><strong>L'essentiel en trois points</strong></p>
+                    <ul style="margin:0">
+                        <li>Le vendeur est <strong>Cap Learning</strong> (SARL française, RCS 921 377 347) — et non Digi Atlas.</li>
+                        <li>Vous bénéficiez d'une <strong>garantie satisfait ou remboursé de 14 jours</strong>, sans justificatif.</li>
+                        <li>L'accès à votre parcours est <strong>personnel</strong> et ne peut être ni partagé ni revendu.</li>
+                    </ul>
+                </div>
+
+                <h2>1. Objet et champ d'application</h2>
+                <p>
+                    Les présentes conditions générales de vente (ci-après « CGV ») régissent la vente des parcours de
+                    formation en ligne proposés par Cap Learning sur le site cap-learning.com (ci-après « le Site »).
+                    Elles s'appliquent à toute commande passée sur le Site, à l'exclusion de toute autre condition.
+                </p>
+                <p>
+                    Toute commande implique l'acceptation pleine et entière des présentes CGV, matérialisée par la case
+                    à cocher prévue à cet effet lors de la validation du panier. Cap Learning se réserve la faculté de
+                    modifier les CGV à tout moment ; les CGV applicables sont celles en vigueur à la date de la commande,
+                    dont une copie est adressée au client avec sa confirmation de commande.
+                </p>
+                <p>
+                    L'utilisation du Site et du compte apprenant est par ailleurs régie par les
+                    <a href="cgu">Conditions d'utilisation</a>.
+                </p>
+
+                <h2>2. Identité du vendeur</h2>
+                <p>
+                    Les formations vendues sur le Site le sont par <strong>CAP LEARNING</strong>, société à responsabilité
+                    limitée au capital de <mark class="legal-todo">[À COMPLÉTER : montant du capital social, cf. statuts / Kbis]</mark> €, dont le siège social est situé
+                    2260 route de Saint-Fonds, 69480 Pommiers (France), immatriculée au Registre du commerce et des
+                    sociétés sous le numéro <strong>921 377 347</strong> (SIRET du siège : 921 377 347 00023),
+                    numéro de TVA intracommunautaire FR71 921 377 347.
+                </p>
+                <p>
+                    Contact : <a href="mailto:hello@caplearning.com">hello@caplearning.com</a> <mark class="legal-todo">[À COMPLÉTER : vérifier l'adresse : le site est sur cap-learning.com mais l'email annoncé est sur caplearning.com]</mark> —
+                    WhatsApp <mark class="legal-todo">[À COMPLÉTER : numéro de téléphone / WhatsApp réel — le numéro actuellement affiché sur le site, +221 78 123 45 67, est un numéro d'exemple]</mark>. L'ensemble des informations d'identification figure dans nos
+                    <a href="mentions-legales">Mentions légales</a>.
+                </p>
+                <p>
+                    <strong>Digi Atlas</strong> est la marque ombrelle sous laquelle est présentée la plateforme.
+                    Digi Atlas n'est pas partie au contrat de vente : le cocontractant du client est exclusivement
+                    Cap Learning.
+                </p>
+
+                <h2>3. Les formations proposées</h2>
+                <p>
+                    Cap Learning commercialise des parcours de formation 100 % en ligne, constitués de contenus
+                    numériques : vidéos, supports téléchargeables, quiz, exercices pratiques et accès à une communauté
+                    d'apprenants. Les caractéristiques essentielles de chaque parcours (durée indicative, nombre de
+                    modules, contenu, prix) sont décrites sur la fiche du parcours concerné, avant la commande.
+                </p>
+                <p>
+                    Un certificat de réussite Cap Learning, vérifiable en ligne par QR code, est délivré à l'issue de
+                    chaque parcours complété. Ce certificat atteste du suivi du parcours : il ne constitue ni un diplôme,
+                    ni un titre ou une certification enregistrés au Répertoire national des certifications
+                    professionnelles (RNCP) ou au Répertoire spécifique (RS).
+                </p>
+                <p>
+                    Les parcours sont vendus en accès libre et ne sont pas éligibles aux dispositifs français de
+                    financement de la formation professionnelle continue.
+                </p>
+
+                <h2>4. Commande</h2>
+                <p>
+                    Le client sélectionne le ou les parcours souhaités, vérifie le détail de sa commande et son prix
+                    total, puis valide sa commande après avoir accepté les présentes CGV. La validation de la commande
+                    vaut conclusion du contrat ; elle est confirmée par un courrier électronique récapitulatif adressé à
+                    l'adresse indiquée par le client.
+                </p>
+                <p>
+                    La création d'un compte apprenant est nécessaire pour accéder aux parcours achetés. Le client
+                    garantit l'exactitude des informations qu'il communique lors de la commande.
+                </p>
+                <p>
+                    Cap Learning se réserve le droit de refuser ou d'annuler toute commande présentant un caractère
+                    anormal, un litige de paiement antérieur ou une suspicion de fraude.
+                </p>
+
+                <h2>5. Prix et taxes</h2>
+                <p>
+                    Les prix des parcours sont indiqués sur le Site en <strong>francs CFA (XOF)</strong>. Le prix
+                    applicable est celui affiché au jour de la commande. Cap Learning se réserve le droit de modifier ses
+                    prix à tout moment, sans effet sur les commandes déjà validées.
+                </p>
+                <p>
+                    Les parcours étant des services fournis par voie électronique, le régime de TVA applicable dépend du
+                    lieu de résidence du client : pour un client consommateur établi hors de l'Union européenne, la
+                    prestation n'est pas soumise à la TVA française ; pour un client consommateur établi dans l'Union
+                    européenne, la TVA du pays de résidence est incluse dans le prix affiché ; pour un client
+                    professionnel assujetti établi dans l'Union européenne hors de France, la TVA est autoliquidée par le
+                    preneur. <mark class="legal-todo">[À COMPLÉTER : régime de TVA à confirmer avec l'expert-comptable, et à mettre en cohérence avec la mention « toutes taxes comprises » affichée sur les fiches parcours]</mark>
+                </p>
+                <p>
+                    Une facture est mise à disposition du client sur simple demande adressée à
+                    <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>, en francs CFA ou en euros.
+                </p>
+
+                <h2>6. Paiement</h2>
+                <p>Le règlement de la commande s'effectue au choix du client par :</p>
+                <ul>
+                    <li><strong>Mobile money</strong> : Wave, Orange Money, MTN Mobile Money ;</li>
+                    <li><strong>Carte bancaire</strong> : Visa, Mastercard ;</li>
+                    <li><strong>Virement bancaire</strong>, sur demande, notamment pour les commandes émanant d'entreprises.</li>
+                </ul>
+                <p>
+                    Les paiements en ligne sont traités par nos prestataires de services de paiement
+                    <strong>CinetPay</strong> et <strong>PayDunya</strong>, selon leurs propres procédures de sécurité.
+                    Cap Learning ne collecte ni ne conserve aucune donnée de carte bancaire ni aucun identifiant
+                    mobile money.
+                </p>
+                <p>
+                    Un paiement échelonné en trois fois sans frais peut être proposé pour certains parcours réglés par
+                    Wave ou Orange Money. <mark class="legal-todo">[À COMPLÉTER : préciser le nombre d'échéances, leur montant et leur périodicité]</mark> En cas d'échéance impayée, Cap Learning pourra suspendre l'accès au
+                    parcours après une relance restée sans réponse pendant sept jours.
+                </p>
+                <p>
+                    La commande est réputée payée à compter de l'encaissement effectif des fonds. L'accès au parcours est
+                    ouvert dès la confirmation du paiement par le prestataire.
+                </p>
+
+                <h2>7. Droits d'accès concédés</h2>
+                <p>
+                    L'achat d'un parcours ne transfère au client aucun droit de propriété intellectuelle. Cap Learning
+                    concède au client, pour ses seuls besoins propres, un droit d'accès et d'utilisation
+                    <strong>personnel, non exclusif, non cessible et non transférable</strong> aux contenus du parcours
+                    acheté.
+                </p>
+                <p>Le client s'interdit en conséquence :</p>
+                <ul>
+                    <li>de partager, prêter, céder ou revendre ses identifiants ou son accès à un tiers ;</li>
+                    <li>de télécharger, enregistrer, capturer, copier ou rediffuser les vidéos et supports, en dehors des
+                        ressources expressément mises à disposition en téléchargement ;</li>
+                    <li>d'exploiter les contenus à des fins de formation collective, commerciale ou de revente,
+                        sauf licence entreprise conclue par écrit avec Cap Learning ;</li>
+                    <li>de contourner les mesures techniques de protection de la plateforme.</li>
+                </ul>
+                <p>
+                    Les ressources téléchargeables (modèles, fiches, guides) peuvent être utilisées librement par le
+                    client pour ses besoins personnels ou ceux de sa propre entreprise, à l'exclusion de toute
+                    rediffusion à des tiers.
+                </p>
+                <p>
+                    Tout manquement caractérisé aux présentes stipulations pourra entraîner, après mise en demeure restée
+                    sans effet pendant quinze jours, la suspension puis la résiliation de l'accès, sans remboursement et
+                    sans préjudice des dommages et intérêts que Cap Learning serait fondée à réclamer.
+                </p>
+
+                <h2>8. Durée de l'accès</h2>
+                <p>
+                    L'accès au parcours acheté est ouvert dès la confirmation du paiement, sans limitation de durée
+                    d'utilisation : le client progresse à son rythme et bénéficie gratuitement des mises à jour du
+                    contenu du parcours.
+                </p>
+                <p>
+                    Cap Learning garantit le maintien de l'accès pendant une durée minimale de
+                    <mark class="legal-todo">[À COMPLÉTER : durée minimale garantie — 36 mois recommandé]</mark> à compter de la date d'achat, puis aussi longtemps que la plateforme demeure exploitée.
+                </p>
+                <p>
+                    En cas d'arrêt définitif de l'exploitation de la plateforme ou de retrait d'un parcours du catalogue,
+                    Cap Learning en informera les clients concernés par courrier électronique au moins
+                    <strong>trois mois</strong> à l'avance et mettra à leur disposition, pendant ce préavis, les
+                    ressources pédagogiques du parcours en téléchargement. Si l'arrêt intervient avant l'expiration de la
+                    durée minimale garantie, le client sera remboursé au prorata de la durée restant à courir.
+                </p>
+
+                <h2>9. Garantie commerciale « satisfait ou remboursé » — 14 jours</h2>
+                <p>
+                    Indépendamment des droits légaux exposés aux articles 10 et 11, Cap Learning accorde à chaque client
+                    ayant acheté un parcours individuel une <strong>garantie commerciale « satisfait ou remboursé » de
+                    14 jours calendaires</strong> à compter de la date d'achat.
+                </p>
+                <p>
+                    Pour en bénéficier, il suffit d'adresser une demande par courrier électronique à
+                    <a href="mailto:hello@caplearning.com">hello@caplearning.com</a> ou par WhatsApp, avant l'expiration
+                    du délai de 14 jours. <strong>Aucun justificatif ni motif n'est exigé</strong>, et l'avancement dans
+                    le parcours est indifférent.
+                </p>
+                <p>
+                    Le remboursement porte sur l'intégralité du montant effectivement payé. Il est effectué sur le compte
+                    mobile money du client sous <strong>72 heures</strong> à compter de la demande, ou par
+                    recréditement de la carte bancaire ayant servi au paiement, dans les délais propres à
+                    l'établissement bancaire du client. Aucun frais n'est retenu.
+                </p>
+                <p>
+                    À compter du remboursement, l'accès au parcours concerné est clôturé et le client s'engage à cesser
+                    toute utilisation des contenus et des ressources téléchargées.
+                </p>
+                <p>
+                    Cette garantie s'applique une fois par parcours et par client. Elle ne s'applique pas aux licences
+                    entreprise ni aux commandes réglées par virement dans le cadre d'un contrat spécifique, qui
+                    demeurent régies par leurs conditions propres.
+                </p>
+
+                <h2>10. Droit de rétractation</h2>
+                <p>
+                    Conformément aux articles L221-18 et suivants du Code de la consommation, le client consommateur
+                    dispose en principe d'un délai de <strong>quatorze jours</strong> à compter de la conclusion du
+                    contrat pour exercer son droit de rétractation, sans avoir à motiver sa décision.
+                </p>
+                <p>
+                    Toutefois, en application de l'article L221-28, 13° du même code, ce droit ne peut plus être exercé
+                    pour la fourniture d'un contenu numérique non fourni sur support matériel dont l'exécution a commencé
+                    <strong>après accord préalable exprès du consommateur et renoncement exprès de sa part à son droit de
+                    rétractation</strong>. L'accès aux parcours étant ouvert immédiatement après le paiement, le client
+                    est invité, lors de la validation de sa commande, à donner cet accord et à renoncer expressément à
+                    son droit de rétractation, en cochant la case prévue à cet effet.
+                </p>
+                <div class="legal-highlight">
+                    <p style="margin:0">
+                        Si le client n'a pas renoncé à son droit de rétractation, il peut l'exercer dans les 14 jours en
+                        écrivant à <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>. Le remboursement
+                        intervient alors au plus tard dans les quatorze jours suivant la réception de la demande, par le
+                        même moyen de paiement que celui utilisé lors de la commande.
+                        <br><br>
+                        Dans tous les cas, la <strong>garantie commerciale de 14 jours</strong> décrite à l'article 9
+                        s'applique et permet au client d'obtenir le remboursement intégral de son achat, qu'il ait ou non
+                        renoncé à son droit de rétractation.
+                    </p>
+                </div>
+
+                <h2>11. Garanties légales</h2>
+                <p>
+                    Le client consommateur bénéficie de la <strong>garantie légale de conformité</strong> applicable aux
+                    contenus et services numériques, prévue aux articles L224-25-12 et suivants du Code de la
+                    consommation, ainsi que de la <strong>garantie légale contre les vices cachés</strong> prévue aux
+                    articles 1641 et suivants du Code civil. Ces garanties s'exercent indépendamment de la garantie
+                    commerciale accordée à l'article 9 et sans frais pour le client.
+                </p>
+                <p>
+                    En cas de défaut de conformité du contenu numérique fourni, le client peut exiger sa mise en
+                    conformité et, à défaut, obtenir une réduction du prix ou la résolution du contrat, dans les
+                    conditions prévues par la loi. Toute demande peut être adressée à
+                    <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>.
+                </p>
+
+                <h2>12. Obligations du client</h2>
+                <p>
+                    Le client est responsable de la confidentialité de ses identifiants de connexion et de toute
+                    utilisation faite depuis son compte. Il informe Cap Learning sans délai de toute utilisation non
+                    autorisée dont il aurait connaissance.
+                </p>
+                <p>
+                    Le client s'engage à disposer des moyens techniques nécessaires au suivi du parcours (terminal,
+                    connexion Internet, navigateur à jour), dont le coût demeure à sa charge, et à adopter un
+                    comportement respectueux au sein des espaces communautaires mis à disposition.
+                </p>
+
+                <h2>13. Responsabilité</h2>
+                <p>
+                    Cap Learning met en œuvre les moyens raisonnables pour assurer la disponibilité du Site et de la
+                    plateforme ainsi que la qualité pédagogique des parcours. La plateforme étant accessible en ligne,
+                    Cap Learning ne peut toutefois garantir une disponibilité ininterrompue, notamment en cas
+                    d'opérations de maintenance, d'incident technique, de défaillance des réseaux de télécommunication
+                    ou d'un prestataire tiers.
+                </p>
+                <p>
+                    Les parcours transmettent des compétences, des méthodes et des outils. <strong>Les résultats
+                    commerciaux, professionnels ou financiers obtenus dépendent de leur mise en œuvre par chaque
+                    apprenant et de facteurs propres à son marché : ils ne sont ni promis ni garantis par
+                    Cap Learning.</strong> Les témoignages et exemples présentés sur le Site rendent compte de parcours
+                    individuels et ne constituent pas une promesse de résultat.
+                </p>
+                <p>
+                    Cap Learning ne saurait être tenue responsable des dommages indirects subis par le client, tels que
+                    perte de chiffre d'affaires, perte de clientèle ou préjudice d'image. Les présentes stipulations ne
+                    limitent pas la responsabilité de Cap Learning en cas de dol, de faute lourde, de dommage corporel,
+                    ni dans les cas où la loi l'interdit.
+                </p>
+
+                <h2>14. Force majeure</h2>
+                <p>
+                    Aucune des parties ne pourra être tenue responsable d'un manquement à ses obligations résultant d'un
+                    cas de force majeure au sens de l'article 1218 du Code civil. Si l'empêchement est définitif, le
+                    contrat est résolu de plein droit et les sommes versées au titre de la période non exécutée sont
+                    remboursées au client.
+                </p>
+
+                <h2>15. Données personnelles</h2>
+                <p>
+                    Les données personnelles collectées dans le cadre de la commande sont traitées par Cap Learning,
+                    responsable du traitement, aux fins de la gestion des commandes, de l'accès aux parcours, de la
+                    facturation et de la relation client. Les modalités du traitement, les durées de conservation et les
+                    droits dont dispose le client sont détaillés dans notre
+                    <a href="confidentialite">Politique de confidentialité</a>.
+                </p>
+
+                <h2>16. Preuve et archivage</h2>
+                <p>
+                    Les registres informatisés conservés dans les systèmes de Cap Learning et de ses prestataires de
+                    paiement, dans des conditions raisonnables de sécurité, sont considérés comme preuve des commandes,
+                    des paiements et des acceptations des présentes CGV. Les contrats conclus pour un montant supérieur
+                    au seuil légal sont archivés pendant dix ans et accessibles sur demande.
+                </p>
+
+                <h2>17. Nullité partielle et non-renonciation</h2>
+                <p>
+                    Si une stipulation des présentes CGV était déclarée nulle ou inapplicable, les autres stipulations
+                    conserveraient leur pleine force. Le fait pour Cap Learning de ne pas se prévaloir d'un manquement du
+                    client ne saurait valoir renonciation à s'en prévaloir ultérieurement.
+                </p>
+
+                <h2>18. Droit applicable, réclamation et litiges</h2>
+                <p>
+                    Les présentes CGV et les contrats qui en découlent sont soumis au <strong>droit français</strong>.
+                    Conformément à l'article 6 du règlement (CE) n° 593/2008 (Rome I), ce choix ne peut priver le client
+                    consommateur de la protection que lui assurent les dispositions impératives de la loi du pays dans
+                    lequel il a sa résidence habituelle.
+                </p>
+                <p>
+                    <strong>Réclamation préalable.</strong> En cas de difficulté, le client est invité à contacter
+                    Cap Learning en priorité à <a href="mailto:hello@caplearning.com">hello@caplearning.com</a> :
+                    la recherche d'une solution amiable est systématiquement privilégiée. Cap Learning s'engage à
+                    répondre à toute réclamation écrite dans un délai de quinze jours ouvrés.
+                </p>
+                <p>
+                    <strong>Médiation de la consommation.</strong> Conformément aux articles L611-1 et suivants du Code
+                    de la consommation, le client consommateur peut recourir gratuitement à un médiateur de la
+                    consommation en vue de la résolution amiable du litige l'opposant à Cap Learning, après avoir tenté
+                    une réclamation directe. <mark class="legal-todo">[À COMPLÉTER : nom, adresse postale et site du médiateur de la consommation agréé — adhésion obligatoire en B2C (art. L616-1 du Code de la consommation)]</mark>
+                </p>
+                <p>
+                    <strong>Juridiction.</strong> À défaut de résolution amiable, le litige pourra être porté devant les
+                    juridictions compétentes. Le client consommateur peut saisir, à son choix, la juridiction du lieu de
+                    son domicile ou celle du siège de Cap Learning. Pour les clients professionnels, compétence exclusive
+                    est attribuée aux tribunaux du ressort du siège social de Cap Learning.
+                </p>
+
+                <h2>19. Entrée en vigueur</h2>
+                <p>
+                    Les présentes conditions générales de vente sont entrées en vigueur le 26 juillet 2026.
+                </p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <span class="logo-mark">C</span>
+                        <span class="logo-text">Cap <span class="logo-accent">Learning</span></span>
+                        <span class="logo-by">by <img src="../img/digi-atlas-logo.jpg" alt="Digi Atlas" class="logo-digi-atlas"></span>
+                    </a>
+                    <p>La plateforme de formation digitale conçue pour les entrepreneurs africains. Apprenez, grandissez, transformez.</p>
+                    <a href="https://fr.trustpilot.com/review/digi-atlas.com" target="_blank" rel="noopener" class="tp-footer-badge">
+                        <span class="tp-footer-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="tp-footer-score">4.8/5</span>
+                        <span>sur Trustpilot</span>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <h4>Nos 4 parcours</h4>
+                    <ul>
+                        <li><a href="formation-ecommerce">E-commerce &amp; Paiements</a></li>
+                        <li><a href="formation-ia-business">IA &amp; Business</a></li>
+                        <li><a href="formation-marketing-digital">Marketing Digital</a></li>
+                        <li><a href="formation-reseaux-sociaux">Réseaux Sociaux &amp; CM</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Entreprise</h4>
+                    <ul>
+                        <li><a href="qui-sommes-nous">Qui sommes-nous</a></li>
+                        <li><a href="nos-experts">Nos experts</a></li>
+                        <li><a href="plateforme">La plateforme</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="contact#faq">FAQ</a></li>
+                        <li><a href="contact">Contactez-nous</a></li>
+                        <li><a href="cgv">Conditions générales de vente</a></li>
+                        <li><a href="cgu">Conditions d'utilisation</a></li>
+                        <li><a href="mentions-legales">Mentions légales</a></li>
+                        <li><a href="confidentialite">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cap Learning. Tous droits réservés. Fait avec &#10084; depuis l'Afrique.<br>Cap Learning, plateforme de formation en ligne pour l’Afrique.</p>
+                <div class="payment-methods">
+                    <span>Paiements : </span>
+                    <span class="payment-icon">Wave</span>
+                    <span class="payment-icon">Orange Money</span>
+                    <span class="payment-icon">MTN MoMo</span>
+                    <span class="payment-icon">Carte bancaire</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js?v=20260725d"></script>
+    <script src="../js/whatsapp-widget.js?v=20260725d"></script>
+    <script src="../js/theme.js?v=20260725d" defer></script>
+</body>
+</html>

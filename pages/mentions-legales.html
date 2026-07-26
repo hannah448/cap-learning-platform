@@ -4,21 +4,21 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js?v=20260726b"></script>
+    <script src="../js/migrate-brand.js?v=20260725d"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726b">
-    <link rel="apple-touch-icon" href="/favicon.svg?v=20260726b">
-    <title>Politique de confidentialité - Cap Learning</title>
-    <meta name="description" content="Politique de confidentialité de Cap Learning : quelles données nous collectons, pourquoi, combien de temps, et vos droits RGPD (accès, rectification, effacement).">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
+    <title>Mentions légales - Cap Learning</title>
+    <meta name="description" content="Mentions légales de Cap Learning : éditeur du site, identification de la société, directeur de la publication, hébergeur et contact.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=20260726b">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
 
-    <link rel="stylesheet" href="../css/style.css?v=20260726b">
-    <link rel="stylesheet" href="../css/components.css?v=20260726b">
+    <link rel="stylesheet" href="../css/style.css?v=20260725d">
+    <link rel="stylesheet" href="../css/components.css?v=20260725d">
     <style>
         /* ------ Legal page ------ */
         .legal-hero {
@@ -62,22 +62,33 @@
             padding: 16px 20px;
             margin: 0 0 14px;
         }
-        .legal-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: .92rem;
-            margin: 0 0 14px;
+
+        .legal-todo {
+            background: #FFF3CD;
+            color: #7A5C10;
+            border: 1px dashed #E0B400;
+            padding: 1px 7px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: .92em;
+            white-space: normal;
         }
-        .legal-table th, .legal-table td {
-            border: 1px solid #eee;
-            padding: 10px 12px;
-            text-align: left;
-            color: #555;
-            line-height: 1.5;
-            vertical-align: top;
+        .legal-id-table { width: 100%; border-collapse: collapse; margin: 0 0 18px; }
+        .legal-id-table th, .legal-id-table td {
+            text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee;
+            font-size: .95rem; color: #555; vertical-align: top;
         }
-        .legal-table th { background: #FBF7F0; color: #1a1a1a; font-weight: 600; }
-        .legal-table-wrap { overflow-x: auto; margin: 0 0 14px; }
+        .legal-id-table th { width: 38%; color: #1a1a1a; font-weight: 600; }
+        @media (max-width: 640px) {
+            .legal-id-table th, .legal-id-table td { display: block; width: auto; padding: 6px 0; border: 0; }
+            .legal-id-table tr { display: block; padding: 10px 0; border-bottom: 1px solid #eee; }
+        }
+        .legal-nav { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0 0; }
+        .legal-nav a {
+            display: inline-block; padding: 7px 14px; border-radius: 999px;
+            background: rgba(255,255,255,.75); border: 1px solid #E4DAFB;
+            color: #3A50F6; font-weight: 600; font-size: .88rem; text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -130,10 +141,10 @@
                                 </a>
                             </div>
                             <div style="border-top:1px solid var(--color-gray-200, #e5e7eb); margin-top:12px; padding-top:12px; display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
-                                <a href="catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary-text, #3A50F6); font-weight:600;">
+                                <a href="catalogue" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
                                     Voir les 4 parcours &rarr;
                                 </a>
-                                <a href="comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary-text, #3A50F6); font-weight:600;">
+                                <a href="comparatif" class="nav-dropdown-item" style="justify-content:center; color:var(--color-primary, #3A50F6); font-weight:600;">
                                     Comparer &rarr;
                                 </a>
                             </div>
@@ -179,159 +190,137 @@
         <section class="legal-hero">
             <div class="container legal-hero-inner">
                 <span class="section-badge">Informations légales</span>
-                <h1>Politique de confidentialité</h1>
-                <p class="legal-updated">Dernière mise à jour : 7 juillet 2026</p>
+                <h1>Mentions légales</h1>
+                <p class="legal-updated">Dernière mise à jour : 26 juillet 2026</p>
+                <div class="legal-nav">
+                    <a href="mentions-legales">Mentions légales</a>
+                    <a href="cgv">Conditions générales de vente</a>
+                    <a href="cgu">Conditions d'utilisation</a>
+                    <a href="confidentialite">Politique de confidentialité</a>
+                </div>
             </div>
         </section>
 
-        <!-- BROUILLON : contenu juridique à faire relire et valider par Hannah avant publication définitive.
-             Identité Cap Learning renseignée depuis annuaire-entreprises (SARL, SIREN 921 377 347, siège 69480 Pommiers).
-             Reste à compléter : contact du responsable de traitement / DPO si désigné. -->
+        <!-- BROUILLON : à faire relire et valider par Hannah avant publication définitive.
+         Identité Cap Learning vérifiée le 26/07/2026 sur l'API Recherche d'entreprises (annuaire-entreprises.data.gouv.fr) :
+         SARL, SIREN 921 377 347, SIRET siège 921 377 347 00023, TVA FR71921377347, APE 70.22Z,
+         siège 2260 route de Saint-Fonds 69480 Pommiers, gérante Hannah PETERS.
+         NB : Cap Learning n'est PAS un organisme de formation déclaré (pas de NDA) ; l'organisme déclaré est Digi Atlas.
+         Ne pas réintroduire cette mention pour Cap Learning.
+         RESTE À COMPLÉTER : montant du capital social, ville du greffe du RCS (cf. Kbis),
+         adresse postale exacte de l'hébergeur (à confirmer auprès de Vercel), email et téléphone de contact. -->
         <section class="legal-main">
             <div class="container">
                 <article class="legal-content">
 
-                    <h2>En bref</h2>
-                    <div class="legal-highlight">
-                        <p style="margin: 0;">
-                            Nous collectons uniquement les données nécessaires pour vous inscrire, vous faire suivre
-                            vos formations et encaisser vos paiements. <strong>Nous ne vendons jamais vos données.</strong>
-                            Vous pouvez à tout moment demander à les consulter, les corriger ou les supprimer en écrivant à
-                            <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>.
-                        </p>
-                    </div>
+                <h2>1. Éditeur du site</h2>
+                <p>
+                    Le site <strong>cap-learning.com</strong> (ci-après « le Site ») est édité par la société
+                    <strong>CAP LEARNING</strong>, qui exploite la plateforme de formation en ligne Cap Learning
+                    et qui est également le vendeur des formations proposées sur le Site.
+                </p>
+                <table class="legal-id-table">
+                    <tbody>
+                        <tr><th>Dénomination sociale</th><td>CAP LEARNING</td></tr>
+                        <tr><th>Forme juridique</th><td>Société à responsabilité limitée (SARL)</td></tr>
+                        <tr><th>Capital social</th><td><mark class="legal-todo">[À COMPLÉTER : montant du capital social, cf. statuts / Kbis]</mark> €</td></tr>
+                        <tr><th>Siège social</th><td>2260 route de Saint-Fonds, 69480 Pommiers, France</td></tr>
+                        <tr><th>RCS</th><td><mark class="legal-todo">[À COMPLÉTER : ville du greffe du RCS, cf. Kbis]</mark> — numéro d'immatriculation 921 377 347</td></tr>
+                        <tr><th>SIRET (siège)</th><td>921 377 347 00023</td></tr>
+                        <tr><th>Code APE</th><td>70.22Z — Conseil pour les affaires et autres conseils de gestion</td></tr>
+                        <tr><th>N° de TVA intracommunautaire</th><td>FR71 921 377 347</td></tr>
+                        <tr><th>Gérante</th><td>Hannah Peters</td></tr>
+                        <tr><th>Adresse électronique</th><td><a href="mailto:hello@caplearning.com">hello@caplearning.com</a> <mark class="legal-todo">[À COMPLÉTER : vérifier l'adresse : le site est sur cap-learning.com mais l'email annoncé est sur caplearning.com]</mark></td></tr>
+                        <tr><th>Téléphone / WhatsApp</th><td><mark class="legal-todo">[À COMPLÉTER : numéro de téléphone / WhatsApp réel — le numéro actuellement affiché sur le site, +221 78 123 45 67, est un numéro d'exemple]</mark></td></tr>
+                    </tbody>
+                </table>
 
-                    <h2>1. Qui est responsable de vos données ?</h2>
-                    <p>
-                        Le responsable du traitement est <strong>Cap Learning</strong> (SARL), éditeur du Site,
-                        dont le siège social est situé 2260 route de Saint-Fonds, 69480 Pommiers (France),
-                        immatriculée au RCS sous le numéro 921 377 347.
-                        Pour toute question relative à vos données personnelles :
-                        <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>.
-                    </p>
-                    <p>
-                        Cette politique est conforme au <strong>Règlement général sur la protection des données (RGPD)</strong>
-                        et à la loi française « Informatique et Libertés ».
-                    </p>
+                <h2>2. Directrice de la publication</h2>
+                <p>
+                    La directrice de la publication du Site est <strong>Hannah Peters</strong>, en sa qualité de gérante
+                    de la société Cap Learning.
+                </p>
 
-                    <h2>2. Quelles données collectons-nous, et pourquoi ?</h2>
-                    <div class="legal-table-wrap">
-                        <table class="legal-table">
-                            <tr>
-                                <th>Données</th>
-                                <th>Pourquoi (finalité)</th>
-                                <th>Base légale</th>
-                            </tr>
-                            <tr>
-                                <td>Nom, email, téléphone, pays</td>
-                                <td>Créer votre compte, vous répondre, assurer le suivi de votre formation</td>
-                                <td>Exécution du contrat</td>
-                            </tr>
-                            <tr>
-                                <td>Données de paiement (traitées par CinetPay / PayDunya)</td>
-                                <td>Encaisser vos achats et effectuer les remboursements de la garantie 14 jours</td>
-                                <td>Exécution du contrat / obligation légale (comptabilité)</td>
-                            </tr>
-                            <tr>
-                                <td>Progression dans les formations, quiz, certificats</td>
-                                <td>Suivre votre parcours et délivrer votre certificat</td>
-                                <td>Exécution du contrat</td>
-                            </tr>
-                            <tr>
-                                <td>Messages envoyés via le formulaire de contact ou WhatsApp</td>
-                                <td>Répondre à vos demandes</td>
-                                <td>Consentement / intérêt légitime</td>
-                            </tr>
-                            <tr>
-                                <td>Emails d'information et offres (newsletter)</td>
-                                <td>Vous informer de nos nouveautés — uniquement si vous l'acceptez</td>
-                                <td>Consentement (désinscription possible à tout moment)</td>
-                            </tr>
-                        </table>
-                    </div>
-                    <p>
-                        <strong>Important :</strong> vos numéros de carte bancaire et identifiants mobile money
-                        (Wave, Orange Money, MTN MoMo) sont traités directement par nos prestataires de paiement
-                        sécurisés <strong>CinetPay</strong> et <strong>PayDunya</strong>. Cap Learning n'y a jamais accès
-                        et ne les stocke pas.
-                    </p>
+                <h2>3. Hébergement</h2>
+                <p>
+                    Le Site est hébergé par <strong>Vercel Inc.</strong>, <mark class="legal-todo">[À COMPLÉTER : adresse postale et téléphone de l'hébergeur à confirmer auprès de Vercel — mention obligatoire (LCEN art. 6 III-1)]</mark>
+                    Site web : <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>.
+                </p>
+                <p>
+                    Les vidéos et ressources pédagogiques sont hébergées par nos prestataires techniques, présentés dans
+                    notre <a href="confidentialite">Politique de confidentialité</a>.
+                </p>
 
-                    <h2>3. Combien de temps conservons-nous vos données ?</h2>
-                    <ul>
-                        <li><strong>Compte et données de formation</strong> : tant que votre compte est actif, puis 3 ans après votre dernière connexion ;</li>
-                        <li><strong>Factures et données de facturation</strong> : 10 ans (obligation comptable légale) ;</li>
-                        <li><strong>Messages de contact</strong> : 3 ans après le dernier échange ;</li>
-                        <li><strong>Newsletter</strong> : jusqu'à votre désinscription.</li>
-                    </ul>
-
-                    <h2>4. Qui a accès à vos données ?</h2>
-                    <p>
-                        Vos données sont accessibles uniquement à l'équipe Cap Learning et à nos prestataires techniques,
-                        dans la stricte mesure nécessaire à leur mission :
+                <h2>4. Activité</h2>
+                <p>
+                    Cap Learning édite et commercialise des parcours de formation en ligne (contenus numériques :
+                    vidéos, supports téléchargeables, quiz, exercices) à destination des entrepreneurs et professionnels,
+                    principalement en Afrique de l'Ouest. Les conditions de vente de ces parcours sont détaillées dans nos
+                    <a href="cgv">Conditions générales de vente</a>.
+                </p>
+                <div class="legal-highlight">
+                    <p style="margin:0">
+                        Cap Learning commercialise des contenus pédagogiques numériques en accès libre.
+                        Cap Learning n'intervient pas en qualité d'organisme de formation déclaré au sens des
+                        articles L6351-1 et suivants du Code du travail : les parcours ne sont pas éligibles à un
+                        financement au titre de la formation professionnelle continue française (CPF, OPCO,
+                        France Travail).
                     </p>
-                    <ul>
-                        <li><strong>CinetPay et PayDunya</strong> — traitement des paiements et remboursements ;</li>
-                        <li><strong>Hébergement du site et des vidéos de formation</strong> — prestataires d'hébergement sécurisés ;</li>
-                        <li><strong>Outils d'emailing</strong> — envoi des emails de service et de la newsletter.</li>
-                    </ul>
-                    <p>
-                        Chaque prestataire est contractuellement tenu de protéger vos données.
-                        <strong>Nous ne vendons ni ne louons jamais vos données à des tiers.</strong>
-                        Lorsque des données sont traitées en dehors de l'Union européenne, nous veillons à ce que
-                        des garanties appropriées soient en place (clauses contractuelles types de la Commission européenne).
-                    </p>
+                </div>
 
-                    <h2>5. Cookies et stockage local</h2>
-                    <p>
-                        Le Site utilise le stockage local de votre navigateur pour des fonctions strictement nécessaires :
-                        mémoriser votre thème d'affichage (clair/sombre), votre panier et votre session de connexion.
-                        Ces informations restent sur votre appareil. Si des cookies de mesure d'audience ou de marketing
-                        venaient à être utilisés, votre consentement serait recueilli au préalable via un bandeau dédié.
-                    </p>
+                <h2>5. Propriété intellectuelle</h2>
+                <p>
+                    L'ensemble des éléments composant le Site et les parcours de formation — structure, textes, vidéos,
+                    supports, quiz, illustrations, photographies, logos, marques, chartes graphiques et bases de données —
+                    est protégé par le droit de la propriété intellectuelle et demeure la propriété exclusive de
+                    Cap Learning ou de ses partenaires et intervenants.
+                </p>
+                <p>
+                    Toute reproduction, représentation, adaptation, diffusion, revente ou mise à disposition de tout ou
+                    partie de ces éléments, par quelque procédé que ce soit et sur quelque support que ce soit, sans
+                    autorisation écrite préalable de Cap Learning, est interdite et constitue une contrefaçon
+                    sanctionnée par les articles L335-2 et suivants du Code de la propriété intellectuelle.
+                </p>
+                <p>
+                    Les marques et logos de nos partenaires et prestataires de paiement cités sur le Site
+                    (Wave, Orange Money, MTN Mobile Money, Visa, Mastercard, CinetPay, PayDunya, Trustpilot)
+                    demeurent la propriété de leurs titulaires respectifs.
+                </p>
 
-                    <h2>6. Vos droits</h2>
-                    <p>Conformément au RGPD, vous disposez à tout moment des droits suivants :</p>
-                    <ul>
-                        <li><strong>Accès</strong> — obtenir une copie des données que nous détenons sur vous ;</li>
-                        <li><strong>Rectification</strong> — corriger une donnée inexacte ;</li>
-                        <li><strong>Effacement</strong> — demander la suppression de vos données (« droit à l'oubli ») ;</li>
-                        <li><strong>Portabilité</strong> — récupérer vos données dans un format lisible ;</li>
-                        <li><strong>Opposition et limitation</strong> — vous opposer à un traitement, notamment à la prospection ;</li>
-                        <li><strong>Retrait du consentement</strong> — par exemple vous désinscrire de la newsletter en un clic.</li>
-                    </ul>
-                    <p>
-                        Pour exercer un droit, écrivez-nous à <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>
-                        ou sur WhatsApp au +221 78 123 45 67. Nous répondons sous <strong>30 jours maximum</strong>.
-                        Si vous estimez que vos droits ne sont pas respectés, vous pouvez saisir la
-                        <a href="https://www.cnil.fr" target="_blank" rel="noopener">CNIL</a> (autorité française de
-                        protection des données) ou l'autorité de protection des données de votre pays.
-                    </p>
+                <h2>6. Liens hypertextes</h2>
+                <p>
+                    Le Site peut contenir des liens vers des sites tiers. Cap Learning n'exerce aucun contrôle sur ces
+                    sites et décline toute responsabilité quant à leur contenu, leurs pratiques ou leur disponibilité.
+                    La création d'un lien vers le Site est libre, sous réserve qu'elle ne porte pas atteinte à l'image de
+                    Cap Learning et que la page cible ne soit pas insérée dans les pages d'un site tiers
+                    (interdiction du <em>framing</em>).
+                </p>
 
-                    <h2>7. Sécurité</h2>
-                    <p>
-                        Vos données sont protégées par des mesures techniques et organisationnelles adaptées :
-                        connexions chiffrées (HTTPS), mots de passe chiffrés, accès restreints à l'équipe,
-                        et prestataires de paiement certifiés. En cas de violation de données susceptible de vous
-                        affecter, vous en seriez informé conformément au RGPD.
-                    </p>
+                <h2>7. Données personnelles et cookies</h2>
+                <p>
+                    Le traitement des données personnelles collectées par l'intermédiaire du Site est décrit dans notre
+                    <a href="confidentialite">Politique de confidentialité</a>, conforme au Règlement général sur la
+                    protection des données (RGPD) et à la loi « Informatique et Libertés ».
+                    Vous pouvez exercer vos droits à tout moment en écrivant à
+                    <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>.
+                </p>
 
-                    <h2>8. Mineurs</h2>
-                    <p>
-                        Nos formations s'adressent aux adultes et aux mineurs d'au moins 15 ans. Si vous avez moins de
-                        15 ans, l'accord d'un parent ou tuteur est nécessaire pour créer un compte.
-                    </p>
+                <h2>8. Signalement d'un contenu illicite</h2>
+                <p>
+                    Conformément à la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique,
+                    tout contenu que vous estimeriez illicite et accessible sur le Site peut être signalé à
+                    <a href="mailto:hello@caplearning.com">hello@caplearning.com</a>. Afin de permettre son traitement,
+                    le signalement doit préciser la date de la constatation, l'identification précise du contenu
+                    concerné (URL) et les motifs pour lesquels il devrait être retiré.
+                </p>
 
-                    <h2>9. Mise à jour de cette politique</h2>
-                    <p>
-                        Cette politique peut évoluer avec nos services ou la réglementation. La version en vigueur est
-                        celle publiée sur cette page, avec sa date de mise à jour. En cas de changement important,
-                        nous vous en informerons par email ou via le Site.
-                    </p>
-
-                    <p>
-                        Voir aussi nos <a href="cgu">Conditions d'utilisation</a>.
-                    </p>
-
+                <h2>9. Droit applicable</h2>
+                <p>
+                    Les présentes mentions légales sont soumises au <strong>droit français</strong>.
+                    Les conditions applicables à l'achat des formations figurent dans les
+                    <a href="cgv">Conditions générales de vente</a> ; celles applicables à la navigation et à l'usage du
+                    compte figurent dans les <a href="cgu">Conditions d'utilisation</a>.
+                </p>
                 </article>
             </div>
         </section>
@@ -396,8 +385,8 @@
         </div>
     </footer>
 
-    <script src="../js/app.js?v=20260726b"></script>
-    <script src="../js/whatsapp-widget.js?v=20260726b"></script>
-    <script src="../js/theme.js?v=20260726b" defer></script>
+    <script src="../js/app.js?v=20260725d"></script>
+    <script src="../js/whatsapp-widget.js?v=20260725d"></script>
+    <script src="../js/theme.js?v=20260725d" defer></script>
 </body>
 </html>
