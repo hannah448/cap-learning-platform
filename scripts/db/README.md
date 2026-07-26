@@ -36,7 +36,10 @@ Dashboard → **Settings → API** :
 2. Colle tout le contenu de **`schema.sql`** → **Run** (Ctrl/Cmd+Enter)
    - Tu dois voir "Success. No rows returned." en bas.
 3. **New query** à nouveau, colle **`rls.sql`** → **Run**
-4. Vérifie : Dashboard → **Authentication → Policies** → tu vois 10+ policies listées sur les 4 tables.
+4. **New query** à nouveau, colle **`order_consents.sql`** → **Run**
+   - ⚠️ Obligatoire : sans cette table, `/api/create-checkout` refuse toute commande
+     (on n'encaisse pas un paiement dont le consentement CGV n'est pas tracé).
+5. Vérifie : Dashboard → **Authentication → Policies** → tu vois 10+ policies listées sur les 5 tables.
 
 ---
 
@@ -144,6 +147,7 @@ auth.users (Supabase) ────┐
 | `enrollments` | N (1 par achat) | Créé par webhook CinetPay après paiement réussi |
 | `lesson_progress` | N (1 par user × leçon vue) | Mis à jour côté client à chaque play/95% |
 | `certificates` | 1 par formation terminée | Généré quand tous les modules sont à 100% |
+| `order_consents` | 1 par transaction | Preuve du consentement CGV + renonciation à la rétractation. Immuable : ni UPDATE ni DELETE |
 
 ## Quotas Free Tier (Supabase)
 

@@ -1,25 +1,38 @@
 /**
  * /api/create-checkout
  *
- * Init une session de paiement CinetPay et renvoie (ou redirige vers) le payment_url.
+ * Init une session de paiement FedaPay et renvoie (ou redirige vers) le payment_url.
+ *
+ * ⚠️ CONSENTEMENT OBLIGATOIRE (art. 1 et 10 des CGV)
+ * ──────────────────────────────────────────────────────────────────────────────
+ * Aucune session de paiement n'est créée sans les DEUX consentements :
+ *   • cgv_accepted       — acceptation des conditions générales de vente
+ *   • withdrawal_waived  — demande d'accès immédiat valant renonciation expresse
+ *                          au droit de rétractation de 14 jours
+ * La preuve est écrite dans `order_consents` AVANT l'appel à FedaPay : si elle
+ * ne peut pas être enregistrée, on n'encaisse pas.
  *
  * 2 modes supportés :
  *
  * ──────────────────────────────────────────────────────────────────────────────
- * Mode A — Quick-buy (recommandé) — GET ?course=<slug>&user_id=<uuid>
+ * Mode A — Quick-buy — POST { course, user_id, cgv_accepted, withdrawal_waived }
  * ──────────────────────────────────────────────────────────────────────────────
- *   Utilisé par les pages formation. L'utilisateur DOIT être authentifié
- *   (user_id valide dans Supabase). Le serveur récupère son profile pour
- *   construire le customer CinetPay automatiquement.
+ *   Utilisé par les pages formation via js/buy-flow.js, en formulaire
+ *   auto-soumis. L'utilisateur DOIT être authentifié (user_id valide dans
+ *   Supabase). Le serveur récupère son profile pour construire le customer.
  *
- *   Réponse : redirection HTTP 302 directe vers la page de paiement CinetPay.
+ *   Réponse : redirection HTTP 302 directe vers la page de paiement si
+ *   `redirect=1` (cas du formulaire), sinon JSON.
+ *
+ *   ⚠️ Le GET historique (?course=...&user_id=...) est refusé : un consentement
+ *   passé en query string finirait dans les logs d'accès et les en-têtes
+ *   Referer — fragile juridiquement et discutable côté RGPD.
  *
  * ──────────────────────────────────────────────────────────────────────────────
- * Mode B — Cart legacy — POST { course_id, course_label, amount, customer:{...} }
+ * Mode B — Cart — POST { course_id, course_label, amount, customer:{...}, ... }
  * ──────────────────────────────────────────────────────────────────────────────
- *   Utilisé par panier.html (multi-items). Garde le comportement historique :
- *   répond JSON { payment_url, transaction_id }, le frontend redirige.
- *   Si user_id est passé en plus dans le body, on le valide aussi (sécurise).
+ *   Utilisé par panier.html (multi-items). Répond JSON
+ *   { payment_url, transaction_id }, le frontend redirige.
  *
  * Dans tous les cas, on stocke `user_id` dans metadata pour que le webhook
  * crée la bonne enrollment (pas de fuzzy match par email).
@@ -30,6 +43,7 @@
 const { randomUUID } = require('crypto');
 const { initCheckout } = require('../lib/fedapay'); // paiement : FedaPay (ex-CinetPay, conservé en réf.)
 const { findProfileByEmail, select } = require('../lib/supabase-admin');
+const { readConsent, validateConsent, recordOrderConsent } = require('../lib/cgv-consent');
 
 // Catalogue serveur-source-de-vérité pour les prix (évite tout tampering client)
 const COURSE_CATALOG = {
@@ -50,21 +64,77 @@ async function findProfileById(userId) {
     }
 }
 
+/**
+ * Écrit la preuve du consentement. Toute erreur est fatale : mieux vaut un
+ * paiement qui échoue qu'un accès vendu sans trace opposable.
+ */
+async function persistConsent(req, { userId, transactionId, courseId }) {
+    try {
+        await recordOrderConsent({ req, userId, transactionId, courseId });
+    } catch (e) {
+        console.error('[create-checkout] enregistrement du consentement impossible:', e.message);
+        const err = new Error(
+            'Le consentement n\'a pas pu être enregistré, la commande est annulée. '
+            + 'Vérifiez que la table order_consents existe (scripts/db/order_consents.sql).'
+        );
+        err.statusCode = 500;
+        throw err;
+    }
+}
+
 module.exports = async function handler(req, res) {
     // CORS pour POST mode B
     res.setHeader('Access-Control-Allow-Origin', process.env.PUBLIC_BASE_URL || '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     if (req.method === 'OPTIONS') return res.status(204).end();
 
     // ──────────────────────────────────────────────────────────────────────
-    // Mode A — Quick-buy (GET ?course=...&user_id=...)
+    // GET — refusé : le consentement ne doit jamais transiter en query string
     // ──────────────────────────────────────────────────────────────────────
     if (req.method === 'GET') {
+        return res.status(400).json({
+            error: 'Cette route n\'accepte plus le GET. Le consentement CGV et la '
+                + 'renonciation au droit de rétractation doivent être transmis en POST '
+                + '(cgv_accepted, withdrawal_waived), afin de ne pas apparaître dans les '
+                + 'logs d\'accès ni dans les en-têtes Referer.'
+        });
+    }
+
+    if (req.method !== 'POST') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
+
+    let body;
+    try {
+        body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
+    } catch (e) {
+        return res.status(400).json({ error: 'invalid json body' });
+    }
+
+    // ──────────────────────────────────────────────────────────────────────
+    // Garde commune aux deux modes : les deux cases doivent être cochées.
+    // ──────────────────────────────────────────────────────────────────────
+    const consent = readConsent(body);
+    const consentCheck = validateConsent(consent);
+    if (!consentCheck.ok) {
+        console.warn('[create-checkout] refus, consentement incomplet:', consentCheck.missing.join(','));
+        return res.status(400).json({ error: consentCheck.error, missing: consentCheck.missing });
+    }
+
+    // Le formulaire auto-soumis du quick-buy attend une redirection navigateur ;
+    // le fetch JSON du panier attend une réponse JSON.
+    const wantsRedirect = body.redirect === '1' || body.redirect === 1 || body.redirect === true;
+
+    // ──────────────────────────────────────────────────────────────────────
+    // Mode A — Quick-buy (POST { course, user_id, ... })
+    // ──────────────────────────────────────────────────────────────────────
+    if (body.course && !body.course_id) {
         try {
-            const { course, user_id } = req.query || {};
-            if (!course || !user_id) {
-                return res.status(400).json({ error: 'Missing query params: course and user_id are required' });
+            const course = body.course;
+            const userId = body.user_id;
+            if (!userId) {
+                return res.status(400).json({ error: 'Missing param: user_id is required' });
             }
 
             // Validation course
@@ -74,21 +144,24 @@ module.exports = async function handler(req, res) {
             }
 
             // Validation user_id : doit correspondre à un profile Supabase
-            const profile = await findProfileById(user_id);
+            const profile = await findProfileById(userId);
             if (!profile) {
-                console.warn('[create-checkout] user_id not found in profiles:', user_id);
+                console.warn('[create-checkout] user_id not found in profiles:', userId);
                 return res.status(401).json({ error: 'Invalid user' });
             }
 
-            // Construit le customer CinetPay depuis le profile
+            // Construit le customer FedaPay depuis le profile
             const fullName = (profile.full_name || profile.email.split('@')[0] || 'Apprenant').trim();
             const nameParts = fullName.split(/\s+/);
             const firstName = nameParts[0];
             const lastName = nameParts.slice(1).join(' ') || 'Cap Learning';
-            const phone = profile.phone || '+221770000000';  // CinetPay exige un phone, fallback safe
+            const phone = profile.phone || '+221770000000';  // le PSP exige un phone, fallback safe
             const country = profile.country || 'SN';
 
             const transactionId = `CL-${Date.now()}-${randomUUID().slice(0, 8)}`;
+
+            // Preuve AVANT paiement.
+            await persistConsent(req, { userId: profile.id, transactionId, courseId: course });
 
             const session = await initCheckout({
                 transactionId,
@@ -117,24 +190,25 @@ module.exports = async function handler(req, res) {
                 }
             });
 
-            // Redirection 302 directe vers CinetPay → flow le plus naturel pour l'apprenant
-            res.setHeader('Location', session.payment_url);
-            return res.status(302).end();
+            if (wantsRedirect) {
+                // Redirection 302 directe → flow le plus naturel pour l'apprenant
+                res.setHeader('Location', session.payment_url);
+                return res.status(302).end();
+            }
+            return res.status(200).json({
+                payment_url: session.payment_url,
+                transaction_id: session.transaction_id
+            });
         } catch (err) {
-            console.error('[create-checkout][GET] error:', err);
-            return res.status(500).json({ error: err.message || 'internal error' });
+            console.error('[create-checkout][quick-buy] error:', err);
+            return res.status(err.statusCode || 500).json({ error: err.message || 'internal error' });
         }
     }
 
     // ──────────────────────────────────────────────────────────────────────
-    // Mode B — Cart legacy (POST avec body JSON)
+    // Mode B — Cart (POST avec body JSON)
     // ──────────────────────────────────────────────────────────────────────
-    if (req.method !== 'POST') {
-        return res.status(405).json({ error: 'Method not allowed' });
-    }
-
     try {
-        const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
         const {
             course_id,
             course_label,
@@ -174,6 +248,9 @@ module.exports = async function handler(req, res) {
 
         const transactionId = `CL-${Date.now()}-${randomUUID().slice(0, 8)}`;
 
+        // Preuve AVANT paiement.
+        await persistConsent(req, { userId: resolvedUserId, transactionId, courseId: course_id });
+
         const session = await initCheckout({
             transactionId,
             amount,
@@ -208,8 +285,8 @@ module.exports = async function handler(req, res) {
             transaction_id: session.transaction_id
         });
     } catch (err) {
-        console.error('[create-checkout][POST] error:', err);
-        return res.status(500).json({
+        console.error('[create-checkout][cart] error:', err);
+        return res.status(err.statusCode || 500).json({
             error: err.message || 'internal error',
             detail: err.cinetpayResponse || undefined
         });

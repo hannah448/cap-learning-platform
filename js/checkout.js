@@ -96,6 +96,16 @@
         if (missing.length) {
             throw new CheckoutError('validation', `Champs manquants : ${missing.join(', ')}`);
         }
+
+        // Garde-fou : aucune commande ne part sans les deux consentements.
+        // Le serveur refait le contrôle (le client est contournable), mais on
+        // échoue ici avec un message lisible plutôt qu'avec un 400 brut.
+        if (order.cgv_accepted !== true || order.withdrawal_waived !== true) {
+            throw new CheckoutError(
+                'validation',
+                'Consentement requis : acceptation des CGV et demande d\'accès immédiat.'
+            );
+        }
     }
 
     function mockFlow(order) {

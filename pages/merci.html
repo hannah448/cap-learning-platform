@@ -44,6 +44,8 @@
         .merci-courses li { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--color-primary-50, #EEF1FE); border-radius: 12px; margin-bottom: 8px; font-weight: 600; color: var(--text-primary, #1E1B3A); }
         .merci-courses li::before { content: '🎓'; font-size: 20px; }
         .merci-invoice { font-size: 13.5px; color: var(--text-secondary, #4A5262); background: var(--color-gray-50, #f8f9fb); border-radius: 12px; padding: 14px 16px; margin-bottom: 28px; line-height: 1.5; }
+        .merci-consent { font-size: 13px; line-height: 1.55; color: var(--color-text-soft, #57534E); text-align: left; margin: -12px 0 24px; }
+        .merci-consent a { color: var(--accent-ia, #3A50F6); text-decoration: underline; }
         .merci-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
         .merci-help { font-size: 13.5px; color: var(--text-tertiary, #8A8F9C); margin: 0; }
         .merci-help a { color: var(--color-primary-text, #3A50F6); font-weight: 600; }
@@ -151,6 +153,9 @@
                 <div class="merci-invoice" id="merci-invoice">
                     &#129534; <strong>Votre facture</strong> vous est envoyée automatiquement par e-mail au nom de Cap Learning. Pensez à vérifier vos spams si vous ne la voyez pas.
                 </div>
+                <!-- Confirmation écrite du consentement (art. L221-13 du Code de
+                     la consommation) : rappelle ce que le client a accepté et quand. -->
+                <p class="merci-consent" id="merci-consent" hidden></p>
                 <div class="merci-actions">
                     <a href="dashboard" class="btn btn-primary btn-lg">Accéder à mes formations</a>
                     <a href="apprendre" class="btn btn-ghost btn-lg">Commencer à apprendre</a>
@@ -289,6 +294,22 @@
             if (window.Cart) { window.Cart.items = []; if (Cart.updateBadge) Cart.updateBadge(); }
         } catch (e) {}
         try { localStorage.removeItem('caplearning_pending_checkout'); } catch (e) {}
+
+        // Rappel écrit du consentement recueilli avant le paiement.
+        // La preuve opposable est la ligne server-side dans order_consents ;
+        // cette ligne-ci en est la confirmation sur support durable.
+        var consentEl = document.getElementById('merci-consent');
+        if (consentEl) {
+            var dateLabel = new Date().toLocaleDateString('fr-FR', {
+                day: 'numeric', month: 'long', year: 'numeric'
+            });
+            consentEl.hidden = false;
+            consentEl.innerHTML =
+                'Le ' + dateLabel + ', vous avez accepté les '
+                + '<a href="cgv">conditions générales de vente</a> et demandé l\'accès immédiat '
+                + 'à votre formation, en renonçant expressément à votre droit de rétractation de 14 jours. '
+                + 'La garantie «&nbsp;satisfait ou remboursé&nbsp;» de 14 jours (article 9 des CGV) reste acquise.';
+        }
 
         // Lister les formations achetées
         var toShow = cart.length ? cart : purchased;

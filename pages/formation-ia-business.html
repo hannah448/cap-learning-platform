@@ -623,9 +623,10 @@
     <script src="../js/supabase-client.js?v=20260726b"></script>
     <script src="../js/auth.js?v=20260726b"></script>
     <script src="../js/auth-modal.js?v=20260726b"></script>
+    <script src="../js/consent.js?v=20260726b"></script>
     <script src="../js/buy-flow.js?v=20260726b"></script>
     <script>
-        // Quick-buy : "Acheter" → modale signup/login si besoin → /api/create-checkout
+        // Quick-buy : "Acheter" → modale signup/login si besoin → consentement CGV → /api/create-checkout
         document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();

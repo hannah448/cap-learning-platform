@@ -281,6 +281,11 @@
         }
         .checkout-confirm-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(58,80,246,0.3); }
         .checkout-confirm-btn:disabled { opacity: 0.6; pointer-events: none; }
+        /* Consentement incomplet : bouton inactif mais toujours focusable et
+           cliquable, pour pouvoir expliquer ce qui manque (pas de cul-de-sac). */
+        .checkout-confirm-btn[aria-disabled="true"] { opacity: 0.55; cursor: not-allowed; }
+        .checkout-confirm-btn[aria-disabled="true"]:hover { transform: none; box-shadow: none; }
+        .checkout-confirm-btn:focus-visible { outline: 2px solid var(--accent-ia, #3460E5); outline-offset: 3px; }
 
         .checkout-cancel-btn {
             width: 100%;
@@ -733,6 +738,11 @@
                         <div style="margin-top: 8px; color: var(--color-warning); font-weight: 600;">⚠ L'accès sera débloqué sous 24-48h après réception.</div>
                     </div>
 
+                    <!-- Consentement CGV + renonciation au droit de rétractation.
+                         Injecté par js/consent.js, visible quel que soit le moyen
+                         de paiement (virement compris). -->
+                    <div id="consent-mount"></div>
+
                     <div class="checkout-actions">
                         <button class="checkout-confirm-btn" id="modal-confirm-btn" onclick="processPayment()">
                             🔒 Confirmer le paiement
@@ -806,6 +816,7 @@
     <script src="../js/config.js?v=20260726b"></script>
     <script src="../js/supabase-client.js?v=2"></script>
     <script src="../js/auth.js?v=2"></script>
+    <script src="../js/consent.js?v=20260726b"></script>
     <script src="../js/checkout.js?v=1"></script>
     <script>
     // ── PAYMENT METHOD SELECTION ──
@@ -863,6 +874,35 @@
         });
     }
 
+    // ── CONSENTEMENT CGV + RENONCIATION À LA RÉTRACTATION ──
+    // Monté une fois, remis à zéro à chaque ouverture de la modale : un abandon
+    // suivi d'une reprise ne doit jamais conserver un consentement périmé.
+    var consent = null;
+
+    function syncConfirmBtnState() {
+        var btn = document.getElementById('modal-confirm-btn');
+        if (!btn) return;
+        var ok = !!(consent && consent.isComplete());
+        // aria-disabled plutôt que disabled : le bouton reste atteignable au
+        // clavier et peut expliquer pourquoi il ne part pas.
+        btn.setAttribute('aria-disabled', ok ? 'false' : 'true');
+    }
+
+    function setupConsent() {
+        var mount = document.getElementById('consent-mount');
+        if (!mount || !window.CapConsent) return;
+        if (!consent) {
+            consent = window.CapConsent.mount(mount, {
+                idPrefix: 'panier-consent',
+                cgvHref: 'cgv',
+                onChange: syncConfirmBtnState
+            });
+        } else {
+            consent.reset();
+        }
+        syncConfirmBtnState();
+    }
+
     function openCheckoutModal() {
         var method = PAY_METHODS[selectedMethod];
         var subtotal = Cart.items.reduce(function(sum, item) { return sum + (item.price || 0); }, 0);
@@ -897,6 +937,10 @@
         } else {
             document.getElementById('modal-confirm-btn').innerHTML = '🔒 Confirmer le paiement de ' + total.toLocaleString('fr-FR') + ' FCFA';
         }
+
+        // Consentement remis à zéro à chaque ouverture, après le rendu du bouton
+        // (openCheckoutModal réécrit son libellé juste au-dessus).
+        setupConsent();
 
         // Show modal
         document.getElementById('checkout-step-confirm').style.display = 'block';
@@ -992,6 +1036,17 @@
             }
         }
 
+        // Consentement bloquant : ni CGV acceptées ni renonciation à la
+        // rétractation → on ne passe pas à l'étape de traitement.
+        if (!consent || !consent.isComplete()) {
+            if (consent) consent.showError();
+            showToast(window.CapConsent
+                ? window.CapConsent.ERROR_MESSAGE
+                : 'Consentement requis avant paiement.');
+            return;
+        }
+        var consentValues = consent.values();
+
         showProcessingStep();
 
         // Virement bancaire (B2B) : commande enregistrée manuellement, pas de passerelle en ligne.
@@ -1027,6 +1082,9 @@
                 amount: total,
                 currency: 'XOF',
                 user_id: profile ? profile.id : undefined,
+                cgv_accepted: consentValues.cgv_accepted,
+                withdrawal_waived: consentValues.withdrawal_waived,
+                cgv_version: consentValues.cgv_version,
                 customer: {
                     email: profile ? profile.email : '',
                     name: parts[0] || 'Apprenant',
