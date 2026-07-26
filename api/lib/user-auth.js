@@ -58,4 +58,33 @@ async function requireUser(req, res) {
     return user;
 }
 
-module.exports = { extractBearer, resolveUser, requireUser };
+/**
+ * Middleware helper : renvoie le user auth ET vérifie que role === 'admin'.
+ * Envoie 401 ou 403 si nécessaire et retourne null.
+ */
+async function requireAdmin(req, res) {
+    const user = await requireUser(req, res);
+    if (!user) return null;
+    try {
+        const url = `${SUPABASE_URL}/rest/v1/profiles?id=eq.${encodeURIComponent(user.id)}&select=role&limit=1`;
+        const r = await fetch(url, {
+            headers: {
+                'apikey': SERVICE_KEY,
+                'Authorization': `Bearer ${SERVICE_KEY}`,
+                'Accept': 'application/json'
+            }
+        });
+        if (!r.ok) { res.status(500).json({ error: 'Impossible de vérifier le rôle.' }); return null; }
+        const rows = await r.json();
+        if (!rows[0] || rows[0].role !== 'admin') {
+            res.status(403).json({ error: 'Accès réservé aux administrateurs.' });
+            return null;
+        }
+        return user;
+    } catch (e) {
+        res.status(500).json({ error: 'Erreur pendant la vérification du rôle.' });
+        return null;
+    }
+}
+
+module.exports = { extractBearer, resolveUser, requireUser, requireAdmin };

@@ -4,27 +4,76 @@
     <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
         <!-- cap-learning:migrate-brand -->
-    <script src="../js/migrate-brand.js?v=20260725d"></script>
+    <script src="../js/migrate-brand.js?v=20260726a"></script>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
-    <link rel="apple-touch-icon" href="/favicon.svg?v=20260725d">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726a">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260726a">
     <title>Administration - Cap Learning</title>
     <meta name="description" content="Espace d'administration Cap Learning : gestion des apprenants, attribution manuelle de formations.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260726a">
 
-    <link rel="stylesheet" href="../css/style.css?v=20260725d">
-    <link rel="stylesheet" href="../css/components.css?v=20260725d">
-    <link rel="stylesheet" href="../css/admin.css?v=20260725d">
+    <link rel="stylesheet" href="../css/style.css?v=20260726a">
+    <link rel="stylesheet" href="../css/components.css?v=20260726a">
+    <link rel="stylesheet" href="../css/admin.css?v=20260726a">
+    <style>
+        /* Signalements annuaire — badge + table */
+        .admin-reports-badge {
+            display: inline-block;
+            min-width: 18px; padding: 1px 6px;
+            font-size: 11px; font-weight: 700;
+            background: #C0392B; color: #fff;
+            border-radius: 999px;
+            margin-left: 6px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .rep-empty { padding: 60px 20px; text-align: center; color: var(--color-gray-500, #6b7280); background: #fff; border-radius: 12px; border: 1px dashed #e5e7eb; }
+        .rep-empty-title { font-weight: 600; color: #333; margin-bottom: 4px; }
+        .rep-tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+        .rep-tab {
+            padding: 6px 14px; border-radius: 999px;
+            background: transparent; border: 1px solid #e5e7eb;
+            font-size: .85rem; cursor: pointer; color: #444;
+            font-family: inherit;
+        }
+        .rep-tab.active { background: #111827; color: #fff; border-color: #111827; }
+        .rep-list { display: flex; flex-direction: column; gap: 10px; }
+        .rep-row {
+            background: #fff; border: 1px solid #e5e7eb; border-radius: 12px;
+            padding: 14px 16px;
+            display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: start;
+        }
+        .rep-row.resolved { opacity: .65; }
+        .rep-row-head { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; margin-bottom: 6px; }
+        .rep-target-name { font-weight: 600; color: #111; }
+        .rep-target-mail { font-size: .8rem; color: #6b7280; }
+        .rep-hidden-badge {
+            font-size: 11px; padding: 2px 8px; border-radius: 999px;
+            background: #E5E7EB; color: #6b7280;
+        }
+        .rep-reason { font-size: .9rem; color: #333; line-height: 1.5; white-space: pre-wrap; margin: 6px 0 8px; }
+        .rep-meta { font-size: .75rem; color: #9ca3af; }
+        .rep-actions { display: flex; flex-direction: column; gap: 6px; align-items: stretch; }
+        .rep-actions button {
+            padding: 6px 12px; border-radius: 8px; font-size: .8rem; cursor: pointer;
+            font-family: inherit; border: 1px solid transparent; white-space: nowrap;
+        }
+        .rep-hide-btn { background: #C0392B; color: #fff; border-color: #C0392B; }
+        .rep-hide-btn:hover { background: #A93221; }
+        .rep-dismiss-btn { background: #fff; color: #444; border-color: #e5e7eb; }
+        .rep-dismiss-btn:hover { background: #f3f4f6; }
+        .rep-actions button:disabled { opacity: .5; cursor: not-allowed; }
+    </style>
 </head>
 <body class="admin-body">
     <!-- ===== Cap Learning Supabase stack ===== -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/config.js?v=20260725d"></script>
+    <script src="../js/config.js?v=20260726a"></script>
     <script src="../js/supabase-client.js?v=2"></script>
     <script src="../js/auth.js?v=2"></script>
     <script src="../js/db.js?v=2"></script>
@@ -71,6 +120,7 @@
                     <li><a href="#learners" class="admin-nav-item" data-section="learners"><span class="admin-nav-icon">&#128101;</span>Apprenants</a></li>
                     <li><a href="#formations" class="admin-nav-item" data-section="formations"><span class="admin-nav-icon">&#128218;</span>Formations</a></li>
                     <li><a href="#sales" class="admin-nav-item" data-section="sales"><span class="admin-nav-icon">&#128181;</span>Ventes &amp; recettes</a></li>
+                    <li><a href="#reports" class="admin-nav-item" data-section="reports"><span class="admin-nav-icon">&#128681;</span>Signalements annuaire <span id="reportsBadge" class="admin-reports-badge" hidden>0</span></a></li>
                     <li><a href="#settings" class="admin-nav-item" data-section="settings"><span class="admin-nav-icon">&#9881;</span>Paramètres</a></li>
                 </ul>
             </nav>
@@ -301,6 +351,18 @@
                 </div>
             </section>
 
+            <!-- Section: Signalements annuaire -->
+            <section class="admin-section" id="section-reports" hidden>
+                <div class="rep-tabs">
+                    <button type="button" class="rep-tab active" data-rep-status="pending">En attente</button>
+                    <button type="button" class="rep-tab" data-rep-status="resolved">Résolus</button>
+                    <button type="button" class="rep-tab" data-rep-status="all">Tout</button>
+                </div>
+                <div id="reportsArea">
+                    <div class="rep-empty"><div class="rep-empty-title">Chargement…</div></div>
+                </div>
+            </section>
+
             <!-- Section: Settings -->
             <section class="admin-section" id="section-settings" hidden>
                 <div class="admin-card">
@@ -440,6 +502,178 @@
             document.body.appendChild(s);
         })();
     </script>
-    <script src="../js/theme.js?v=20260725d" defer></script>
+    <!-- Signalements annuaire (T12) — indépendant d'admin.js pour ne pas alourdir le fichier principal -->
+    <script>
+        (function () {
+            'use strict';
+            var $ = function (id) { return document.getElementById(id); };
+            var repArea = $('reportsArea');
+            var repBadge = $('reportsBadge');
+            var currentTab = 'pending';
+            var titleEl = $('sectionTitle');
+
+            async function getToken() {
+                try {
+                    var sess = await window.CapDB.auth.getSession();
+                    return sess && sess.data && sess.data.session ? sess.data.session.access_token : null;
+                } catch (e) { return null; }
+            }
+
+            async function fetchReports(status) {
+                var token = await getToken();
+                if (!token) return { reports: [] };
+                var res = await fetch('/api/directory/admin/reports?status=' + encodeURIComponent(status), {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (!res.ok) return { reports: [], error: (await res.json().catch(function () { return {}; })).error || 'Erreur' };
+                return res.json();
+            }
+
+            async function refreshBadge() {
+                try {
+                    var data = await fetchReports('pending');
+                    var count = (data.reports || []).length;
+                    if (count > 0) {
+                        repBadge.textContent = count;
+                        repBadge.hidden = false;
+                    } else {
+                        repBadge.hidden = true;
+                    }
+                } catch (e) { /* silencieux */ }
+            }
+
+            function render(reports, status) {
+                if (!reports.length) {
+                    var msg = status === 'pending' ? 'Aucun signalement en attente.' : 'Aucun signalement à afficher.';
+                    repArea.innerHTML = '<div class="rep-empty"><div class="rep-empty-title">' + msg + '</div>Rien à modérer pour l\'instant.</div>';
+                    return;
+                }
+                var list = document.createElement('div'); list.className = 'rep-list';
+                reports.forEach(function (r) { list.appendChild(renderRow(r)); });
+                repArea.innerHTML = '';
+                repArea.appendChild(list);
+            }
+
+            function renderRow(r) {
+                var row = document.createElement('div');
+                row.className = 'rep-row' + (r.resolved_at ? ' resolved' : '');
+
+                var left = document.createElement('div');
+                var head = document.createElement('div'); head.className = 'rep-row-head';
+                var name = document.createElement('span'); name.className = 'rep-target-name';
+                name.textContent = r.reported.display_name || r.reported.full_name || r.reported.email || r.reported.id;
+                head.appendChild(name);
+                if (r.reported.email) {
+                    var mail = document.createElement('span'); mail.className = 'rep-target-mail';
+                    mail.textContent = r.reported.email;
+                    head.appendChild(mail);
+                }
+                if (r.reported.is_directory_visible === false) {
+                    var b = document.createElement('span'); b.className = 'rep-hidden-badge';
+                    b.textContent = 'Profil masqué';
+                    head.appendChild(b);
+                }
+                left.appendChild(head);
+
+                var reason = document.createElement('div'); reason.className = 'rep-reason';
+                reason.textContent = r.reason;
+                left.appendChild(reason);
+
+                var meta = document.createElement('div'); meta.className = 'rep-meta';
+                var d = new Date(r.created_at);
+                var by = r.reporter.display_name || r.reporter.email || r.reporter.id;
+                meta.textContent = 'Signalé par ' + by + ' — ' + d.toLocaleString('fr-FR');
+                if (r.resolved_at) {
+                    var dr = new Date(r.resolved_at);
+                    meta.textContent += ' · Résolu le ' + dr.toLocaleString('fr-FR');
+                }
+                left.appendChild(meta);
+                row.appendChild(left);
+
+                if (!r.resolved_at) {
+                    var actions = document.createElement('div'); actions.className = 'rep-actions';
+                    var hide = document.createElement('button'); hide.className = 'rep-hide-btn';
+                    hide.textContent = 'Masquer le profil';
+                    hide.addEventListener('click', function () { doAction(r.id, 'hide_profile', [hide, dismiss]); });
+                    var dismiss = document.createElement('button'); dismiss.className = 'rep-dismiss-btn';
+                    dismiss.textContent = 'Faux positif';
+                    dismiss.addEventListener('click', function () { doAction(r.id, 'dismiss', [hide, dismiss]); });
+                    actions.appendChild(hide); actions.appendChild(dismiss);
+                    row.appendChild(actions);
+                }
+                return row;
+            }
+
+            async function doAction(reportId, action, btns) {
+                if (action === 'hide_profile' && !confirm('Masquer ce profil de l\'annuaire ? (l\'apprenant pourra le réactiver.)')) return;
+                btns.forEach(function (b) { b.disabled = true; });
+                var token = await getToken();
+                try {
+                    var res = await fetch('/api/directory/admin/reports', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+                        body: JSON.stringify({ report_id: reportId, action: action })
+                    });
+                    if (!res.ok) {
+                        var d = await res.json().catch(function () { return {}; });
+                        alert('Erreur : ' + (d.error || res.status));
+                        btns.forEach(function (b) { b.disabled = false; });
+                        return;
+                    }
+                    // reload liste + badge
+                    loadTab(currentTab);
+                    refreshBadge();
+                } catch (e) {
+                    alert('Erreur réseau.');
+                    btns.forEach(function (b) { b.disabled = false; });
+                }
+            }
+
+            async function loadTab(status) {
+                currentTab = status;
+                document.querySelectorAll('.rep-tab').forEach(function (t) {
+                    t.classList.toggle('active', t.dataset.repStatus === status);
+                });
+                repArea.innerHTML = '<div class="rep-empty"><div class="rep-empty-title">Chargement…</div></div>';
+                var data = await fetchReports(status);
+                if (data.error) {
+                    repArea.innerHTML = '<div class="rep-empty" style="color:#C0392B;"><div class="rep-empty-title">Erreur</div>' + data.error + '</div>';
+                    return;
+                }
+                render(data.reports, status);
+            }
+
+            document.querySelectorAll('.rep-tab').forEach(function (t) {
+                t.addEventListener('click', function () { loadTab(t.dataset.repStatus); });
+            });
+
+            // admin.js ne connaît pas la section 'reports' → on fait le switch nous-mêmes.
+            function activateReports() {
+                document.querySelectorAll('.admin-section').forEach(function (s) {
+                    var isMine = s.id === 'section-reports';
+                    s.hidden = !isMine;
+                    s.classList.toggle('active', isMine);
+                });
+                document.querySelectorAll('.admin-nav-item').forEach(function (a) {
+                    a.classList.toggle('active', a.dataset.section === 'reports');
+                });
+                if (titleEl) titleEl.textContent = 'Signalements annuaire';
+                loadTab(currentTab);
+            }
+            document.addEventListener('click', function (e) {
+                var a = e.target.closest('[data-section="reports"]');
+                if (!a) return;
+                setTimeout(activateReports, 30);
+            });
+            if (location.hash === '#reports') {
+                setTimeout(activateReports, 300);
+            }
+
+            // Badge : au chargement + toutes les 60s
+            setTimeout(refreshBadge, 500);
+            setInterval(refreshBadge, 60_000);
+        })();
+    </script>
+    <script src="../js/theme.js?v=20260726a" defer></script>
 </body>
 </html>

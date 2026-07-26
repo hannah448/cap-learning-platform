@@ -2,16 +2,16 @@
 <html lang="fr">
 <head>
     <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
-    <script src="../js/migrate-brand.js?v=20260725d"></script>
+    <script src="../js/migrate-brand.js?v=20260726a"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260725d">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260726a">
     <title>Annuaire des membres — Cap Learning</title>
     <meta name="description" content="Découvre les autres entrepreneurs formés à Cap Learning et échange avec eux.">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/tokens.css?v=20260725d">
-    <link rel="stylesheet" href="../css/style.css?v=20260725d">
-    <link rel="stylesheet" href="../css/lms.css?v=20260725d">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260726a">
+    <link rel="stylesheet" href="../css/style.css?v=20260726a">
+    <link rel="stylesheet" href="../css/lms.css?v=20260726a">
 
     <style>
         .an-layout { display: grid; grid-template-columns: 260px 1fr; gap: 24px; align-items: start; }
@@ -185,6 +185,160 @@
             animation: skel 1.4s infinite;
         }
         @keyframes skel { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        /* Modale profil détaillé */
+        .an-modal-backdrop {
+            position: fixed; inset: 0;
+            background: rgba(0, 0, 0, .55);
+            display: none;
+            align-items: center; justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            animation: an-fade .15s ease-out;
+        }
+        .an-modal-backdrop[data-open="true"] { display: flex; }
+        @keyframes an-fade { from { opacity: 0; } to { opacity: 1; } }
+
+        .an-modal {
+            background: var(--color-surface);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 520px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 28px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,.35);
+        }
+        .an-modal-close {
+            position: absolute; top: 12px; right: 12px;
+            background: transparent; border: none;
+            width: 36px; height: 36px; border-radius: 50%;
+            font-size: 1.4rem; line-height: 1;
+            color: var(--color-text-soft);
+            cursor: pointer;
+        }
+        .an-modal-close:hover { background: var(--color-surface-2); }
+
+        .an-modal-head { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .an-modal-avatar {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: var(--accent-ia-bg); color: var(--accent-ia-text);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 1.4rem; flex-shrink: 0;
+        }
+        .an-modal-name { font-weight: 700; font-size: 1.2rem; margin: 0 0 3px; }
+        .an-modal-meta { font-size: .9rem; color: var(--color-text-soft); margin: 0; }
+        .an-modal-sector {
+            display: inline-block;
+            font-size: .8rem;
+            padding: 2px 10px;
+            border-radius: 999px;
+            background: var(--accent-ecom-bg);
+            color: var(--accent-ecom-text);
+            margin-top: 6px;
+        }
+        .an-modal-section-label {
+            font-size: .75rem; text-transform: uppercase; letter-spacing: .04em;
+            color: var(--color-text-mute); font-weight: 600;
+            margin: 0 0 6px;
+        }
+        .an-modal-project-title { font-weight: 600; font-size: 1rem; margin: 0 0 6px; }
+        .an-modal-project-pitch {
+            font-size: .95rem; color: var(--color-text); line-height: 1.55;
+            margin: 0 0 20px; white-space: pre-wrap;
+        }
+        .an-modal-courses { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 20px; }
+        .an-modal-course-chip {
+            font-size: .8rem;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: var(--accent-ia-bg);
+            color: var(--accent-ia-text);
+        }
+
+        .an-modal-contacts { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .an-modal-btn {
+            flex: 1 1 auto;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: .9rem;
+            cursor: pointer;
+            border: 1px solid transparent;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-family: inherit;
+        }
+        .an-modal-btn-wa { background: #25D366; color: #fff; }
+        .an-modal-btn-wa:hover { background: #1EBE5A; }
+        .an-modal-btn-li { background: #0A66C2; color: #fff; }
+        .an-modal-btn-li:hover { background: #084d94; }
+        .an-modal-btn-ig {
+            background: #E4405F; color: #fff;
+        }
+        .an-modal-btn-ig:hover { background: #C9364F; }
+        .an-modal-contacts-empty {
+            font-size: .9rem; color: var(--color-text-mute); font-style: italic;
+            padding: 10px 12px; background: var(--color-surface-2); border-radius: 8px;
+            text-align: center;
+        }
+
+        .an-modal-report {
+            text-align: center;
+            padding-top: 14px;
+            border-top: 1px solid var(--color-border-soft);
+        }
+        .an-modal-report a {
+            font-size: .8rem; color: var(--color-text-mute);
+            text-decoration: none;
+        }
+        .an-modal-report a:hover { text-decoration: underline; color: #C0392B; }
+
+        /* Panneau de signalement */
+        .an-report-panel {
+            margin-top: 14px;
+            padding: 14px;
+            background: #FEF7F6;
+            border: 1px solid #FCC;
+            border-radius: 10px;
+            text-align: left;
+        }
+        [data-theme="dark"] .an-report-panel {
+            background: rgba(192, 57, 43, .12);
+            border-color: rgba(192, 57, 43, .35);
+        }
+        .an-report-panel label { font-size: .8rem; color: var(--color-text-soft); font-weight: 500; }
+        .an-report-panel textarea {
+            width: 100%; box-sizing: border-box;
+            padding: 8px 10px; margin: 6px 0 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 8px; background: var(--color-surface);
+            color: var(--color-text); font-family: inherit;
+            font-size: .9rem; min-height: 70px; resize: vertical;
+        }
+        .an-report-actions { display: flex; gap: 8px; justify-content: flex-end; }
+        .an-report-actions button {
+            padding: 6px 12px; border-radius: 8px;
+            font-size: .85rem; font-family: inherit; cursor: pointer;
+            border: 1px solid var(--color-border);
+            background: transparent; color: var(--color-text);
+        }
+        .an-report-actions button.primary {
+            background: #C0392B; color: #fff; border-color: #C0392B;
+        }
+        .an-report-actions button.primary:disabled { opacity: .5; cursor: not-allowed; }
+        .an-report-status { font-size: .8rem; margin: 0 0 8px; }
+        .an-report-status.ok  { color: #16A34A; }
+        .an-report-status.err { color: #C0392B; }
+
+        .an-modal-loading, .an-modal-error {
+            padding: 40px 20px; text-align: center; color: var(--color-text-soft);
+        }
+        .an-modal-error { color: #C0392B; }
     </style>
 </head>
 <body>
@@ -296,11 +450,54 @@
         </main>
     </div>
 
+    <!-- Modale profil détaillé -->
+    <div class="an-modal-backdrop" id="profileModal" data-open="false" role="dialog" aria-modal="true" aria-labelledby="modalName">
+        <div class="an-modal" id="profileModalContent">
+            <button type="button" class="an-modal-close" id="modalClose" aria-label="Fermer">&times;</button>
+            <div id="modalLoading" class="an-modal-loading">Chargement…</div>
+            <div id="modalError" class="an-modal-error" hidden></div>
+            <div id="modalBody" hidden>
+                <div class="an-modal-head">
+                    <div class="an-modal-avatar" id="modalAvatar">?</div>
+                    <div>
+                        <p class="an-modal-name" id="modalName">—</p>
+                        <p class="an-modal-meta" id="modalMeta">—</p>
+                        <span class="an-modal-sector" id="modalSector" hidden></span>
+                    </div>
+                </div>
+
+                <p class="an-modal-section-label">Son projet</p>
+                <p class="an-modal-project-title" id="modalProjectTitle" hidden></p>
+                <p class="an-modal-project-pitch" id="modalProjectPitch"></p>
+
+                <p class="an-modal-section-label" id="modalCoursesLabel" hidden>Formations suivies</p>
+                <div class="an-modal-courses" id="modalCourses" hidden></div>
+
+                <p class="an-modal-section-label">Prendre contact</p>
+                <div class="an-modal-contacts" id="modalContacts"></div>
+
+                <div class="an-modal-report">
+                    <a href="#" id="modalReportLink">Signaler ce profil</a>
+                </div>
+
+                <div class="an-report-panel" id="reportPanel" hidden>
+                    <label for="reportReason">Explique-nous ce qui ne va pas avec ce profil (spam, propos inappropriés, faux profil…) :</label>
+                    <textarea id="reportReason" maxlength="500" placeholder="Motif du signalement…"></textarea>
+                    <p class="an-report-status" id="reportStatus" hidden></p>
+                    <div class="an-report-actions">
+                        <button type="button" id="reportCancel">Annuler</button>
+                        <button type="button" class="primary" id="reportSubmit">Envoyer le signalement</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="../js/config.js?v=20260725d"></script>
-    <script src="../js/supabase-client.js?v=20260725d"></script>
-    <script src="../js/auth.js?v=20260725d"></script>
-    <script src="../js/directory-config.js?v=20260725d"></script>
+    <script src="../js/config.js?v=20260726a"></script>
+    <script src="../js/supabase-client.js?v=20260726a"></script>
+    <script src="../js/auth.js?v=20260726a"></script>
+    <script src="../js/directory-config.js?v=20260726a"></script>
     <script>
     (async function () {
         'use strict';
@@ -506,11 +703,199 @@
             $('nextBtn').disabled = state.page >= totalPages;
         }
 
-        function openProfile(id) {
-            // V1 : redirige vers une future page annuaire-profil ; en attendant, on log
-            // (la modale sortira en P2 selon la spec)
-            console.log('[annuaire] TODO ouvrir profil', id);
-            alert('La fiche détaillée arrivera en phase 2 (modale + boutons contact).');
+        // ---------- Modale profil détaillé ----------
+        var modal = $('profileModal');
+        var currentProfileId = null;
+
+        $('modalClose').addEventListener('click', closeProfile);
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) closeProfile();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.getAttribute('data-open') === 'true') closeProfile();
+        });
+        $('modalReportLink').addEventListener('click', function (e) {
+            e.preventDefault();
+            openReportPanel();
+        });
+        $('reportCancel').addEventListener('click', closeReportPanel);
+        $('reportSubmit').addEventListener('click', submitReport);
+
+        function openReportPanel() {
+            $('reportPanel').hidden = false;
+            $('reportStatus').hidden = true;
+            $('reportReason').value = '';
+            $('reportSubmit').disabled = false;
+            setTimeout(function () { $('reportReason').focus(); }, 50);
+        }
+        function closeReportPanel() {
+            $('reportPanel').hidden = true;
+        }
+
+        async function submitReport() {
+            var reason = $('reportReason').value.trim();
+            var status = $('reportStatus');
+            status.className = 'an-report-status';
+            if (reason.length < 3) {
+                status.textContent = 'Explique en quelques mots (3 caractères minimum).';
+                status.className = 'an-report-status err';
+                status.hidden = false;
+                return;
+            }
+            if (!currentProfileId) return;
+
+            $('reportSubmit').disabled = true;
+            status.textContent = 'Envoi…';
+            status.hidden = false;
+
+            var token = await getAccessToken();
+            if (!token) {
+                status.textContent = 'Session expirée — reconnecte-toi.';
+                status.className = 'an-report-status err';
+                $('reportSubmit').disabled = false;
+                return;
+            }
+
+            try {
+                var res = await fetch('/api/directory/report', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify({ reported_id: currentProfileId, reason: reason })
+                });
+                var data = await res.json().catch(function () { return {}; });
+                if (!res.ok) {
+                    status.textContent = data.error || 'Erreur pendant l\'envoi.';
+                    status.className = 'an-report-status err';
+                    $('reportSubmit').disabled = false;
+                    return;
+                }
+                status.textContent = '✓ Signalement envoyé. L\'équipe Cap Learning va le vérifier.';
+                status.className = 'an-report-status ok';
+                setTimeout(closeReportPanel, 2000);
+            } catch (e) {
+                status.textContent = 'Erreur réseau. Réessaie.';
+                status.className = 'an-report-status err';
+                $('reportSubmit').disabled = false;
+            }
+        }
+
+        async function openProfile(id) {
+            currentProfileId = id;
+            modal.setAttribute('data-open', 'true');
+            document.body.style.overflow = 'hidden';
+            $('modalLoading').hidden = false;
+            $('modalError').hidden = true;
+            $('modalBody').hidden = true;
+
+            var token = await getAccessToken();
+            if (!token) return showModalError('Session expirée — reconnecte-toi.');
+
+            try {
+                var res = await fetch('/api/directory/profile/' + encodeURIComponent(id), {
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+                if (!res.ok) {
+                    var err = await res.json().catch(function () { return {}; });
+                    return showModalError(err.error || 'Erreur pendant le chargement.');
+                }
+                var p = await res.json();
+                renderProfile(p);
+            } catch (e) {
+                showModalError('Erreur réseau. Réessaie.');
+            }
+        }
+
+        function closeProfile() {
+            modal.setAttribute('data-open', 'false');
+            document.body.style.overflow = '';
+            currentProfileId = null;
+            closeReportPanel();
+        }
+
+        function showModalError(msg) {
+            $('modalLoading').hidden = true;
+            $('modalBody').hidden = true;
+            $('modalError').hidden = false;
+            $('modalError').textContent = msg;
+        }
+
+        function renderProfile(p) {
+            $('modalLoading').hidden = true;
+            $('modalError').hidden = true;
+            $('modalBody').hidden = false;
+
+            $('modalAvatar').textContent = initials(p.display_name);
+            $('modalName').textContent = p.display_name || 'Membre Cap Learning';
+            var metaParts = [];
+            if (p.country) metaParts.push(config.getCountryLabel(p.country));
+            if (p.city) metaParts.push(p.city);
+            $('modalMeta').textContent = metaParts.join(' · ') || ' ';
+
+            var sChip = $('modalSector');
+            if (p.sector) {
+                sChip.textContent = config.getSectorLabel(p.sector);
+                sChip.hidden = false;
+            } else sChip.hidden = true;
+
+            var tEl = $('modalProjectTitle');
+            if (p.project_title) { tEl.textContent = p.project_title; tEl.hidden = false; }
+            else tEl.hidden = true;
+
+            $('modalProjectPitch').textContent = p.project_pitch || 'Aucun pitch renseigné.';
+
+            var cLabel = $('modalCoursesLabel');
+            var cChips = $('modalCourses');
+            if (p.courses && p.courses.length) {
+                cChips.innerHTML = '';
+                p.courses.forEach(function (c) {
+                    var el = document.createElement('span');
+                    el.className = 'an-modal-course-chip';
+                    el.textContent = courseLabel(c);
+                    cChips.appendChild(el);
+                });
+                cLabel.hidden = false;
+                cChips.hidden = false;
+            } else {
+                cLabel.hidden = true;
+                cChips.hidden = true;
+            }
+
+            // Boutons contact
+            var contacts = $('modalContacts');
+            contacts.innerHTML = '';
+            var contact = p.contact || {};
+            var any = false;
+            if (contact.whatsapp_url) {
+                any = true;
+                contacts.appendChild(makeContactBtn('an-modal-btn-wa', 'WhatsApp', contact.whatsapp_url));
+            }
+            if (contact.linkedin_url) {
+                any = true;
+                contacts.appendChild(makeContactBtn('an-modal-btn-li', 'LinkedIn', contact.linkedin_url));
+            }
+            if (contact.instagram_url) {
+                any = true;
+                contacts.appendChild(makeContactBtn('an-modal-btn-ig', 'Instagram', contact.instagram_url));
+            }
+            if (!any) {
+                var empty = document.createElement('div');
+                empty.className = 'an-modal-contacts-empty';
+                empty.textContent = 'Ce membre n\'a partagé aucun contact.';
+                contacts.appendChild(empty);
+            }
+        }
+
+        function makeContactBtn(cls, label, url) {
+            var a = document.createElement('a');
+            a.href = url;
+            a.target = '_blank';
+            a.rel = 'noopener noreferrer';
+            a.className = 'an-modal-btn ' + cls;
+            a.textContent = label;
+            return a;
         }
 
         function courseLabel(courseId) {
@@ -540,6 +925,6 @@
         fetchResults();
     })();
     </script>
-    <script src="../js/theme.js?v=20260725d" defer></script>
+    <script src="../js/theme.js?v=20260726a" defer></script>
 </body>
 </html>
