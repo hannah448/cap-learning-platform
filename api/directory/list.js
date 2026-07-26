@@ -48,6 +48,21 @@ function sanitizeSearch(q) {
     return cleaned.length >= 2 ? cleaned : null;
 }
 
+// Normalise pour la recherche accent-insensible : minuscules + suppression des
+// diacritiques. Doit correspondre à la colonne SQL `directory_search_norm`
+// (voir scripts/db/directory_search.sql).
+function normalize(str) {
+    return String(str).normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+}
+
+// Découpe la recherche en tokens de 2+ caractères, normalisés. Chaque token
+// devient un ILIKE sur `directory_search_norm` ; les tokens sont AND-ed.
+// Exemple : "Sénégal wax" → ["senegal", "wax"] → matche un profil qui contient
+// les deux termes dans son nom / titre / pitch (ignorant les accents).
+function tokenize(q) {
+    return normalize(q).split(/\s+/).filter(w => w.length >= 2).slice(0, 4);
+}
+
 async function sbFetch(path, extraHeaders) {
     const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
         method: 'GET',
@@ -150,11 +165,15 @@ module.exports = async function handler(req, res) {
         filters.push(`id=in.(${ids.map(encodeURIComponent).join(',')})`);
     }
 
-    // Recherche libre : OR sur display_name + project_title
+    // Recherche libre : multi-mots AND, accent-insensible, sur la colonne
+    // calculée `directory_search_norm` (voir scripts/db/directory_search.sql).
     const search = sanitizeSearch(qp.q);
     if (search) {
-        const esc = encodeURIComponent(search);
-        filters.push(`or=(display_name.ilike.*${esc}*,project_title.ilike.*${esc}*)`);
+        const tokens = tokenize(search);
+        // Chaque token = un filtre ILIKE (les filtres PostgREST séparés sont AND-ed).
+        tokens.forEach(t => {
+            filters.push(`directory_search_norm=ilike.*${encodeURIComponent(t)}*`);
+        });
     }
 
     // 5. Pagination
