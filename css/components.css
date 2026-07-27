@@ -3391,3 +3391,63 @@
     border-color: var(--color-border) !important;
     color: var(--color-text) !important;
 }
+
+/* ============================================
+   Footer — badges moyens de paiement (rassurance)
+   ============================================ */
+.payment-methods {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: .82rem;
+}
+.payment-label {
+    color: rgba(255,255,255,.75);
+    font-weight: 600;
+    margin-right: 4px;
+}
+.pay-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    background: #fff;
+    color: #1E1B3A;
+    border-radius: 6px;
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .01em;
+    box-shadow: 0 1px 2px rgba(0,0,0,.15);
+    line-height: 1;
+    white-space: nowrap;
+}
+.pay-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.pay-wave .pay-dot { background: #1DC1EC; }
+.pay-orange .pay-dot { background: #FF7900; }
+.pay-mtn .pay-dot { background: #FFCC00; box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset; }
+.pay-visa {
+    color: #fff;
+    background: linear-gradient(135deg, #1A1F71, #2E3AA1);
+    font-family: 'Arial Black', sans-serif;
+    letter-spacing: .12em;
+    padding: 6px 12px;
+    font-size: .78rem;
+}
+.pay-mc {
+    padding-left: 6px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.pay-mc-circles { position: relative; display: inline-block; width: 22px; height: 14px; }
+.pay-mc-circles span {
+    position: absolute; top: 0; width: 14px; height: 14px; border-radius: 50%;
+}
+.pay-mc-circles span:first-child { left: 0; background: #EB001B; }
+.pay-mc-circles span:last-child { left: 8px; background: #F79E1B; mix-blend-mode: multiply; }
+.pay-bank { color: #1E1B3A; }
+.pay-bank svg { color: #3A50F6; }
+
+/* mobile : encore plus compact */
+@media (max-width: 480px) {
+    .pay-badge { padding: 4px 8px; font-size: .7rem; }
+}
