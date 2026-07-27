@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Les pages privees (espace membre, back-office) ne sont volontairement PAS
+# bloquees ici : elles portent une balise <meta name="robots" content="noindex">.
+# Un Disallow empecherait Google de la lire et laisserait ces URLs indexables.
+Disallow: /api/
+
+Sitemap: https://www.cap-learning.com/sitemap.xml

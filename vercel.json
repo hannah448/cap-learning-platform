@@ -1,21 +1,112 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "regions": ["fra1"],
+  "regions": [
+    "fra1"
+  ],
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/a-propos",
+      "destination": "/pages/qui-sommes-nous",
+      "statusCode": 301
+    },
+    {
+      "source": "/contact",
+      "destination": "/pages/contact",
+      "statusCode": 301
+    },
+    {
+      "source": "/nos-expertises",
+      "destination": "/pages/catalogue",
+      "statusCode": 301
+    },
+    {
+      "source": "/expertises",
+      "destination": "/pages/catalogue",
+      "statusCode": 301
+    },
+    {
+      "source": "/nos-expertises/categorie-intelligence-artificielle",
+      "destination": "/pages/formation-ia-business",
+      "statusCode": 301
+    },
+    {
+      "source": "/expertises/intelligence-artificielle",
+      "destination": "/pages/formation-ia-business",
+      "statusCode": 301
+    },
+    {
+      "source": "/accueil-2/intelligence-artificielle",
+      "destination": "/pages/formation-ia-business",
+      "statusCode": 301
+    },
+    {
+      "source": "/nos-expertises/categorie-marketing-digital",
+      "destination": "/pages/formation-marketing-digital",
+      "statusCode": 301
+    },
+    {
+      "source": "/categorie-marketing-digital",
+      "destination": "/pages/formation-marketing-digital",
+      "statusCode": 301
+    },
+    {
+      "source": "/nos-expertises/categorie-e-commerce",
+      "destination": "/pages/formation-ecommerce",
+      "statusCode": 301
+    },
+    {
+      "source": "/nos-expertises/categorie-reseaux-sociaux",
+      "destination": "/pages/formation-reseaux-sociaux",
+      "statusCode": 301
+    },
+    {
+      "source": "/nos-expertises/categorie-creation-de-contenu",
+      "destination": "/pages/formation-reseaux-sociaux",
+      "statusCode": 301
+    },
+    {
+      "source": "/pages/formation-entrepreneuriat-digital",
+      "destination": "/pages/catalogue",
+      "statusCode": 301
+    },
+    {
+      "source": "/pages/formation",
+      "destination": "/pages/formation-marketing-digital",
+      "statusCode": 301
+    },
+    {
+      "source": "/pages/formation.html",
+      "destination": "/pages/formation-marketing-digital",
+      "statusCode": 301
+    }
+  ],
   "headers": [
     {
       "source": "/api/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "no-store, max-age=0" },
-        { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" }
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        }
       ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     }
   ]
