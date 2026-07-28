@@ -7,6 +7,14 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        { "type": "host", "value": ".*\\.vercel\\.app" }
+      ],
+      "destination": "https://www.cap-learning.com/:path*",
+      "statusCode": 308
+    },
+    {
       "source": "/a-propos",
       "destination": "/pages/qui-sommes-nous",
       "statusCode": 301
