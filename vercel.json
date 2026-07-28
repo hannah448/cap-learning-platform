@@ -7,14 +7,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/:path*",
-      "has": [
-        { "type": "host", "value": ".*\\.vercel\\.app" }
-      ],
-      "destination": "https://www.cap-learning.com/:path*",
-      "statusCode": 308
-    },
-    {
       "source": "/pages/formation-entrepreneuriat-digital",
       "destination": "/catalogue",
       "statusCode": 301
