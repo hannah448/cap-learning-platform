@@ -24,7 +24,7 @@
      CapConsent.injectStyles()       -> injecte le CSS une seule fois
      CapConsent.mount(container, opts)
          opts.idPrefix   préfixe des id/for (défaut 'cap-consent')
-         opts.cgvHref    lien vers les CGV (défaut '/pages/cgv')
+         opts.cgvHref    lien vers les CGV (défaut '/cgv')
          opts.onChange   callback(isComplete) à chaque coche/décoche
          -> retourne un objet { isComplete, values, reset, showError, element }
    ============================================================================= */
@@ -95,7 +95,7 @@
         injectStyles();
 
         var idPrefix = opts.idPrefix || 'cap-consent';
-        var cgvHref = opts.cgvHref || '/pages/cgv';
+        var cgvHref = opts.cgvHref || '/cgv';
 
         container.innerHTML = buildHtml(idPrefix, cgvHref);
 

@@ -77,11 +77,11 @@
     }
 
     /**
-     * Le site est servi tantôt à la racine, tantôt sous /pages/ — on construit
-     * un lien CGV valable dans les deux cas.
+     * Toutes les pages sont servies à la racine : /cgv, quelle que soit la page
+     * courante. (La réécriture Vercel les sert depuis pages/ sans le montrer.)
      */
     function cgvHref() {
-        return window.location.pathname.indexOf('/pages/') !== -1 ? 'cgv' : 'pages/cgv';
+        return '/cgv';
     }
 
     // ----------------------------------------------------------------
@@ -301,7 +301,7 @@
                 priceXof: opts.priceXof || 0,
                 ts: Date.now()
             }));
-            window.location.href = (window.location.pathname.indexOf('/pages/') !== -1 ? '' : 'pages/') + 'connexion';
+            window.location.href = '/connexion';
             return;
         }
 

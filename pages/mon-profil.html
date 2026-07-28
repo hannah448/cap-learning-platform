@@ -32,17 +32,17 @@
         /* -------- Bloc opt-in (toggle géant) -------- */
         .mp-optin {
             background: var(--accent-mkt-bg);
-            border: 1px solid var(--accent-mkt);
+            border: 2px solid var(--accent-mkt);
             color: var(--accent-mkt-text);
             border-radius: 12px;
-            padding: 16px 20px;
+            padding: 18px 22px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 20px;
             margin-bottom: 24px;
         }
         .mp-optin-body { flex: 1; line-height: 1.4; }
-        .mp-optin-title { font-weight: 700; font-size: 1rem; margin: 0 0 4px; }
+        .mp-optin-title { font-weight: 700; font-size: 1.05rem; margin: 0 0 4px; }
         .mp-optin-hint { font-size: .85rem; opacity: .85; margin: 0; }
         .mp-optin[data-on="true"] {
             background: var(--accent-ent-bg);
@@ -50,12 +50,33 @@
             color: var(--accent-ent-text);
         }
 
+        /* Petit indicateur "Clique ici" affiché uniquement quand le toggle est OFF */
+        .mp-optin-cta {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: .8rem;
+            font-weight: 600;
+            color: var(--accent-mkt-text);
+            white-space: nowrap;
+        }
+        .mp-optin-cta::after {
+            content: "→";
+            font-size: 1.1rem;
+            animation: mpNudge 1.4s ease-in-out infinite;
+        }
+        @keyframes mpNudge {
+            0%, 100% { transform: translateX(0); }
+            50%      { transform: translateX(6px); }
+        }
+        .mp-optin[data-on="true"] .mp-optin-cta { display: none; }
+
         /* -------- Toggle switch -------- */
         .mp-switch {
             position: relative;
             display: inline-block;
-            width: 52px;
-            height: 28px;
+            width: 72px;
+            height: 38px;
             flex-shrink: 0;
         }
         .mp-switch input { opacity: 0; width: 0; height: 0; }
@@ -69,15 +90,30 @@
         .mp-switch-slider::before {
             content: "";
             position: absolute;
-            width: 22px; height: 22px;
-            left: 3px; top: 3px;
+            width: 30px; height: 30px;
+            left: 4px; top: 4px;
             background: #fff;
             border-radius: 50%;
             transition: .2s;
-            box-shadow: 0 1px 3px rgba(0,0,0,.2);
+            box-shadow: 0 1px 3px rgba(0,0,0,.25);
         }
         .mp-switch input:checked + .mp-switch-slider { background: var(--accent-ent); }
-        .mp-switch input:checked + .mp-switch-slider::before { transform: translateX(24px); }
+        .mp-switch input:checked + .mp-switch-slider::before { transform: translateX(34px); }
+
+        /* Pulsation autour du toggle tant qu'il est éteint, pour attirer l'œil */
+        .mp-optin[data-on="false"] .mp-switch-slider {
+            box-shadow: 0 0 0 0 rgba(217, 119, 6, .55);
+            animation: mpPulse 1.8s ease-out infinite;
+        }
+        @keyframes mpPulse {
+            0%   { box-shadow: 0 0 0 0    rgba(217, 119, 6, .55); }
+            70%  { box-shadow: 0 0 0 14px rgba(217, 119, 6, 0);    }
+            100% { box-shadow: 0 0 0 0    rgba(217, 119, 6, 0);    }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .mp-optin[data-on="false"] .mp-switch-slider { animation: none; }
+            .mp-optin-cta::after { animation: none; }
+        }
 
         /* -------- Form -------- */
         .mp-form { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 12px; padding: 24px; }
@@ -224,6 +260,7 @@
                         <p class="mp-optin-title">Rendre mon profil visible dans l'annuaire</p>
                         <p class="mp-optin-hint" id="optinHint">Tant que ce toggle est désactivé, personne ne peut voir ton profil. Tu peux le désactiver à tout moment.</p>
                     </div>
+                    <span class="mp-optin-cta" aria-hidden="true">Clique ici</span>
                     <label class="mp-switch">
                         <input type="checkbox" id="isVisible">
                         <span class="mp-switch-slider" aria-hidden="true"></span>

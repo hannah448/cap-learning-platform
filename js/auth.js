@@ -80,6 +80,21 @@
     // Public API
     // --------------------------------------------------------------
 
+    // ⚠️ Les URLs de retour ci-dessous gardent volontairement /pages/dashboard,
+    // alors que le reste du site est passé aux URLs sans dossier (/dashboard).
+    //
+    // Supabase refuse toute URL de redirection absente de sa liste blanche
+    // (Dashboard → Authentication → URL Configuration). Cette liste contient
+    // aujourd'hui /pages/dashboard ; y envoyer /dashboard ferait rejeter la
+    // redirection et retomber sur la Site URL, cassant silencieusement la
+    // confirmation d'email et la connexion Google.
+    //
+    // /pages/dashboard est redirigé en 301 vers /dashboard par vercel.json, et
+    // le fragment #access_token= survit à la redirection : le parcours marche.
+    //
+    // Pour supprimer ce détour : ajouter /dashboard à la liste blanche Supabase,
+    // vérifier une inscription réelle, PUIS simplifier ici.
+
     async function signUp(email, password, metadata) {
         if (!email || !password) throw new Error('Email et mot de passe requis');
         if (password.length < 8) throw new Error('Mot de passe : 8 caractères minimum');

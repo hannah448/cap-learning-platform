@@ -47,15 +47,12 @@
     document.head.appendChild(style);
 
     function buildPath(target) {
-        // Détecte si on est à la racine ou dans pages/ ou docs/
-        var path = window.location.pathname;
-        var depth = 0;
-        if (path.indexOf('/pages/') !== -1 || path.indexOf('/docs/') !== -1) depth = 1;
-        var prefix = '';
-        for (var i = 0; i < depth; i++) prefix += '../';
-        if (target === 'login') return prefix + 'pages/connexion';
-        if (target === 'home')  return prefix + 'index';
-        return prefix + target;
+        // Toutes les pages sont servies à la racine (/connexion, /dashboard…) :
+        // la réécriture Vercel les sert depuis pages/ sans que l'URL le montre.
+        // Des chemins absolus évitent toute dépendance à la page courante.
+        if (target === 'login') return '/connexion';
+        if (target === 'home')  return '/';
+        return '/' + target;
     }
 
     function release() {
