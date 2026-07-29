@@ -1,0 +1,1267 @@
+/* ==========================================================================
+   Cap Learning — Page produit formation (gabarit v2)
+   --------------------------------------------------------------------------
+   Source : design handoff « page produit formation (gabarit) », juillet 2026.
+   Portée : le <main class="fp"> des 4 pages pages/formation-*.html.
+   Header et footer du site ne sont PAS touchés par cette feuille.
+
+   À charger APRÈS style.css et components.css.
+
+   Tout est préfixé --fp-* / .fp-* : aucune variable ni classe existante
+   n'est redéfinie, donc aucune autre page ne bouge.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Tokens manquants dans style.css
+   --------------------------------------------------------------------------
+   style.css est resté sur la palette pré-v1.3 : gris froids, --color-secondary
+   = bleu nuit. Le design system livré utilise l'échelle « stone » (neutres
+   chauds), les surfaces ivoire et un secondaire corail. On les redéclare ici
+   sous des noms --fp-* plutôt que d'écraser les anciens, qui servent encore
+   aux 12 autres pages du site.
+   -------------------------------------------------------------------------- */
+
+.fp {
+    /* Surfaces */
+    --fp-page:        #FFF7E8;   /* --surface-ivory : fond de page marketing */
+    --fp-ivory-line:  #F2E6C8;
+    --fp-card:        #FFFFFF;
+    --fp-well:        #F5F5F4;   /* --stone-100 : encarts discrets, pastilles */
+    --fp-dark:        #1C1917;   /* --stone-900 : bandeau CTA final */
+
+    /* Bordures */
+    --fp-border:      #E7E5E4;   /* --stone-200 */
+    --fp-border-soft: #F5F5F4;   /* --stone-100 */
+
+    /* Textes */
+    --fp-text:        #1C1917;
+    --fp-text-soft:   #57534E;   /* --stone-600 */
+    --fp-text-mute:   #78716C;   /* --stone-500, plancher du secondaire */
+
+    /* Corail — jamais #FF6B4A sur du texte (2,6:1 sur blanc, échoue AA) */
+    --fp-coral:       #E8431F;   /* --color-secondary-dark : texte sur blanc, bordures */
+    --fp-coral-bg:    #FFE5DC;   /* --color-secondary-50   : fonds seulement */
+    /* Sur le fond corail clair, #E8431F ne fait que 3,3:1 : insuffisant pour
+       les 12 px d'une pill. On prend le token prévu pour ça par le DS. */
+    --fp-coral-text:  var(--accent-rs-text);
+
+    /* Vert profond — 3e couleur de secours quand l'accent de la catégorie
+       est trop proche du bleu primaire (IA) ou du corail (réseaux sociaux).
+       Vient de tokens.css et bascule tout seul en mode sombre. */
+    --fp-teal:        var(--accent-ent-text);
+
+    /* Bleu primaire — repris de style.css, redit ici pour lisibilité */
+    --fp-primary:     var(--color-primary);
+    --fp-primary-bg:  var(--color-primary-50);
+
+    /* Accent de catégorie — surchargé plus bas par [data-formation] */
+    --fp-accent:      var(--color-primary);
+    --fp-accent-bg:   var(--color-primary-50);
+    --fp-accent-text: var(--color-primary);
+
+    /* Géométrie */
+    --fp-header-h:    73px;      /* .header-inner 72px + bordure 1px */
+    --fp-bar-h:       88px;      /* barre d'achat collante */
+}
+
+/* Accent par catégorie — mêmes valeurs que css/tokens.css */
+.fp[data-formation="ecommerce"] { --fp-accent: #A855F7; --fp-accent-bg: #F3E8FF; --fp-accent-text: #581C87; }
+.fp[data-formation="ia"]        { --fp-accent: #3460E5; --fp-accent-bg: #DDE6FF; --fp-accent-text: #1E2F7A; }
+.fp[data-formation="marketing"] { --fp-accent: #FCB829; --fp-accent-bg: #FEF0C7; --fp-accent-text: #6B3F0F; }
+.fp[data-formation="reseaux"]   { --fp-accent: #FB6E45; --fp-accent-bg: #FFE0D6; --fp-accent-text: #7C2410; }
+
+/* Mode sombre — le site a un sélecteur de thème sur toutes les pages.
+   Les surfaces ivoire deviennent stone-900/800 ; les accents montent en
+   luminance pour rester lisibles (valeurs de tokens.css). */
+:root[data-theme="dark"] .fp {
+    --fp-page:        #1C1917;
+    --fp-ivory-line:  #44403C;
+    --fp-card:        #292524;
+    --fp-well:        #44403C;
+    --fp-dark:        #0C0A09;
+
+    --fp-border:      #44403C;
+    --fp-border-soft: #292524;
+
+    --fp-text:        #FAFAF9;
+    --fp-text-soft:   #D6D3D1;
+    --fp-text-mute:   #A8A29E;
+
+    --fp-coral:       #FF8B6B;
+    --fp-coral-bg:    #4A1F0E;
+}
+
+:root[data-theme="dark"] .fp[data-formation="ecommerce"] { --fp-accent: #BC79F8; --fp-accent-bg: #3D1361; --fp-accent-text: #DCC4FB; }
+:root[data-theme="dark"] .fp[data-formation="ia"]        { --fp-accent: #5A82EE; --fp-accent-bg: #1A2654; --fp-accent-text: #B5C7FF; }
+:root[data-theme="dark"] .fp[data-formation="marketing"] { --fp-accent: #FCC74A; --fp-accent-bg: #4A2F0A; --fp-accent-text: #FEE9A0; }
+:root[data-theme="dark"] .fp[data-formation="reseaux"]   { --fp-accent: #FF8B6B; --fp-accent-bg: #4A1F0E; --fp-accent-text: #FFC4A8; }
+
+
+/* --------------------------------------------------------------------------
+   2. Ossature
+   -------------------------------------------------------------------------- */
+
+.fp {
+    background: var(--fp-page);
+    color: var(--fp-text);
+    font-family: var(--font-body);
+}
+
+/* La barre d'achat collante ne doit jamais recouvrir la fin du contenu. */
+body.fp-body {
+    padding-bottom: var(--fp-bar-h, 88px);
+}
+
+.fp-wrap {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding-left: var(--space-8);
+    padding-right: var(--space-8);
+}
+
+.fp-section {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+}
+
+/* Le header du site est collant : sans cette marge, un lien d'ancre
+   (« Revoir le programme détaillé ») cadre le titre sous le header. */
+.fp [id] {
+    scroll-margin-top: calc(var(--fp-header-h) + var(--space-4));
+}
+
+/* Sections posées sur du blanc, détourées par un liseré ivoire */
+.fp-band-card {
+    background: var(--fp-card);
+    border-top: 1px solid var(--fp-ivory-line);
+    border-bottom: 1px solid var(--fp-ivory-line);
+}
+
+.fp-band-card + .fp-band-card {
+    border-top: none;
+}
+
+.fp-eyebrow {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--fp-text-mute);
+}
+
+.fp-h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fp-text);
+    margin: 0;
+}
+
+.fp-head {
+    max-width: 56ch;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.fp-head p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--fp-text-soft);
+    margin: 0;
+}
+
+/* Chiffres : chasse fixe partout (prix, durées, stats) */
+.fp-num {
+    font-feature-settings: 'tnum';
+}
+
+/* Focus visible — ne jamais désactiver */
+.fp a:focus-visible,
+.fp button:focus-visible {
+    outline: 2px solid var(--fp-primary);
+    outline-offset: 4px;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. Hero
+   -------------------------------------------------------------------------- */
+
+.fp-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.55fr) minmax(340px, 1fr);
+    gap: var(--space-12);
+    align-items: start;
+    padding-top: var(--space-10);
+    padding-bottom: var(--space-12);
+}
+
+.fp-hero-main {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    min-width: 0;
+}
+
+.fp-crumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    font-size: var(--text-xs);
+    color: var(--fp-text-mute);
+}
+
+.fp-crumb a {
+    color: var(--fp-text-mute);
+}
+
+.fp-crumb a:hover {
+    color: var(--fp-text);
+}
+
+.fp-crumb [aria-current] {
+    color: var(--fp-text-soft);
+    font-weight: 500;
+}
+
+.fp-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+}
+
+.fp-pill {
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: var(--radius-full);
+    background: var(--fp-well);
+    color: var(--fp-text-soft);
+}
+
+.fp-pill-accent { background: var(--fp-accent-bg); color: var(--fp-accent-text); }
+.fp-pill-coral  { background: var(--fp-coral-bg);  color: var(--fp-coral-text); }
+
+.fp-h1 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-5xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fp-text);
+    max-width: 20ch;
+    margin: 0;
+}
+
+.fp-lede {
+    font-size: var(--text-lg);
+    line-height: var(--leading-relaxed);
+    color: var(--fp-text-soft);
+    max-width: 58ch;
+    margin: 0;
+}
+
+/* --- 3 cartes de preuve --- */
+.fp-proof {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+.fp-proof-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--fp-card);
+    border: 1px solid var(--fp-border-soft);
+    border-radius: var(--radius-lg);
+    padding: 12px 16px;
+}
+
+.fp-proof-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-lg);
+    font-feature-settings: 'tnum';
+    color: var(--fp-text);
+}
+
+.fp-proof-label {
+    font-size: var(--text-xs);
+    color: var(--fp-text-soft);
+    line-height: 1.3;
+}
+
+.fp-stars {
+    color: var(--color-tertiary, #F4B740);
+    letter-spacing: 1px;
+}
+
+/* --- Carte formateur --- */
+.fp-teacher {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    background: var(--fp-card);
+    border: 1px solid var(--fp-border-soft);
+    border-radius: var(--radius-xl);
+    padding: var(--space-4) var(--space-5);
+}
+
+.fp-teacher img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+
+.fp-teacher-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-base);
+    color: var(--fp-text);
+    margin: 0;
+}
+
+.fp-teacher-role {
+    font-size: var(--text-sm);
+    color: var(--fp-text-soft);
+    margin: 0;
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Carte d'achat
+   -------------------------------------------------------------------------- */
+
+.fp-buy {
+    position: sticky;
+    top: calc(var(--fp-header-h) + var(--space-6));
+    background: var(--fp-card);
+    border: 1px solid var(--fp-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.fp-buy-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    background: var(--fp-well);
+}
+
+.fp-buy-media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+}
+
+.fp-buy-media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 18, 16, 0) 45%, rgba(20, 18, 16, .72) 100%);
+    pointer-events: none;
+}
+
+.fp-buy-badge {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 1;
+    font-family: var(--font-display);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.fp-buy-body {
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.fp-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.fp-price {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-4xl);
+    letter-spacing: var(--tracking-tight);
+    font-feature-settings: 'tnum';
+    color: var(--fp-text);
+}
+
+.fp-price-alt {
+    font-size: var(--text-base);
+    color: var(--fp-text-mute);
+    font-feature-settings: 'tnum';
+}
+
+.fp-price-note {
+    font-size: var(--text-sm);
+    color: var(--fp-text-soft);
+    margin: 0;
+}
+
+.fp-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    font-family: var(--font-display);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    background: var(--fp-primary);
+    color: #fff;
+    border: none;
+    padding: 16px 24px;
+    border-radius: var(--radius-lg);
+    min-height: 56px;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.fp-cta:hover {
+    background: var(--color-primary-dark);
+    color: #fff;
+    transform: translateY(-1px);
+}
+
+.fp-pay {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.fp-pay-label {
+    font-size: var(--text-xs);
+    color: var(--fp-text-mute);
+}
+
+.fp-pay-chip {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    background: var(--fp-well);
+    color: var(--fp-text-soft);
+    padding: 5px 10px;
+    border-radius: var(--radius-full);
+}
+
+.fp-includes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    border-top: 1px solid var(--fp-border-soft);
+    padding: var(--space-4) 0 0;
+    margin: 0;
+    list-style: none;
+}
+
+.fp-includes li {
+    display: flex;
+    gap: 10px;
+    font-size: var(--text-sm);
+    color: var(--fp-text);
+}
+
+.fp-includes li::before {
+    content: '\2713';
+    color: var(--fp-primary);
+    font-weight: 700;
+    flex: 0 0 auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Objectifs — 3 phases
+   -------------------------------------------------------------------------- */
+
+.fp-phases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-6);
+}
+
+.fp-phase {
+    border: 1px solid var(--fp-border-soft);
+    /* Le liseré haut peut porter la couleur vive : c'est décoratif.
+       Tout ce qui est texte utilise --fp-phase, la version foncée. */
+    border-top: 3px solid var(--fp-phase-rail, var(--fp-phase));
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition: box-shadow var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.fp-phase:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+}
+
+/* Phase 1 porte la couleur de la catégorie. Sur du blanc, la version vive ne
+   passe pas AA : l'ambre marketing (#FCB829) tombe à 1,8:1, illisible. On
+   réserve la version vive au liseré et on prend --*-text pour le texte. */
+.fp-phase-1 { --fp-phase: var(--fp-accent-text); --fp-phase-rail: var(--fp-accent); }
+.fp-phase-2 { --fp-phase: var(--fp-primary); }
+.fp-phase-3 { --fp-phase: var(--fp-coral); }
+
+/* Deux catégories ont un accent trop proche d'une des trois couleurs de
+   phase : les 3 repères ne se distingueraient plus. On décale.
+   IA (#3460E5) ≈ primaire (#3A50F6) — Réseaux sociaux (#FB6E45) ≈ corail. */
+.fp[data-formation="ia"] .fp-phase-2      { --fp-phase: var(--fp-coral); }
+.fp[data-formation="ia"] .fp-phase-3      { --fp-phase: var(--fp-teal); }
+.fp[data-formation="reseaux"] .fp-phase-3 { --fp-phase: var(--fp-teal); }
+
+.fp-phase-top {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+}
+
+.fp-phase-n {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-2xl);
+    color: var(--fp-phase);
+    font-feature-settings: 'tnum';
+}
+
+.fp-phase h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-xl);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fp-text);
+    margin: 0;
+}
+
+.fp-phase-when {
+    font-size: var(--text-sm);
+    color: var(--fp-text-soft);
+    line-height: var(--leading-normal);
+    margin: 0;
+}
+
+.fp-phase ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fp-phase li {
+    display: flex;
+    gap: 10px;
+    font-size: var(--text-base);
+    line-height: var(--leading-normal);
+    color: var(--fp-text);
+}
+
+.fp-phase li::before {
+    content: '\2192';
+    color: var(--fp-phase);
+    font-weight: 700;
+    flex: 0 0 auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Programme — accordéon
+   -------------------------------------------------------------------------- */
+
+.fp-prog-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-6);
+}
+
+.fp-btn-ghost {
+    font-family: var(--font-display);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    background: var(--fp-card);
+    color: var(--fp-text);
+    border: 1px solid var(--fp-border);
+    border-radius: var(--radius-lg);
+    padding: 12px 18px;
+    min-height: 44px;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.fp-btn-ghost:hover {
+    background: var(--fp-well);
+}
+
+.fp-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.fp-block {
+    background: var(--fp-card);
+    border: 1px solid var(--fp-border-soft);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.fp-block:hover {
+    box-shadow: var(--shadow-card-hover);
+}
+
+.fp-block-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: left;
+    background: none;
+    border: none;
+    padding: var(--space-5) var(--space-6);
+    min-height: 44px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    color: inherit;
+}
+
+.fp-block-n {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    /* --*-text et pas --*-accent : 14 px exige 4,5:1 sur le fond teinté */
+    color: var(--fp-accent-text);
+    background: var(--fp-accent-bg);
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    font-feature-settings: 'tnum';
+}
+
+.fp-block-txt {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.fp-block-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fp-text);
+}
+
+.fp-block-meta {
+    font-size: var(--text-sm);
+    color: var(--fp-text-mute);
+    font-feature-settings: 'tnum';
+}
+
+.fp-sign {
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    color: var(--fp-text-soft);
+    flex: 0 0 auto;
+}
+
+.fp-block-panel {
+    padding: 0 var(--space-6) var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fp-block-panel[hidden] {
+    display: none;
+}
+
+.fp-lesson {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--fp-ivory-line);
+}
+
+.fp-lesson-kind {
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--fp-text-soft);
+    background: var(--fp-well);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    flex: 0 0 auto;
+    min-width: 62px;
+    text-align: center;
+}
+
+.fp-lesson-title {
+    flex: 1;
+    min-width: 0;
+    font-size: var(--text-base);
+    color: var(--fp-text);
+    line-height: var(--leading-snug);
+}
+
+.fp-lesson-time {
+    font-size: var(--text-sm);
+    color: var(--fp-text-mute);
+    font-feature-settings: 'tnum';
+    flex: 0 0 auto;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Résultats — témoignages
+   -------------------------------------------------------------------------- */
+
+.fp-quotes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-6);
+}
+
+.fp-quote {
+    margin: 0;
+    border: 1px solid var(--fp-border-soft);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition: box-shadow var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.fp-quote:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+}
+
+.fp-quote-result {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-2xl);
+    letter-spacing: var(--tracking-tight);
+    line-height: var(--leading-snug);
+    color: var(--fp-phase, var(--fp-accent));
+    margin: 0;
+}
+
+.fp-quote blockquote {
+    margin: 0;
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--fp-text-soft);
+}
+
+.fp-quote figcaption {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-top: auto;
+}
+
+.fp-quote figcaption img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+}
+
+.fp-quote-who {
+    font-size: var(--text-sm);
+    line-height: 1.35;
+    color: var(--fp-text);
+}
+
+.fp-quote-who strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+}
+
+.fp-quote-who span {
+    color: var(--fp-text-mute);
+}
+
+
+/* --------------------------------------------------------------------------
+   8. Pour qui + FAQ
+   -------------------------------------------------------------------------- */
+
+.fp-duo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-12);
+    align-items: start;
+}
+
+.fp-col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+}
+
+.fp-col .fp-h2 {
+    font-size: var(--text-3xl);
+}
+
+.fp-audience {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.fp-audience li {
+    display: flex;
+    gap: var(--space-4);
+    background: var(--fp-card);
+    border: 1px solid var(--fp-border-soft);
+    border-radius: var(--radius-xl);
+    padding: var(--space-5);
+}
+
+.fp-tile {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    background: var(--fp-accent-bg);
+    color: var(--fp-accent-text);
+}
+
+.fp-tile-2 { background: var(--fp-primary-bg); color: var(--fp-primary); }
+.fp-tile-3 { background: var(--fp-coral-bg);   color: var(--fp-coral); }
+
+.fp-audience strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+    color: var(--fp-text);
+}
+
+.fp-audience span span {
+    font-size: var(--text-sm);
+    color: var(--fp-text-soft);
+    line-height: var(--leading-normal);
+}
+
+.fp-disqualify {
+    font-size: var(--text-sm);
+    color: var(--fp-text-soft);
+    background: var(--fp-well);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+    line-height: var(--leading-normal);
+    margin: 0;
+}
+
+.fp-disqualify strong {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--fp-text);
+}
+
+.fp-faq {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.fp-faq-item {
+    background: var(--fp-card);
+    border: 1px solid var(--fp-border-soft);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.fp-faq-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    text-align: left;
+    background: none;
+    border: none;
+    padding: var(--space-4) var(--space-5);
+    min-height: 44px;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-base);
+    color: var(--fp-text);
+}
+
+.fp-faq-btn span:first-child {
+    flex: 1;
+    min-width: 0;
+}
+
+.fp-faq-answer {
+    padding: 0 var(--space-5) var(--space-5);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--fp-text-soft);
+    margin: 0;
+}
+
+.fp-faq-answer[hidden] {
+    display: none;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Formations liées
+   --------------------------------------------------------------------------
+   Hors périmètre du handoff, conservée pour le maillage interne (SEO) et
+   restylée au nouveau langage visuel.
+   -------------------------------------------------------------------------- */
+
+.fp-related {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-6);
+}
+
+.fp-related-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    background: var(--fp-card);
+    border: 1px solid var(--fp-border-soft);
+    border-radius: var(--radius-xl);
+    padding: var(--space-6);
+    color: inherit;
+    transition: box-shadow var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.fp-related-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+    color: inherit;
+}
+
+.fp-related-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fp-text);
+    margin: 0;
+}
+
+.fp-related-card p {
+    font-size: var(--text-sm);
+    color: var(--fp-text-soft);
+    line-height: var(--leading-normal);
+    margin: 0;
+}
+
+.fp-related-meta {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-top: auto;
+    padding-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--fp-text-mute);
+    font-feature-settings: 'tnum';
+}
+
+.fp-related-price {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-base);
+    color: var(--fp-text);
+}
+
+
+/* --------------------------------------------------------------------------
+   10. CTA final
+   -------------------------------------------------------------------------- */
+
+.fp-final {
+    background: var(--fp-dark);
+    color: #fff;
+}
+
+.fp-final-inner {
+    max-width: var(--container-narrow);
+    margin: 0 auto;
+    padding: var(--space-20) var(--space-8);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+}
+
+.fp-final h2 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-4xl);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    color: #fff;
+    margin: 0;
+}
+
+.fp-final p {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, .72);
+    max-width: 48ch;
+    line-height: var(--leading-relaxed);
+    margin: 0;
+}
+
+.fp-final-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+}
+
+.fp-btn-solid,
+.fp-btn-quiet {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 600;
+    padding: 16px 28px;
+    border-radius: var(--radius-lg);
+    min-height: 56px;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out),
+                transform var(--duration-fast) var(--ease-out);
+}
+
+.fp-btn-solid { background: var(--fp-primary); color: #fff; }
+.fp-btn-solid:hover { background: var(--color-primary-dark); color: #fff; transform: translateY(-1px); }
+
+.fp-btn-quiet { background: rgba(255, 255, 255, .1); color: #fff; }
+.fp-btn-quiet:hover { background: rgba(255, 255, 255, .18); color: #fff; transform: translateY(-1px); }
+
+
+/* --------------------------------------------------------------------------
+   11. Barre d'achat collante
+   -------------------------------------------------------------------------- */
+
+.fp-bar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: var(--z-sticky);
+    background: var(--fp-card);
+    border-top: 1px solid var(--fp-border);
+    box-shadow: 0 -8px 24px rgba(20, 18, 16, .08);
+    transform: translateY(110%);
+    transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.fp-bar.is-visible {
+    transform: translateY(0);
+}
+
+.fp-bar-inner {
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: var(--space-4) var(--space-8);
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+    flex-wrap: wrap;
+}
+
+.fp-bar-txt {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.fp-bar-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--text-base);
+    letter-spacing: var(--tracking-tight);
+    color: var(--fp-text);
+}
+
+.fp-bar-meta {
+    font-size: var(--text-sm);
+    color: var(--fp-text-mute);
+    font-feature-settings: 'tnum';
+}
+
+.fp-bar-price {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--text-2xl);
+    font-feature-settings: 'tnum';
+    color: var(--fp-text);
+}
+
+.fp-bar-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: var(--text-base);
+    font-weight: 600;
+    background: var(--fp-primary);
+    color: #fff;
+    border: none;
+    padding: 14px 28px;
+    border-radius: var(--radius-lg);
+    min-height: 48px;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-out);
+}
+
+.fp-bar-cta:hover { background: var(--color-primary-dark); color: #fff; }
+
+/* Le widget WhatsApp flotte en bas à droite : on le remonte au-dessus de la
+   barre quand elle est visible, sinon il se retrouve dessous. */
+body.fp-bar-on .whatsapp-widget,
+body.fp-bar-on #whatsapp-widget,
+body.fp-bar-on .wa-widget {
+    bottom: calc(var(--fp-bar-h, 88px) + 16px);
+    transition: bottom var(--duration-normal) var(--ease-out);
+}
+
+
+/* --------------------------------------------------------------------------
+   12. Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1023px) {
+    /* Sous 1024 px la carte d'achat repasse dans le flux, AVANT le texte :
+       le prix doit rester au-dessus de la ligne de flottaison. */
+    .fp-hero {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-8);
+    }
+
+    .fp-buy {
+        position: static;
+        order: -1;
+    }
+
+    .fp-h1 { font-size: var(--text-4xl); }
+    .fp-h2 { font-size: var(--text-3xl); }
+}
+
+@media (max-width: 767px) {
+    .fp-wrap {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+    }
+
+    .fp-section {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-12);
+    }
+
+    .fp-h1 { font-size: var(--text-3xl); max-width: none; }
+
+    .fp-prog-head { align-items: flex-start; }
+
+    .fp-block-btn { padding: var(--space-4) var(--space-5); }
+    .fp-block-panel { padding: 0 var(--space-5) var(--space-4); }
+
+    .fp-lesson {
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    /* La durée passe à droite sur la première ligne, le titre en dessous */
+    .fp-lesson-time { margin-left: auto; }
+    .fp-lesson-title { flex: 1 0 100%; order: 3; }
+
+    .fp-final-inner { padding: var(--space-16) var(--space-5); }
+    .fp-final h2 { font-size: var(--text-3xl); }
+    .fp-btn-solid, .fp-btn-quiet { width: 100%; }
+
+    /* Barre collante en 2 lignes : titre + méta masqués */
+    .fp-bar-inner {
+        padding: var(--space-3) var(--space-5);
+        gap: var(--space-3);
+    }
+
+    .fp-bar-txt { display: none; }
+
+    .fp-bar-price { flex: 0 0 auto; }
+
+    .fp-bar-cta { flex: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fp *,
+    .fp-bar {
+        transition-duration: 0ms !important;
+    }
+
+    .fp-phase:hover,
+    .fp-quote:hover,
+    .fp-related-card:hover,
+    .fp-cta:hover,
+    .fp-btn-solid:hover,
+    .fp-btn-quiet:hover {
+        transform: none;
+    }
+}
