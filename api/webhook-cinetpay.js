@@ -17,6 +17,7 @@ const { verifyCinetPayWebhook } = require('../lib/signature');
 const { verifyTransaction, labelForPaymentMethod } = require('../lib/cinetpay');
 const { createAndPayInvoice } = require('../lib/pennylane');
 const { findProfileByEmail, upsertEnrollment, select } = require('../lib/supabase-admin');
+const { sendOrderConfirmation } = require('../lib/emails/order-confirmation');
 
 // Lookup profile par user_id (UUID Supabase) — préféré au lookup par email
 async function findProfileById(userId) {
@@ -190,11 +191,52 @@ module.exports = async function handler(req, res) {
             }
         }
 
-        // TODO V2: send confirmation email from Cap Learning brand
-        //         (en plus de la facture envoyée auto par Pennylane)
+        // 5. Confirmation de commande sur support durable — OBLIGATION LÉGALE, pas un email marketing.
+        //
+        // L'article L221-25 du Code de la consommation, lu avec les articles L221-13 et
+        // L221-28, 13°, subordonne l'efficacité de la renonciation au droit de rétractation
+        // à la fourniture d'une confirmation sur support durable. Sans cet envoi, les deux
+        // cases cochées au paiement (js/consent.js + lib/cgv-consent.js) ne purgent rien et
+        // l'article L221-20 prolonge le délai de rétractation de douze mois.
+        //
+        // Non bloquant comme le reste du webhook : un échec d'envoi ne doit pas déclencher
+        // de retry CinetPay ni fermer l'accès déjà ouvert. Il est loggué pour rattrapage.
+        let confirmationResult = { sent: false, skipped: 'not_attempted' };
+        try {
+            // Horodatage serveur du double consentement, écrit par recordOrderConsent()
+            // avant l'encaissement. C'est la date qui fait foi, pas celle du paiement.
+            let consentRow = null;
+            try {
+                const rows = await select(
+                    'order_consents',
+                    'transaction_id=eq.' + encodeURIComponent(transactionId) +
+                    '&select=created_at,cgv_version&limit=1'
+                );
+                consentRow = rows && rows[0] ? rows[0] : null;
+            } catch (consentErr) {
+                console.warn(`[webhook-cinetpay] ${transactionId}: lecture order_consents impossible ` +
+                    `(${consentErr.message}). La confirmation partira avec la date de paiement.`);
+            }
+
+            confirmationResult = await sendOrderConfirmation({
+                to: customerEmail,
+                courseLabel,
+                transactionId,
+                amount: tx.amount,
+                currency: 'FCFA',
+                paymentMethod: labelForPaymentMethod(tx.payment_method),
+                paidAtISO: tx.payment_date ? new Date(tx.payment_date).toISOString() : new Date().toISOString(),
+                consentAtISO: consentRow ? consentRow.created_at : null,
+                cgvVersion: consentRow ? consentRow.cgv_version : null
+            });
+        } catch (mailErr) {
+            console.error(`[webhook-cinetpay] ${transactionId}: confirmation NON envoyée — ${mailErr.message}`);
+            confirmationResult = { sent: false, error: mailErr.message };
+        }
 
         return res.status(200).json({
             ok: true,
+            confirmation_sent: confirmationResult.sent,
             invoice_id: invoice ? invoice.id : null,
             invoice_created: created,
             invoice_skipped: !invoice,
