@@ -85,6 +85,11 @@ function hideToast() {
 // --- Add to Cart Buttons ---
 function initAddToCartButtons() {
     document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        // Contenu d'origine du bouton (libellé + éventuelle icône SVG), mémorisé une
+        // seule fois pour être restauré à l'identique après le message de confirmation.
+        const originalHTML = btn.innerHTML;
+        let resetTimeout;
+
         btn.addEventListener('click', (e) => {
             const card = btn.closest('.course-card') || btn.closest('[data-id]');
             if (!card) return;
@@ -101,8 +106,9 @@ function initAddToCartButtons() {
                 btn.classList.add('added');
                 showToast(`"${item.name}" ajouté au panier`);
 
-                setTimeout(() => {
-                    btn.textContent = 'Acheter cette formation';
+                clearTimeout(resetTimeout);
+                resetTimeout = setTimeout(() => {
+                    btn.innerHTML = originalHTML;
                     btn.classList.remove('added');
                 }, 2000);
             } else {
