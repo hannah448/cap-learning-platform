@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Cap Learning anti-flash dark mode (DS v1.3) -->
+    <script>(function(){try{var t=localStorage.getItem("caplearning_theme");if(!t||t==="system"){t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"light");}catch(e){}})();</script>
+    <script src="../js/migrate-brand.js?v=20260728"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg?v=20260728">
+    <link rel="apple-touch-icon" href="/favicon.svg?v=20260728">
+    <title>Ma fiche de suivi — Cap Learning</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="description" content="Votre fiche de suivi personnelle : objectif, jalons hebdomadaires et journal de bord.">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/tokens.css?v=20260728">
+    <link rel="stylesheet" href="../css/style.css?v=20260728">
+    <link rel="stylesheet" href="../css/components.css?v=20260728">
+    <style>
+        body { background: #F6F4FD; }
+        .fs-main { max-width: 900px; margin: 0 auto; padding: 100px 24px 80px; }
+        .fs-header { margin-bottom: 28px; }
+        .fs-header h1 {
+            font-family: var(--font-display, sans-serif);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            margin: 0 0 8px;
+        }
+        .fs-header p { color: var(--text-secondary, #57534E); margin: 0; }
+
+        .dash-fiche {
+            background: #fff;
+            border: 1px solid #EEE8FB;
+            border-radius: 24px;
+            padding: 32px 36px;
+            box-shadow: 0 1px 2px rgba(30, 27, 58, 0.03), 0 12px 28px rgba(30, 27, 58, 0.05);
+        }
+        .dash-fiche-head {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
+        }
+        .dash-fiche-head h2 { font-family: var(--font-display, sans-serif); font-size: 1.3rem; margin: 0; }
+        .dash-fiche-objective {
+            background: linear-gradient(135deg, #FDF7EA, #fff);
+            border: 1px solid #F2E6C8;
+            border-radius: 14px;
+            padding: 18px 22px;
+            margin-bottom: 24px;
+        }
+        .dash-fiche-objective-label {
+            font-size: 0.78rem; color: var(--text-secondary, #57534E);
+            text-transform: uppercase; letter-spacing: 0.06em;
+            margin-bottom: 6px;
+        }
+        .dash-fiche-objective-txt {
+            font-family: var(--font-display, sans-serif);
+            font-size: 1.1rem; font-weight: 600;
+            color: var(--color-secondary, #1E1B3A);
+            line-height: 1.45;
+        }
+        .dash-fiche-objective-txt.is-empty { font-weight: 400; color: var(--text-secondary, #78716C); font-style: italic; }
+
+        .fs-progress {
+            margin: 24px 0 12px;
+            display: flex; align-items: center; gap: 12px;
+            font-size: .88rem; color: var(--text-secondary, #57534E);
+        }
+        .fs-progress-track { flex: 1; height: 6px; background: #EFEAFB; border-radius: 999px; overflow: hidden; }
+        .fs-progress-fill { height: 100%; background: linear-gradient(90deg, #3A50F6, #A78BFA); width: 0%; transition: width .3s; }
+
+        .dash-jalons { list-style: none; padding: 0; margin: 0 0 20px; }
+        .dash-jalon {
+            display: grid;
+            grid-template-columns: 28px 1fr auto 28px;
+            gap: 14px; align-items: center;
+            padding: 12px 4px;
+            border-bottom: 1px dashed #EEE8FB;
+        }
+        .dash-jalon:last-child { border-bottom: 0; }
+        .dash-jalon-check {
+            width: 22px; height: 22px; border-radius: 50%;
+            border: 2px solid #D7CDF5;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; color: #fff;
+            background: #fff; cursor: pointer; padding: 0;
+        }
+        .dash-jalon.done .dash-jalon-check { background: #8EBFA3; border-color: #8EBFA3; }
+        .dash-jalon.current .dash-jalon-check { border-color: var(--color-primary, #3A50F6); background: var(--color-primary, #3A50F6); }
+        .dash-jalon-title { font-weight: 500; }
+        .dash-jalon.done .dash-jalon-title { text-decoration: line-through; color: var(--text-secondary, #78716C); }
+        .dash-jalon-date { font-size: 0.82rem; color: var(--text-secondary, #78716C); white-space: nowrap; }
+
+        .fs-jalon-del, .fs-entry-del {
+            background: transparent; border: 0; color: #C4B8DE;
+            font-size: 1rem; cursor: pointer; padding: 4px 8px;
+            border-radius: 6px; transition: color .15s, background .15s;
+        }
+        .fs-jalon-del:hover, .fs-entry-del:hover { color: #EF4444; background: rgba(239,68,68,0.08); }
+
+        .fs-empty { color: var(--text-secondary, #78716C); font-style: italic; padding: 12px 4px; }
+
+        .fs-add-form {
+            display: flex; gap: 8px; margin-top: 12px;
+            padding: 12px; background: #FAF8FE; border-radius: 12px;
+            flex-wrap: wrap;
+        }
+        .fs-add-form input, .fs-add-form textarea {
+            flex: 1; min-width: 180px;
+            padding: 10px 14px; border: 1px solid #E0D7F0;
+            border-radius: 10px; font-size: .92rem; font-family: inherit;
+            background: #fff;
+        }
+        .fs-add-form input:focus, .fs-add-form textarea:focus {
+            outline: none; border-color: #A78BFA; box-shadow: 0 0 0 3px rgba(58,80,246,0.12);
+        }
+        .fs-add-form input[name=week] { flex: 0 0 150px; }
+        .fs-add-form textarea { min-height: 60px; resize: vertical; width: 100%; }
+        .fs-add-form button {
+            padding: 10px 18px; background: var(--color-primary, #3A50F6); color: #fff;
+            border: 0; border-radius: 10px; font-weight: 600; cursor: pointer;
+            font-size: .9rem; transition: filter .15s;
+        }
+        .fs-add-form button:hover { filter: brightness(1.08); }
+
+        .dash-fiche-journal { margin-top: 24px; padding-top: 20px; border-top: 1px solid #F0ECFB; }
+        .dash-fiche-journal h3 { font-size: 1rem; margin: 0 0 12px; font-weight: 600; }
+        .dash-journal-entry {
+            position: relative;
+            padding: 12px 40px 12px 16px;
+            background: #FAF8FE; border-radius: 10px;
+            margin-bottom: 10px; font-size: .92rem;
+            border-left: 3px solid #A78BFA;
+        }
+        .dash-journal-entry-date {
+            font-size: .74rem; color: var(--text-secondary, #78716C);
+            text-transform: uppercase; letter-spacing: .05em;
+            margin-bottom: 4px; font-weight: 600;
+        }
+        .dash-journal-entry-text { line-height: 1.5; white-space: pre-wrap; word-break: break-word; }
+        .dash-journal-entry .fs-entry-del { position: absolute; top: 8px; right: 8px; }
+
+        .fs-notice {
+            margin: 32px auto 0; max-width: 900px;
+            background: #FFF8E9; border: 1px solid #F2E6C8;
+            border-radius: 12px; padding: 14px 18px;
+            font-size: .88rem; color: #6B5A20; line-height: 1.5;
+        }
+        .fs-back { display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary, #3A50F6); font-weight: 600; text-decoration: none; margin-bottom: 20px; font-size: .92rem; }
+        .fs-back:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
+    <main id="main-content" class="fs-main">
+        <a href="dashboard" class="fs-back">← Retour au tableau de bord</a>
+
+        <header class="fs-header">
+            <h1>📝 Ma fiche de suivi</h1>
+            <p>Notez votre objectif, découpez-le en jalons hebdomadaires et tenez un journal de bord. Vos données restent sur cet appareil.</p>
+        </header>
+
+        <section class="dash-fiche">
+            <div class="dash-fiche-head">
+                <h2>🎯 Mon projet d'entrepreneur·e</h2>
+                <button class="btn btn-outline btn-sm" id="fs-edit-objective" type="button">Modifier l'objectif</button>
+            </div>
+            <div class="dash-fiche-objective">
+                <div class="dash-fiche-objective-label">Objectif principal</div>
+                <div class="dash-fiche-objective-txt is-empty" id="fs-objective-text">Aucun objectif défini. Cliquez sur « Modifier » pour ajouter le vôtre.</div>
+            </div>
+
+            <h3 style="font-size:1rem; margin:0 0 4px; font-weight:600;">Mes jalons</h3>
+            <div class="fs-progress">
+                <span id="fs-progress-label">Aucun jalon défini</span>
+                <div class="fs-progress-track"><div class="fs-progress-fill" id="fs-progress-fill"></div></div>
+            </div>
+            <ul class="dash-jalons" id="fs-jalons"></ul>
+
+            <form class="fs-add-form" id="fs-add-jalon-form" autocomplete="off">
+                <input type="text" name="title" placeholder="Nouveau jalon (ex : créer ma boutique Shopify)" required maxlength="120">
+                <input type="text" name="week" placeholder="Ex : Semaine 3" maxlength="30">
+                <button type="submit">+ Ajouter</button>
+            </form>
+            <p style="font-size:.78rem; color:#78716C; margin:8px 4px 0;">💡 Cliquez sur la pastille à gauche d'un jalon pour le passer en <strong>en cours</strong>, puis <strong>terminé</strong>.</p>
+
+            <div class="dash-fiche-journal">
+                <h3>Journal de bord</h3>
+                <form class="fs-add-form" id="fs-add-journal-form" autocomplete="off">
+                    <textarea name="text" placeholder="Ce que vous avez fait, appris ou bloqué aujourd'hui…" required maxlength="600"></textarea>
+                    <button type="submit" style="align-self:flex-end;">+ Ajouter au journal</button>
+                </form>
+                <div id="fs-journal-list" style="margin-top:16px;"></div>
+            </div>
+        </section>
+
+        <div class="fs-notice">
+            🔒 <strong>Données locales.</strong> Votre fiche est enregistrée uniquement sur cet appareil (navigateur). Elle ne sera pas synchronisée entre plusieurs appareils ni sauvegardée si vous videz votre cache. Une synchronisation Supabase arrivera dans une prochaine version.
+        </div>
+    </main>
+
+    <script src="../js/fiche-suivi.js?v=20260728"></script>
+</body>
+</html>
