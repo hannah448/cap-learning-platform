@@ -146,6 +146,15 @@
             border-radius: 12px; padding: 14px 18px;
             font-size: .88rem; color: #6B5A20; line-height: 1.5;
         }
+        .fs-sync-status {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: .78rem; font-weight: 600;
+            padding: 4px 10px; border-radius: 999px;
+            background: #EFEAFB; color: #5B21B6;
+        }
+        .fs-sync-status.is-loading { background: #FEF3C7; color: #92400E; }
+        .fs-sync-status.is-ok      { background: #DCFCE7; color: #166534; }
+        .fs-sync-status.is-local   { background: #EFEAFB; color: #5B21B6; }
         .fs-back { display: inline-flex; align-items: center; gap: 6px; color: var(--color-primary, #3A50F6); font-weight: 600; text-decoration: none; margin-bottom: 20px; font-size: .92rem; }
         .fs-back:hover { text-decoration: underline; }
     </style>
@@ -158,7 +167,8 @@
 
         <header class="fs-header">
             <h1>📝 Ma fiche de suivi</h1>
-            <p>Notez votre objectif, découpez-le en jalons hebdomadaires et tenez un journal de bord. Vos données restent sur cet appareil.</p>
+            <p>Notez votre objectif, découpez-le en jalons hebdomadaires et tenez un journal de bord.</p>
+            <div style="margin-top:10px;"><span class="fs-sync-status is-loading" id="fs-sync-status">⏳ Chargement…</span></div>
         </header>
 
         <section class="dash-fiche">
@@ -196,10 +206,13 @@
         </section>
 
         <div class="fs-notice">
-            🔒 <strong>Données locales.</strong> Votre fiche est enregistrée uniquement sur cet appareil (navigateur). Elle ne sera pas synchronisée entre plusieurs appareils ni sauvegardée si vous videz votre cache. Une synchronisation Supabase arrivera dans une prochaine version.
+            ☁️ <strong>Sync automatique.</strong> Si vous êtes connecté·e, votre fiche est sauvegardée sur votre compte Cap Learning et retrouvée depuis tous vos appareils. Sinon (ou en cas d'offline), une copie locale prend le relais.
         </div>
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/config.js?v=20260728"></script>
+    <script src="../js/supabase-client.js?v=20260728"></script>
     <script src="../js/fiche-suivi.js?v=20260728"></script>
 </body>
 </html>
